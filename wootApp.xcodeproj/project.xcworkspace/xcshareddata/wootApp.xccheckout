@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A12BA52D-084F-4E2E-9475-62687F7DBFDE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>wootApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>08643D3C25BB763502E633BE452733569A68898E</key>
+		<string>https://github.com/woottechnologies/wootApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>wootApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>08643D3C25BB763502E633BE452733569A68898E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/woottechnologies/wootApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>08643D3C25BB763502E633BE452733569A68898E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>08643D3C25BB763502E633BE452733569A68898E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wootApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
