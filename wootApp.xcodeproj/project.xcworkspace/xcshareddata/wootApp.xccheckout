@@ -5,7 +5,11 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>C73DBD79-EAFA-4B36-B87C-28B5D27684AF</string>
+=======
+	<string>A12BA52D-084F-4E2E-9475-62687F7DBFDE</string>
+>>>>>>> c2eaf47be7e7b8dad15f2c0f1aae8531c15d7efa
 	<key>IDESourceControlProjectName</key>
 	<string>wootApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
