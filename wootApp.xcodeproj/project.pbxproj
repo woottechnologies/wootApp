@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47541EB21B1F700C005E3C53 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB11B1F700C005E3C53 /* Team.m */; };
+		47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB41B1F71E6005E3C53 /* TeamController.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* ViewController.m */; };
-		55B4C8AE1B1E386F003B3058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8AC1B1E386F003B3058 /* Main.storyboard */; };
 		55B4C8B01B1E386F003B3058 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8AF1B1E386F003B3058 /* Images.xcassets */; };
 		55B4C8B31B1E386F003B3058 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */; };
 		55B4C8BF1B1E386F003B3058 /* wootAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8BE1B1E386F003B3058 /* wootAppTests.m */; };
@@ -27,6 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47541EB01B1F700C005E3C53 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		47541EB11B1F700C005E3C53 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		47541EB31B1F71E6005E3C53 /* TeamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamController.h; sourceTree = "<group>"; };
+		47541EB41B1F71E6005E3C53 /* TeamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamController.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -34,7 +39,6 @@
 		55B4C8A71B1E386F003B3058 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		55B4C8A91B1E386F003B3058 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		55B4C8AA1B1E386F003B3058 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		55B4C8AD1B1E386F003B3058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55B4C8AF1B1E386F003B3058 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55B4C8B21B1E386F003B3058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		55B4C8B81B1E386F003B3058 /* wootAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wootAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +89,10 @@
 				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
 				55B4C8A91B1E386F003B3058 /* ViewController.h */,
 				55B4C8AA1B1E386F003B3058 /* ViewController.m */,
-				55B4C8AC1B1E386F003B3058 /* Main.storyboard */,
+				47541EB01B1F700C005E3C53 /* Team.h */,
+				47541EB11B1F700C005E3C53 /* Team.m */,
+				47541EB31B1F71E6005E3C53 /* TeamController.h */,
+				47541EB41B1F71E6005E3C53 /* TeamController.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
 				55B4C8A21B1E386F003B3058 /* Supporting Files */,
@@ -199,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55B4C8AE1B1E386F003B3058 /* Main.storyboard in Resources */,
 				55B4C8B31B1E386F003B3058 /* LaunchScreen.xib in Resources */,
 				55B4C8B01B1E386F003B3058 /* Images.xcassets in Resources */,
 			);
@@ -219,6 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
+				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* ViewController.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
@@ -244,14 +252,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		55B4C8AC1B1E386F003B3058 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55B4C8AD1B1E386F003B3058 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -416,6 +416,7 @@
 				55B4C8C41B1E386F003B3058 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55B4C8C51B1E386F003B3058 /* Build configuration list for PBXNativeTarget "wootAppTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +425,7 @@
 				55B4C8C71B1E386F003B3058 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
