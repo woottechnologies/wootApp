@@ -10,7 +10,7 @@
 @import UIKit;
 
 static NSString *AthleteIDKey = @"athleteID";
-static NSString *NameKey = @"name";
+static NSString *AthleteNameKey = @"name";
 static NSString *JerseyNumberKey = @"jerseyNumber";
 static NSString *PhotoKey = @"photo";
 static NSString *PositionKey = @"position";

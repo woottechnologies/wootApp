@@ -7,7 +7,6 @@
 //
 
 #import "SchoolController.h"
-#import "School.h"
 
 @implementation SchoolController
 
@@ -16,6 +15,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[SchoolController alloc]init];
+        [sharedInstance loadSchools];
     });
     
     return sharedInstance;
@@ -23,12 +23,13 @@
 
 - (void)loadSchools{
     NSDictionary *wxHighSchoolDict = @{SchoolIDKey:@1,
-                                       NameKey:@"Woods Cross",
+                                       NameKey:@"Woods Cross High School",
                                        AddressKey:@"600 West 2200 South",
                                        CityKey:@"Woods Cross",
                                        StateKey:@"UT",
                                        RegionKey:@"6",
                                        DivisionKey:@"4A",
+                                       MascottKey:@"Wild Cats",
                                        LogoKey:@"wx_logo",
                                        PrimaryColorKey:@"blue",
                                        SecondaryColorKey:@"white"};
@@ -39,6 +40,7 @@
     [schoolsMutable addObject:wxHighSchool];
     
     self.schools = schoolsMutable;
+    self.currentSchool = self.schools[0];
 }
 
 

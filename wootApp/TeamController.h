@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Team.h"
 
 @interface TeamController : NSObject
 
 @property (nonatomic, strong, readonly) NSArray *teams;
 @property (nonatomic, assign) NSInteger schoolID;
+@property (nonatomic, strong) Team *currentTeam;
 
 + (instancetype)sharedInstance;
 

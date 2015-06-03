@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "School.h"
 
 @interface SchoolController : NSObject
 
 @property (nonatomic, strong) NSArray *schools;
+@property (nonatomic, strong) School *currentSchool;
 
 +(instancetype) sharedInstance;
 

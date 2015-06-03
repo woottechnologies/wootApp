@@ -19,10 +19,12 @@
         self.address = dictionary[AddressKey];
         self.region = dictionary[RegionKey];
         self.division = dictionary[DivisionKey];
-        self.logo = dictionary[LogoKey];
+        self.mascott = dictionary[MascottKey];
+        self.logo = [UIImage imageNamed:dictionary[LogoKey]];
         self.primaryColor = dictionary[PrimaryColorKey];
         self.secondaryColor = dictionary[SecondaryColorKey];
     }
+    
     return self;
 }
 

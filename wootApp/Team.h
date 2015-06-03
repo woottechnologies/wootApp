@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "School.h"
 
 static NSString *TeamIDKey = @"teamID";
-static NSString *SchoolIDKey = @"schoolID";
 static NSString *TypeKey = @"type";
 static NSString *WinsKey = @"wins";
 static NSString *LossesKey = @"losses";

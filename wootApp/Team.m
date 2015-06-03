@@ -21,11 +21,12 @@
     self = [super init];
     
     if (self) {
-        self.teamID = [dictionary[@"teamID"] integerValue];
+        self.teamID = [dictionary[TeamIDKey] integerValue];
         self.schoolID = [dictionary[SchoolIDKey] integerValue];
         self.type = dictionary[TypeKey];
         self.wins = [dictionary[WinsKey] integerValue];
         self.losses = [dictionary[LossesKey] integerValue];
+        self.record = [self record];
     }
     
     return self;
