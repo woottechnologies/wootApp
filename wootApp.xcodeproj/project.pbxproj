@@ -10,6 +10,8 @@
 		47541EB21B1F700C005E3C53 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB11B1F700C005E3C53 /* Team.m */; };
 		47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB41B1F71E6005E3C53 /* TeamController.m */; };
 		47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EC71B1FA394005E3C53 /* TeamViewController.m */; };
+		47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */; };
+		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -38,6 +40,10 @@
 		47541EB41B1F71E6005E3C53 /* TeamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamController.m; sourceTree = "<group>"; };
 		47541EC61B1FA394005E3C53 /* TeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamViewController.h; sourceTree = "<group>"; };
 		47541EC71B1FA394005E3C53 /* TeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamViewController.m; sourceTree = "<group>"; };
+		47541EC91B20C7B1005E3C53 /* AthleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteViewController.h; sourceTree = "<group>"; };
+		47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteViewController.m; sourceTree = "<group>"; };
+		47541ECC1B20C7EC005E3C53 /* AthleteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteDataSource.h; sourceTree = "<group>"; };
+		47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteDataSource.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +107,10 @@
 				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
 				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
 				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
+				47541EC91B20C7B1005E3C53 /* AthleteViewController.h */,
+				47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */,
+				47541ECC1B20C7EC005E3C53 /* AthleteDataSource.h */,
+				47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */,
 				47541EC61B1FA394005E3C53 /* TeamViewController.h */,
 				47541EC71B1FA394005E3C53 /* TeamViewController.m */,
 				47541EB01B1F700C005E3C53 /* Team.h */,
@@ -247,8 +257,10 @@
 			files = (
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
+				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
+				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,

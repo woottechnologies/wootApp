@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SchoolListViewController.h"
+#import "AthleteViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,10 +22,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
+    //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
     
+    self.window.rootViewController = [[AthleteViewController alloc] init];
+                                      
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

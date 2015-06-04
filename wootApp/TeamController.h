@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Team.h"
+#import "Athlete.h"
 
 @interface TeamController : NSObject
 
 @property (nonatomic, strong, readonly) NSArray *teams;
 @property (nonatomic, assign) NSInteger schoolID;
 @property (nonatomic, strong) Team *currentTeam;
+@property (nonatomic, strong) Athlete *currentAthlete;
 
 + (instancetype)sharedInstance;
 

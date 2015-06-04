@@ -21,6 +21,7 @@
         self.height = [dictionary[HeightKey] integerValue];
         self.weight = [dictionary[WeightKey] integerValue];
         self.year = [dictionary[YearKey] integerValue];
+        self.bio = dictionary[BioKey];
         self.isCaptain = dictionary[IsCaptainKey];
         self.isStarter = dictionary[IsStarterKey];
         self.views = [dictionary[ViewsKey] integerValue];
