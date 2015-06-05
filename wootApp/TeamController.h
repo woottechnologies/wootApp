@@ -19,4 +19,6 @@
 
 + (instancetype)sharedInstance;
 
+- (NSArray *) mostViewedAthletes;
+
 @end

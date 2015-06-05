@@ -16,7 +16,7 @@
         self.athleteID = [dictionary[AthleteIDKey] integerValue];
         self.name = dictionary[AthleteNameKey];
         self.jerseyNumber = [dictionary[JerseyNumberKey] integerValue];
-        self.photo = dictionary[PhotoKey];
+        self.photo = [UIImage imageNamed:dictionary[PhotoKey]];
         self.position = dictionary[PositionKey];
         self.height = [dictionary[HeightKey] integerValue];
         self.weight = [dictionary[WeightKey] integerValue];
