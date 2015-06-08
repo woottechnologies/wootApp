@@ -8,6 +8,7 @@
 
 #import "TeamController.h"
 #import "Athlete.h"
+#import "SchoolController.h"
 
 @interface TeamController()
 
@@ -22,7 +23,12 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[TeamController alloc] init];
-        [sharedInstance loadTeams];
+        //[sharedInstance loadTeams];
+        [sharedInstance loadTeamsFromDBWithCompletion:^(BOOL success) {
+            if (success) {
+                NSLog(@"successful team load");
+            }
+        }];
     });
     
     return sharedInstance;
@@ -45,9 +51,46 @@
     [self loadAthletes];
 }
 
+- (void)loadTeamsFromDBWithCompletion:(void (^)(BOOL success))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"schoolID=%li", (long)[SchoolController sharedInstance].currentSchool.schoolID];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8888/woot/select_teams.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseArray.count > 0) {
+                NSMutableArray *mutTeams = [[NSMutableArray alloc] init];
+                for (NSDictionary *dict in responseArray) {
+                    NSLog(@"%@", dict);
+                    Team *newTeam = [[Team alloc] initWithDictionary:dict];
+                    [mutTeams addObject:newTeam];
+                }
+                self.teams = mutTeams;
+                [self loadAthletesFromDBWithCompletion:^(BOOL success) {
+                    if (success) {
+                        NSLog(@"loaded athletes from db");
+                    }
+                }];
+                completion(YES);
+            }
+        } else {
+            completion(NO);
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
 - (void)loadAthletes {
-    
-    
      NSDictionary *athlete1 = @{AthleteIDKey:@1,
      NameKey:@"Thomas Moore",
      JerseyNumberKey:@23,
@@ -105,6 +148,40 @@
     self.currentAthlete = [Athlete new];
     self.currentAthlete = self.currentTeam.athletes[1];
     
+}
+
+- (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"teamID=%li", (long)self.currentTeam.teamID];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8888/woot/select_athletes.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseArray.count > 0) {
+                NSMutableArray *mutAthletes = [[NSMutableArray alloc] init];
+                for (NSDictionary *dict in responseArray) {
+                    NSLog(@"%@", dict);
+                    Athlete *newAthlete = [[Athlete alloc] initWithDictionary:dict];
+                    [mutAthletes addObject:newAthlete];
+                }
+                self.currentTeam.athletes = mutAthletes;
+                completion(YES);
+            }
+        } else {
+            completion(NO);
+        }
+    }];
+    
+    [uploadTask resume];
 }
 
 @end

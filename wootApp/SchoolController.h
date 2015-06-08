@@ -11,7 +11,7 @@
 
 @interface SchoolController : NSObject
 
-@property (nonatomic, strong) NSArray *schools;
+@property (nonatomic, strong, readonly) NSArray *schools;
 @property (nonatomic, strong) School *currentSchool;
 
 +(instancetype) sharedInstance;

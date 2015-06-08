@@ -8,6 +8,7 @@
 
 #import "SchoolListViewController.h"
 #import "TeamViewController.h"
+#import "SchoolController.h"
 
 @interface SchoolListViewController ()
 
@@ -17,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [SchoolController sharedInstance];
     // Do any additional setup after loading the view, typically from a nib.
     UIButton *teamButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     teamButton.frame = CGRectMake(self.view.frame.size.width / 2 - 25, 100, 50, 30);

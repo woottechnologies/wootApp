@@ -8,6 +8,12 @@
 
 #import "SchoolController.h"
 
+@interface SchoolController()
+
+@property (nonatomic, strong) NSArray *schools;
+
+@end
+
 @implementation SchoolController
 
 +(instancetype) sharedInstance{
@@ -15,7 +21,13 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[SchoolController alloc]init];
-        [sharedInstance loadSchools];
+        [sharedInstance loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
+            if (success) {
+                NSLog(@"network request worked");
+            } else {
+                NSLog(@"fail");
+            }
+        }];
     });
     
     return sharedInstance;
@@ -43,5 +55,35 @@
     self.currentSchool = self.schools[0];
 }
 
+- (void)loadSchoolsFromDatabaseWithCompletion:(void (^)(BOOL success))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8888/woot/select_schools.php"];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (data.length > 0 && error == nil) {
+            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseArray.count > 0) {
+                NSMutableArray *mutSchoolArray = [[NSMutableArray alloc] init];
+                
+                for (NSDictionary *dict in responseArray) {
+                    NSLog(@"%@", dict);
+                    School *newSchool = [[School alloc] initWithDictionary:dict];
+                    [mutSchoolArray addObject:newSchool];
+                }
+                
+                self.schools = mutSchoolArray;
+                self.currentSchool = self.schools[0];
+                completion(YES);
+            }
+        } else {
+            completion(NO);
+        }
+        
+    }];
+    
+    [dataTask resume];
+    
+    
+}
 
 @end

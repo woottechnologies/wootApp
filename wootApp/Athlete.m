@@ -16,15 +16,25 @@
         self.athleteID = [dictionary[AthleteIDKey] integerValue];
         self.name = dictionary[AthleteNameKey];
         self.jerseyNumber = [dictionary[JerseyNumberKey] integerValue];
-        self.photo = dictionary[PhotoKey];
+        self.photo = [UIImage imageNamed:[NSString stringWithFormat:@"%@", dictionary[PhotoKey]]];
         self.position = dictionary[PositionKey];
         self.height = [dictionary[HeightKey] integerValue];
         self.weight = [dictionary[WeightKey] integerValue];
         self.year = [dictionary[YearKey] integerValue];
         self.bio = dictionary[BioKey];
-        self.isCaptain = dictionary[IsCaptainKey];
-        self.isStarter = dictionary[IsStarterKey];
         self.views = [dictionary[ViewsKey] integerValue];
+        
+        if ([dictionary[IsCaptainKey] isEqualToString:@"Y"]) {
+            self.isCaptain = YES;
+        } else {
+            self.isCaptain = NO;
+        }
+        
+        if ([dictionary[IsStarterKey] isEqualToString:@"Y"]) {
+            self.isStarter = YES;
+        } else {
+            self.isStarter = NO;
+        }
     }
     return self;
 }
