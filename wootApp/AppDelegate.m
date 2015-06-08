@@ -24,8 +24,8 @@
     
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
     
-    //self.window.rootViewController = [[AthleteViewController alloc] init];
-                                      
+   // self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[AthleteViewController new]];
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

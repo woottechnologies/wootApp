@@ -20,7 +20,7 @@ static NSString *LossesKey = @"losses";
 @property (nonatomic, assign) NSInteger schoolID;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *record;
-@property (nonatomic, assign) NSArray *athletes;
+@property (nonatomic, strong) NSArray *athletes;
 //@property (nonatomic, assign) NSArray *schedule;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
