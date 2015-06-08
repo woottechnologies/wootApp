@@ -14,13 +14,16 @@
 {
     self = [super init];
     if (self) {
-        self.schoolID = dictionary[SchoolIDKey];
+        self.schoolID = [dictionary[SchoolIDKey] integerValue];
         self.name = dictionary[NameKey];
         self.address = dictionary[AddressKey];
+        self.city = dictionary[CityKey];
+        self.state = dictionary[StateKey];
+        self.zip = dictionary[ZipKey];
         self.region = dictionary[RegionKey];
         self.division = dictionary[DivisionKey];
         self.mascott = dictionary[MascottKey];
-        self.logo = [UIImage imageNamed:dictionary[LogoKey]];
+        self.logo = [UIImage imageNamed:[NSString stringWithFormat:@"%@", dictionary[LogoKey]]];
         self.primaryColor = dictionary[PrimaryColorKey];
         self.secondaryColor = dictionary[SecondaryColorKey];
     }

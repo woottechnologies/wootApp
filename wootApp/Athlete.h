@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-static NSString *AthleteIDKey = @"athleteID";
+static NSString *AthleteIDKey = @"id";
 static NSString *AthleteNameKey = @"name";
-static NSString *JerseyNumberKey = @"jerseyNumber";
+static NSString *JerseyNumberKey = @"number";
 static NSString *PhotoKey = @"photo";
 static NSString *PositionKey = @"position";
 static NSString *HeightKey = @"height";
 static NSString *WeightKey = @"weight";
 static NSString *YearKey = @"year";
 static NSString *BioKey = @"bio";
-static NSString *IsCaptainKey = @"isCaptain";
-static NSString *IsStarterKey = @"isStarter";
+static NSString *IsCaptainKey = @"captain";
+static NSString *IsStarterKey = @"starter";
 static NSString *ViewsKey = @"views";
 
 @interface Athlete : NSObject

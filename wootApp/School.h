@@ -9,22 +9,22 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-static NSString *SchoolIDKey = @"schoolID";
+static NSString *SchoolIDKey = @"id";
 static NSString *NameKey = @"name";
-static NSString *AddressKey = @"address";
+static NSString *AddressKey = @"street";
 static NSString *CityKey = @"city";
 static NSString *StateKey = @"state";
 static NSString *ZipKey = @"zip";
 static NSString *RegionKey = @"region";
 static NSString *DivisionKey = @"division";
 static NSString *MascottKey = @"mascott";
-static NSString *LogoKey = @"logoID";
+static NSString *LogoKey = @"logo";
 static NSString *PrimaryColorKey = @"primaryColor";
 static NSString *SecondaryColorKey = @"secondaryColor";
 
 @interface School : NSObject
 
-@property (nonatomic, strong) NSString *schoolID;
+@property (nonatomic, assign) NSInteger schoolID;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *city;
