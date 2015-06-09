@@ -21,6 +21,7 @@ static NSString *LossesKey = @"losses";
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *record;
 @property (nonatomic, strong) NSArray *athletes;
+@property (nonatomic, strong) NSArray *campaigns;
 //@property (nonatomic, assign) NSArray *schedule;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

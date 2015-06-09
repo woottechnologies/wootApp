@@ -9,6 +9,7 @@
 #import "TeamController.h"
 #import "Athlete.h"
 #import "SchoolController.h"
+#import "CampaignController.h"
 
 @interface TeamController()
 
@@ -76,6 +77,7 @@
                 }
                 self.teams = [mutTeams copy];
                 self.currentTeam = self.teams[0];
+
 //                [self loadAthletesFromDBWithCompletion:^(BOOL success) {
 //                    if (success) {
 //                        NSLog(@"loaded athletes from db");
@@ -89,6 +91,15 @@
     }];
     
     [uploadTask resume];
+}
+
+- (void)loadCampaigns {
+    CampaignController *campaignController = [CampaignController sharedInstance];
+    [campaignController loadCampaignFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
+        if (success) {
+            self.currentTeam.campaigns = campaigns;
+        }
+    }];
 }
 
 //- (void)loadAthletes {

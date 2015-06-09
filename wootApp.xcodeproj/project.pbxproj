@@ -16,6 +16,9 @@
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
+		553A28DF1B2773E600784798 /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28DE1B2773E600784798 /* Campaign.m */; };
+		553A28E21B27762700784798 /* CampaignController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E11B27762700784798 /* CampaignController.m */; };
+		553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E41B27991800784798 /* CampaignAdViewController.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -58,6 +61,12 @@
 		553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLKAutoLayout.m"; sourceTree = "<group>"; };
 		553A28D81B27649900784798 /* UIView+FLKAutoLayoutPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayoutPredicate.h"; sourceTree = "<group>"; };
 		553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLKAutoLayoutPredicate.m"; sourceTree = "<group>"; };
+		553A28DD1B2773E600784798 /* Campaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campaign.h; sourceTree = "<group>"; };
+		553A28DE1B2773E600784798 /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
+		553A28E01B27762700784798 /* CampaignController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignController.h; sourceTree = "<group>"; };
+		553A28E11B27762700784798 /* CampaignController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignController.m; sourceTree = "<group>"; };
+		553A28E31B27991800784798 /* CampaignAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignAdViewController.h; sourceTree = "<group>"; };
+		553A28E41B27991800784798 /* CampaignAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignAdViewController.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +169,12 @@
 				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
 				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
 				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
+				553A28DD1B2773E600784798 /* Campaign.h */,
+				553A28DE1B2773E600784798 /* Campaign.m */,
+				553A28E01B27762700784798 /* CampaignController.h */,
+				553A28E11B27762700784798 /* CampaignController.m */,
+				553A28E31B27991800784798 /* CampaignAdViewController.h */,
+				553A28E41B27991800784798 /* CampaignAdViewController.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
 				553A28D31B27649900784798 /* FLKAutoLayout */,
@@ -301,6 +316,9 @@
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
+				553A28DF1B2773E600784798 /* Campaign.m in Sources */,
+				553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */,
+				553A28E21B27762700784798 /* CampaignController.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
