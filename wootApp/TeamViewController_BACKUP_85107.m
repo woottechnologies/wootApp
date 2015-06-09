@@ -62,7 +62,17 @@
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
+<<<<<<< HEAD
     
+    
+    //temporary. should be called every time there is a new currentTeam selected
+    [[TeamController sharedInstance] loadCampaigns];
+=======
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+>>>>>>> 416867e27b0ec890cfda2dacd7813755c60c7db9
 }
 
 - (void)setupHeader {

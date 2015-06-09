@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 472F873B1B27741D0067C72F /* UIImage+PathForFile.m */; };
 		47541EB21B1F700C005E3C53 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB11B1F700C005E3C53 /* Team.m */; };
 		47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB41B1F71E6005E3C53 /* TeamController.m */; };
 		47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EC71B1FA394005E3C53 /* TeamViewController.m */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		472F873A1B27741D0067C72F /* UIImage+PathForFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PathForFile.h"; sourceTree = "<group>"; };
+		472F873B1B27741D0067C72F /* UIImage+PathForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PathForFile.m"; sourceTree = "<group>"; };
 		47541EB01B1F700C005E3C53 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		47541EB11B1F700C005E3C53 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		47541EB31B1F71E6005E3C53 /* TeamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamController.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				553A28E11B27762700784798 /* CampaignController.m */,
 				553A28E31B27991800784798 /* CampaignAdViewController.h */,
 				553A28E41B27991800784798 /* CampaignAdViewController.m */,
+				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
+				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
 				553A28D31B27649900784798 /* FLKAutoLayout */,
@@ -314,6 +319,7 @@
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
+				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
 				553A28DF1B2773E600784798 /* Campaign.m in Sources */,

@@ -10,6 +10,7 @@
 #import "Athlete.h"
 #import "SchoolController.h"
 #import "CampaignController.h"
+#import "UIImage+PathForFile.h"
 
 @interface TeamController()
 
@@ -24,33 +25,10 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[TeamController alloc] init];
-        //[sharedInstance loadTeams];
-//        [sharedInstance loadTeamsFromDBWithCompletion:^(BOOL success) {
-//            if (success) {
-//                NSLog(@"successful team load");
-//            }
-//        }];
     });
     
     return sharedInstance;
 }
-
-//- (void)loadTeams {
-//    self.teams = [[NSArray alloc]init];
-//    NSDictionary *wxFBTeamDict = @{TeamIDKey:@1,
-//                                   SchoolIDKey:@1,
-//                                   TypeKey:@"Football",
-//                                   WinsKey:@4,
-//                                   LossesKey:@1};
-//    
-//    NSMutableArray *teamsMutable = [[NSMutableArray alloc] init];
-//    Team *wxFootball = [[Team alloc] initWithDictionary:wxFBTeamDict];
-//    
-//    [teamsMutable addObject:wxFootball];
-//    
-//    self.teams = teamsMutable;
-//    [self loadAthletes];
-//}
 
 - (void)loadTeamsFromDBWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
@@ -64,7 +42,7 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
+        
         if (data.length > 0 && error == nil) {
             NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
@@ -77,12 +55,6 @@
                 }
                 self.teams = [mutTeams copy];
                 self.currentTeam = self.teams[0];
-
-//                [self loadAthletesFromDBWithCompletion:^(BOOL success) {
-//                    if (success) {
-//                        NSLog(@"loaded athletes from db");
-//                    }
-//                }];
                 completion(YES);
             }
         } else {
@@ -226,7 +198,6 @@
     return roster;
 }
 
-
 - (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -248,10 +219,15 @@
                 for (NSDictionary *dict in responseArray) {
                    // NSLog(@"%@", dict);
                     Athlete *newAthlete = [[Athlete alloc] initWithDictionary:dict];
+                    [UIImage imageWithPath:[NSString stringWithFormat:@"%@", dict[PhotoKey]] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newAthlete.photo = image;
+                        }
+                    }];
                     [mutAthletes addObject:newAthlete];
                 }
-                self.currentTeam.athletes = mutAthletes;
-                //self.currentTeam.athletes = [mutAthletes copy];
+                //self.currentTeam.athletes = mutAthletes;
+                self.currentTeam.athletes = [mutAthletes copy];
                 completion(YES);
             }
         } else {

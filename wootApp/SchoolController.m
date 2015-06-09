@@ -7,6 +7,7 @@
 //
 
 #import "SchoolController.h"
+#import "UIImage+PathForFile.h"
 
 
 @interface SchoolController()
@@ -70,6 +71,11 @@
                 for (NSDictionary *dict in responseArray) {
                     //NSLog(@"%@", dict);
                     School *newSchool = [[School alloc] initWithDictionary:dict];
+                    [UIImage imageWithPath:[NSString stringWithFormat:@"%@", dict[LogoKey]] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newSchool.logo = image;
+                        }
+                    }];
                     [mutSchoolArray addObject:newSchool];
                 }
                 
@@ -84,8 +90,6 @@
     }];
     
     [dataTask resume];
-    
-    
 }
 
 @end

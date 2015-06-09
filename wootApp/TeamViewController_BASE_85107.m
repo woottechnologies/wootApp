@@ -12,16 +12,12 @@
 #import "TeamDataSource.h"
 #import "AthleteViewController.h"
 #import "RosterViewController.h"
-#import "CampaignController.h"
-#import "CampaignAdViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UIView *header;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) TeamDataSource *dataSource;
-@property (nonatomic, strong) UIButton *campaignAdButton;
-@property (nonatomic, strong) UIImageView *campaignAdImageView;
 
 @end
 
@@ -30,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 204) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 214) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
     [self.dataSource registerTableView:self.tableView viewController:self];
@@ -52,10 +48,6 @@
     [self.view addSubview:self.header];
     [self setupHeader];
     
-    self.campaignAdButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50)];
-    [self.view addSubview:self.campaignAdButton];
-    [self setUpCampaignAd];
-    
     UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
@@ -63,6 +55,8 @@
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
     
+   
+
 }
 
 - (void)setupHeader {
@@ -93,22 +87,6 @@
     recordLabel.textColor = [UIColor whiteColor];
     //recordLabel.font = [UIFont systemFontOfSize:13.0];
     [self.header addSubview:recordLabel];
-}
-
-- (void)setUpCampaignAd{
-    TeamController *teamController = [TeamController sharedInstance];
-    CampaignController *campaignController = [CampaignController sharedInstance];
-    Campaign *currentCampaign = [campaignController  selectRandomCampaign:teamController.currentTeam.campaigns];
-    self.campaignAdImageView = [[UIImageView alloc] initWithImage:currentCampaign.bannerAd];
-    self.campaignAdImageView.frame = self.campaignAdButton.frame;
-    [self.campaignAdButton addSubview:self.campaignAdImageView];
-    [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)campaignAdButtonPressed{
-    CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
-    campaignAdViewController.campaignAdImageView = self.campaignAdImageView;
-    [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
