@@ -22,7 +22,7 @@
     
     if (self) {
         self.teamID = [dictionary[TeamIDKey] integerValue];
-        self.schoolID = [dictionary[SchoolIDKey] integerValue];
+        //self.schoolID = [dictionary[SchoolIDKey] integerValue];
         self.type = dictionary[TypeKey];
         self.wins = [dictionary[WinsKey] integerValue];
         self.losses = [dictionary[LossesKey] integerValue];

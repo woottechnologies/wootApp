@@ -22,6 +22,8 @@
 
 @property (weak, nonatomic) id<MostViewedPlayerTableViewCellDelegate> delegate;
 
+- (void)loadDataWithAthletes:(NSArray *)athletes;
+
 @end
 
 @protocol MostViewedPlayerTableViewCellDelegate <NSObject>
@@ -31,3 +33,5 @@
 - (void)rosterButtonPressed;
 
 @end
+
+

@@ -9,6 +9,7 @@
 #import "SchoolListViewController.h"
 #import "TeamViewController.h"
 #import "SchoolController.h"
+#import "TeamController.h"
 
 @interface SchoolListViewController ()
 
@@ -31,8 +32,14 @@
 
 - (void)teamButtonPressed:(UIButton *)button {
     TeamViewController *teamVC = [[TeamViewController alloc] init];
-    
-    [self.navigationController pushViewController:teamVC animated:YES];
+    [[TeamController sharedInstance] loadTeamsFromDBWithCompletion:^(BOOL success) {
+        if (success) {
+            NSLog(@"Loaded teams from DB successfully");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController pushViewController:teamVC animated:YES];
+            });
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

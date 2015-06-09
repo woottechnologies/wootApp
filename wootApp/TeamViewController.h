@@ -7,7 +7,8 @@
 //
 
 #import "SchoolListViewController.h"
+#import "MostViewedPlayersTableViewCell.h"
 
-@interface TeamViewController : SchoolListViewController
+@interface TeamViewController : SchoolListViewController <MostViewedPlayerTableViewCellDelegate>
 
 @end

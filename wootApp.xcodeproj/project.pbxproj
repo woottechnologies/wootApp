@@ -12,6 +12,7 @@
 		47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EC71B1FA394005E3C53 /* TeamViewController.m */; };
 		47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */; };
 		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
+		47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -22,7 +23,6 @@
 		55B4C9021B1F7966003B3058 /* Athlete.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9011B1F7966003B3058 /* Athlete.m */; };
 		55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9041B1F7C4E003B3058 /* SchoolController.m */; };
 		55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9171B210A13003B3058 /* TeamDataSource.m */; };
-		55B4C91D1B22560D003B3058 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C91C1B22560C003B3058 /* MostViewedPlayersTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +46,8 @@
 		47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteViewController.m; sourceTree = "<group>"; };
 		47541ECC1B20C7EC005E3C53 /* AthleteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteDataSource.h; sourceTree = "<group>"; };
 		47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteDataSource.m; sourceTree = "<group>"; };
+		47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostViewedPlayersTableViewCell.h; sourceTree = "<group>"; };
+		47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,8 +68,6 @@
 		55B4C9041B1F7C4E003B3058 /* SchoolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolController.m; sourceTree = "<group>"; };
 		55B4C9161B210A13003B3058 /* TeamDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDataSource.h; sourceTree = "<group>"; };
 		55B4C9171B210A13003B3058 /* TeamDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDataSource.m; sourceTree = "<group>"; };
-		55B4C9191B2111BD003B3058 /* MostViewedPlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostViewedPlayersTableViewCell.h; sourceTree = "<group>"; };
-		55B4C91C1B22560C003B3058 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MostViewedPlayersTableViewCell.m; path = ../../../../../.Trash/MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +123,8 @@
 				47541EB41B1F71E6005E3C53 /* TeamController.m */,
 				47541EC61B1FA394005E3C53 /* TeamViewController.h */,
 				47541EC71B1FA394005E3C53 /* TeamViewController.m */,
-				55B4C9191B2111BD003B3058 /* MostViewedPlayersTableViewCell.h */,
-				55B4C91C1B22560C003B3058 /* MostViewedPlayersTableViewCell.m */,
+				47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */,
+				47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */,
 				55B4C9161B210A13003B3058 /* TeamDataSource.h */,
 				55B4C9171B210A13003B3058 /* TeamDataSource.m */,
 				55B4C8FD1B1F7930003B3058 /* School.h */,
@@ -274,7 +274,7 @@
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
-				55B4C91D1B22560D003B3058 /* MostViewedPlayersTableViewCell.m in Sources */,
+				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,

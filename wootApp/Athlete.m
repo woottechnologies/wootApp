@@ -21,7 +21,7 @@
         self.height = [dictionary[HeightKey] integerValue];
         self.weight = [dictionary[WeightKey] integerValue];
         self.year = [dictionary[YearKey] integerValue];
-        self.bio = dictionary[BioKey];
+        self.bio = [NSString stringWithFormat:@"%@", dictionary[BioKey]];
         self.views = [dictionary[ViewsKey] integerValue];
         
         if ([dictionary[IsCaptainKey] isEqualToString:@"Y"]) {

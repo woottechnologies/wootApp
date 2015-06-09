@@ -66,7 +66,7 @@
                 NSMutableArray *mutSchoolArray = [[NSMutableArray alloc] init];
                 
                 for (NSDictionary *dict in responseArray) {
-                    NSLog(@"%@", dict);
+                    //NSLog(@"%@", dict);
                     School *newSchool = [[School alloc] initWithDictionary:dict];
                     [mutSchoolArray addObject:newSchool];
                 }

@@ -25,11 +25,14 @@ static NSString *cellID = @"cellID";
     switch (indexPath.section){
             
         case 0:
-            cell.textLabel.text = currentAthlete.bio;
+            //if (currentAthlete.bio) {
+                //cell.textLabel.text = currentAthlete.bio;
+            //}
+            //cell.textLabel.text = currentAthlete.bio;
             cell.frame = CGRectMake(0, 0, 320, 200);
             //      cell.textLabel.frame = CGRectMake(0, 0, 320, 100);
             cell.textLabel.numberOfLines = 0;
-            NSLog(@"%@", currentAthlete.bio);
+            //NSLog(@"%@", currentAthlete.bio);
             break;
         case 1:
             break;

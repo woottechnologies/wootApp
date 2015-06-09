@@ -10,10 +10,9 @@
 #import "TeamController.h"
 #import "SchoolController.h"
 #import "TeamDataSource.h"
-#import "MostViewedPlayersTableViewCell.h"
 #import "AthleteViewController.h"
 
-@interface TeamViewController () <UITableViewDelegate, MostViewedPlayerTableViewCellDelegate>
+@interface TeamViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UIView *header;
 @property (nonatomic, strong) UITableView *tableView;
@@ -33,12 +32,20 @@
     self.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.tableView];
     
+    [[TeamController sharedInstance] loadAthletesFromDBWithCompletion:^(BOOL success) {
+        if (success) {
+            //Updating UI must occur on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
     [self.view addSubview:self.header];
     [self setupHeader];
-    
     
     UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     
@@ -46,9 +53,9 @@
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
-
     
-    [TeamController sharedInstance];
+   
+
 }
 
 - (void)setupHeader {

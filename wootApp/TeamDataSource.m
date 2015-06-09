@@ -21,28 +21,25 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 
 @implementation TeamDataSource
 
-- (void)registerTableView:(UITableView *)tableView viewController:(TeamViewController *)viewController
-{
+- (void)registerTableView:(UITableView *)tableView viewController:(TeamViewController *)viewController {
     self.tableView = tableView;
     self.viewController = viewController;
     [self.tableView registerClass:[MostViewedPlayersTableViewCell class] forCellReuseIdentifier:mostViewedPlayerCellID];
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    TeamController *teamController = [TeamController sharedInstance];
     UITableViewCell *cell;
-    
+//    MostViewedPlayersTableViewCell *cell;
        switch (indexPath.section){
             
         case 0:
                cell = [tableView dequeueReusableCellWithIdentifier:mostViewedPlayerCellID];
-//               if (cell == nil) {
-//                   cell = [[MostViewedPlayersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:mostViewedPlayerCellID];
-//               }
-               
+               //NSArray *athletes = teamController.currentTeam.athletes;
+               if (teamController.currentTeam.athletes) {
+                   [((MostViewedPlayersTableViewCell *)cell) loadDataWithAthletes:teamController.currentTeam.athletes];
+               }
                ((MostViewedPlayersTableViewCell *)cell).delegate = self.viewController;
-            
             break;
         case 1:
             break;

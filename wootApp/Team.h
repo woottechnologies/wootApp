@@ -17,7 +17,7 @@ static NSString *LossesKey = @"losses";
 @interface Team : NSObject
 
 @property (nonatomic, assign) NSInteger teamID;
-@property (nonatomic, assign) NSInteger schoolID;
+//@property (nonatomic, assign) NSInteger schoolID;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *record;
 @property (nonatomic, strong) NSArray *athletes;
