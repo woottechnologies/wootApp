@@ -56,7 +56,7 @@
     SchoolController *schoolController = [SchoolController sharedInstance];
     TeamController *teamController = [TeamController sharedInstance];
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:0.96];
+    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     self.header.backgroundColor = backgroundColor;
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
