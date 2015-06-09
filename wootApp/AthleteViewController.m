@@ -117,7 +117,7 @@
     
     switch (indexPath.section){
         case 0:
-            height = [self bioLabelHeight:teamController.currentAthlete.bio];
+            //height = [self bioLabelHeight:teamController.currentAthlete.bio];
             break;
         case 1:
             break;
