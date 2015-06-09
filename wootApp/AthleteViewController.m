@@ -46,7 +46,7 @@
 - (void)setupHeader {
     TeamController *teamController = [TeamController sharedInstance];
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:0.96];
+    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     self.header.backgroundColor = backgroundColor;
     
     UIImageView *photo = [[UIImageView alloc] initWithImage:teamController.currentAthlete.photo];
@@ -110,6 +110,32 @@
     //
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TeamController *teamController = [TeamController sharedInstance];
+    
+    float height = 0;
+    
+    switch (indexPath.section){
+        case 0:
+            height = [self bioLabelHeight:teamController.currentAthlete.bio];
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+    }
+    return height;
+}
+
+-(CGFloat)bioLabelHeight:(NSString *)string{
+    
+    CGRect bounding = [string boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 30, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]} context:nil];
+    return bounding.size.height + 30;
+}
+
+
 - (NSString *)inchesToFeet:(NSInteger)heightInches{
     NSInteger feet = heightInches / 12;
     NSInteger inches = heightInches % 12;
@@ -143,5 +169,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

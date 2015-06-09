@@ -11,6 +11,7 @@
 #import "SchoolController.h"
 #import "TeamDataSource.h"
 #import "AthleteViewController.h"
+#import "RosterViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -62,7 +63,7 @@
     SchoolController *schoolController = [SchoolController sharedInstance];
     TeamController *teamController = [TeamController sharedInstance];
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:0.96];
+    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     self.header.backgroundColor = backgroundColor;
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
@@ -122,7 +123,10 @@
 }
 
 - (void)rosterButtonPressed{
-    
+    TeamController *teamController = [TeamController sharedInstance];
+    RosterViewController *rosterViewController = [RosterViewController new];
+    rosterViewController.rosterSortedByNumber = [teamController sortRosterByNumber];
+    [self.navigationController pushViewController: rosterViewController animated:YES];
 }
 
 

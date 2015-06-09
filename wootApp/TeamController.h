@@ -24,4 +24,6 @@
 - (void)loadTeamsFromDBWithCompletion:(void (^)(BOOL success))completion;
 - (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion;
 
+- (NSArray *) sortRosterByNumber;
+
 @end

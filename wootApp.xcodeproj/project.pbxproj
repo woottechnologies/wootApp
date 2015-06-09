@@ -23,6 +23,8 @@
 		55B4C9021B1F7966003B3058 /* Athlete.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9011B1F7966003B3058 /* Athlete.m */; };
 		55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9041B1F7C4E003B3058 /* SchoolController.m */; };
 		55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9171B210A13003B3058 /* TeamDataSource.m */; };
+		55B4C91D1B22560D003B3058 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C91C1B22560C003B3058 /* MostViewedPlayersTableViewCell.m */; };
+		55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE85AE1B264060006C8279 /* RosterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		55B4C9041B1F7C4E003B3058 /* SchoolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolController.m; sourceTree = "<group>"; };
 		55B4C9161B210A13003B3058 /* TeamDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDataSource.h; sourceTree = "<group>"; };
 		55B4C9171B210A13003B3058 /* TeamDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDataSource.m; sourceTree = "<group>"; };
+		55BE85AD1B264060006C8279 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
+		55BE85AE1B264060006C8279 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 				47541EC71B1FA394005E3C53 /* TeamViewController.m */,
 				47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */,
 				47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */,
+				55BE85AD1B264060006C8279 /* RosterViewController.h */,
+				55BE85AE1B264060006C8279 /* RosterViewController.m */,
 				55B4C9161B210A13003B3058 /* TeamDataSource.h */,
 				55B4C9171B210A13003B3058 /* TeamDataSource.m */,
 				55B4C8FD1B1F7930003B3058 /* School.h */,
@@ -278,6 +284,7 @@
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
+				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
