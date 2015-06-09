@@ -57,8 +57,9 @@
 
 - (void)loadSchoolsFromDatabaseWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8888/woot/select_schools.php"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_schools.php"];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"%@", error);
         if (data.length > 0 && error == nil) {
             NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             

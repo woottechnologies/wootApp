@@ -13,6 +13,9 @@
 		47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */; };
 		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
 		47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */; };
+		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
+		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
+		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -23,7 +26,6 @@
 		55B4C9021B1F7966003B3058 /* Athlete.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9011B1F7966003B3058 /* Athlete.m */; };
 		55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9041B1F7C4E003B3058 /* SchoolController.m */; };
 		55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9171B210A13003B3058 /* TeamDataSource.m */; };
-		55B4C91D1B22560D003B3058 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C91C1B22560C003B3058 /* MostViewedPlayersTableViewCell.m */; };
 		55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE85AE1B264060006C8279 /* RosterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,12 @@
 		47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteDataSource.m; sourceTree = "<group>"; };
 		47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostViewedPlayersTableViewCell.h; sourceTree = "<group>"; };
 		47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
+		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
+		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
+		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
+		553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLKAutoLayout.m"; sourceTree = "<group>"; };
+		553A28D81B27649900784798 /* UIView+FLKAutoLayoutPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayoutPredicate.h"; sourceTree = "<group>"; };
+		553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLKAutoLayoutPredicate.m"; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		553A28D31B27649900784798 /* FLKAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */,
+				553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */,
+				553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */,
+				553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */,
+				553A28D81B27649900784798 /* UIView+FLKAutoLayoutPredicate.h */,
+				553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */,
+			);
+			path = FLKAutoLayout;
+			sourceTree = "<group>";
+		};
 		55B4C8961B1E386F003B3058 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +162,7 @@
 				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
+				553A28D31B27649900784798 /* FLKAutoLayout */,
 				55B4C8A21B1E386F003B3058 /* Supporting Files */,
 			);
 			path = wootApp;
@@ -271,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
+				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
@@ -279,6 +303,7 @@
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
+				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
