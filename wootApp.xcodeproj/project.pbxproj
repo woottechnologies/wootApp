@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 472F873B1B27741D0067C72F /* UIImage+PathForFile.m */; };
 		47541EB21B1F700C005E3C53 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB11B1F700C005E3C53 /* Team.m */; };
 		47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB41B1F71E6005E3C53 /* TeamController.m */; };
 		47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EC71B1FA394005E3C53 /* TeamViewController.m */; };
@@ -23,7 +24,6 @@
 		55B4C9021B1F7966003B3058 /* Athlete.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9011B1F7966003B3058 /* Athlete.m */; };
 		55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9041B1F7C4E003B3058 /* SchoolController.m */; };
 		55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9171B210A13003B3058 /* TeamDataSource.m */; };
-		55B4C91D1B22560D003B3058 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C91C1B22560C003B3058 /* MostViewedPlayersTableViewCell.m */; };
 		55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE85AE1B264060006C8279 /* RosterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		472F873A1B27741D0067C72F /* UIImage+PathForFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PathForFile.h"; sourceTree = "<group>"; };
+		472F873B1B27741D0067C72F /* UIImage+PathForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PathForFile.m"; sourceTree = "<group>"; };
 		47541EB01B1F700C005E3C53 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		47541EB11B1F700C005E3C53 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		47541EB31B1F71E6005E3C53 /* TeamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamController.h; sourceTree = "<group>"; };
@@ -139,6 +141,8 @@
 				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
 				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
 				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
+				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
+				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
 				55B4C8A21B1E386F003B3058 /* Supporting Files */,
@@ -275,6 +279,7 @@
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
+				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,

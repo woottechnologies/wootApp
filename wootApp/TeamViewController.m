@@ -54,9 +54,10 @@
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
-    
-   
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    
 }
 
 - (void)setupHeader {

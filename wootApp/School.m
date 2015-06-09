@@ -23,7 +23,6 @@
         self.region = dictionary[RegionKey];
         self.division = dictionary[DivisionKey];
         self.mascott = dictionary[MascottKey];
-        self.logo = [UIImage imageNamed:[NSString stringWithFormat:@"%@", dictionary[LogoKey]]];
         self.primaryColor = dictionary[PrimaryColorKey];
         self.secondaryColor = dictionary[SecondaryColorKey];
     }
