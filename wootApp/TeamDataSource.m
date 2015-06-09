@@ -37,7 +37,7 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
                cell = [tableView dequeueReusableCellWithIdentifier:mostViewedPlayerCellID];
                //NSArray *athletes = teamController.currentTeam.athletes;
                if (teamController.currentTeam.athletes) {
-                   [((MostViewedPlayersTableViewCell *)cell) loadDataWithAthletes:teamController.currentTeam.athletes];
+                   [((MostViewedPlayersTableViewCell *)cell) loadDataWithAthletes:[teamController mostViewedAthletes]];
                }
                ((MostViewedPlayersTableViewCell *)cell).delegate = self.viewController;
             break;

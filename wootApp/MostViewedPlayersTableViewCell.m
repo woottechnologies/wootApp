@@ -84,7 +84,7 @@
     
     self.athlete3View = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.athlete3View.frame = CGRectMake(2 * self.frame.size.width / 3, 0, self.frame.size.width / 3, self.frame.size.width / 1.7);
-    //self.athlete3View.tag = 2;
+    self.athlete3View.tag = 2;
     [self.athlete3View addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.athlete3ImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.athlete3View.frame.size.width, self.athlete3View.frame.size.height - 40)];
     self.athlete3NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete3View.frame.size.height - 40, self.frame.size.width - 20, 15)];
@@ -124,7 +124,6 @@
     self.rosterView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.rosterView.frame = CGRectMake(2 * self.frame.size.width / 3, self.frame.size.width / 1.9, self.frame.size.width / 3, self.frame.size.width / 1.7);
     [self.rosterView addTarget:self action:@selector(rosterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.rosterView addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UILabel *fullRosterLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete1View.frame.size.height / 2 + 10, self.frame.size.width - 20, 15)];
     fullRosterLabel.text = @"Full Roster";
     fullRosterLabel.font = [UIFont systemFontOfSize:13];
