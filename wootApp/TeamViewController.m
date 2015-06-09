@@ -12,6 +12,7 @@
 #import "TeamDataSource.h"
 #import "MostViewedPlayersTableViewCell.h"
 #import "AthleteViewController.h"
+#import "RosterViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate, MostViewedPlayerTableViewCellDelegate>
 
@@ -115,7 +116,10 @@
 }
 
 - (void)rosterButtonPressed{
-    
+    TeamController *teamController = [TeamController sharedInstance];
+    RosterViewController *rosterViewController = [RosterViewController new];
+    rosterViewController.rosterSortedByNumber = [teamController sortRosterByNumber];
+    [self.navigationController pushViewController: rosterViewController animated:YES];
 }
 
 

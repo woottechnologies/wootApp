@@ -21,4 +21,6 @@
 
 - (NSArray *) mostViewedAthletes;
 
+- (NSArray *) sortRosterByNumber;
+
 @end

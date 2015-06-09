@@ -140,9 +140,9 @@
     NSMutableArray *mostViewed = [[NSMutableArray alloc] init];
     while (mostViewed.count < 5) {
         Athlete *topAthlete = [Athlete new];
-        topAthlete.views = 0;
+        topAthlete.views = -1;
         for (Athlete *athlete in self.currentTeam.athletes){
-            if (athlete.views >= topAthlete.views && ![mostViewed containsObject:athlete]) {
+            if (athlete.views > topAthlete.views && ![mostViewed containsObject:athlete]) {
                 topAthlete = athlete;
             }
         }
@@ -151,6 +151,23 @@
     return mostViewed;
 }
 
+- (NSArray *) sortRosterByNumber{
+    NSMutableArray *roster = [[NSMutableArray alloc] init];
+    NSMutableArray *unsortedRoster = [self.currentTeam.athletes mutableCopy];
+    while (roster.count < self.currentTeam.athletes.count){
+        Athlete *athleteWithSmallestNumber = [Athlete new];
+        athleteWithSmallestNumber.jerseyNumber = 999999;
+        for (Athlete *athlete in unsortedRoster){
+            if (athlete.jerseyNumber < athleteWithSmallestNumber.jerseyNumber){
+                athleteWithSmallestNumber = athlete;
+            }
+                
+        }
+        [roster addObject:athleteWithSmallestNumber];
+        [unsortedRoster removeObject:athleteWithSmallestNumber];
+    }
+    return roster;
+}
 
 
 @end
