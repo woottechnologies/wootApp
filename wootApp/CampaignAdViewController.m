@@ -17,7 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view = self.campaignAdImageView;
+    self.campaignAdImageView.frame = self.view.frame;
+    [self.view addSubview:self.campaignAdImageView];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(280, 30, 70, 30);
+    button.backgroundColor = [UIColor whiteColor];
+    
+    [button setTitle:@"Close" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:button];
+}
+
+- (void)buttonPressed:(UIButton *)button {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

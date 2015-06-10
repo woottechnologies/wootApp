@@ -15,8 +15,8 @@
     self = [super init];
     if (self) {
         self.campaignID = [dictionary[CampaignIDKey] integerValue];
-        self.bannerAd = dictionary[BannerAdKey];
-        self.fullScreenAd = dictionary[FullScreenAdKey];
+        //self.bannerAd = dictionary[BannerAdKey];
+        //self.fullScreenAd = dictionary[FullScreenAdKey];
     }
        
     return self;

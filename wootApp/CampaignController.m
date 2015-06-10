@@ -7,6 +7,7 @@
 //
 
 #import "CampaignController.h"
+#import "UIImage+PathForFile.h"
 
 @interface CampaignController()
 
@@ -46,6 +47,16 @@
                 for (NSDictionary *dict in responseArray) {
                     // NSLog(@"%@", dict);
                     Campaign *newCampaign = [[Campaign alloc] initWithDictionary:dict];
+                    [UIImage imageWithPath:dict[BannerAdKey] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newCampaign.bannerAd = image;
+                        }
+                    }];
+                    [UIImage imageWithPath:dict[FullScreenAdKey] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newCampaign.fullScreenAd = image;
+                        }
+                    }];
                     [mutCampaigns addObject:newCampaign];
                 }
                 self.campaigns = mutCampaigns;

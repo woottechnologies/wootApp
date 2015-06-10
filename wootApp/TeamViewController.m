@@ -22,15 +22,20 @@
 @property (nonatomic, strong) TeamDataSource *dataSource;
 @property (nonatomic, strong) UIButton *campaignAdButton;
 @property (nonatomic, strong) UIImageView *campaignAdImageView;
+@property (nonatomic, strong) Campaign *campaign;
 
 @end
 
 @implementation TeamViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.campaignAdImageView.image = [[TeamController sharedInstance].currentTeam.campaigns[0] bannerAd];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 204) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 264) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
     [self.dataSource registerTableView:self.tableView viewController:self];
@@ -52,9 +57,18 @@
     [self.view addSubview:self.header];
     [self setupHeader];
     
-    self.campaignAdButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50)];
+    self.campaignAdButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.campaignAdButton.frame = CGRectMake(0, self.view.frame.size.height - 114, self.view.frame.size.width, 50);
     [self.view addSubview:self.campaignAdButton];
-    [self setUpCampaignAd];
+    
+    CampaignController *campaignController = [CampaignController sharedInstance];
+    [campaignController loadCampaignFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
+        if (success) {
+            [TeamController sharedInstance].currentTeam.campaigns = campaigns;
+            [self setUpCampaignAd];
+        }
+    }];
+    
     
     UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     
@@ -97,17 +111,22 @@
 
 - (void)setUpCampaignAd{
     TeamController *teamController = [TeamController sharedInstance];
+    //[teamController loadCampaigns];
     CampaignController *campaignController = [CampaignController sharedInstance];
     Campaign *currentCampaign = [campaignController  selectRandomCampaign:teamController.currentTeam.campaigns];
     self.campaignAdImageView = [[UIImageView alloc] initWithImage:currentCampaign.bannerAd];
-    self.campaignAdImageView.frame = self.campaignAdButton.frame;
+    self.campaignAdImageView.frame = CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height);
     [self.campaignAdButton addSubview:self.campaignAdImageView];
     [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)campaignAdButtonPressed{
+    CampaignController *campaignController = [CampaignController sharedInstance];
+    TeamController *teamController = [TeamController sharedInstance];
+    Campaign *currentCampaign = [campaignController  selectRandomCampaign:teamController.currentTeam.campaigns];
     CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
-    campaignAdViewController.campaignAdImageView = self.campaignAdImageView;
+    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:currentCampaign.fullScreenAd];
+    
     [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
