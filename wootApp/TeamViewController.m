@@ -30,6 +30,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.campaignAdImageView.image = [[TeamController sharedInstance].currentTeam.campaigns[0] bannerAd];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -77,6 +78,7 @@
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
     
+    NSArray *schedule = [TeamController sharedInstance].currentTeam.schedule;
 }
 
 - (void)setupHeader {

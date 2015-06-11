@@ -7,11 +7,13 @@
 //
 
 #import "Team.h"
+#import "GameController.h"
 
 @interface Team()
 
 @property (nonatomic, assign) NSInteger wins;
 @property (nonatomic, assign) NSInteger losses;
+@property (nonatomic, strong) NSArray *array;
 
 @end
 
@@ -27,6 +29,7 @@
         self.wins = [dictionary[WinsKey] integerValue];
         self.losses = [dictionary[LossesKey] integerValue];
         self.record = [self record];
+        //self.scheduleID = [dictionary[ScheduleIDKey] integerValue];
     }
     
     return self;
@@ -34,6 +37,21 @@
 
 - (NSString *)record {
     return [NSString stringWithFormat:@"%li - %li", self.wins, self.losses];
+}
+
+- (NSArray *)schedule {
+    [[GameController sharedInstance] allGamesForTeam:self WithCompletion:^(BOOL success, NSArray *games) {
+        if (success) {
+             _schedule = games;
+            
+        }
+    }];
+
+    while (!_schedule) {
+    
+    }
+    
+    return _schedule;
 }
 
 @end

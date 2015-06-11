@@ -13,16 +13,17 @@ static NSString *TeamIDKey = @"id";
 static NSString *TypeKey = @"type";
 static NSString *WinsKey = @"wins";
 static NSString *LossesKey = @"losses";
+static NSString *ScheduleIDKey = @"scheduleID";
 
 @interface Team : NSObject
 
 @property (nonatomic, assign) NSInteger teamID;
-//@property (nonatomic, assign) NSInteger schoolID;
+@property (nonatomic, assign) NSInteger schoolID;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *record;
 @property (nonatomic, strong) NSArray *athletes;
 @property (nonatomic, strong) NSArray *campaigns;
-//@property (nonatomic, assign) NSArray *schedule;
+@property (nonatomic, strong) NSArray *schedule;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
