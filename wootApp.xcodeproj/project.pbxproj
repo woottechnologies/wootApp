@@ -20,6 +20,8 @@
 		553A28DF1B2773E600784798 /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28DE1B2773E600784798 /* Campaign.m */; };
 		553A28E21B27762700784798 /* CampaignController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E11B27762700784798 /* CampaignController.m */; };
 		553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E41B27991800784798 /* CampaignAdViewController.m */; };
+		553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E71B28ED3B00784798 /* ScheduleViewController.m */; };
+		553A28EB1B29E09F00784798 /* ScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28EA1B29E09F00784798 /* ScheduleTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -70,6 +72,10 @@
 		553A28E11B27762700784798 /* CampaignController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignController.m; sourceTree = "<group>"; };
 		553A28E31B27991800784798 /* CampaignAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignAdViewController.h; sourceTree = "<group>"; };
 		553A28E41B27991800784798 /* CampaignAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignAdViewController.m; sourceTree = "<group>"; };
+		553A28E61B28ED3B00784798 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		553A28E71B28ED3B00784798 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		553A28E91B29E09F00784798 /* ScheduleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewCell.h; sourceTree = "<group>"; };
+		553A28EA1B29E09F00784798 /* ScheduleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -178,6 +184,10 @@
 				553A28E11B27762700784798 /* CampaignController.m */,
 				553A28E31B27991800784798 /* CampaignAdViewController.h */,
 				553A28E41B27991800784798 /* CampaignAdViewController.m */,
+				553A28E61B28ED3B00784798 /* ScheduleViewController.h */,
+				553A28E71B28ED3B00784798 /* ScheduleViewController.m */,
+				553A28E91B29E09F00784798 /* ScheduleTableViewCell.h */,
+				553A28EA1B29E09F00784798 /* ScheduleTableViewCell.m */,
 				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
 				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
@@ -314,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
+				553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */,
 				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
@@ -327,6 +338,7 @@
 				553A28E21B27762700784798 /* CampaignController.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
+				553A28EB1B29E09F00784798 /* ScheduleTableViewCell.m in Sources */,
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,

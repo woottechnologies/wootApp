@@ -10,6 +10,13 @@
 #import "TeamController.h"
 #import "TeamViewController.h"
 
+typedef NS_ENUM(int16_t, AthleteDataSourceSection){
+    TopPlayersSection = 0,
+    NewsSection = 1,
+    PicturesSection = 2,
+    VideosSection = 3
+};
+
 static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 
 @interface TeamDataSource()
@@ -33,7 +40,7 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 //    MostViewedPlayersTableViewCell *cell;
        switch (indexPath.section){
             
-        case 0:
+        case TopPlayersSection:
                cell = [tableView dequeueReusableCellWithIdentifier:mostViewedPlayerCellID];
                //NSArray *athletes = teamController.currentTeam.athletes;
                if (teamController.currentTeam.athletes) {
@@ -41,11 +48,11 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
                }
                ((MostViewedPlayersTableViewCell *)cell).delegate = self.viewController;
             break;
-        case 1:
+        case NewsSection:
             break;
-        case 2:
+        case PicturesSection:
             break;
-        case 3:
+        case VideosSection:
             break;
             
             

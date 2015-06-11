@@ -10,6 +10,13 @@
 #import "TeamController.h"
 #import "Athlete.h"
 
+typedef NS_ENUM(int16_t, AthleteDataSourceSection){
+    BioSection = 0,
+    StatsSection = 1,
+    PicturesSection = 2,
+    VideosSection = 3
+};
+
 static NSString *cellID = @"cellID";
 
 @implementation AthleteDataSource
@@ -24,7 +31,7 @@ static NSString *cellID = @"cellID";
     Athlete *currentAthlete = [TeamController sharedInstance].currentAthlete;
     switch (indexPath.section){
             
-        case 0:
+        case BioSection:
             //if (currentAthlete.bio) {
                 //cell.textLabel.text = currentAthlete.bio;
             //}
@@ -34,11 +41,11 @@ static NSString *cellID = @"cellID";
             cell.textLabel.numberOfLines = 0;
             //NSLog(@"%@", currentAthlete.bio);
             break;
-        case 1:
+        case StatsSection:
             break;
-        case 2:
+        case PicturesSection:
             break;
-        case 3:
+        case VideosSection:
             break;
             
             
