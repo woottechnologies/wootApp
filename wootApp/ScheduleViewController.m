@@ -39,7 +39,7 @@ static NSString *scheduleCellID = @"scheduleCellID";
     ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
     if (!cell){
         NSArray *schedule = teamController.currentTeam.schedule;
-//        cell = [[ScheduleTableViewCell alloc] initWithGame:schedule[indexPath.row] style:UITableViewCellStyleDefault reuseIdentifier:scheduleCellID];
+        cell = [[ScheduleTableViewCell alloc] initWithGame:schedule[indexPath.row] style:UITableViewCellStyleDefault reuseIdentifier:scheduleCellID];
     }
     return cell;
 }
