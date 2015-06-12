@@ -23,10 +23,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
     
    // self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[AthleteViewController new]];
-    self.window.rootViewController = [[GameViewController alloc] init];
+    //self.window.rootViewController = [[GameViewController alloc] init];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

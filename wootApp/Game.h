@@ -11,8 +11,8 @@
 
 static NSString *GameIDKey = @"id";
 static NSString *DateKey = @"date";
-static NSString *HomeTeamKey = @"homeTeam";
-static NSString *AwayTeamKey = @"awayTeam";
+static NSString *HomeTeamKey = @"homeTeamID";
+static NSString *AwayTeamKey = @"awayTeamID";
 static NSString *HomeScoreKey = @"homeScore";
 static NSString *AwayScoreKey = @"awayScore";
 

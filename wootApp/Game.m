@@ -7,6 +7,7 @@
 //
 
 #import "Game.h"
+#import "TeamController.h"
 
 @interface Game()
 
@@ -23,10 +24,20 @@
     if (self) {
         self.gameID = [dictionary[GameIDKey] integerValue];
         self.date = dictionary[DateKey];
-        //self.homeTeam = dictionary[HomeTeamKey];
-        //self.awayTeam = dictionary[AwayTeamKey];
         self.homeTeamScore = [dictionary[HomeScoreKey] integerValue];
         self.awayTeamScore = [dictionary[AwayScoreKey] integerValue];
+        
+        [[TeamController sharedInstance] selectTeamWithTeamID:[dictionary[HomeTeamKey] integerValue] andCompletion:^(BOOL success, Team *team) {
+            if (success) {
+                self.homeTeam = team;
+            }
+        }];
+        
+        [[TeamController sharedInstance] selectTeamWithTeamID:[dictionary[AwayTeamKey] integerValue] andCompletion:^(BOOL success, Team *team) {
+            if (success) {
+                self.awayTeam = team;
+            }
+        }];
     }
     
     return self;

@@ -13,7 +13,6 @@
 
 @property (nonatomic, assign) NSInteger wins;
 @property (nonatomic, assign) NSInteger losses;
-@property (nonatomic, strong) NSArray *array;
 
 @end
 
