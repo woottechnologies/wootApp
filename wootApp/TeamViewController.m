@@ -14,6 +14,7 @@
 #import "RosterViewController.h"
 #import "CampaignController.h"
 #import "CampaignAdViewController.h"
+#import "ScheduleViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -140,6 +141,7 @@
             height = 340;
             break;
         case 1:
+            height = 30;
             break;
         case 2:
             break;
@@ -150,12 +152,28 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    switch (indexPath.section){
+            
+        case 0:
+            break;
+        case 1:
+            [self pushFullSchedule];
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pushFullSchedule{
+    ScheduleViewController *scheduleViewController = [ScheduleViewController new];
+    [self.navigationController pushViewController:scheduleViewController animated:YES];
 }
 
 - (void)athleteButtonPressed:(Athlete *)athlete{

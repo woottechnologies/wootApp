@@ -12,12 +12,13 @@
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     TopPlayersSection = 0,
-    NewsSection = 1,
+    ScheduleSection = 1,
     PicturesSection = 2,
     VideosSection = 3
 };
 
 static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
+static NSString *scheduleCellID = @"scheduleCellID";
 
 @interface TeamDataSource()
 
@@ -32,6 +33,7 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
     self.tableView = tableView;
     self.viewController = viewController;
     [self.tableView registerClass:[MostViewedPlayersTableViewCell class] forCellReuseIdentifier:mostViewedPlayerCellID];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:scheduleCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,7 +50,9 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
                }
                ((MostViewedPlayersTableViewCell *)cell).delegate = self.viewController;
             break;
-        case NewsSection:
+        case ScheduleSection:
+               cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
+               cell.textLabel.text = @"Full Schedule";
             break;
         case PicturesSection:
             break;
@@ -63,7 +67,7 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *numberOfRowsPerSection = @[@1, @0, @0, @0];
+    NSArray *numberOfRowsPerSection = @[@1, @1, @0, @0];
     return [numberOfRowsPerSection[section] integerValue];
 }
 
@@ -72,7 +76,7 @@ static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSArray *sections = @[@"Top Players", @"News", @"Pictures", @"Videos"];
+    NSArray *sections = @[@"Top Players", @"Schedule", @"Pictures", @"Videos"];
     return sections[section];
 }
 
