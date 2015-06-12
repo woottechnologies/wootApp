@@ -8,6 +8,7 @@
 
 #import "ScheduleTableViewCell.h"
 #import "TeamController.h"
+#import "UIView+FLKAutoLayout.h"
 
 
 @implementation ScheduleTableViewCell
@@ -34,26 +35,30 @@
 - (void)setUpCell:(Game *) game{
     TeamController *teamController = [TeamController sharedInstance];
     
-    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
+//    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
+    UILabel *dateLabel = [[UILabel alloc]init];
     dateLabel.text = game.date;
-    [self addSubview:dateLabel];
+    [self.contentView addSubview:dateLabel];
     
-    UILabel *opponentLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 0, 100, 30)];
+//    UILabel *opponentLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 0, 100, 30)];
+    UILabel *opponentLabel = [[UILabel alloc]init];
     BOOL isHomeTeam = (game.homeTeam.teamID == teamController.currentTeam.teamID);
     if (isHomeTeam) {
         opponentLabel.text = [NSString stringWithFormat:@"%@",game.awayTeam];
     } else {
         opponentLabel.text = [NSString stringWithFormat:@"@%@",game.homeTeam];
     }
-    [self addSubview:opponentLabel];
+    [self.contentView addSubview:opponentLabel];
     
-    UILabel *scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 0, 60, 30)];
+//    UILabel *scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 0, 60, 30)];
+    UILabel *scoreLabel = [[UILabel alloc]init];
     
-    UILabel *winLossLabel = [[UILabel alloc]initWithFrame:CGRectMake(300, 0, 40, 30)];
+//    UILabel *winLossLabel = [[UILabel alloc]initWithFrame:CGRectMake(300, 0, 40, 30)];
+    UILabel *winLossLabel = [[UILabel alloc]init];
     
     if (game.isOver){
         scoreLabel.text = game.finalScore;
-        [self addSubview:scoreLabel];
+        [self.contentView addSubview:scoreLabel];
         
         if (game.winningTeam.teamID == teamController.currentTeam.teamID){
             winLossLabel.text = @"W";
@@ -62,15 +67,34 @@
         } else {
             winLossLabel.text = @"D";
         }
-        [self addSubview:winLossLabel];
+        [self.contentView addSubview:winLossLabel];
 
     } else {
         scoreLabel.text = @"-";
-        [self addSubview:scoreLabel];
+        [self.contentView addSubview:scoreLabel];
         
         winLossLabel.text = @"-";
-        [self addSubview:winLossLabel];
+        [self.contentView addSubview:winLossLabel];
     }
+   
+    [dateLabel alignLeadingEdgeWithView:self.contentView predicate:@"10"];
+    [dateLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
+    [dateLabel constrainWidth:@"60"];
+    
+    [opponentLabel constrainLeadingSpaceToView:dateLabel predicate:@"10"];
+    [opponentLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
+    [opponentLabel constrainTrailingSpaceToView:scoreLabel predicate:@"10"];
+    
+    [scoreLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
+    [scoreLabel constrainTrailingSpaceToView:winLossLabel predicate:@"10"];
+    [scoreLabel constrainWidth:@"60"];
+    
+    [winLossLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
+    [winLossLabel alignTrailingEdgeWithView:self.contentView predicate:@"10"];
+    [winLossLabel constrainWidth:@"30"];
+    
+   
+    
     
 }
 @end

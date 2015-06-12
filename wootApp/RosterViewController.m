@@ -10,6 +10,9 @@
 #import "Athlete.h"
 #import "TeamController.h"
 #import "AthleteViewController.h"
+#import "RosterTableViewCell.h"
+
+static NSString *RosterCellID = @"RosterCellID";
 
 @interface RosterViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -37,12 +40,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rosterCellID"];
+    RosterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RosterCellID];
     if (!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"rosterCellID"];
+        cell = [[RosterTableViewCell alloc] initWithAthlete:self.rosterSortedByNumber[indexPath.row] style:UITableViewCellStyleDefault reuseIdentifier:RosterCellID];
     }
-    Athlete *athlete = self.rosterSortedByNumber[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"#%ld    %@", (long)athlete.jerseyNumber, athlete.name];
+//    Athlete *athlete = self.rosterSortedByNumber[indexPath.row];
+//    cell.textLabel.text = [NSString stringWithFormat:@"#%ld    %@", (long)athlete.jerseyNumber, athlete.name];
     
     return cell;
 }
