@@ -138,7 +138,7 @@
     switch (indexPath.section){
         
         case 0:
-            height = 340;
+            height = 380;
             break;
         case 1:
             height = 30;

@@ -7,6 +7,7 @@
 #import "AthleteViewController.h"
 #import "AthleteDataSource.h"
 #import "TeamController.h"
+#import "UIView+FLKAutoLayout.h"
 
 
 @interface AthleteViewController () <UITableViewDelegate>
@@ -50,9 +51,10 @@
     self.header.backgroundColor = backgroundColor;
     
     UIImageView *photo = [[UIImageView alloc] initWithImage:teamController.currentAthlete.photo];
-    photo.frame = CGRectMake(0, 0, 105, 150);
+//    photo.frame = CGRectMake(0, 0, 105, 150);
     photo.center = CGPointMake(photo.frame.size.width / 2, self.header.frame.size.height / 2);
     [self.header addSubview:photo];
+    [photo alignTop:@"0" leading:@"0" toView:self.header];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(photo.frame.size.width + 15, 25, 250, 20)];
     nameLabel.text = teamController.currentAthlete.name;

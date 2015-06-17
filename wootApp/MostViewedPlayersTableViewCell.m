@@ -271,7 +271,9 @@
 }
 
 - (void)buttonPressed:(UIButton *)sender{
-    [self.delegate athleteButtonPressed:self.mostViewedAthletes[(int)sender.tag]];
+    if (sender.touchInside == YES) {
+        [self.delegate athleteButtonPressed:self.mostViewedAthletes[(int)sender.tag]];
+    }
 }
 
 - (void)rosterButtonPressed{
