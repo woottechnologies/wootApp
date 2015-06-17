@@ -39,7 +39,6 @@
             if (responseArray.count > 0) {
                 NSMutableArray *mutGames = [[NSMutableArray alloc] init];
                 for (NSDictionary *dict in responseArray) {
-                    NSLog(@"%@", dict);
                     Game *newGame = [[Game alloc] initWithDictionary:dict];
                     [mutGames addObject:newGame];
                 }

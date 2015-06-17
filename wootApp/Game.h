@@ -15,16 +15,20 @@ static NSString *HomeTeamKey = @"homeTeamID";
 static NSString *AwayTeamKey = @"awayTeamID";
 static NSString *HomeScoreKey = @"homeScore";
 static NSString *AwayScoreKey = @"awayScore";
+static NSString *OpposingSchoolKey = @"opposingSchool";
 
 @interface Game : NSObject
 
 @property (nonatomic, assign) NSInteger gameID;
 @property (nonatomic, strong) NSString *date;
-@property (nonatomic, strong) Team *homeTeam;
-@property (nonatomic, strong) Team *awayTeam;
+@property (nonatomic, assign) NSInteger homeTeamID;
+@property (nonatomic, assign) NSInteger awayTeamID;
+@property (nonatomic, strong) NSString *opposingSchool;
 @property (nonatomic, strong) NSString *currentScore;
 @property (nonatomic, strong) NSString *finalScore;
 @property (nonatomic, strong) Team *winningTeam;
+@property (nonatomic, strong) Team *homeTeam;
+@property (nonatomic, strong) Team *awayTeam;
 @property (nonatomic) BOOL isOver;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

@@ -42,7 +42,6 @@
     [[GameController sharedInstance] allGamesForTeam:self WithCompletion:^(BOOL success, NSArray *games) {
         if (success) {
              _schedule = games;
-            
         }
     }];
 

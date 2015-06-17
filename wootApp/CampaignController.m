@@ -46,32 +46,37 @@
             
             if (responseArray.count > 0) {
                 NSMutableArray *mutCampaigns = [[NSMutableArray alloc] init];
-                self.bannerReady = NO;
-                self.fullScreenReady = NO;
+//                self.bannerReady = NO;
+//                self.fullScreenReady = NO;
+                dispatch_group_t imageGroup = dispatch_group_create();
                 for (NSDictionary *dict in responseArray) {
                     // NSLog(@"%@", dict);
                     Campaign *newCampaign = [[Campaign alloc] initWithDictionary:dict];
+                    
+                    dispatch_group_enter(imageGroup);
                     [UIImage imageWithPath:dict[BannerAdKey] WithCompletion:^(BOOL success, UIImage *image) {
                         if (success) {
                             newCampaign.bannerAd = image;
-                            self.bannerReady = YES;
+//                            self.bannerReady = YES;
                         }
+                        dispatch_group_leave(imageGroup);
                     }];
+                    dispatch_group_enter(imageGroup);
                     [UIImage imageWithPath:dict[FullScreenAdKey] WithCompletion:^(BOOL success, UIImage *image) {
                         if (success) {
                             newCampaign.fullScreenAd = image;
-                            self.fullScreenReady = YES;
+//                            self.fullScreenReady = YES;
                         }
+                        dispatch_group_leave(imageGroup);
                     }];
                     [mutCampaigns addObject:newCampaign];
                 }
-                self.campaigns = mutCampaigns;
-                //self.currentTeam.athletes = [mutAthletes copy];
-                while (self.bannerReady == NO && self.fullScreenReady) {
-                    
-                }
                 
-                completion(YES, self.campaigns);
+                dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+                    self.campaigns = mutCampaigns;
+                    completion(YES, self.campaigns);
+                });
+            
             }
         } else {
             completion(NO, nil);
@@ -82,7 +87,7 @@
 }
 
 - (Campaign *)selectRandomCampaign:(NSArray *)campaigns{
-    Campaign * currentCampaign = campaigns[arc4random_uniform((int)campaigns.count - 1)];
+    Campaign * currentCampaign = campaigns[arc4random_uniform((int)campaigns.count)];
     return currentCampaign;
 }
          
