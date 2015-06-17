@@ -24,20 +24,11 @@
     if (self) {
         self.gameID = [dictionary[GameIDKey] integerValue];
         self.date = dictionary[DateKey];
+        self.homeTeamID = [dictionary[HomeTeamKey] integerValue];
+        self.awayTeamID = [dictionary[AwayTeamKey] integerValue];
         self.homeTeamScore = [dictionary[HomeScoreKey] integerValue];
         self.awayTeamScore = [dictionary[AwayScoreKey] integerValue];
-        
-        [[TeamController sharedInstance] selectTeamWithTeamID:[dictionary[HomeTeamKey] integerValue] andCompletion:^(BOOL success, Team *team) {
-            if (success) {
-                self.homeTeam = team;
-            }
-        }];
-        
-        [[TeamController sharedInstance] selectTeamWithTeamID:[dictionary[AwayTeamKey] integerValue] andCompletion:^(BOOL success, Team *team) {
-            if (success) {
-                self.awayTeam = team;
-            }
-        }];
+        self.opposingSchool = dictionary[OpposingSchoolKey];
     }
     
     return self;
@@ -64,7 +55,6 @@
     } else {
         return nil;
     }
-    
 }
 
 @end

@@ -44,9 +44,9 @@
     UILabel *opponentLabel = [[UILabel alloc]init];
     BOOL isHomeTeam = (game.homeTeam.teamID == teamController.currentTeam.teamID);
     if (isHomeTeam) {
-        opponentLabel.text = [NSString stringWithFormat:@"%@",game.awayTeam];
+        opponentLabel.text = [NSString stringWithFormat:@"%@",game.opposingSchool];
     } else {
-        opponentLabel.text = [NSString stringWithFormat:@"@%@",game.homeTeam];
+        opponentLabel.text = [NSString stringWithFormat:@"@%@",game.opposingSchool];
     }
     [self.contentView addSubview:opponentLabel];
     

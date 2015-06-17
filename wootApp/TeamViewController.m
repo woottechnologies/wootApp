@@ -30,8 +30,15 @@
 @implementation TeamViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-    self.campaignAdImageView.image = [[TeamController sharedInstance].currentTeam.campaigns[0] bannerAd];
+//    self.campaignAdImageView.image = [[TeamController sharedInstance].currentTeam.campaigns[0] bannerAd];
+   // [self chooseCampaign];
     [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if ([TeamController sharedInstance].currentTeam.campaigns) {
+        [self chooseCampaign];
+    }
 }
 
 - (void)viewDidLoad {
@@ -112,23 +119,22 @@
     [self.header addSubview:recordLabel];
 }
 
-- (void)setUpCampaignAd{
-    TeamController *teamController = [TeamController sharedInstance];
-    //[teamController loadCampaigns];
+- (void)chooseCampaign {
     CampaignController *campaignController = [CampaignController sharedInstance];
-    Campaign *currentCampaign = [campaignController  selectRandomCampaign:teamController.currentTeam.campaigns];
-    self.campaignAdImageView = [[UIImageView alloc] initWithImage:currentCampaign.bannerAd];
-    self.campaignAdImageView.frame = CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height);
+    self.campaign = [campaignController  selectRandomCampaign:[TeamController sharedInstance].currentTeam.campaigns];
+    self.campaignAdImageView.image = self.campaign.bannerAd;
+}
+
+- (void)setUpCampaignAd{
+    self.campaignAdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height)];
     [self.campaignAdButton addSubview:self.campaignAdImageView];
     [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self chooseCampaign];
 }
 
 - (void)campaignAdButtonPressed{
-    CampaignController *campaignController = [CampaignController sharedInstance];
-    TeamController *teamController = [TeamController sharedInstance];
-    Campaign *currentCampaign = [campaignController  selectRandomCampaign:teamController.currentTeam.campaigns];
     CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
-    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:currentCampaign.fullScreenAd];
+    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:self.campaign.fullScreenAd];
     
     [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
