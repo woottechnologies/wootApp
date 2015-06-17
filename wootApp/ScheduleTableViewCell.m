@@ -79,7 +79,7 @@
    
     [dateLabel alignLeadingEdgeWithView:self.contentView predicate:@"10"];
     [dateLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
-    [dateLabel constrainWidth:@"60"];
+    [dateLabel constrainWidth:@"100"];
     
     [opponentLabel constrainLeadingSpaceToView:dateLabel predicate:@"10"];
     [opponentLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
@@ -90,7 +90,7 @@
     [scoreLabel constrainWidth:@"60"];
     
     [winLossLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
-    [winLossLabel alignTrailingEdgeWithView:self.contentView predicate:@"10"];
+    [winLossLabel alignTrailingEdgeWithView:self.contentView predicate:@"20"];
     [winLossLabel constrainWidth:@"30"];
     
    
