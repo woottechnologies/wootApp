@@ -7,12 +7,14 @@
 //
 
 #import "UIImage+PathForFile.h"
+#import "NetworkController.h"
 
 @implementation UIImage (PathForFile)
 
 + (void)imageWithPath:(NSString *)path WithCompletion:(void (^)(BOOL success, UIImage *image))completion {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.244:3399/%@", path]];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingFormat:@"%@", path];;
+    NSURL *url = [NSURL URLWithString:urlString];
     __block UIImage *returnImage;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (data.length > 0 && error == nil) {

@@ -11,6 +11,7 @@
 #import "SchoolController.h"
 #import "CampaignController.h"
 #import "UIImage+PathForFile.h"
+#import "NetworkController.h"
 
 @interface TeamController()
 
@@ -37,7 +38,8 @@
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_teams.php"]];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_teams.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
@@ -49,7 +51,6 @@
             if (responseArray.count > 0) {
                 NSMutableArray *mutTeams = [[NSMutableArray alloc] init];
                 for (NSDictionary *dict in responseArray) {
-                   // NSLog(@"%@", dict);
                     Team *newTeam = [[Team alloc] initWithDictionary:dict];
                     [mutTeams addObject:newTeam];
                 }
@@ -71,8 +72,8 @@
     NSString *post = [NSString stringWithFormat:@"teamID=%li", teamID];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_team.php"]];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_team.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
@@ -82,7 +83,6 @@
             NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
             if (responseArray.count > 0) {
-                NSMutableArray *mutTeams = [[NSMutableArray alloc] init];
                 Team *teamCreated;
                 for (NSDictionary *dict in responseArray) {
                     teamCreated = [[Team alloc] initWithDictionary:dict];
@@ -102,7 +102,6 @@
     [campaignController loadCampaignFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
         if (success) {
             self.currentTeam.campaigns = campaigns;
-            //
         }
     }];
 }
@@ -134,7 +133,6 @@
             if (athlete.jerseyNumber < athleteWithSmallestNumber.jerseyNumber){
                 athleteWithSmallestNumber = athlete;
             }
-                
         }
         [roster addObject:athleteWithSmallestNumber];
         [unsortedRoster removeObject:athleteWithSmallestNumber];
@@ -148,8 +146,8 @@
     NSString *post = [NSString stringWithFormat:@"teamID=%li", (long)self.currentTeam.teamID];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_athletes.php"]];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_athletes.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     

@@ -8,6 +8,7 @@
 
 #import "CampaignController.h"
 #import "UIImage+PathForFile.h"
+#import "NetworkController.h"
 
 @interface CampaignController()
 
@@ -34,8 +35,8 @@
     NSString *post = [NSString stringWithFormat:@"teamID=%li", (long)team.teamID];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:8888/woot/select_campaigns.php"]];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_campaigns.php"]];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_campaigns.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
@@ -46,18 +47,14 @@
             
             if (responseArray.count > 0) {
                 NSMutableArray *mutCampaigns = [[NSMutableArray alloc] init];
-//                self.bannerReady = NO;
-//                self.fullScreenReady = NO;
                 dispatch_group_t imageGroup = dispatch_group_create();
                 for (NSDictionary *dict in responseArray) {
-                    // NSLog(@"%@", dict);
                     Campaign *newCampaign = [[Campaign alloc] initWithDictionary:dict];
                     
                     dispatch_group_enter(imageGroup);
                     [UIImage imageWithPath:dict[BannerAdKey] WithCompletion:^(BOOL success, UIImage *image) {
                         if (success) {
                             newCampaign.bannerAd = image;
-//                            self.bannerReady = YES;
                         }
                         dispatch_group_leave(imageGroup);
                     }];
@@ -65,7 +62,6 @@
                     [UIImage imageWithPath:dict[FullScreenAdKey] WithCompletion:^(BOOL success, UIImage *image) {
                         if (success) {
                             newCampaign.fullScreenAd = image;
-//                            self.fullScreenReady = YES;
                         }
                         dispatch_group_leave(imageGroup);
                     }];

@@ -11,7 +11,7 @@
 
 @interface GameController : NSObject
 
-@property (nonatomic, strong, readonly) Game *currentGame;
+@property (nonatomic, strong) Game *currentGame;
 
 + (instancetype)sharedInstance;
 - (void)allGamesForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *games))completion;
