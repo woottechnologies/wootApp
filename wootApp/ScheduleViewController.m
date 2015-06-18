@@ -9,10 +9,12 @@
 #import "ScheduleViewController.h"
 #import "ScheduleTableViewCell.h"
 #import "TeamController.h"
+#import "GameViewController.h"
+#import "GameController.h"
 
 static NSString *scheduleCellID = @"scheduleCellID";
 
-@interface ScheduleViewController () <UITableViewDataSource>
+@interface ScheduleViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -22,10 +24,11 @@ static NSString *scheduleCellID = @"scheduleCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"loaded scheduleVC");
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
 }
 
@@ -49,7 +52,16 @@ static NSString *scheduleCellID = @"scheduleCellID";
     return teamController.currentTeam.schedule.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TeamController *teamController = [TeamController sharedInstance];
+    GameController *gameController = [GameController sharedInstance];
+    GameViewController *gameVC = [[GameViewController alloc] init];
+    
+    gameController.currentGame = [teamController.currentTeam.schedule objectAtIndex:indexPath.row];
 
+    [self.navigationController pushViewController:gameVC animated:YES];
+}
 /*
 #pragma mark - Navigation
 

@@ -7,6 +7,7 @@
 //
 
 #import "GameController.h"
+#import "NetworkController.h"
 
 @implementation GameController
 
@@ -27,7 +28,8 @@
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_games.php"]];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_games.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     

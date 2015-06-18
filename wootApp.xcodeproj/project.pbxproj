@@ -17,6 +17,7 @@
 		47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */; };
 		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
 		47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */; };
+		4796A9851B331E7A00D71779 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9841B331E7A00D71779 /* NetworkController.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
@@ -70,6 +71,8 @@
 		47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteDataSource.m; sourceTree = "<group>"; };
 		47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostViewedPlayersTableViewCell.h; sourceTree = "<group>"; };
 		47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
+		4796A9831B331E7A00D71779 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		4796A9841B331E7A00D71779 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
 		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
 		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
 		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				553A28EA1B29E09F00784798 /* ScheduleTableViewCell.m */,
 				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
 				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
+				4796A9831B331E7A00D71779 /* NetworkController.h */,
+				4796A9841B331E7A00D71779 /* NetworkController.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
 				553A28D31B27649900784798 /* FLKAutoLayout */,
@@ -347,6 +352,7 @@
 				553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */,
 				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
+				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,

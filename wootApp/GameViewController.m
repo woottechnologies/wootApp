@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UIButton *awayTeamView;
 @property (nonatomic, strong) UIButton *scoreBoardView;
 @property (nonatomic, strong) UILabel *scoreLabel;
-@property (nonatomic, strong) Game *game; // temporary
 
 @end
 
@@ -26,8 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
-    NSDictionary *dict = @{GameIDKey:@1, DateKey:@"2015-08-23", HomeScoreKey:@4, AwayScoreKey:@1};
-    self.game = [[Game alloc] initWithDictionary:dict];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -35,26 +32,29 @@
 }
 
 - (void)setupViews {
-    CGFloat teamViewHeight = self.view.frame.size.height / 2;
+    GameController *gameController = [GameController sharedInstance];
+    CGFloat availableY = self.view.frame.size.height - 64;
+    CGFloat teamViewHeight = availableY / 2;
+    
     
     self.homeTeamView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.homeTeamView.frame = CGRectMake(0, 0, self.view.frame.size.width, teamViewHeight);
     self.homeTeamView.backgroundColor = [UIColor blueColor];
-    self.homeTeamView.tag = 0;
+    self.homeTeamView.tag = gameController.currentGame.homeTeamID;
     [self.homeTeamView addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.homeTeamView];
     
     self.awayTeamView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.awayTeamView.frame = CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, teamViewHeight);
+    self.awayTeamView.frame = CGRectMake(0, availableY / 2, self.view.frame.size.width, teamViewHeight);
     self.awayTeamView.backgroundColor = [UIColor redColor];
-    self.awayTeamView.tag = 1;
+    self.awayTeamView.tag = gameController.currentGame.awayTeamID;
     [self.awayTeamView addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.awayTeamView];
     
     self.scoreBoardView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.scoreBoardView.frame = CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height / 2 - 50, 200, 100);
+    self.scoreBoardView.frame = CGRectMake(self.view.frame.size.width / 2 - 100, availableY / 2 - 50, 200, 100);
     self.scoreBoardView.backgroundColor = [UIColor whiteColor];
-    self.scoreBoardView.tag = 2;
+    self.scoreBoardView.tag = 0;
     [self.scoreBoardView addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.scoreBoardView];
     
@@ -67,24 +67,29 @@
 }
 
 - (void)updateScoreBoard {
-    self.scoreLabel.text = self.game.currentScore;
+    GameController *gameController = [GameController sharedInstance];
+    self.scoreLabel.text = gameController.currentGame.currentScore;
 }
 
 - (void)buttonPressed:(UIButton *)button {
-    GameController *gameController = [GameController sharedInstance];
+    TeamController *teamController = [TeamController sharedInstance];
     TeamViewController *teamVC = [[TeamViewController alloc] init];
     
     if (button.tag == 0) {
-        // home team
-        [TeamController sharedInstance].currentTeam = gameController.currentGame.homeTeam;
-        [self.navigationController pushViewController:teamVC animated:YES];
-    } else if (button.tag == gameController.currentGame.awayTeam.teamID) {
-        // away team
-        [TeamController sharedInstance].currentTeam = gameController.currentGame.awayTeam;
-        [self.navigationController pushViewController:teamVC animated:YES];
-    } else {
-        // score board
         NSLog(@"score board");
+    } else {
+        if (button.tag == teamController.currentTeam.teamID) {
+            [self.navigationController pushViewController:teamVC animated:YES];
+        } else {
+            [teamController selectTeamWithTeamID:button.tag andCompletion:^(BOOL success, Team *team) {
+                if (success) {
+                    teamController.currentTeam = team;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.navigationController pushViewController:teamVC animated:YES];
+                    });
+                }
+            }];
+        }
     }
 }
 

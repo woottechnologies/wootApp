@@ -8,7 +8,7 @@
 
 #import "SchoolController.h"
 #import "UIImage+PathForFile.h"
-
+#import "NetworkController.h"
 
 @interface SchoolController()
 
@@ -35,31 +35,11 @@
     return sharedInstance;
 }
 
-- (void)loadSchools{
-    NSDictionary *wxHighSchoolDict = @{SchoolIDKey:@1,
-                                       NameKey:@"Woods Cross High School",
-                                       AddressKey:@"600 West 2200 South",
-                                       CityKey:@"Woods Cross",
-                                       StateKey:@"UT",
-                                       RegionKey:@"6",
-                                       DivisionKey:@"4A",
-                                       MascottKey:@"Wild Cats",
-                                       LogoKey:@"wx_logo",
-                                       PrimaryColorKey:@"blue",
-                                       SecondaryColorKey:@"white"};
-    
-    NSMutableArray *schoolsMutable = [[NSMutableArray alloc] init];
-    School *wxHighSchool = [[School alloc] initWithDictionary:wxHighSchoolDict];
-    
-    [schoolsMutable addObject:wxHighSchool];
-    
-    self.schools = schoolsMutable;
-    self.currentSchool = self.schools[0];
-}
-
 - (void)loadSchoolsFromDatabaseWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.244:3399/woot/select_schools.php"];
+    
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_schools.php"];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSLog(@"%@", error);
         if (data.length > 0 && error == nil) {
