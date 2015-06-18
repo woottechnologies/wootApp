@@ -55,6 +55,8 @@
     photo.center = CGPointMake(photo.frame.size.width / 2, self.header.frame.size.height / 2);
     [self.header addSubview:photo];
     [photo alignTop:@"0" leading:@"0" toView:self.header];
+    [photo alignBottomEdgeWithView:self.header predicate:@"0"];
+    [photo alignTrailingEdgeWithView:self.header predicate:@"*0.33"];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(photo.frame.size.width + 15, 25, 250, 20)];
     nameLabel.text = teamController.currentAthlete.name;
