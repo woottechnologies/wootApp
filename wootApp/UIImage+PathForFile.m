@@ -9,7 +9,7 @@
 #import "UIImage+PathForFile.h"
 #import "NetworkController.h"
 
-@implementation UIImage (PathForFile)
+@implementation UIImage (More)
 
 + (void)imageWithPath:(NSString *)path WithCompletion:(void (^)(BOOL success, UIImage *image))completion {
     NSURLSession *session = [NSURLSession sharedSession];
@@ -28,6 +28,14 @@
     }];
     
     [dataTask resume];
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
 }
 
 @end

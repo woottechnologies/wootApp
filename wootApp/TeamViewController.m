@@ -30,8 +30,6 @@
 @implementation TeamViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-//    self.campaignAdImageView.image = [[TeamController sharedInstance].currentTeam.campaigns[0] bannerAd];
-   // [self chooseCampaign];
     [self.tableView reloadData];
 }
 

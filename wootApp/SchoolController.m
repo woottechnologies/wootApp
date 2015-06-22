@@ -23,13 +23,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[SchoolController alloc]init];
-        [sharedInstance loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
-            if (success) {
-                NSLog(@"network request worked");
-            } else {
-                NSLog(@"fail");
-            }
-        }];
     });
     
     return sharedInstance;
@@ -41,7 +34,6 @@
     NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_schools.php"];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
         if (data.length > 0 && error == nil) {
             NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
