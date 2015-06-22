@@ -10,8 +10,12 @@
 #import "TeamViewController.h"
 #import "SchoolController.h"
 #import "TeamController.h"
+#import "SchoolListDataSource.h"
 
-@interface SchoolListViewController ()
+@interface SchoolListViewController () <UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) SchoolListDataSource *dataSource;
 
 @end
 
@@ -21,16 +25,28 @@
     [super viewDidLoad];
     
     [SchoolController sharedInstance];
-    // Do any additional setup after loading the view, typically from a nib.
-    UIButton *teamButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    teamButton.frame = CGRectMake(self.view.frame.size.width / 2 - 25, 100, 50, 30);
-    [teamButton setTitle:@"Team" forState:UIControlStateNormal];
-    [teamButton addTarget:self action:@selector(teamButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.dataSource = [[SchoolListDataSource alloc] init];
+    self.tableView.dataSource = self.dataSource;
+    self.tableView.delegate = self;
     
-    [self.view addSubview:teamButton];
+    [self.view addSubview:self.tableView];
+    
+    [[SchoolController sharedInstance] loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
+        if (success) {
+            //Updating UI must occur on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"loading schools worked");
+                [self.tableView reloadData];
+            });
+        }
+    }];
 }
 
-- (void)teamButtonPressed:(UIButton *)button {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   // SchoolController *schoolController = [SchoolController sharedInstance];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TeamViewController *teamVC = [[TeamViewController alloc] init];
     [[TeamController sharedInstance] loadTeamsFromDBWithCompletion:^(BOOL success) {
         if (success) {

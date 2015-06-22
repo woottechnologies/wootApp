@@ -9,6 +9,6 @@
 #import "SchoolListViewController.h"
 #import "MostViewedPlayersTableViewCell.h"
 
-@interface TeamViewController : SchoolListViewController <MostViewedPlayerTableViewCellDelegate>
+@interface TeamViewController : UIViewController <MostViewedPlayerTableViewCellDelegate>
 
 @end

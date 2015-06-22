@@ -18,6 +18,9 @@
 		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
 		47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */; };
 		4796A9851B331E7A00D71779 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9841B331E7A00D71779 /* NetworkController.m */; };
+		4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9871B33735E00D71779 /* SchoolListDataSource.m */; };
+		4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */; };
+		4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
@@ -76,6 +79,12 @@
 		47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
 		4796A9831B331E7A00D71779 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
 		4796A9841B331E7A00D71779 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		4796A9861B33735E00D71779 /* SchoolListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListDataSource.h; sourceTree = "<group>"; };
+		4796A9871B33735E00D71779 /* SchoolListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListDataSource.m; sourceTree = "<group>"; };
+		4797DE9A1B387B47006BBC43 /* CustomTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarVC.h; sourceTree = "<group>"; };
+		4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarVC.m; sourceTree = "<group>"; };
+		4797DE9D1B38C1DE006BBC43 /* DrawerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerDataSource.h; sourceTree = "<group>"; };
+		4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerDataSource.m; sourceTree = "<group>"; };
 		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
 		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
 		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
@@ -178,6 +187,10 @@
 			children = (
 				55B4C8A61B1E386F003B3058 /* AppDelegate.h */,
 				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
+				4797DE9A1B387B47006BBC43 /* CustomTabBarVC.h */,
+				4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */,
+				4797DE9D1B38C1DE006BBC43 /* DrawerDataSource.h */,
+				4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */,
 				55B4C9001B1F7966003B3058 /* Athlete.h */,
 				55B4C9011B1F7966003B3058 /* Athlete.m */,
 				47541EC91B20C7B1005E3C53 /* AthleteViewController.h */,
@@ -210,6 +223,8 @@
 				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
 				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
 				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
+				4796A9861B33735E00D71779 /* SchoolListDataSource.h */,
+				4796A9871B33735E00D71779 /* SchoolListDataSource.m */,
 				553A28DD1B2773E600784798 /* Campaign.h */,
 				553A28DE1B2773E600784798 /* Campaign.m */,
 				553A28E01B27762700784798 /* CampaignController.h */,
@@ -370,7 +385,9 @@
 				553A29321B389DD900784798 /* StatsController.m in Sources */,
 				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
+				4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
+				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
 				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
 				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
@@ -390,6 +407,7 @@
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
+				4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,

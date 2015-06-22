@@ -15,5 +15,6 @@
 @property (nonatomic, strong) School *currentSchool;
 
 +(instancetype) sharedInstance;
+- (void)loadSchoolsFromDatabaseWithCompletion:(void (^)(BOOL success))completion;
 
 @end

@@ -72,7 +72,6 @@
                     self.campaigns = mutCampaigns;
                     completion(YES, self.campaigns);
                 });
-            
             }
         } else {
             completion(NO, nil);
@@ -87,5 +86,4 @@
     return currentCampaign;
 }
          
-
 @end

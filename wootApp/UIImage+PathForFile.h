@@ -11,5 +11,6 @@
 @interface UIImage (PathForFile)
 
 + (void)imageWithPath:(NSString *)path WithCompletion:(void (^)(BOOL success, UIImage* image))completion;
++ (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size;
 
 @end

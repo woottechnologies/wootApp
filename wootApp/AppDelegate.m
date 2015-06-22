@@ -8,8 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SchoolListViewController.h"
-#import "AthleteViewController.h"
-#import "GameViewController.h"
+#import "CustomTabBarVC.h"
 
 @interface AppDelegate ()
 
@@ -19,14 +18,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
-    
-   // self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[AthleteViewController new]];
-    //self.window.rootViewController = [[GameViewController alloc] init];
+    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
+    masterVC.tabBarItem = [[UITabBarItem alloc] init];
+    masterVC.tabBarItem.title = @"Search";
+
+    CustomTabBarVC *tabBarVC = [[CustomTabBarVC alloc] init];
+    tabBarVC.viewControllers = @[masterVC];
+
+    self.window.rootViewController = tabBarVC;
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
