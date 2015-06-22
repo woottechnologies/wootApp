@@ -57,12 +57,9 @@
 - (void)setupViews {
     // athlete1View
     self.athlete1View = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  //  self.athlete1View.frame = CGRectMake(0, 0, self.frame.size.width / 3, self.frame.size.width / 1.7);
     self.athlete1View.tag = 0;
     [self.athlete1View addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    self.athlete1ImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.athlete1View.frame.size.width, self.athlete1View.frame.size.height - 40)];
     self.athlete1ImageView = [UIImageView new];
-//    self.athlete1NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete1View.frame.size.height - 40, self.frame.size.width - 20, 15)];
     self.athlete1NameLabel = [UILabel new];
     self.athlete1NameLabel.textAlignment = NSTextAlignmentCenter;
     self.athlete1NameLabel.font = [UIFont systemFontOfSize:13];

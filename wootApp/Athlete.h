@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @import UIKit;
+#import "Stats.h"
 
 static NSString *AthleteIDKey = @"id";
 static NSString *AthleteNameKey = @"name";
 static NSString *JerseyNumberKey = @"number";
 static NSString *PhotoKey = @"photo";
 static NSString *PositionKey = @"position";
+static NSString *StatTypeKey = @"statType";
 static NSString *HeightKey = @"height";
 static NSString *WeightKey = @"weight";
 static NSString *YearKey = @"year";
@@ -29,6 +31,7 @@ static NSString *ViewsKey = @"views";
 @property (nonatomic, assign) NSInteger jerseyNumber;
 @property (nonatomic, strong) UIImage *photo;
 @property (nonatomic, strong) NSString *position;
+@property (nonatomic, assign) NSInteger statType;
 @property (nonatomic, assign) NSInteger height;
 @property (nonatomic, assign) NSInteger weight;
 @property (nonatomic, assign) NSInteger year;
@@ -36,6 +39,7 @@ static NSString *ViewsKey = @"views";
 @property (nonatomic, assign) BOOL isCaptain;
 @property (nonatomic, assign) BOOL isStarter;
 @property (nonatomic, assign) NSInteger views;
+@property (nonatomic, strong) Stats *stats;
 
 // @property (nonatomic, strong) NSArray *stats;
 

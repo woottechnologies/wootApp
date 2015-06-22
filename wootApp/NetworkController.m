@@ -11,7 +11,7 @@
 @implementation NetworkController
 
 + (NSString *)baseURL {
-    return @"http://192.168.1.244:3399/woot/";
+    return @"http://192.168.1.106:3399/woot/";
 }
 
 @end

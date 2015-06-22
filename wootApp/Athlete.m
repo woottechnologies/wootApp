@@ -18,11 +18,13 @@
         self.jerseyNumber = [dictionary[JerseyNumberKey] integerValue];
        // self.photo = [UIImage imageNamed:[NSString stringWithFormat:@"%@", dictionary[PhotoKey]]];
         self.position = dictionary[PositionKey];
+        self.statType = [dictionary[StatTypeKey] integerValue];
         self.height = [dictionary[HeightKey] integerValue];
         self.weight = [dictionary[WeightKey] integerValue];
         self.year = [dictionary[YearKey] integerValue];
         self.bio = [NSString stringWithFormat:@"%@", dictionary[BioKey]];
         self.views = [dictionary[ViewsKey] integerValue];
+        self.stats;
         
         if ([dictionary[IsCaptainKey] isEqualToString:@"Y"]) {
             self.isCaptain = YES;
