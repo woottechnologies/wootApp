@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AthleteViewController.h"
 @import UIKit;
 
 @interface AthleteDataSource : NSObject <UITableViewDataSource>
+
+- (void)registerTableView:(UITableView *)tableView viewController:(AthleteViewController *)viewController;
 
 @end

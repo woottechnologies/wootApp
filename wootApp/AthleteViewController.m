@@ -8,6 +8,7 @@
 #import "AthleteDataSource.h"
 #import "TeamController.h"
 #import "UIView+FLKAutoLayout.h"
+#import "StatsController.h"
 
 
 @interface AthleteViewController () <UITableViewDelegate>
@@ -24,11 +25,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    [[StatsController sharedInstance] loadSummaryStatsFromDBForAthlete:[TeamController sharedInstance].currentAthlete WithCompletion:^(BOOL success, Stats *stats) {
+        if (success) {
+            [TeamController sharedInstance].currentAthlete.stats = stats;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 214) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.dataSource = [AthleteDataSource new];
+    [self.dataSource registerTableView:self.tableView viewController:self];
     self.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.tableView];
     
@@ -155,7 +164,7 @@
     
     switch (indexPath.section){
         case 0:
-            //height = [self bioLabelHeight:teamController.currentAthlete.bio];
+            height = 300;
             break;
         case 1:
             break;

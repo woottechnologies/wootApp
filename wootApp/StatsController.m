@@ -7,7 +7,6 @@
 //
 
 #import "StatsController.h"
-#import "TeamController.h"
 #import "NetworkController.h"
 
 @interface StatsController()
@@ -27,10 +26,10 @@
     return sharedInstance;
 }
 
-- (void)loadSummaryStatsFromDBForAthlete:(Athlete *)athlete WithCompletion:(void (^)(BOOL success, NSArray *stats))completion {
+- (void)loadSummaryStatsFromDBForAthlete:(Athlete *)athlete WithCompletion:(void (^)(BOOL success, Stats *stats))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *post = [NSString stringWithFormat:@"athleteID=%li", (long)athlete.athleteID];
+    NSString *post = [NSString stringWithFormat:@"athleteID=%li&statType=%li", (long)athlete.athleteID, (long)athlete.statType];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_summary_stats.php"];
@@ -43,13 +42,10 @@
         if (data.length > 0 && error == nil) {
             NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             if (responseArray.count > 0) {
-                NSMutableArray *mutSummaryStats = [[NSMutableArray alloc] init];
-                for (NSDictionary *dict in responseArray) {
-                    Stats *newStats = [[Stats alloc] initWithDictionary:dict];
-                    [mutSummaryStats addObject:newStats];
-                }
-                self.stats = mutSummaryStats;
-                completion(YES, self.stats);
+               // for (NSDictionary *dict in responseArray) {
+                    Stats *newStats = [[Stats alloc] initWithDictionary:responseArray[0]];
+                    completion(YES, newStats);
+               // }
             }
         } else {
             completion(NO, nil);

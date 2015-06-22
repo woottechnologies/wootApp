@@ -9,7 +9,6 @@
 #import "AthleteDataSource.h"
 #import "TeamController.h"
 #import "Athlete.h"
-#import "AthleteViewController.h"
 #import "SummaryStatsTableViewCell.h"
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
@@ -57,7 +56,7 @@ static NSString *bioCellID = @"bioCellID";
             //cell.textLabel.text = currentAthlete.bio;
             //}
             //cell.textLabel.text = currentAthlete.bio;
-            cell.frame = CGRectMake(0, 0, 320, 200);
+           // cell.frame = CGRectMake(0, 0, 320, 200);
             //      cell.textLabel.frame = CGRectMake(0, 0, 320, 100);
             cell.textLabel.numberOfLines = 0;
             //NSLog(@"%@", currentAthlete.bio);
@@ -84,7 +83,7 @@ static NSString *bioCellID = @"bioCellID";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSArray *sections = @[@"Bio", @"Stats", @"Pictures", @"Videos"];
+    NSArray *sections = @[@"Stats", @"Bio", @"Pictures", @"Videos"];
     return sections[section];
 }
 

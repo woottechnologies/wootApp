@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TeamController.h"
 
 @interface StatsController : NSObject
+
++(instancetype) sharedInstance;
+- (void)loadSummaryStatsFromDBForAthlete:(Athlete *)athlete WithCompletion:(void (^)(BOOL success, Stats *stats))completion;
 
 @end
