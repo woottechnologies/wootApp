@@ -24,33 +24,33 @@ typedef NS_ENUM(int16_t, summaryStatsType){
 - (instancetype)initWithDictionary: (NSDictionary *)dictionary {
     self = [super init];
     if (self) {
-        self.receivingTD = [dictionary[@"receivingTD"] integerValue];
-        self.rushingTD = [dictionary[@"rushingTD"] integerValue];
-        self.conversions = [dictionary[@"conversions"] integerValue];
-        self.fieldGoals = [dictionary[@"fieldGoals"] integerValue];
-        self.fieldGoalYards = [dictionary[@"fieldGoalYards"] integerValue];
-        self.fieldGoalLong = [dictionary[@"fieldGoalLong"] integerValue];
-        self.pat = [dictionary[@"pat"] integerValue];
-        self.tackles = [dictionary[@"tackles"] integerValue];
-        self.sacks = [dictionary[@"sacks"] integerValue];
-        self.tfl = [dictionary[@"tfl"] integerValue];
-        self.completePasses = [dictionary[@"completePasses"] integerValue];
-        self.completePassYards = [dictionary[@"completePassYards"] integerValue];
-        self.touchdownPasses = [dictionary[@"touchDownPasses"] integerValue];
-        self.completePassLong = [dictionary[@"completePassLong"] integerValue];
-        self.incompletePasses = [dictionary[@"incompletePasses"] integerValue];
-        self.interceptedPasses = [dictionary[@"interceptedPasses"] integerValue];
-        self.interceptions = [dictionary[@"interceptions"] integerValue];
-        self.receptions = [dictionary[@"receptions"] integerValue];
-        self.receivingYards = [dictionary[@"receivingYards"] integerValue];
-        self.receivingLong = [dictionary[@"receivingLong"] integerValue];
-        self.carries = [dictionary[@"carries"] integerValue];
-        self.rushingYards = [dictionary[@"rushingYards"] integerValue];
-        self.punts = [dictionary[@"puntYards"] integerValue];
-        self.puntsInTwenty = [dictionary[@"puntsInTwenty"] integerValue];
-        self.kickOffs = [dictionary[@"kickOffs"] integerValue];
-        self.kickOffYards = [dictionary[@"kickOffYards"] integerValue];
-        self.gamesPlayed = [dictionary[@"gamesPlayed"] integerValue];
+        self.receivingTD = [dictionary[@"receivingTD"] floatValue];
+        self.rushingTD = [dictionary[@"rushingTD"] floatValue];
+        self.conversions = [dictionary[@"conversions"] floatValue];
+        self.fieldGoals = [dictionary[@"fieldGoals"] floatValue];
+        self.fieldGoalYards = [dictionary[@"fieldGoalYards"] floatValue];
+        self.fieldGoalLong = [dictionary[@"fieldGoalLong"] floatValue];
+        self.pat = [dictionary[@"pat"] floatValue];
+        self.tackles = [dictionary[@"tackles"] floatValue];
+        self.sacks = [dictionary[@"sacks"] floatValue];
+        self.tfl = [dictionary[@"tfl"] floatValue];
+        self.completePasses = [dictionary[@"completePasses"] floatValue];
+        self.completePassYards = [dictionary[@"completePassYards"] floatValue];
+        self.touchdownPasses = [dictionary[@"touchDownPasses"] floatValue];
+        self.completePassLong = [dictionary[@"completePassLong"] floatValue];
+        self.incompletePasses = [dictionary[@"incompletePasses"] floatValue];
+        self.interceptedPasses = [dictionary[@"interceptedPasses"] floatValue];
+        self.interceptions = [dictionary[@"interceptions"] floatValue];
+        self.receptions = [dictionary[@"receptions"] floatValue];
+        self.receivingYards = [dictionary[@"receivingYards"] floatValue];
+        self.receivingLong = [dictionary[@"receivingLong"] floatValue];
+        self.carries = [dictionary[@"carries"] floatValue];
+        self.rushingYards = [dictionary[@"rushingYards"] floatValue];
+        self.punts = [dictionary[@"puntYards"] floatValue];
+        self.puntsInTwenty = [dictionary[@"puntsInTwenty"] floatValue];
+        self.kickOffs = [dictionary[@"kickOffs"] floatValue];
+        self.kickOffYards = [dictionary[@"kickOffYards"] floatValue];
+        self.gamesPlayed = [dictionary[@"gamesPlayed"] floatValue];
     }
     return self;
 }
@@ -59,22 +59,50 @@ typedef NS_ENUM(int16_t, summaryStatsType){
     Athlete *athlete = [TeamController sharedInstance].currentAthlete;
     switch (athlete.statType) {
         case QB:
-            return @{@"Yds" : @(self.completePassYards), @"Cmp" : @(self.completePasses), @"TD Passes" : @(self.touchdownPasses), @"Int" : @(self.interceptedPasses), @"Y/G" : @(self.completePassYards/self.gamesPlayed), @"Y/Cmp" : @(self.completePassYards/self.completePasses)};
+            if(self.gamesPlayed == 0 || !self.gamesPlayed){
+                return @{@"Yds" : @"0", @"Cmp" : @"0", @"TD Passes" : @"0", @"Int" : @"0", @"Y/G" : @"0", @"Y/Cmp" : @"0", @"Stat Names" : @[@"Yds", @"Cmp", @"TD Passes", @"Int", @"Y/G", @"Y/Cmp"]};
+            } else if(self.completePasses == 0 || !self.completePasses){
+                return @{@"Yds" : @"0", @"Cmp" : @"0", @"TD Passes" : @"0", @"Int" : [NSString stringWithFormat:@"%.f", self.interceptedPasses], @"Y/G" : @"0", @"Y/Cmp" : @"0", @"Stat Names" : @[@"Yds", @"Cmp", @"TD Passes", @"Int", @"Y/G", @"Y/Cmp"]};
+            } else {
+                return @{@"Yds" : [NSString stringWithFormat:@"%.f", self.completePassYards], @"Cmp" : [NSString stringWithFormat:@"%.f", self.completePasses], @"TD Passes" : [NSString stringWithFormat:@"%.f", self.touchdownPasses], @"Int" : [NSString stringWithFormat:@"%.f", self.interceptedPasses], @"Y/G" : [NSString stringWithFormat:@"%.1f", self.completePassYards/self.gamesPlayed], @"Y/Cmp" : [NSString stringWithFormat:@"%.1f", self.completePassYards/self.completePasses], @"Stat Names" : @[@"Yds", @"Cmp", @"TD Passes", @"Int", @"Y/G", @"Y/Cmp"]};
+            }
             break;
         case Receiving:
-            return @{@"Rec" : @(self.receptions), @"Yds" : @(self.receivingYards), @"TD" : @(self.receivingTD), @"Y/Rec" : @(self.receivingYards/self.receptions), @"Y/G" : @(self.receivingYards/self.gamesPlayed), @"Lng" : @(self.receivingLong)};
+            if(self.gamesPlayed == 0 || !self.gamesPlayed || self.receptions == 0 || !self.receptions){
+                return @{@"Rec" : @"0", @"Yds" : @"0", @"TD" : @"0", @"Y/Rec" : @"0", @"Y/G" : @"0", @"Lng" : @"0", @"Stat Names" : @[@"Rec", @"Yds", @"TD", @"Y/Rec", @"Y/G", @"Lng"]};
+            } else {
+                return @{@"Rec" : [NSString stringWithFormat:@"%.f", self.receptions], @"Yds" : [NSString stringWithFormat:@"%.f", self.receivingYards], @"TD" : [NSString stringWithFormat:@"%.f", self.receivingTD], @"Y/Rec" : [NSString stringWithFormat:@"%.1f", self.receivingYards/self.receptions], @"Y/G" : [NSString stringWithFormat:@"%.1f", self.receivingYards/self.gamesPlayed], @"Lng" : [NSString stringWithFormat:@"%.f", self.receivingLong], @"Stat Names" : @[@"Rec", @"Yds", @"TD", @"Y/Rec", @"Y/G", @"Lng"]};
+            }
             break;
         case Rushing:
-            return @{@"Car" : @(self.carries), @"Yds" : @(self.rushingYards), @"TD" : @(self.rushingTD), @"Y/Car" : @(self.rushingYards/self.carries), @"Y/G" : @(self.rushingYards/self.carries), @"100+" : @4};
+            if(self.gamesPlayed == 0 || !self.gamesPlayed || self.carries == 0 || !self.carries){
+                return @{@"Car" : @"0", @"Yds" : @"0", @"TD" : @"0", @"Y/Car" : @"0", @"Y/G" : @"0", @"100+" : @"0", @"Stat Names" : @[@"Car", @"Yds", @"TD", @"Y/Car", @"Y/G", @"100+"]};
+            } else {
+                return @{@"Car" : [NSString stringWithFormat:@"%.f", self.carries], @"Yds" : [NSString stringWithFormat:@"%.f", self.rushingYards], @"TD" : [NSString stringWithFormat:@"%.f", self.rushingTD], @"Y/Car" : [NSString stringWithFormat:@"%.1f", self.rushingYards/self.carries], @"Y/G" : [NSString stringWithFormat:@"%.1f", self.rushingYards/self.gamesPlayed], @"100+" : [NSString stringWithFormat:@"%.f", 4.0], @"Stat Names" : @[@"Car", @"Yds", @"TD", @"Y/Car", @"Y/G", @"100+"]};
+            }
             break;
         case Kicker:
-            return @{@"FG" : @(self.fieldGoals), @"FG %" : @(0.711), @"FG long" : @(self.fieldGoalLong), @"PAT" : @(self.pat), @"PAT %" : @(0.878), @"KO Yds" : @(self.kickOffYards)};
+            if(self.fieldGoals == 0 || !self.fieldGoals){
+                return @{@"FG" : @"0", @"FG %" : @"0", @"FG Lng" : @"0", @"PAT" : [NSString stringWithFormat:@"%.f", self.pat], @"PAT %" : [NSString stringWithFormat:@"%.2f", 0.878], @"KO Yds" : [NSString stringWithFormat:@"%.f", self.kickOffYards], @"Stat Names" : @[@"FG", @"FG%", @"FG Lng", @"KO Yds", @"PAT", @"PAT %"]};
+            } else if(self.pat == 0 || !self.pat){
+                return @{@"FG" : @(self.fieldGoals), @"FG %" : [NSString stringWithFormat:@"%.2f", 0.711], @"FG Lng" : [NSString stringWithFormat:@"%.f", self.fieldGoalLong], @"PAT" : @"0", @"PAT %" : @"0", @"KO Yds" : [NSString stringWithFormat:@"%.f", self.kickOffYards], @"Stat Names" : @[@"FG", @"FG%", @"FG Lng", @"KO Yds", @"PAT", @"PAT %"]};
+            } else {
+                return @{@"FG" : [NSString stringWithFormat:@"%.f", self.fieldGoals], @"FG %" : [NSString stringWithFormat:@"%.2f", 0.7112], @"FG Lng" : [NSString stringWithFormat:@"%.f", self.fieldGoalLong], @"PAT" : [NSString stringWithFormat:@"%.f", self.pat], @"PAT %" : [NSString stringWithFormat:@"%.2f", 0.878], @"KO Yds" : [NSString stringWithFormat:@"%.f", self.kickOffYards], @"Stat Names" : @[@"FG", @"FG %", @"FG Lng", @"KO Yds", @"PAT", @"PAT %"]};
+            }
             break;
         case Punter:
-            return @{@"P" : @(self.punts), @"Yds" : @(self.puntYards), @"Yds/P" : @(self.puntYards/self.punts), @"Lng" : @(44), @"In 20" : @(self.puntsInTwenty), @"P/G" : @(self.punts/self.gamesPlayed)};
+            if(self.gamesPlayed == 0 || !self.gamesPlayed || self.punts == 0 || !self.punts){
+                return @{@"P" : @"0", @"Yds" : @"0", @"Yds/P" : @"0", @"Lng" : @"0", @"In 20" : @"0", @"P/G" : @"0", @"Stat Names" : @[@"P", @"P/G", @"Yds", @"Yds/P", @"Lng", @"In 20"]};
+            } else {
+                return @{@"P" : [NSString stringWithFormat:@"%.f", self.punts], @"Yds" : [NSString stringWithFormat:@"%.f", self.puntYards], @"Yds/P" : [NSString stringWithFormat:@"%.1f", self.puntYards/self.punts], @"Lng" : [NSString stringWithFormat:@"%.f", 44.0], @"In 20" : [NSString stringWithFormat:@"%.f", self.puntsInTwenty], @"P/G" : [NSString stringWithFormat:@"%.1f", self.punts/self.gamesPlayed], @"Stat Names" : @[@"P", @"P/G", @"Yds", @"Yds/P", @"Lng", @"In 20"]};
+            }
             break;
         case Defense:
-            return @{@"Tckl" : @(self.tackles), @"Sak" : @(self.sacks), @"Int" : @(self.interceptions), @"Tckl/G" : @(self.tackles/self.gamesPlayed), @"TFL" : @(self.tfl), @"Sak/G" : @(self.sacks/self.gamesPlayed)};
+            if(self.gamesPlayed == 0 || !self.gamesPlayed){
+                return @{@"Tckl" : @"0", @"Sak" : @"0", @"Int" : @"0", @"Tckl/G" : @"0", @"TFL" : @"0", @"Sak/G" : @"0", @"Stat Names" : @[@"Tckl", @"Tckl/G", @"Sak", @"Sak/G", @"Int", @"TFL"]};
+            } else {
+                return @{@"Tckl" : [NSString stringWithFormat:@"%.f", self.tackles], @"Sak" : [NSString stringWithFormat:@"%.f", self.sacks], @"Int" : [NSString stringWithFormat:@"%.f", self.interceptions], @"Tckl/G" : [NSString stringWithFormat:@"%.1f", self.tackles/self.gamesPlayed], @"TFL" : [NSString stringWithFormat:@"%.f", self.tfl], @"Sak/G" : [NSString stringWithFormat:@"%.1f", self.sacks/self.gamesPlayed], @"Stat Names" : @[@"Tckl", @"Tckl/G", @"Sak", @"Sak/G", @"Int", @"TFL"]};
+            }
             break;
         default:
             return nil;

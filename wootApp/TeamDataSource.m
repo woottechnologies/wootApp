@@ -80,6 +80,7 @@ static NSString *scheduleCellID = @"scheduleCellID";
     return sections[section];
 }
 
+
 -(CGFloat)descriptionLabelHeight:(NSString *)string{
     
     CGRect bounding = [string boundingRectWithSize:CGSizeMake(320, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]} context:nil];
