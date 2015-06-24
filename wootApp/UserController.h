@@ -14,6 +14,7 @@
 @property (nonatomic, strong) User *currentUser;
 
 + (instancetype)sharedInstance;
-- (void)registerInDBWithCompletion:(void (^)(BOOL success))completion;
+- (void)registerInDBWithCompletion:(void (^)(BOOL success, NSString *error))completion;
+- (void)logInUserWithCompletion:(void (^)(BOOL success, NSString *error))completion;
 
 @end

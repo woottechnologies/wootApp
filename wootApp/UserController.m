@@ -22,7 +22,9 @@
     return sharedInstance;
 }
 
-- (void)registerInDBWithCompletion:(void (^)(BOOL success))completion {
+#pragma Create
+
+- (void)registerInDBWithCompletion:(void (^)(BOOL success, NSString *error))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
     NSString *email = self.currentUser.email;
@@ -41,21 +43,19 @@
         if (data.length > 0 && error == nil) {
             NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
-            NSLog(@"%@", responseDict);
-            NSString *returnCode = [[responseDict objectForKey:@"returnCode"] stringValue];
-            NSLog(@"%@", returnCode);
+            NSInteger returnCode = [[responseDict objectForKey:@"returnCode"] integerValue];
             
-            if ([returnCode isEqualToString: @"10"] ) {
-                NSLog(@"Worked");
+            if (returnCode == 10) {
                 NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
                 self.currentUser.userID = userID;
+                self.currentUser.password = nil;
                 [self saveUserLocal];
-                completion(YES);
-            } else {
-                NSLog(@"Didn't work");
+                completion(YES, nil);
+            } else if (returnCode == 20) {
+                completion(NO, @"Email already exists");
             }
         } else {
-            completion(NO);
+            completion(NO, @"Error with network request");
         }
     }];
     
@@ -68,6 +68,50 @@
     [[NSUserDefaults standardUserDefaults] setObject:userDict forKey:@"userDict"];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma Read
+
+- (void)logInUserWithCompletion:(void (^)(BOOL success, NSString *error))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *email = self.currentUser.email;
+    NSString *password = self.currentUser.password;
+    
+    NSString *post = [NSString stringWithFormat:@"email=%@&passwd=%@", email, password];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_user.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            NSInteger returnCode = [[responseDict objectForKey:@"returnCode"] integerValue];
+            
+            if (returnCode == 10) {
+                NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
+                NSString *email = [responseDict objectForKey:@"email"];
+                self.currentUser.userID = userID;
+                self.currentUser.email = email;
+                self.currentUser.password = nil;
+                [self saveUserLocal];
+                completion(YES, nil);
+            } else if (returnCode == 20) {
+                completion(NO, @"Incorrect username or password");
+            } else {
+                completion(NO, @"No user found");
+            }
+        } else {
+            completion(NO, @"Error with network request");
+        }
+    }];
+    
+    [uploadTask resume];
 }
 
 - (void)loadUserLocal {
