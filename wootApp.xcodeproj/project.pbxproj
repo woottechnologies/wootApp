@@ -24,6 +24,7 @@
 		4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEA71B39F75B006BBC43 /* DockViewController.m */; };
 		4797DEB01B39FCF7006BBC43 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEAF1B39FCF7006BBC43 /* User.m */; };
 		4797DEB31B39FD07006BBC43 /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEB21B39FD07006BBC43 /* UserController.m */; };
+		4797DEB61B3CA27C006BBC43 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4797DEB51B3CA27C006BBC43 /* MessageUI.framework */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
@@ -95,6 +96,7 @@
 		4797DEAF1B39FCF7006BBC43 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4797DEB11B39FD07006BBC43 /* UserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserController.h; sourceTree = "<group>"; };
 		4797DEB21B39FD07006BBC43 /* UserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserController.m; sourceTree = "<group>"; };
+		4797DEB51B3CA27C006BBC43 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
 		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
 		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4797DEB61B3CA27C006BBC43 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +213,7 @@
 		55B4C8961B1E386F003B3058 = {
 			isa = PBXGroup;
 			children = (
+				4797DEB51B3CA27C006BBC43 /* MessageUI.framework */,
 				55B4C8A11B1E386F003B3058 /* wootApp */,
 				55B4C8BB1B1E386F003B3058 /* wootAppTests */,
 				55B4C8A01B1E386F003B3058 /* Products */,
