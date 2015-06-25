@@ -8,11 +8,16 @@
 
 #import "CustomTabBarVC.h"
 #import "DrawerDataSource.h"
+#import "UserController.h"
+#import "DockViewController.h"
+#import "SchoolListViewController.h"
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *drawer;
 @property (nonatomic, strong) UIButton *drawerButton;
+@property (nonatomic, strong) UIButton *toggleAccountButton;
+@property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) DrawerDataSource *dataSource;
 
 @end
@@ -25,15 +30,15 @@
     self.delegate = self;
     self.tabBar.hidden = YES;
     
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
+    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
     
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemTapped:)];
     
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *selfItem = [[UIBarButtonItem alloc] initWithTitle:@"self" style:UIBarButtonItemStylePlain target:self action:@selector(selfItemTapped:)];
     
-    [toolBar setItems:@[flexibleSpace, searchItem, flexibleSpace, selfItem, flexibleSpace]];
-    [self.view addSubview:toolBar];
+    [self.toolBar setItems:@[flexibleSpace, searchItem, flexibleSpace, selfItem, flexibleSpace]];
+    [self.view addSubview:self.toolBar];
     
     self.drawerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.drawerButton.enabled = NO;
@@ -42,7 +47,18 @@
     [self.drawerButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.drawerButton];
 
-    self.drawer = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width  * 2 / 3, self.view.frame.size.height + toolBar.frame.size.height) style:UITableViewStyleGrouped];
+    // account button
+    self.toggleAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.toggleAccountButton.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
+    self.toggleAccountButton.enabled = NO;
+    self.toggleAccountButton.backgroundColor = [UIColor redColor];
+    [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
+    [self.toggleAccountButton addTarget:self action:@selector(accountButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.toggleAccountButton];
+    
+    // drawer
+    self.drawer = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width  * 2 / 3, self.view.frame.size.height - self.toggleAccountButton.frame.size.height) style:UITableViewStyleGrouped];
     self.dataSource = [[DrawerDataSource alloc] init];
     [self.dataSource registerTableView:self.drawer viewController:self];
     self.drawer.dataSource = self.dataSource;
@@ -56,6 +72,16 @@
     [self.view addSubview:self.drawer];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.drawer.hidden = YES;
+    
+    if ([UserController sharedInstance].currentUser.userID) {
+        [self.toggleAccountButton setTitle:@"Log Out" forState:UIControlStateNormal];
+    } else {
+        [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
+    }
+}
+
 - (void)searchItemTapped:(UIBarButtonItem *)searchItem {
     if (!self.drawer.hidden) {
         [self toggleDrawer];
@@ -63,7 +89,6 @@
 }
 
 - (void)selfItemTapped:(UIBarButtonItem *)selfItem {
-    
     [self toggleDrawer];
 }
 
@@ -73,21 +98,42 @@
                                                 withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.3 animations:^{
             self.drawer.center = CGPointMake(self.view.frame.size.width - self.drawer.frame.size.width / 2, self.drawer.center.y);
+            self.toggleAccountButton.center = CGPointMake(self.view.frame.size.width - self.toggleAccountButton.frame.size.width / 2, self.toggleAccountButton.center.y);
             self.drawerButton.alpha = 0.4;
         }];
         self.drawer.hidden = NO;
         self.drawerButton.enabled = YES;
+        self.toggleAccountButton.enabled = YES;
     } else {
         [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                 withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.3 animations:^{
             self.drawer.center = CGPointMake(self.view.frame.size.width + self.drawer.frame.size.width / 2, self.drawer.center.y);
+            self.toggleAccountButton.center = CGPointMake(self.view.frame.size.width + self.toggleAccountButton.frame.size.width / 2, self.toggleAccountButton.center.y);
             self.drawerButton.alpha = 0.0;
         } completion:^(BOOL finished) {
             if (finished) {
                 self.drawer.hidden = YES;
                 self.drawerButton.enabled = NO;
+                self.toggleAccountButton.enabled = NO;
             }
+        }];
+    }
+}
+
+- (void)accountButtonPressed:(UIButton *)accountButton {
+    if ([accountButton.titleLabel.text isEqualToString:@"Log Out"]) {
+        [UserController sharedInstance].currentUser = nil;
+        [self toggleDrawer];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userDict"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
+    } else {
+        DockViewController *dockVC = [[DockViewController alloc] init];
+        
+        UIViewController *vc = self.childViewControllers[0];
+        [vc presentViewController:dockVC animated:YES completion:^{
+            [self toggleDrawer];
         }];
     }
 }
@@ -97,7 +143,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section == 0) {
+        // favorites
+    } else {
+        // contact woot
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,6 +157,10 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 150;
+    }
+    
     return 0;
 }
 
