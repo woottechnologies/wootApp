@@ -15,6 +15,8 @@
 #import "CampaignController.h"
 #import "CampaignAdViewController.h"
 #import "ScheduleViewController.h"
+#import "GameController.h"
+#import "UIColor+CreateMethods.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -75,23 +77,27 @@
             [self setUpCampaignAd];
         }
     }];
+     
     
-    
-    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
+  //  UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
+    UIColor *backgroundColor = [SchoolController sharedInstance].currentSchool.primaryColor;
     
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
     
-    NSArray *schedule = [TeamController sharedInstance].currentTeam.schedule;
+    [[GameController sharedInstance] allGamesForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *games) {
+        [TeamController sharedInstance].currentTeam.schedule = games;
+    }];
 }
 
 - (void)setupHeader {
     SchoolController *schoolController = [SchoolController sharedInstance];
     TeamController *teamController = [TeamController sharedInstance];
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
+   // UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
+    UIColor *backgroundColor = [SchoolController sharedInstance].currentSchool.primaryColor;
     self.header.backgroundColor = backgroundColor;
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];

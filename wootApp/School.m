@@ -7,6 +7,8 @@
 //
 
 #import "School.h"
+#import "UIColor+CreateMethods.h"
+@import UIKit;
 
 @implementation School
 
@@ -23,8 +25,8 @@
         self.region = dictionary[RegionKey];
         self.division = dictionary[DivisionKey];
         self.mascott = dictionary[MascottKey];
-        self.primaryColor = dictionary[PrimaryColorKey];
-        self.secondaryColor = dictionary[SecondaryColorKey];
+        self.primaryColor = [UIColor colorWithHex:dictionary[PrimaryColorKey] alpha:1];
+        self.secondaryColor = [UIColor colorWithHex:dictionary[SecondaryColorKey] alpha:1];
     }
     
     return self;

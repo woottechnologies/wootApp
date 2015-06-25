@@ -9,6 +9,7 @@
 #import "TeamDataSource.h"
 #import "TeamController.h"
 #import "TeamViewController.h"
+#import "ScheduleTableViewCell.h"
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     TopPlayersSection = 0,
@@ -33,7 +34,8 @@ static NSString *scheduleCellID = @"scheduleCellID";
     self.tableView = tableView;
     self.viewController = viewController;
     [self.tableView registerClass:[MostViewedPlayersTableViewCell class] forCellReuseIdentifier:mostViewedPlayerCellID];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:scheduleCellID];
+    [self.tableView registerClass:[ScheduleTableViewCell class] forCellReuseIdentifier:scheduleCellID];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"fullScheduleCellID"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -51,8 +53,25 @@ static NSString *scheduleCellID = @"scheduleCellID";
                ((MostViewedPlayersTableViewCell *)cell).delegate = self.viewController;
             break;
         case ScheduleSection:
-               cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
-               cell.textLabel.text = @"Full Schedule";
+               switch (indexPath.row){
+                   case 0:
+                       cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
+                       if (teamController.currentTeam.schedule) {
+                           [((ScheduleTableViewCell *)cell) initWithGame:[self previousGame] style:UITableViewCellStyleDefault reuseIdentifier:scheduleCellID];
+                       }
+                       break;
+                   case 1:
+                       cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
+                       if (teamController.currentTeam.schedule) {
+                           [((ScheduleTableViewCell *)cell) initWithGame:[self nextGame] style:UITableViewCellStyleDefault reuseIdentifier:scheduleCellID];
+                       }
+
+                       break;
+                   case 2:
+                       cell = [tableView dequeueReusableCellWithIdentifier:@"fullScheduleCellID"];
+                       cell.textLabel.text = @"Full Schedule";
+                       break;
+               }
             break;
         case PicturesSection:
             break;
@@ -67,7 +86,7 @@ static NSString *scheduleCellID = @"scheduleCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *numberOfRowsPerSection = @[@1, @1, @0, @0];
+    NSArray *numberOfRowsPerSection = @[@1, @3, @0, @0];
     return [numberOfRowsPerSection[section] integerValue];
 }
 
@@ -78,6 +97,35 @@ static NSString *scheduleCellID = @"scheduleCellID";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     NSArray *sections = @[@"Top Players", @"Schedule", @"Pictures", @"Videos"];
     return sections[section];
+}
+
+//- (UITableView *)tableView
+
+- (Game *)previousGame{
+    TeamController *teamController = [TeamController sharedInstance];
+    NSMutableArray *previousGames = [[NSMutableArray alloc] init];
+    for(Game *game in teamController.currentTeam.schedule){
+        if(game.isOver){
+            [previousGames addObject:game];
+        }
+    }
+    return [previousGames lastObject];
+}
+
+- (Game *)nextGame{
+    TeamController *teamController = [TeamController sharedInstance];
+    NSMutableArray *upcomingGames = [[NSMutableArray alloc] init];
+    for(Game *game in teamController.currentTeam.schedule){
+//        NSDate *sevenDaysAgo = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay
+//                                                                        value:-7
+//                                                                       toDate:[NSDate date]
+//                                                                      options:0];
+       // if(!game.isOver && [game.date compare:sevenDaysAgo] == NSOrderedDescending){
+        if(!game.isOver){
+            [upcomingGames addObject:game];
+        }
+    }
+    return [upcomingGames firstObject];
 }
 
 

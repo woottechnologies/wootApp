@@ -27,6 +27,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        if(!game){
+            return self;
+        }
         [self setUpCell:game];
     }
     return self;
@@ -35,14 +38,8 @@
 - (void)setUpCell:(Game *) game{
     TeamController *teamController = [TeamController sharedInstance];
     
-//    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 30)];
-    UILabel *dateLabel = [[UILabel alloc]init];
-    dateLabel.text = game.date;
-    [self.contentView addSubview:dateLabel];
-    
-//    UILabel *opponentLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 0, 100, 30)];
     UILabel *opponentLabel = [[UILabel alloc]init];
-    BOOL isHomeTeam = (game.homeTeam.teamID == teamController.currentTeam.teamID);
+    BOOL isHomeTeam = (game.homeTeamID == teamController.currentTeam.teamID);
     if (isHomeTeam) {
         opponentLabel.text = [NSString stringWithFormat:@"%@",game.opposingSchool];
     } else {
@@ -50,51 +47,58 @@
     }
     [self.contentView addSubview:opponentLabel];
     
-//    UILabel *scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 0, 60, 30)];
-    UILabel *scoreLabel = [[UILabel alloc]init];
+    UIImageView *opponentLogo = [[UIImageView alloc] initWithImage:game.opposingLogo];
+    [self.contentView addSubview:opponentLogo];
     
-//    UILabel *winLossLabel = [[UILabel alloc]initWithFrame:CGRectMake(300, 0, 40, 30)];
-    UILabel *winLossLabel = [[UILabel alloc]init];
-    
-    if (game.isOver){
-        scoreLabel.text = game.finalScore;
-        [self.contentView addSubview:scoreLabel];
+    UIView *dateOrScoreView = [[UIView alloc] init];
+    UILabel *dateLabel;
+    UILabel *winLossLabel;
+    UILabel *scoreLabel;
+
+    if(!game.isOver) {
+//        winLossLabel = nil;
+//        scoreLabel = nil;
+        dateLabel = [[UILabel alloc] init];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+//        NSString *dateString = [dateFormatter stringFromDate:game.date];
+        dateLabel.text = game.dateString;
+        [dateOrScoreView addSubview:dateLabel];
+        [dateLabel alignTop:@"0" leading:@"0" bottom:@"0" trailing:@"0" toView:dateOrScoreView];
+    } else {
+//        dateLabel = nil;
+        scoreLabel = [[UILabel alloc] init];
+        scoreLabel.text = game.currentScore;
+        [dateOrScoreView addSubview:scoreLabel];
+        [scoreLabel alignTop:@"0" bottom:@"0" toView:dateOrScoreView];
+        [scoreLabel alignLeadingEdgeWithView:dateOrScoreView predicate:@"0"];
         
-        if (game.winningTeam.teamID == teamController.currentTeam.teamID){
+        winLossLabel = [[UILabel alloc] init];
+        if (game.winningTeamID == teamController.currentTeam.teamID){
             winLossLabel.text = @"W";
-        } else if (game.winningTeam.teamID){
+        } else if (game.winningTeamID){
             winLossLabel.text = @"L";
         } else {
             winLossLabel.text = @"D";
         }
-        [self.contentView addSubview:winLossLabel];
-
-    } else {
-        scoreLabel.text = @"-";
-        [self.contentView addSubview:scoreLabel];
-        
-        winLossLabel.text = @"-";
-        [self.contentView addSubview:winLossLabel];
+        [dateOrScoreView addSubview:winLossLabel];
+        [winLossLabel alignTop:@"0" bottom:@"0" toView:dateOrScoreView];
+        [winLossLabel alignTrailingEdgeWithView:dateOrScoreView predicate:@"0"];
+        [winLossLabel constrainLeadingSpaceToView:scoreLabel predicate:@"20"];
     }
-   
-    [dateLabel alignLeadingEdgeWithView:self.contentView predicate:@"10"];
-    [dateLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
-    [dateLabel constrainWidth:@"100"];
+    [self.contentView addSubview:dateOrScoreView];
     
-    [opponentLabel constrainLeadingSpaceToView:dateLabel predicate:@"10"];
+    [opponentLogo alignTop:@"0" leading:@"15" toView:self.contentView];
+    [opponentLogo alignBottomEdgeWithView:self.contentView predicate:@"0"];
+    [opponentLogo constrainAspectRatio:@"0"];
+
+    [opponentLabel constrainLeadingSpaceToView:opponentLogo predicate:@"10"];
     [opponentLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
-    [opponentLabel constrainTrailingSpaceToView:scoreLabel predicate:@"10"];
+    [opponentLabel constrainTrailingSpaceToView:dateOrScoreView predicate:@"10"];
     
-    [scoreLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
-    [scoreLabel constrainTrailingSpaceToView:winLossLabel predicate:@"10"];
-    [scoreLabel constrainWidth:@"60"];
-    
-    [winLossLabel alignTop:@"0" bottom:@"0" toView:self.contentView];
-    [winLossLabel alignTrailingEdgeWithView:self.contentView predicate:@"20"];
-    [winLossLabel constrainWidth:@"30"];
-    
-   
-    
-    
+    [dateOrScoreView alignTop:@"0" bottom:@"0" toView:self.contentView];
+    [dateOrScoreView alignTrailingEdgeWithView:self.contentView predicate:@"15"];
+    [dateOrScoreView constrainLeadingSpaceToView:opponentLabel predicate:@"10"];
+    [dateOrScoreView constrainWidth:@"150"];
 }
 @end

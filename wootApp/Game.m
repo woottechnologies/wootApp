@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) NSInteger homeTeamScore;
 @property (nonatomic, assign) NSInteger awayTeamScore;
+@property (nonatomic, strong) NSString *dateFromDB;
 
 @end
 
@@ -23,20 +24,33 @@
     
     if (self) {
         self.gameID = [dictionary[GameIDKey] integerValue];
-        self.date = dictionary[DateKey];
+        self.dateFromDB = dictionary[DateKey];
         self.homeTeamID = [dictionary[HomeTeamKey] integerValue];
         self.awayTeamID = [dictionary[AwayTeamKey] integerValue];
         self.homeTeamScore = [dictionary[HomeScoreKey] integerValue];
         self.awayTeamScore = [dictionary[AwayScoreKey] integerValue];
         self.opposingSchool = dictionary[OpposingSchoolKey];
+        
+        if([dictionary[IsOverKey] isEqualToString:@"Y"]) {
+            self.isOver = YES;
+        } else {
+            self.isOver = NO;
+        }
     }
     
     return self;
 }
 
+
 - (NSString *)currentScore {
     NSString *scoreString = [NSString stringWithFormat:@"%li - %li", self.homeTeamScore, self.awayTeamScore];
     return scoreString;
+}
+
+- (NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    return [dateFormatter dateFromString:self.dateFromDB];
 }
 
 - (NSString *)finalScore {
@@ -47,14 +61,24 @@
     return [NSString stringWithFormat:@"%li - %li", self.awayTeamScore, self.homeTeamScore];
 }
 
-- (Team *)winningTeam {
+- (NSInteger)winningTeamID {
     if (self.isOver && self.homeTeamScore > self.awayTeamScore) {
-        return self.homeTeam;
+        return self.homeTeamID;
     } else if (self.isOver && self.awayTeamScore > self.homeTeamScore) {
-        return self.awayTeam;
+        return self.awayTeamID;
     } else {
-        return nil;
+        return -1;
     }
 }
+
+- (NSString *)dateString {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    NSDate *date = [dateFormat dateFromString:self.dateFromDB];
+    [dateFormat setDateFormat:@"MMM dd"];
+    return [dateFormat stringFromDate:date];
+    
+    }
 
 @end

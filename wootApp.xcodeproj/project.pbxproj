@@ -33,6 +33,7 @@
 		553A292C1B353FC900784798 /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A292B1B353FC800784798 /* Stats.m */; };
 		553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A292E1B386A0E00784798 /* SummaryStatsTableViewCell.m */; };
 		553A29321B389DD900784798 /* StatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29311B389DD900784798 /* StatsController.m */; };
+		553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29341B3C654100784798 /* UIColor+CreateMethods.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -109,6 +110,8 @@
 		553A292E1B386A0E00784798 /* SummaryStatsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryStatsTableViewCell.m; sourceTree = "<group>"; };
 		553A29301B389DD900784798 /* StatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsController.h; sourceTree = "<group>"; };
 		553A29311B389DD900784798 /* StatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsController.m; sourceTree = "<group>"; };
+		553A29331B3C654100784798 /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CreateMethods.h"; sourceTree = "<group>"; };
+		553A29341B3C654100784798 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				553A29311B389DD900784798 /* StatsController.m */,
 				553A292D1B386A0E00784798 /* SummaryStatsTableViewCell.h */,
 				553A292E1B386A0E00784798 /* SummaryStatsTableViewCell.m */,
+				553A29331B3C654100784798 /* UIColor+CreateMethods.h */,
+				553A29341B3C654100784798 /* UIColor+CreateMethods.m */,
 				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
 				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
 				4796A9831B331E7A00D71779 /* NetworkController.h */,
@@ -328,6 +333,7 @@
 				TargetAttributes = {
 					55B4C89E1B1E386F003B3058 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = F77WGCCN72;
 					};
 					55B4C8B71B1E386F003B3058 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -412,6 +418,7 @@
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
 				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,
+				553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = wootApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -539,6 +547,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = wootApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

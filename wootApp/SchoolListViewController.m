@@ -47,6 +47,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    // SchoolController *schoolController = [SchoolController sharedInstance];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [SchoolController sharedInstance].currentSchool = [[SchoolController sharedInstance].schools objectAtIndex:indexPath.row];
+    
     TeamViewController *teamVC = [[TeamViewController alloc] init];
     [[TeamController sharedInstance] loadTeamsFromDBWithCompletion:^(BOOL success) {
         if (success) {

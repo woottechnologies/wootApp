@@ -34,8 +34,8 @@ static NSString *SecondaryColorKey = @"secondaryColor";
 @property (nonatomic, strong) NSString *division;
 @property (nonatomic, strong) NSString *mascott;
 @property (nonatomic, strong) UIImage *logo;
-@property (nonatomic, strong) NSString *primaryColor;
-@property (nonatomic, strong) NSString *secondaryColor;
+@property (nonatomic, strong) UIColor *primaryColor;
+@property (nonatomic, strong) UIColor *secondaryColor;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
