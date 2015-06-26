@@ -9,6 +9,7 @@
 #import "GameController.h"
 #import "NetworkController.h"
 #import "UIImage+PathForFile.h"
+#import "TeamController.h"
 
 @implementation GameController
 
@@ -21,6 +22,44 @@
     
     return sharedInstance;
 }
+
+- (Game *)previousGame{
+    return [[self previousGames] lastObject];
+}
+
+- (NSArray *)previousGames{
+    TeamController *teamController = [TeamController sharedInstance];
+    NSMutableArray *previousGames = [[NSMutableArray alloc] init];
+    for(Game *game in teamController.currentTeam.schedule){
+        if(game.isOver){
+            [previousGames addObject:game];
+        }
+    }
+    return previousGames;
+}
+
+
+- (Game *)nextGame{
+    return [[self upcomingGames] firstObject];
+}
+
+- (NSArray *)upcomingGames{
+    TeamController *teamController = [TeamController sharedInstance];
+    NSMutableArray *upcomingGames = [[NSMutableArray alloc] init];
+    for(Game *game in teamController.currentTeam.schedule){
+        //        NSDate *sevenDaysAgo = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay
+        //                                                                        value:-7
+        //                                                                       toDate:[NSDate date]
+        //                                                                      options:0];
+        // if(!game.isOver && [game.date compare:sevenDaysAgo] == NSOrderedDescending){
+        if(!game.isOver){
+            [upcomingGames addObject:game];
+        }
+    }
+    return upcomingGames;
+}
+
+
 
 - (void)allGamesForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *games))completion {
     NSURLSession *session = [NSURLSession sharedSession];

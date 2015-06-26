@@ -17,6 +17,7 @@
 #import "ScheduleViewController.h"
 #import "GameController.h"
 #import "UIColor+CreateMethods.h"
+#import "UIView+FLKAutoLayout.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -177,7 +178,45 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30.0;
+    return 50.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc] init];
+    UILabel *sectionTitleLabel = [[UILabel alloc] init];
+    UIButton *sectionActionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [headerView addSubview:sectionTitleLabel];
+    [headerView addSubview:sectionActionButton];
+    
+    [sectionTitleLabel alignTop:@"10" leading:@"10" toView:headerView];
+    [sectionTitleLabel alignBottomEdgeWithView:headerView predicate:@"-10"];
+    [sectionTitleLabel constrainWidth:@"200"];
+    
+    [sectionActionButton alignTop:@"10" bottom:@"-10" toView:headerView];
+    [sectionActionButton alignTrailingEdgeWithView:headerView predicate:@"-10"];
+    [sectionActionButton constrainWidth:@"100"];
+    
+    switch (section){
+            
+        case 0:
+            sectionTitleLabel.text = @"Most Viewed Athletes";
+            
+            [sectionActionButton setTitle:@"See All" forState:UIControlStateNormal];
+            [sectionActionButton addTarget:self action:@selector(rosterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        case 1:
+            sectionTitleLabel.text = @"Games";
+            
+            [sectionActionButton setTitle:@"See All" forState:UIControlStateNormal];
+            [sectionActionButton addTarget:self action:@selector(pushFullSchedule) forControlEvents:UIControlEventTouchUpInside];
+
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+    }
+    return headerView;
 }
 
 - (void)didReceiveMemoryWarning {

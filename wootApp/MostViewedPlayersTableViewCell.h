@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIButton *athlete3View;
 @property (nonatomic, strong) UIButton *athlete4View;
 @property (nonatomic, strong) UIButton *athlete5View;
+@property (nonatomic, strong) UIButton *athlete6View;
 @property (nonatomic, strong) UIButton *rosterView;
 
 @property (weak, nonatomic) id<MostViewedPlayerTableViewCellDelegate> delegate;

@@ -9,7 +9,8 @@
 #import "TeamDataSource.h"
 #import "TeamController.h"
 #import "TeamViewController.h"
-#import "ScheduleTableViewCell.h"
+#import "PreviousGameTableViewCell.h"
+#import "NextGameTableViewCell.h"
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     TopPlayersSection = 0,
@@ -20,6 +21,7 @@ typedef NS_ENUM(int16_t, AthleteDataSourceSection){
 
 static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 static NSString *scheduleCellID = @"scheduleCellID";
+static NSString *nextGameCellID = @"nextGameCellID";
 
 @interface TeamDataSource()
 
@@ -34,12 +36,13 @@ static NSString *scheduleCellID = @"scheduleCellID";
     self.tableView = tableView;
     self.viewController = viewController;
     [self.tableView registerClass:[MostViewedPlayersTableViewCell class] forCellReuseIdentifier:mostViewedPlayerCellID];
-    [self.tableView registerClass:[ScheduleTableViewCell class] forCellReuseIdentifier:scheduleCellID];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"fullScheduleCellID"];
+    [self.tableView registerClass:[PreviousGameTableViewCell class] forCellReuseIdentifier:scheduleCellID];
+    [self.tableView registerClass:[NextGameTableViewCell class] forCellReuseIdentifier:nextGameCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TeamController *teamController = [TeamController sharedInstance];
+    GameController *gameController = [GameController sharedInstance];
     UITableViewCell *cell;
 //    MostViewedPlayersTableViewCell *cell;
        switch (indexPath.section){
@@ -57,19 +60,21 @@ static NSString *scheduleCellID = @"scheduleCellID";
                    case 0:
                        cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
                        if (teamController.currentTeam.schedule) {
-                           [((ScheduleTableViewCell *)cell) initWithGame:[self previousGame] style:UITableViewCellStyleDefault reuseIdentifier:scheduleCellID];
+                           [((PreviousGameTableViewCell *)cell) setUpCell:[gameController previousGame]];
                        }
+//                       cell = [tableView dequeueReusableCellWithIdentifier:@"fullScheduleCellID"];
+//                       cell.textLabel.text = [self nextGame].opposingSchool;
                        break;
                    case 1:
-                       cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
+//                       cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
+//                       if (teamController.currentTeam.schedule) {
+//                           [((ScheduleTableViewCell *)cell) setUpCell:[self nextGame]];
+//                       }
+                       
+                       cell = [tableView dequeueReusableCellWithIdentifier:nextGameCellID];
                        if (teamController.currentTeam.schedule) {
-                           [((ScheduleTableViewCell *)cell) initWithGame:[self nextGame] style:UITableViewCellStyleDefault reuseIdentifier:scheduleCellID];
+                           [((NextGameTableViewCell *)cell) setUpCell:[gameController nextGame]];
                        }
-
-                       break;
-                   case 2:
-                       cell = [tableView dequeueReusableCellWithIdentifier:@"fullScheduleCellID"];
-                       cell.textLabel.text = @"Full Schedule";
                        break;
                }
             break;
@@ -86,7 +91,7 @@ static NSString *scheduleCellID = @"scheduleCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *numberOfRowsPerSection = @[@1, @3, @0, @0];
+    NSArray *numberOfRowsPerSection = @[@1, @2, @0, @0];
     return [numberOfRowsPerSection[section] integerValue];
 }
 
@@ -98,36 +103,6 @@ static NSString *scheduleCellID = @"scheduleCellID";
     NSArray *sections = @[@"Top Players", @"Schedule", @"Pictures", @"Videos"];
     return sections[section];
 }
-
-//- (UITableView *)tableView
-
-- (Game *)previousGame{
-    TeamController *teamController = [TeamController sharedInstance];
-    NSMutableArray *previousGames = [[NSMutableArray alloc] init];
-    for(Game *game in teamController.currentTeam.schedule){
-        if(game.isOver){
-            [previousGames addObject:game];
-        }
-    }
-    return [previousGames lastObject];
-}
-
-- (Game *)nextGame{
-    TeamController *teamController = [TeamController sharedInstance];
-    NSMutableArray *upcomingGames = [[NSMutableArray alloc] init];
-    for(Game *game in teamController.currentTeam.schedule){
-//        NSDate *sevenDaysAgo = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay
-//                                                                        value:-7
-//                                                                       toDate:[NSDate date]
-//                                                                      options:0];
-       // if(!game.isOver && [game.date compare:sevenDaysAgo] == NSOrderedDescending){
-        if(!game.isOver){
-            [upcomingGames addObject:game];
-        }
-    }
-    return [upcomingGames firstObject];
-}
-
 
 -(CGFloat)descriptionLabelHeight:(NSString *)string{
     

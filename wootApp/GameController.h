@@ -12,8 +12,13 @@
 @interface GameController : NSObject
 
 @property (nonatomic, strong) Game *currentGame;
+@property (nonatomic, strong) NSArray *upcomingGames;
+@property (nonatomic, strong) NSArray *previousGames;
+@property (nonatomic, strong) Game *previousGame;
+@property (nonatomic, strong) Game *nextGame;
 
 + (instancetype)sharedInstance;
+
 - (void)allGamesForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *games))completion;
 
 @end

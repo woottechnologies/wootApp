@@ -29,6 +29,9 @@
 @property (nonatomic, strong) UIImageView *athlete5ImageView;
 @property (nonatomic, strong) UILabel *athlete5NameLabel;
 
+@property (nonatomic, strong) UIImageView *athlete6ImageView;
+@property (nonatomic, strong) UILabel *athlete6NameLabel;
+
 @end
 
 @implementation MostViewedPlayersTableViewCell
@@ -167,18 +170,39 @@
     
     // rosterView
     
-    self.rosterView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // self.rosterView.frame = CGRectMake(2 * self.frame.size.width / 3, self.frame.size.width / 1.9, self.frame.size.width / 3, self.frame.size.width / 1.7);
-        [self.rosterView addTarget:self action:@selector(rosterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-//    UILabel *fullRosterLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete1View.frame.size.height / 2 + 10, self.frame.size.width - 20, 15)];
-    UILabel *fullRosterLabel = [UILabel new];
-    fullRosterLabel.textAlignment = NSTextAlignmentCenter;
-    fullRosterLabel.text = @"Full Roster";
-    fullRosterLabel.font = [UIFont systemFontOfSize:13];
-    [self.rosterView addSubview:fullRosterLabel];
-    [self addSubview:self.rosterView];
-    [fullRosterLabel alignLeading:@"0" trailing:@"0" toView:self.rosterView];
-    [fullRosterLabel alignCenterYWithView:self.rosterView predicate:@"0"];
+//    self.rosterView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//   // self.rosterView.frame = CGRectMake(2 * self.frame.size.width / 3, self.frame.size.width / 1.9, self.frame.size.width / 3, self.frame.size.width / 1.7);
+//        [self.rosterView addTarget:self action:@selector(rosterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+////    UILabel *fullRosterLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete1View.frame.size.height / 2 + 10, self.frame.size.width - 20, 15)];
+//    UILabel *fullRosterLabel = [UILabel new];
+//    fullRosterLabel.textAlignment = NSTextAlignmentCenter;
+//    fullRosterLabel.text = @"Full Roster";
+//    fullRosterLabel.font = [UIFont systemFontOfSize:13];
+//    [self.rosterView addSubview:fullRosterLabel];
+//    [self addSubview:self.rosterView];
+//    [fullRosterLabel alignLeading:@"0" trailing:@"0" toView:self.rosterView];
+//    [fullRosterLabel alignCenterYWithView:self.rosterView predicate:@"0"];
+    
+    // athlete6View
+    
+    self.athlete6View = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //  self.athlete5View.frame = CGRectMake(self.frame.size.width / 3, self.frame.size.width / 1.9, self.frame.size.width / 3, self.frame.size.width / 1.7);
+    self.athlete6View.tag = 5;
+    [self.athlete6View addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    //    self.athlete5ImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.athlete5View.frame.size.width, self.athlete5View.frame.size.height - 40)];
+    //    self.athlete5NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete5View.frame.size.height - 40, self.frame.size.width - 20, 15)];
+    self.athlete6ImageView = [UIImageView new];
+    self.athlete6NameLabel = [UILabel new];
+    self.athlete6NameLabel.textAlignment = NSTextAlignmentCenter;
+    self.athlete6NameLabel.font = [UIFont systemFontOfSize:13];
+    [self.athlete6View addSubview:self.athlete6ImageView];
+    [self.athlete6View addSubview:self.athlete6NameLabel];
+    [self addSubview:self.athlete6View];
+    [self.athlete6ImageView alignTop:@"0" leading:@"0" toView:self.athlete6View];
+    [self.athlete6ImageView alignTrailingEdgeWithView:self.athlete6View predicate:@"0"];
+    [self.athlete6ImageView constrainHeightToView:self.athlete6View predicate:@"-15"];
+    [self.athlete6NameLabel alignLeading:@"0" trailing:@"0" toView:self.athlete6View];
+    [self.athlete6NameLabel constrainTopSpaceToView:self.athlete6ImageView predicate:@"0"];
     
     
 //    [self.athlete1View alignTop:@"0" leading:@"0" toView:self];
@@ -225,14 +249,20 @@
     [self.athlete5View constrainLeadingSpaceToView:self.athlete4View predicate:@"0"];
     [self.athlete5View constrainHeightToView:self.contentView predicate:@"*.5"];
     
-    [self.rosterView alignBottomEdgeWithView:self.contentView predicate:@"0"];
-    [self.rosterView constrainLeadingSpaceToView:self.athlete5View predicate:@"0"];
-    [self.rosterView constrainTopSpaceToView:self.athlete3View predicate:@"0"];
-    [self.rosterView constrainHeightToView:self.contentView predicate:@"*.5"];
-    [self.rosterView alignTrailingEdgeWithView:self.contentView predicate:@"0"];
+    [self.athlete6View alignBottomEdgeWithView:self.contentView predicate:@"0"];
+    [self.athlete6View constrainTopSpaceToView:self.athlete3View predicate:@"0"];
+    [self.athlete6View constrainLeadingSpaceToView:self.athlete5View predicate:@"0"];
+    [self.athlete6View alignTrailingEdgeWithView:self.contentView predicate:@"0"];
+    [self.athlete6View constrainHeightToView:self.contentView predicate:@"*.5"];
     
-    [UIView equalHeightForViews:@[self.athlete1View, self.athlete2View, self.athlete3View, self.athlete4View, self.athlete5View, self.rosterView]];
-    [UIView equalWidthForViews:@[self.athlete1View, self.athlete2View, self.athlete3View, self.athlete4View, self.athlete5View, self.rosterView]];
+//    [self.rosterView alignBottomEdgeWithView:self.contentView predicate:@"0"];
+//    [self.rosterView constrainLeadingSpaceToView:self.athlete5View predicate:@"0"];
+//    [self.rosterView constrainTopSpaceToView:self.athlete3View predicate:@"0"];
+//    [self.rosterView constrainHeightToView:self.contentView predicate:@"*.5"];
+//    [self.rosterView alignTrailingEdgeWithView:self.contentView predicate:@"0"];
+    
+    [UIView equalHeightForViews:@[self.athlete1View, self.athlete2View, self.athlete3View, self.athlete4View, self.athlete5View, self.athlete6View]];
+    [UIView equalWidthForViews:@[self.athlete1View, self.athlete2View, self.athlete3View, self.athlete4View, self.athlete5View, self.athlete6View]];
 
 }
 
@@ -243,6 +273,7 @@
     Athlete *athlete3 = athletes[2];
     Athlete *athlete4 = athletes[3];
     Athlete *athlete5 = athletes[4];
+    Athlete *athlete6 = athletes[5];
     
     self.athlete1ImageView.image = athlete1.photo;
     self.athlete1NameLabel.text = athlete1.name;
@@ -262,6 +293,9 @@
     
     self.athlete5ImageView.image = athlete5.photo;
     self.athlete5NameLabel.text = athlete5.name;
+    
+    self.athlete6ImageView.image = athlete6.photo;
+    self.athlete6NameLabel.text = athlete6.name;
     
   
     //self.athlete4View.tag = 4;

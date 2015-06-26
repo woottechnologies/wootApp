@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GameController.h"
 
-@interface ScheduleTableViewCell : UITableViewCell
+@interface PreviousGameTableViewCell : UITableViewCell
 
-- (instancetype)initWithGame:(Game *)game style:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+- (void)setUpCell:(Game *) game;
 
 @end

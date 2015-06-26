@@ -110,7 +110,7 @@
 - (NSArray *) mostViewedAthletes{
     //[self loadAthletes];
     NSMutableArray *mostViewed = [[NSMutableArray alloc] init];
-    while (mostViewed.count < 5) {
+    while (mostViewed.count < 6) {
         Athlete *topAthlete = [Athlete new];
         topAthlete.views = -1;
         for (Athlete *athlete in self.currentTeam.athletes){
@@ -140,6 +140,7 @@
     return roster;
 }
 
+
 - (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -158,19 +159,23 @@
             
             if (responseArray.count > 0) {
                 NSMutableArray *mutAthletes = [[NSMutableArray alloc] init];
+                dispatch_group_t imageGroup = dispatch_group_create();
                 for (NSDictionary *dict in responseArray) {
                    // NSLog(@"%@", dict);
                     Athlete *newAthlete = [[Athlete alloc] initWithDictionary:dict];
+                    dispatch_group_enter(imageGroup);
                     [UIImage imageWithPath:[NSString stringWithFormat:@"%@", dict[PhotoKey]] WithCompletion:^(BOOL success, UIImage *image) {
                         if (success) {
                             newAthlete.photo = image;
                         }
+                        dispatch_group_leave(imageGroup);
                     }];
                     [mutAthletes addObject:newAthlete];
                 }
-                //self.currentTeam.athletes = mutAthletes;
-                self.currentTeam.athletes = [mutAthletes copy];
-                completion(YES);
+                dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+                    self.currentTeam.athletes = [mutAthletes copy];
+                    completion(YES);
+                });
             }
         } else {
             completion(NO);
