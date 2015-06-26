@@ -15,8 +15,6 @@ static NSString *cellID = @"cellID";
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) CustomTabBarVC *viewController;
 
-
-
 @end
 
 @implementation DrawerDataSource
@@ -30,7 +28,7 @@ static NSString *cellID = @"cellID";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     
-    switch (indexPath.row){
+    switch (indexPath.section){
             
         case 0:
             cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -46,6 +44,10 @@ static NSString *cellID = @"cellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 

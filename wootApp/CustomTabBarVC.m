@@ -11,8 +11,9 @@
 #import "UserController.h"
 #import "DockViewController.h"
 #import "SchoolListViewController.h"
+@import MessageUI;
 
-@interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate>
+@interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *drawer;
 @property (nonatomic, strong) UIButton *drawerButton;
@@ -57,12 +58,13 @@
     
     [self.view addSubview:self.toggleAccountButton];
     
-    // drawer
+    // drawer tableview
     self.drawer = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width  * 2 / 3, self.view.frame.size.height - self.toggleAccountButton.frame.size.height) style:UITableViewStyleGrouped];
     self.dataSource = [[DrawerDataSource alloc] init];
     [self.dataSource registerTableView:self.drawer viewController:self];
     self.drawer.dataSource = self.dataSource;
     self.drawer.delegate = self;
+    self.drawer.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIImageView *headerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"football.png"]];
     headerImageView.frame = CGRectMake(0, 0, self.drawer.frame.size.width, 150);
@@ -82,10 +84,15 @@
     }
 }
 
+#pragma mark - UIBarButtonItems for tool bar
+
 - (void)searchItemTapped:(UIBarButtonItem *)searchItem {
     if (!self.drawer.hidden) {
         [self toggleDrawer];
     }
+    
+    UINavigationController *vc = self.childViewControllers[0];
+    [vc popToRootViewControllerAnimated:YES];
 }
 
 - (void)selfItemTapped:(UIBarButtonItem *)selfItem {
@@ -142,13 +149,18 @@
     return YES;
 }
 
+#pragma mark - UITableViewDelegate Methods
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
         // favorites
+        NSLog(@"favorites");
     } else {
-        // contact woot
+        // contact
+        NSLog(@"contact");
+        [self openEmailComposer];
     }
 }
 
@@ -161,7 +173,28 @@
         return 150;
     }
     
-    return 0;
+    return 0.0000000000000000001f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.0000000000000000001f;
+}
+
+#pragma mark - Email Composer
+
+- (void)openEmailComposer {
+    MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+    composer.mailComposeDelegate = self;
+    [composer setToRecipients:@[@"woottechonolgies@gmail.com"]];
+    
+    UIViewController *vc = self.childViewControllers[0];
+    [vc presentViewController:composer animated:YES completion:^{
+        [self toggleDrawer];
+    }];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissViewControllerAnimated:self completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
