@@ -9,6 +9,8 @@
 #import "TeamController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "StatsController.h"
+#import "UserController.h"
+#import "DockViewController.h"
 
 
 @interface AthleteViewController () <UITableViewDelegate>
@@ -16,6 +18,8 @@
 @property (nonatomic, strong) UIView *header;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) AthleteDataSource *dataSource;
+@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
+@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 
 @end
 
@@ -41,16 +45,30 @@
     self.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.tableView];
     
+    self.favoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(favoriteTapped:)];
+    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(unfavoriteTapped:)];
+    
+    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+        NSString *favType = [dict objectForKey:FavTypeKey];
+        if (favID == [TeamController sharedInstance].currentAthlete.athleteID
+            && [favType isEqualToString:@"A"]) {
+            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        }
+    }
+    
     self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
     [self.view addSubview:self.header];
     [self setupHeader];
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
-
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    
-    [self.navigationController.navigationBar setBarTintColor:backgroundColor];
-    [self.navigationController.navigationBar setTranslucent:NO];
+//    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
+//
+//    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+//    
+//    [self.navigationController.navigationBar setBarTintColor:backgroundColor];
+//    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 - (void)setupHeader {
@@ -212,11 +230,31 @@
     return yearString;
 }
 
+- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
+    UserController *userController = [UserController sharedInstance];
+    
+    if (!userController.currentUser) {
+        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        [userController addFavorite:[TeamController sharedInstance].currentAthlete];
+    }
+}
+
+- (void)unfavoriteTapped:(UIBarButtonItem *)item {
+    UserController *userController = [UserController sharedInstance];
+    
+    if (!userController.currentUser) {
+        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        self.navigationItem.rightBarButtonItem = self.favoriteButton;
+        [userController removeFavorite:[TeamController sharedInstance].currentAthlete];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

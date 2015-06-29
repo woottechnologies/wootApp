@@ -185,4 +185,35 @@
     [uploadTask resume];
 }
 
+- (void)selectAthleteWithAthleteID:(NSInteger)athleteID andCompletion:(void (^)(BOOL success, Athlete *athlete))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"athleteID=%li", athleteID];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_athlete.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseArray.count > 0) {
+                Athlete *athleteCreated;
+                for (NSDictionary *dict in responseArray) {
+                    athleteCreated = [[Athlete alloc] initWithDictionary:dict];
+                }
+                completion(YES, athleteCreated);
+            }
+        } else {
+            completion(NO, nil);
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
 @end
