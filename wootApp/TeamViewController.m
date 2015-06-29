@@ -17,6 +17,8 @@
 #import "ScheduleViewController.h"
 #import "GameController.h"
 #import "UIColor+CreateMethods.h"
+#import "UserController.h"
+#import "DockViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -26,6 +28,8 @@
 @property (nonatomic, strong) UIButton *campaignAdButton;
 @property (nonatomic, strong) UIImageView *campaignAdImageView;
 @property (nonatomic, strong) Campaign *campaign;
+@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
+@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 
 @end
 
@@ -86,6 +90,20 @@
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    self.favoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(favoriteTapped:)];
+    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(unfavoriteTapped:)];
+    
+    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+        NSString *favType = [dict objectForKey:FavTypeKey];
+        if (favID == [TeamController sharedInstance].currentTeam.teamID
+            && [favType isEqualToString:@"T"]) {
+            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        }
+    }
     
     [[GameController sharedInstance] allGamesForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *games) {
         [TeamController sharedInstance].currentTeam.schedule = games;
@@ -204,6 +222,27 @@
     [self.navigationController pushViewController: rosterViewController animated:YES];
 }
 
+- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
+    UserController *userController = [UserController sharedInstance];
+    
+    if (!userController.currentUser) {
+        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        [userController addFavorite:[TeamController sharedInstance].currentTeam];
+    }
+}
+
+- (void)unfavoriteTapped:(UIBarButtonItem *)item {
+    UserController *userController = [UserController sharedInstance];
+    
+    if (!userController.currentUser) {
+        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        self.navigationItem.rightBarButtonItem = self.favoriteButton;
+        [userController removeFavorite:[TeamController sharedInstance].currentTeam];
+    }
+}
 
 /*
 #pragma mark - Navigation

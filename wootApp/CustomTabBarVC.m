@@ -11,6 +11,8 @@
 #import "UserController.h"
 #import "DockViewController.h"
 #import "SchoolListViewController.h"
+#import "TeamViewController.h"
+#import "AthleteViewController.h"
 @import MessageUI;
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
@@ -100,6 +102,7 @@
 }
 
 - (void)toggleDrawer {
+    [self.drawer reloadData];
     if (self.drawer.hidden) {
         [[UIApplication sharedApplication] setStatusBarHidden:YES
                                                 withAnimation:UIStatusBarAnimationFade];
@@ -132,7 +135,8 @@
     if ([accountButton.titleLabel.text isEqualToString:@"Log Out"]) {
         [UserController sharedInstance].currentUser = nil;
         [self toggleDrawer];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userDict"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserKey];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:FavoritesKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
     } else {
@@ -156,7 +160,32 @@
     
     if (indexPath.section == 0) {
         // favorites
-        NSLog(@"favorites");
+        NSDictionary *favorite = [[UserController sharedInstance].currentUser.favorites objectAtIndex:indexPath.row];
+
+        UINavigationController *vc = self.childViewControllers[0];
+        
+        if ([[favorite objectForKey:FavTypeKey] isEqualToString:@"T"]) {
+            TeamViewController *teamVC = [[TeamViewController alloc] init];
+            NSInteger teamID = [[favorite objectForKey:FavIDKey] integerValue];
+            [[TeamController sharedInstance] selectTeamWithTeamID:teamID andCompletion:^(BOOL success, Team *team) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [TeamController sharedInstance].currentTeam = team;
+                    [vc popToRootViewControllerAnimated:NO];
+                    [vc pushViewController:teamVC animated:YES];
+                });
+            }];
+        } else  {
+            AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
+            NSInteger athleteID = [[favorite objectForKey:FavIDKey] integerValue];
+            [[TeamController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [TeamController sharedInstance].currentAthlete = athlete;
+                    [vc popToRootViewControllerAnimated:NO];
+                    [vc pushViewController:athleteVC animated:YES];
+                });
+            }];
+        }
+        [self toggleDrawer];
     } else {
         // contact
         NSLog(@"contact");
@@ -170,7 +199,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return 150;
+        return 125;
+    }
+    
+    if (section == 1) {
+        return 20;
     }
     
     return 0.0000000000000000001f;

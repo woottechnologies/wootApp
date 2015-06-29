@@ -24,6 +24,7 @@
 - (void)loadTeamsFromDBWithCompletion:(void (^)(BOOL success))completion;
 - (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion;
 - (void)selectTeamWithTeamID:(NSInteger)teamID andCompletion:(void (^)(BOOL success, Team *team))completion;
+- (void)selectAthleteWithAthleteID:(NSInteger)athleteID andCompletion:(void (^)(BOOL success, Athlete *athlete))completion;
 
 - (NSArray *) sortRosterByNumber;
 - (void)loadCampaigns;
