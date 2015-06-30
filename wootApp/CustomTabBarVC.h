@@ -10,4 +10,6 @@
 
 @interface CustomTabBarVC : UITabBarController
 
+@property (nonatomic, strong) UIToolbar *toolBar;
+
 @end

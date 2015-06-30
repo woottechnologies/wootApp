@@ -7,6 +7,7 @@
 //
 
 #import "TeamViewController.h"
+#import "AppDelegate.h"
 #import "TeamController.h"
 #import "SchoolController.h"
 #import "TeamDataSource.h"
@@ -18,6 +19,7 @@
 #import "GameController.h"
 #import "UIColor+CreateMethods.h"
 #import "UIView+FLKAutoLayout.h"
+#import "CustomTabBarVC.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -27,6 +29,10 @@
 @property (nonatomic, strong) UIButton *campaignAdButton;
 @property (nonatomic, strong) UIImageView *campaignAdImageView;
 @property (nonatomic, strong) Campaign *campaign;
+@property (nonatomic, assign) CGPoint lastOffset;
+@property (nonatomic, assign) CGPoint currentOffset;
+@property (nonatomic, strong) UIToolbar *toolBar;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @end
 
@@ -45,6 +51,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    CustomTabBarVC *customTabBarVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
+    
+    self.lastOffset = CGPointMake(0, 0);
+    self.currentOffset = CGPointMake(0, 0);
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 264) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
@@ -68,8 +79,20 @@
     [self setupHeader];
     
     self.campaignAdButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.campaignAdButton.frame = CGRectMake(0, self.view.frame.size.height - 114, self.view.frame.size.width, 50);
+//    self.campaignAdButton.frame = CGRectMake(0, self.view.frame.size.height - 114, self.view.frame.size.width, 50);
     [self.view addSubview:self.campaignAdButton];
+    [self.campaignAdButton alignLeadingEdgeWithView:self.view predicate:@"0"];
+    [self.campaignAdButton alignTrailingEdgeWithView:self.view predicate:@"0"];
+ //   [self.campaignAdButton alignBottomEdgeWithView:self.view predicate:@"-44"];
+ //   [self.campaignAdButton constrainBottomSpaceToView:[CustomTabBarVC new].toolBar predicate:@"0"];
+    [self.view addSubview:customTabBarVC.toolBar];
+    [customTabBarVC.toolBar alignLeadingEdgeWithView:self.view predicate:@"0"];
+    [customTabBarVC.toolBar alignTrailingEdgeWithView:self.view predicate:@"0"];
+    [customTabBarVC.toolBar alignBottomEdgeWithView:self.view predicate:@"0"];
+    [customTabBarVC.toolBar constrainHeight:@"44"];
+
+    [self.campaignAdButton constrainBottomSpaceToView:customTabBarVC.toolBar predicate:@"0"];
+    [self.campaignAdButton constrainHeight:@"50"];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
     [campaignController loadCampaignFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
@@ -217,6 +240,98 @@
             break;
     }
     return headerView;
+}
+
+//- (void)scrollViewWillBeginScroll :(UIScrollView *)scrollView {
+//    if (self.currentOffset.y > self.lastOffset.y) {
+//        [self hideToolBar];
+//     //   [[[self navigationController] navigationBar] setHidden:YES];
+//    } else{
+//        [self unhideToolBar];
+//    }
+//    self.lastOffset = self.currentOffset;
+//    self.currentOffset = scrollView.contentOffset;
+//}
+//
+- (void)scrollViewDidScroll :(UIScrollView *)scrollView {
+    self.lastOffset = self.currentOffset;
+    self.currentOffset = scrollView.contentOffset;
+    if (self.currentOffset.y < self.lastOffset.y) {
+        [self unhideToolBar];
+        //   [[[self navigationController] navigationBar] setHidden:YES];
+    } else{
+        [self hideToolBar];
+    }
+//    if (scrollView.contentOffset.y <= 0){
+//        [self unhideToolBar];
+//    }
+//    
+}
+
+//- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
+//    [self unhideToolBar];
+//    return YES;
+//}
+
+//-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+//    if (scrollView.contentOffset.y > self.lastOffset.y) {
+//        [self hideToolBar];
+//        //   [[[self navigationController] navigationBar] setHidden:YES];
+//    } else{
+//        [self unhideToolBar];
+//    }
+//    self.lastOffset = scrollView.contentOffset;
+//}
+
+//-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+//                 willDecelerate:(BOOL)decelerate{
+//    if (scrollView.contentOffset.y > 0) {
+//        [self hideToolBar];
+//        //   [[[self navigationController] navigationBar] setHidden:YES];
+//    } else{
+//        [self unhideToolBar];
+//    }
+//    self.lastOffset = self.currentOffset;
+//    self.currentOffset = scrollView.contentOffset;
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    if (scrollView.contentOffset.y > 0) {
+//        [self hideToolBar];
+//        //   [[[self navigationController] navigationBar] setHidden:YES];
+//    } else{
+//        [self unhideToolBar];
+//    }
+//    self.lastOffset = self.currentOffset;
+//    self.currentOffset = scrollView.contentOffset;
+//}
+
+- (void)hideToolBar{
+    UIToolbar *toolBar = ((CustomTabBarVC *)self.appDelegate.window.rootViewController).toolBar;
+    if(!toolBar.hidden && self.currentOffset.y > 0){
+        [UIView animateWithDuration:0.3 animations:^{
+            toolBar.center = CGPointMake(toolBar.center.x, self.view.frame.size.height + toolBar.frame.size.height / 2);
+            self.campaignAdButton.center = CGPointMake(self.campaignAdButton.center.x, self.view.frame.size.height - toolBar.frame.size.height / 2);
+        }completion:^(BOOL finished) {
+            if (finished) {
+                toolBar.hidden = YES;
+            }
+        }];
+    }
+}
+
+- (void)unhideToolBar{
+    UIToolbar *toolBar = ((CustomTabBarVC *)self.appDelegate.window.rootViewController).toolBar;
+    if(toolBar.hidden){
+        [UIView animateWithDuration:0.3 animations:^{
+            toolBar.center = CGPointMake(toolBar.center.x, self.view.frame.size.height - toolBar.frame.size.height / 2);
+            self.campaignAdButton.center = CGPointMake(self.campaignAdButton.center.x, self.view.frame.size.height - toolBar.frame.size.height / 2 - toolBar.frame.size.height);
+        } completion:^(BOOL finished) {
+            if (finished) {
+                toolBar.hidden = NO;
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

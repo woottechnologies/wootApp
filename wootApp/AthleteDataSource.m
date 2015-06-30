@@ -79,7 +79,13 @@ static NSString *bioCellID = @"bioCellID";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    Athlete *currentAthlete = [TeamController sharedInstance].currentAthlete;
+    if(currentAthlete.statType != 7){
+        return 1;
+    } else {
+        return 0;
+    }
+    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
