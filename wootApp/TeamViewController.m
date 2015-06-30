@@ -20,6 +20,7 @@
 #import "UserController.h"
 #import "DockViewController.h"
 #import "UIView+FLKAutoLayout.h"
+#import "CoachingStaffViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -59,6 +60,14 @@
     [[TeamController sharedInstance] loadAthletesFromDBWithCompletion:^(BOOL success) {
         if (success) {
             //Updating UI must occur on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
+    
+    [[TeamController sharedInstance] loadCoachesFromDBWithCompletion:^(BOOL success) {
+        if (success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -162,6 +171,8 @@
     [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
+#pragma mark - TableViewDelegate methods
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height;
     switch (indexPath.section){
@@ -173,6 +184,7 @@
             height = 30;
             break;
         case 2:
+            height = 190;
             break;
         case 3:
             break;
@@ -230,6 +242,7 @@
 
             break;
         case 2:
+            sectionTitleLabel.text = @"Coaches";
             break;
         case 3:
             break;
@@ -247,6 +260,8 @@
     [self.navigationController pushViewController:scheduleViewController animated:YES];
 }
 
+#pragma mark - MostViewedPlayerCell delegate methods
+
 - (void)athleteButtonPressed:(Athlete *)athlete{
     TeamController *teamController = [TeamController sharedInstance];
     teamController.currentAthlete = athlete;
@@ -260,6 +275,16 @@
     rosterViewController.rosterSortedByNumber = [teamController sortRosterByNumber];
     [self.navigationController pushViewController: rosterViewController animated:YES];
 }
+
+#pragma mark - CoachingStaffCell delegate methods
+
+-(void)coachButtonPressed {
+    CoachingStaffViewController *coachingStaffVC = [[CoachingStaffViewController alloc] init];
+    
+    [self.navigationController pushViewController:coachingStaffVC animated:YES];
+}
+
+#pragma mark - fav buttons
 
 - (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
     UserController *userController = [UserController sharedInstance];

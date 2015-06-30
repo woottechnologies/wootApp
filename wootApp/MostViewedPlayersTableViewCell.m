@@ -51,7 +51,6 @@
     
     if (self) {
         [self setupViews];
-//        self.frame = CGRectMake(0, 0, self.window.frame.size.width, self.athlete1View.frame.size.height * 2);
     }
     
     return self;
@@ -102,11 +101,8 @@
     // athlete3View
     
     self.athlete3View = [UIButton buttonWithType:UIButtonTypeRoundedRect];
- //   self.athlete3View.frame = CGRectMake(2 * self.frame.size.width / 3, 0, self.frame.size.width / 3, self.frame.size.width / 1.7);
     self.athlete3View.tag = 2;
     [self.athlete3View addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    self.athlete3ImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.athlete3View.frame.size.width, self.athlete3View.frame.size.height - 40)];
-//    self.athlete3NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.athlete3View.frame.size.height - 40, self.frame.size.width - 20, 15)];
     self.athlete3ImageView = [UIImageView new];
     self.athlete3NameLabel = [UILabel new];
     self.athlete3NameLabel.textAlignment = NSTextAlignmentCenter;

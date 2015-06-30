@@ -26,11 +26,6 @@
         self.division = dictionary[DivisionKey];
         self.mascott = dictionary[MascottKey];
         self.primaryColor = [UIColor colorWithHex:dictionary[PrimaryColorKey] alpha:1];
-<<<<<<< HEAD
-     //   self.secondaryColor = [UIColor colorWithHex:dictionary[SecondaryColorKey] alpha:1];
-=======
-        //self.secondaryColor = [UIColor colorWithHex:dictionary[SecondaryColorKey] alpha:1];
->>>>>>> 7b0de26a22190d972074a9d7f17a28d6d151cea7
     }
     
     return self;

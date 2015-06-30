@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Team.h"
 #import "Athlete.h"
+#import "Coach.h"
 
 @interface TeamController : NSObject
 
@@ -25,6 +26,7 @@
 - (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion;
 - (void)selectTeamWithTeamID:(NSInteger)teamID andCompletion:(void (^)(BOOL success, Team *team))completion;
 - (void)selectAthleteWithAthleteID:(NSInteger)athleteID andCompletion:(void (^)(BOOL success, Athlete *athlete))completion;
+- (void)loadCoachesFromDBWithCompletion:(void (^)(BOOL success))completion;
 
 - (NSArray *) sortRosterByNumber;
 - (void)loadCampaigns;

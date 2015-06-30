@@ -8,7 +8,8 @@
 
 #import "SchoolListViewController.h"
 #import "MostViewedPlayersTableViewCell.h"
+#import "CoachingStaffCell.h"
 
-@interface TeamViewController : UIViewController <MostViewedPlayerTableViewCellDelegate>
+@interface TeamViewController : UIViewController <MostViewedPlayerTableViewCellDelegate, CoachingStaffCellDelegate>
 
 @end
