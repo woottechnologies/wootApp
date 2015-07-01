@@ -28,6 +28,7 @@
 		4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBB1B41E246006BBC43 /* CoachingStaffCell.m */; };
 		4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBE1B41E40D006BBC43 /* Coach.m */; };
 		4797DEC61B41F799006BBC43 /* CoachingStaffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC51B41F799006BBC43 /* CoachingStaffViewController.m */; };
+		4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
@@ -107,6 +108,8 @@
 		4797DEBE1B41E40D006BBC43 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
 		4797DEC41B41F799006BBC43 /* CoachingStaffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachingStaffViewController.h; sourceTree = "<group>"; };
 		4797DEC51B41F799006BBC43 /* CoachingStaffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachingStaffViewController.m; sourceTree = "<group>"; };
+		4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MoreMethods.h"; sourceTree = "<group>"; };
+		4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MoreMethods.m"; sourceTree = "<group>"; };
 		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
 		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
 		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 				553A29341B3C654100784798 /* UIColor+CreateMethods.m */,
 				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
 				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
+				4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */,
+				4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */,
 				4796A9831B331E7A00D71779 /* NetworkController.h */,
 				4796A9841B331E7A00D71779 /* NetworkController.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
@@ -512,6 +517,7 @@
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachingStaffViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
+				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
 				4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */,

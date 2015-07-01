@@ -9,21 +9,22 @@
 #import "DockViewController.h"
 #import "UserController.h"
 #import "UIView+FLKAutoLayout.h"
+#import "NSString+MoreMethods.h"
 
-@interface DockViewController ()
+@interface DockViewController () <UITextFieldDelegate>
 
 // Dock
 @property (nonatomic, strong) UIButton *exitButton;
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) UIButton *showSignUp;
 @property (nonatomic, strong) UIButton *showLogIn;
+@property (nonatomic, strong) UILabel *errorLabel;
 
 // Sign Up
 @property (nonatomic, strong) UITextField *firstNameField;
 @property (nonatomic, strong) UITextField *lastNameField;
 @property (nonatomic, strong) UITextField *emailField;
 @property (nonatomic, strong) UITextField *passwordField;
-@property (nonatomic, strong) UILabel *passwordInstructionsLabel;
 @property (nonatomic, strong) UIButton *signUpButton;
 
 // Log In
@@ -82,6 +83,13 @@
     self.showLogIn.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:self.showLogIn];
     
+    // error label
+    self.errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 265, self.view.frame.size.width - 40, 30)];
+    self.errorLabel.font = [UIFont systemFontOfSize:11];
+    self.errorLabel.textColor = [UIColor grayColor];
+    [self.view addSubview:self.errorLabel];
+    //self.errorLabel.hidden = YES;
+    
     [self setupSignUp];
     [self setupLogIn];
 }
@@ -90,6 +98,8 @@
     self.emailField = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.frame.size.width - 40, 40)];
     self.emailField.borderStyle = UITextBorderStyleRoundedRect;
     self.emailField.placeholder = @"Email";
+    self.emailField.delegate = self;
+    self.emailField.clearsOnInsertion = YES;
     [self.view addSubview:self.emailField];
     self.emailField.hidden = YES;
     
@@ -97,15 +107,9 @@
     self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordField.placeholder = @"Password";
     self.passwordField.secureTextEntry = YES;
+    self.passwordField.delegate = self;
     [self.view addSubview:self.passwordField];
     self.passwordField.hidden = YES;
-    
-    self.passwordInstructionsLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 265, self.view.frame.size.width - 40, 30)];
-    self.passwordInstructionsLabel.font = [UIFont systemFontOfSize:13];
-    self.passwordInstructionsLabel.textColor = [UIColor grayColor];
-    self.passwordInstructionsLabel.text = @"Your password must contain at least 5 characters";
-    [self.view addSubview:self.passwordInstructionsLabel];
-    self.passwordInstructionsLabel.hidden = YES;
     
     self.signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.signUpButton.frame = CGRectMake(20, 305, self.view.frame.size.width - 40, 40);
@@ -117,21 +121,23 @@
 }
 
 - (void)setupLogIn {
-    self.emailLogIn = [[UITextField alloc]initWithFrame:CGRectMake(20, 80, self.view.frame.size.width - 40, 40)];
+    self.emailLogIn = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.frame.size.width - 40, 40)];
     self.emailLogIn.borderStyle = UITextBorderStyleRoundedRect;
     self.emailLogIn.placeholder = @"Email";
+    self.emailLogIn.delegate = self;
     [self.view addSubview:self.emailLogIn];
     self.emailLogIn.hidden = YES;
     
-    self.passwordLogIn = [[UITextField alloc]initWithFrame:CGRectMake(20, 130, self.view.frame.size.width - 40, 40)];
+    self.passwordLogIn = [[UITextField alloc]initWithFrame:CGRectMake(20, 230, self.view.frame.size.width - 40, 40)];
     self.passwordLogIn.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordLogIn.placeholder = @"Password";
     self.passwordLogIn.secureTextEntry = YES;
+    self.passwordLogIn.delegate = self;
     [self.view addSubview:self.passwordLogIn];
     self.passwordLogIn.hidden = YES;
     
     self.logInButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.logInButton.frame = CGRectMake(20, 180, self.view.frame.size.width - 40, 40);
+    self.logInButton.frame = CGRectMake(20, 305, self.view.frame.size.width - 40, 40);
     [self.logInButton setTitle:@"Log In" forState:UIControlStateNormal];
     [self.logInButton addTarget:self action:@selector(logInPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.logInButton.backgroundColor = [UIColor purpleColor];
@@ -173,7 +179,7 @@
         if (success) {
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            NSLog(@"Error: %@", error);
+            [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
         }
     }];
 }
@@ -190,7 +196,7 @@
         if (success && !error) {
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            NSLog(@"Error: %@", error);
+            [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
         }
     }];
 }
@@ -200,12 +206,17 @@
 }
 
 - (void)backButtonPressed:(UIButton *)backButton {
+    [self.errorLabel setText:@""];
+    
     if (backButton.tag == 1) {
         self.backButton.hidden = YES;
         self.backButton.tag = -1;
         self.emailField.hidden = YES;
         self.passwordField.hidden = YES;
         self.signUpButton.hidden = YES;
+        
+        self.emailField.text = @"";
+        self.passwordField.text = @"";
         
         self.showSignUp.hidden = NO;
         self.showLogIn.hidden = NO;
@@ -216,9 +227,29 @@
         self.passwordLogIn.hidden = YES;
         self.logInButton.hidden = YES;
         
+        self.emailLogIn.text = @"";
+        self.passwordLogIn.text = @"";
+        
         self.showSignUp.hidden = NO;
         self.showLogIn.hidden = NO;
     }
+}
+
+#pragma mark - TextFieldDelegates
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField isEqual:self.emailField]) {
+        if (![textField.text isValidEmail]) {
+            [self.errorLabel setText:@"Invalid email address."];
+        } else {
+            [self.errorLabel setText:@""];
+        }
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

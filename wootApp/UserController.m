@@ -53,10 +53,10 @@
                 [self saveUserLocal];
                 completion(YES, nil);
             } else if (returnCode == 20) {
-                completion(NO, @"Email already exists");
+                completion(NO, @"That email address is already in use.");
             }
         } else {
-            completion(NO, @"Error with network request");
+            completion(NO, @"No internet connection detected.");
         }
     }];
     
@@ -113,12 +113,12 @@
                     completion(YES, nil);
                 });
             } else if (returnCode == 20) {
-                completion(NO, @"Incorrect username or password");
+                completion(NO, @"Incorrect email or password. Please try again.");
             } else {
-                completion(NO, @"No user found");
+                completion(NO, @"Sorry. There are no users with that email address.");
             }
         } else {
-            completion(NO, @"Error with network request");
+            completion(NO, @"No internet connection detected.");
         }
     }];
     
