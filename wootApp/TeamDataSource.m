@@ -22,6 +22,7 @@ typedef NS_ENUM(int16_t, AthleteDataSourceSection){
 static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 static NSString *scheduleCellID = @"scheduleCellID";
 static NSString *nextGameCellID = @"nextGameCellID";
+static NSString *normalCellID = @"normalCellID";
 
 @interface TeamDataSource()
 
@@ -38,6 +39,7 @@ static NSString *nextGameCellID = @"nextGameCellID";
     [self.tableView registerClass:[MostViewedPlayersTableViewCell class] forCellReuseIdentifier:mostViewedPlayerCellID];
     [self.tableView registerClass:[PreviousGameTableViewCell class] forCellReuseIdentifier:scheduleCellID];
     [self.tableView registerClass:[NextGameTableViewCell class] forCellReuseIdentifier:nextGameCellID];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:normalCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -61,6 +63,9 @@ static NSString *nextGameCellID = @"nextGameCellID";
                        cell = [tableView dequeueReusableCellWithIdentifier:scheduleCellID];
                        if (teamController.currentTeam.schedule) {
                            [((PreviousGameTableViewCell *)cell) setUpCell:[gameController previousGame]];
+                       } else {
+                           cell = [tableView dequeueReusableCellWithIdentifier:normalCellID];
+                           cell.textLabel.text = @"No Schedule Information is Available";
                        }
 //                       cell = [tableView dequeueReusableCellWithIdentifier:@"fullScheduleCellID"];
 //                       cell.textLabel.text = [self nextGame].opposingSchool;

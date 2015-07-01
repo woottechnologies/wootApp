@@ -191,7 +191,7 @@
         case 0:
             break;
         case 1:
-            [self pushFullSchedule];
+//            [self pushFullSchedule];
             break;
         case 2:
             break;
