@@ -24,7 +24,6 @@
         self.year = [dictionary[YearKey] integerValue];
         self.bio = [NSString stringWithFormat:@"%@", dictionary[BioKey]];
         self.views = [dictionary[ViewsKey] integerValue];
-        self.stats;
         
         if ([dictionary[IsCaptainKey] isEqualToString:@"Y"]) {
             self.isCaptain = YES;

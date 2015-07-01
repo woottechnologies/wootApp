@@ -11,18 +11,21 @@
 #import "TeamViewController.h"
 #import "PreviousGameTableViewCell.h"
 #import "NextGameTableViewCell.h"
+#import "CoachingStaffCell.h"
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     TopPlayersSection = 0,
     ScheduleSection = 1,
-    PicturesSection = 2,
-    VideosSection = 3
+    CoachesSection = 2,
+    //PicturesSection = 2,
+    //VideosSection = 3
 };
 
 static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
 static NSString *scheduleCellID = @"scheduleCellID";
 static NSString *nextGameCellID = @"nextGameCellID";
 static NSString *normalCellID = @"normalCellID";
+static NSString *coachingStaffCellID = @"coachingStaffCellID";
 
 @interface TeamDataSource()
 
@@ -40,6 +43,7 @@ static NSString *normalCellID = @"normalCellID";
     [self.tableView registerClass:[PreviousGameTableViewCell class] forCellReuseIdentifier:scheduleCellID];
     [self.tableView registerClass:[NextGameTableViewCell class] forCellReuseIdentifier:nextGameCellID];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:normalCellID];
+    [self.tableView registerClass:[CoachingStaffCell class] forCellReuseIdentifier:coachingStaffCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,12 +87,14 @@ static NSString *normalCellID = @"normalCellID";
                        break;
                }
             break;
-        case PicturesSection:
+        case CoachesSection:
+               cell = [tableView dequeueReusableCellWithIdentifier:coachingStaffCellID];
+               
+               if (teamController.currentTeam.coaches) {
+                   [((CoachingStaffCell *)cell) finishCell];
+               }
+               ((CoachingStaffCell *)cell).delegate = self.viewController;
             break;
-        case VideosSection:
-            break;
-            
-            
     }
     
     return cell;
@@ -96,17 +102,12 @@ static NSString *normalCellID = @"normalCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *numberOfRowsPerSection = @[@1, @2, @0, @0];
+    NSArray *numberOfRowsPerSection = @[@1, @2, @1, @0];
     return [numberOfRowsPerSection[section] integerValue];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSArray *sections = @[@"Top Players", @"Schedule", @"Pictures", @"Videos"];
-    return sections[section];
+    return 3;
 }
 
 -(CGFloat)descriptionLabelHeight:(NSString *)string{

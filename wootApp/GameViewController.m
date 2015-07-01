@@ -36,7 +36,6 @@
     CGFloat availableY = self.view.frame.size.height - 64;
     CGFloat teamViewHeight = availableY / 2;
     
-    
     self.homeTeamView = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.homeTeamView.frame = CGRectMake(0, 0, self.view.frame.size.width, teamViewHeight);
     self.homeTeamView.backgroundColor = [UIColor blueColor];

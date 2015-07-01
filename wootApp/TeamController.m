@@ -50,13 +50,23 @@
             
             if (responseArray.count > 0) {
                 NSMutableArray *mutTeams = [[NSMutableArray alloc] init];
+                dispatch_group_t imageGroup = dispatch_group_create();
                 for (NSDictionary *dict in responseArray) {
                     Team *newTeam = [[Team alloc] initWithDictionary:dict];
+                    dispatch_group_enter(imageGroup);
+                    [UIImage imageWithPath:dict[CoachingStaffPhotoKey] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newTeam.coachingStaffPhoto = image;
+                        }
+                        dispatch_group_leave(imageGroup);
+                    }];
                     [mutTeams addObject:newTeam];
                 }
-                self.teams = [mutTeams copy];
-                self.currentTeam = self.teams[0];
-                completion(YES);
+                dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+                    self.teams = [mutTeams copy];
+                    self.currentTeam = self.teams[0];
+                    completion(YES);
+                });
             }
         } else {
             completion(NO);
@@ -140,6 +150,7 @@
     return roster;
 }
 
+#pragma mark - Athletes
 
 - (void)loadAthletesFromDBWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
@@ -174,6 +185,92 @@
                 }
                 dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
                     self.currentTeam.athletes = [mutAthletes copy];
+                    completion(YES);
+                });
+            }
+        } else {
+            completion(NO);
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+- (void)selectAthleteWithAthleteID:(NSInteger)athleteID andCompletion:(void (^)(BOOL success, Athlete *athlete))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"athleteID=%li", athleteID];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_athlete.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseArray.count > 0) {
+                Athlete *athleteCreated;
+                dispatch_group_t imageGroup = dispatch_group_create();
+                for (NSDictionary *dict in responseArray) {
+                    athleteCreated = [[Athlete alloc] initWithDictionary:dict];
+                    dispatch_group_enter(imageGroup);
+                    [UIImage imageWithPath:[NSString stringWithFormat:@"%@", dict[PhotoKey]] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            athleteCreated.photo = image;
+                        }
+                        dispatch_group_leave(imageGroup);
+                    }];
+                }
+                dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+                    completion(YES, athleteCreated);
+                });
+            }
+        } else {
+            completion(NO, nil);
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+#pragma mark - Coaches
+
+- (void)loadCoachesFromDBWithCompletion:(void (^)(BOOL success))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"teamID=%li", (long)self.currentTeam.teamID];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_coaches.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseArray.count > 0) {
+                NSMutableArray *mutCoaches = [[NSMutableArray alloc] init];
+                dispatch_group_t imageGroup = dispatch_group_create();
+                for (NSDictionary *dict in responseArray) {
+                    Coach *newCoach = [[Coach alloc] initWithDictionary:dict];
+                    dispatch_group_enter(imageGroup);
+                    [UIImage imageWithPath:[NSString stringWithFormat:@"%@", dict[PhotoKey]] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newCoach.photo = image;
+                        }
+                        dispatch_group_leave(imageGroup);
+                    }];
+                    [mutCoaches addObject:newCoach];
+                }
+                dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+                    self.currentTeam.coaches = [mutCoaches copy];
                     completion(YES);
                 });
             }

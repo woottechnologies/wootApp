@@ -18,8 +18,11 @@
 #import "ScheduleViewController.h"
 #import "GameController.h"
 #import "UIColor+CreateMethods.h"
+#import "UserController.h"
+#import "DockViewController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "CustomTabBarVC.h"
+#import "CoachingStaffViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -33,6 +36,8 @@
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
+@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 
 @end
 
@@ -66,6 +71,14 @@
     [[TeamController sharedInstance] loadAthletesFromDBWithCompletion:^(BOOL success) {
         if (success) {
             //Updating UI must occur on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
+    
+    [[TeamController sharedInstance] loadCoachesFromDBWithCompletion:^(BOOL success) {
+        if (success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -110,6 +123,20 @@
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    self.favoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(favoriteTapped:)];
+    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(unfavoriteTapped:)];
+    
+    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+        NSString *favType = [dict objectForKey:FavTypeKey];
+        if (favID == [TeamController sharedInstance].currentTeam.teamID
+            && [favType isEqualToString:@"T"]) {
+            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        }
+    }
     
     [[GameController sharedInstance] allGamesForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *games) {
         [TeamController sharedInstance].currentTeam.schedule = games;
@@ -167,6 +194,8 @@
     [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
+#pragma mark - TableViewDelegate methods
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height;
     switch (indexPath.section){
@@ -178,6 +207,7 @@
             height = 30;
             break;
         case 2:
+            height = 190;
             break;
         case 3:
             break;
@@ -235,6 +265,7 @@
 
             break;
         case 2:
+            sectionTitleLabel.text = @"Coaches";
             break;
         case 3:
             break;
@@ -344,6 +375,8 @@
     [self.navigationController pushViewController:scheduleViewController animated:YES];
 }
 
+#pragma mark - MostViewedPlayerCell delegate methods
+
 - (void)athleteButtonPressed:(Athlete *)athlete{
     TeamController *teamController = [TeamController sharedInstance];
     teamController.currentAthlete = athlete;
@@ -358,6 +391,37 @@
     [self.navigationController pushViewController: rosterViewController animated:YES];
 }
 
+#pragma mark - CoachingStaffCell delegate methods
+
+-(void)coachButtonPressed {
+    CoachingStaffViewController *coachingStaffVC = [[CoachingStaffViewController alloc] init];
+    
+    [self.navigationController pushViewController:coachingStaffVC animated:YES];
+}
+
+#pragma mark - fav buttons
+
+- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
+    UserController *userController = [UserController sharedInstance];
+    
+    if (!userController.currentUser) {
+        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        [userController addFavorite:[TeamController sharedInstance].currentTeam];
+    }
+}
+
+- (void)unfavoriteTapped:(UIBarButtonItem *)item {
+    UserController *userController = [UserController sharedInstance];
+    
+    if (!userController.currentUser) {
+        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        self.navigationItem.rightBarButtonItem = self.favoriteButton;
+        [userController removeFavorite:[TeamController sharedInstance].currentTeam];
+    }
+}
 
 /*
 #pragma mark - Navigation
