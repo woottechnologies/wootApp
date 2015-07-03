@@ -29,7 +29,7 @@
     return sharedInstance;
 }
 
-- (void)loadCampaignFromDBForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *campaigns))completion {
+- (void)loadCampaignsFromDBForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *campaigns))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
     NSString *post = [NSString stringWithFormat:@"teamID=%li", (long)team.teamID];
@@ -65,7 +65,20 @@
                         }
                         dispatch_group_leave(imageGroup);
                     }];
-                    [mutCampaigns addObject:newCampaign];
+                    
+                    // [mutCampaigns addObject:newCampaign];
+                    if ([dict[TierKey] integerValue] == 1) {
+                        for(int i = 0; i < 3; i++) {
+                            [mutCampaigns addObject:newCampaign];
+                        }
+                    } else if ([dict[TierKey] integerValue] == 2) {
+                        for(int i = 0; i < 2; i++) {
+                            [mutCampaigns addObject:newCampaign];
+                        }
+                    } else {
+                        // tier 3
+                        [mutCampaigns addObject:newCampaign];
+                    }
                 }
                 
                 dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{

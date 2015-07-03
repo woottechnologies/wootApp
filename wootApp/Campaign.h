@@ -12,6 +12,7 @@
 static NSString *CampaignIDKey = @"id";
 static NSString *BannerAdKey = @"bannerAd";
 static NSString *FullScreenAdKey = @"fullScreenAd";
+static NSString *TierKey = @"tier";
 
 @interface Campaign : NSObject
 

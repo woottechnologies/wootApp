@@ -85,7 +85,7 @@
     [self.view addSubview:self.campaignAdButton];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
-    [campaignController loadCampaignFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
+    [campaignController loadCampaignsFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
         if (success) {
             [TeamController sharedInstance].currentTeam.campaigns = campaigns;
             [self setUpCampaignAd];
