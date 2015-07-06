@@ -139,8 +139,7 @@
     [self.campaignAdButton constrainHeight:@"50"];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
-    AppDelegate *appD = [[UIApplication sharedApplication] delegate];
-    CustomTabBarVC *customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
+    CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
     [campaignController loadCampaignsFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
         if (success) {
             [TeamController sharedInstance].currentTeam.campaigns = campaigns;
@@ -235,27 +234,6 @@
         [label setFont:[label.font fontWithSize:label.font.pointSize - 1]];
     }
     return label.font.pointSize;
-}
-
-
-- (void)chooseCampaign {
-    CampaignController *campaignController = [CampaignController sharedInstance];
-    self.campaign = [campaignController  selectRandomCampaign:[TeamController sharedInstance].currentTeam.campaigns];
-    self.campaignAdImageView.image = self.campaign.bannerAd;
-}
-
-- (void)setUpCampaignAd{
-    self.campaignAdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height)];
-    self.campaignAdImageView.image = [UIImage imageNamed:@"banner_ad"];
-    [self.campaignAdButton addSubview:self.campaignAdImageView];
-    [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)campaignAdButtonPressed{
-    CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
-    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:self.campaign.fullScreenAd];
-    
-    [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
 #pragma mark - TableViewDelegate methods
@@ -356,9 +334,11 @@
     if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > -64 && !self.isTransitioning ){
         self.toolbarIsAnimating = YES;
         self.toolBar.hidden = YES;
+        CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
-            self.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
+            customTBVC.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
+//            self.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
         } completion:^(BOOL finished) {
             self.toolbarIsAnimating = NO;
         }];
@@ -370,9 +350,11 @@
     if(self.toolBar.hidden && !self.toolbarIsAnimating && !self.isTransitioning && self.currentOffset.y < 281){
         self.toolbarIsAnimating = YES;
         self.toolBar.hidden = NO;
+        CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformIdentity;
-            self.campaignAdButton.transform = CGAffineTransformIdentity;
+            customTBVC.campaignAdButton.transform = CGAffineTransformIdentity;
+           // self.campaignAdButton.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             self.toolbarIsAnimating = NO;
         }];

@@ -168,9 +168,7 @@
 - (void)chooseCampaign {
     CampaignController *campaignController = [CampaignController sharedInstance];
     [campaignController  selectRandomCampaign];
-    //self.campaignAdButton.imageView.image = campaignController.currentCampaign.bannerAd;
     [self.campaignAdButton setImage:campaignController.currentCampaign.bannerAd forState:UIControlStateNormal];
-    //self.campaignAdImageView.image = campaignController.currentCampaign.bannerAd;
     if (self.campaignAdButton.imageView.image) {
         [campaignController incrementViewsWithAdType:@"B"];
     }
@@ -185,8 +183,6 @@
     [self.campaignAdButton alignBottomEdgeWithView:self.view predicate:@"-44"];
     [self.campaignAdButton constrainHeight:@"50"];
     
-    self.campaignAdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height)];
-    [self.campaignAdButton addSubview:self.campaignAdImageView];
     [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 }
 
