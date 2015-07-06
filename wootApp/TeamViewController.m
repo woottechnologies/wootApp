@@ -7,6 +7,7 @@
 //
 
 #import "TeamViewController.h"
+#import "AppDelegate.h"
 #import "TeamController.h"
 #import "SchoolController.h"
 #import "TeamDataSource.h"
@@ -20,39 +21,87 @@
 #import "UserController.h"
 #import "DockViewController.h"
 #import "UIView+FLKAutoLayout.h"
-#import "CoachingStaffViewController.h"
 #import "CustomTabBarVC.h"
-#import "AppDelegate.h"
+#import "CoachingStaffViewController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UIView *header;
+@property (nonatomic, strong) UIImageView *headerImage;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) TeamDataSource *dataSource;
 @property (nonatomic, strong) UIButton *campaignAdButton;
 @property (nonatomic, strong) UIImageView *campaignAdImageView;
 @property (nonatomic, strong) Campaign *campaign;
+@property (nonatomic, assign) CGPoint lastOffset;
+@property (nonatomic, assign) CGPoint currentOffset;
+@property (nonatomic, strong) UIToolbar *toolBar;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButton;
 @property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
+@property (nonatomic, assign) BOOL toolbarIsAnimating;
+@property (nonatomic, assign) BOOL isTransitioning;
 
 @end
 
 @implementation TeamViewController
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if ([TeamController sharedInstance].currentTeam.campaigns) {
         //[self chooseCampaign];
     }
+    
+    self.toolbarIsAnimating = NO;
+    [self unhideToolBar];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    
+    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    [backButton setBackgroundImage:backArrow forState:UIControlStateNormal];
+    backButton.alpha = 0.5;
+    [backButton addTarget:self action:@selector(backButtonPressed)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem=backArrowButton;
+
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self unhideToolBar];
+    self.isTransitioning = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    self.isTransitioning = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height - 264) style:UITableViewStyleGrouped];
+    self.isTransitioning = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.toolBar = ((CustomTabBarVC *)self.appDelegate.window.rootViewController).toolBar;
+    self.toolBar.hidden = YES;
+    [self unhideToolBar];
+    self.toolBar.hidden = NO;
+
+    self.lastOffset = CGPointMake(0, 0);
+    self.currentOffset = CGPointMake(0, 0);
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 110, self.view.frame.size.width, 510) style:UITableViewStyleGrouped];
+    [self.tableView setContentOffset:CGPointMake(0, 0)];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
     [self.dataSource registerTableView:self.tableView viewController:self];
@@ -78,13 +127,16 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
+    self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 150)];
     [self.view addSubview:self.header];
     [self setupHeader];
     
     self.campaignAdButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.campaignAdButton.frame = CGRectMake(0, self.view.frame.size.height - 114, self.view.frame.size.width, 50);
     [self.view addSubview:self.campaignAdButton];
+    [self.campaignAdButton alignLeadingEdgeWithView:self.view predicate:@"0"];
+    [self.campaignAdButton alignTrailingEdgeWithView:self.view predicate:@"0"];
+    [self.campaignAdButton alignBottomEdgeWithView:self.view predicate:@"-44"];
+    [self.campaignAdButton constrainHeight:@"50"];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
     AppDelegate *appD = [[UIApplication sharedApplication] delegate];
@@ -95,9 +147,7 @@
             [customTBVC chooseCampaign];
         }
     }];
-     
     
-  //  UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     UIColor *backgroundColor = [SchoolController sharedInstance].currentSchool.primaryColor;
     
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
@@ -128,9 +178,13 @@
     SchoolController *schoolController = [SchoolController sharedInstance];
     TeamController *teamController = [TeamController sharedInstance];
     
-   // UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
     UIColor *backgroundColor = [SchoolController sharedInstance].currentSchool.primaryColor;
     self.header.backgroundColor = backgroundColor;
+    
+    UIView *statusBarStripe = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    statusBarStripe.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:statusBarStripe];
+    
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
     logoView.frame = CGRectMake(0, 0, 100, 100);
@@ -151,8 +205,57 @@
     UILabel *recordLabel = [[UILabel alloc] initWithFrame:CGRectMake(logoView.frame.size.width + 40, 75, 100, 15)];
     recordLabel.text = teamController.currentTeam.record;
     recordLabel.textColor = [UIColor whiteColor];
-    //recordLabel.font = [UIFont systemFontOfSize:13.0];
     [self.header addSubview:recordLabel];
+}
+
+- (void) backButtonPressed {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGFloat) maxFontSize:(UILabel *)label{
+    CGSize initialSize = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
+    
+    if (initialSize.width > label.frame.size.width ||
+        initialSize.height > label.frame.size.height)
+    {
+        while (initialSize.width > label.frame.size.width ||
+               initialSize.height > label.frame.size.height)
+        {
+            [label setFont:[label.font fontWithSize:label.font.pointSize - 1]];
+            initialSize = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
+        }
+    } else {
+        while (initialSize.width < label.frame.size.width &&
+               initialSize.height < label.frame.size.height)
+        {
+            [label setFont:[label.font fontWithSize:label.font.pointSize + 1]];
+            initialSize = [label.text sizeWithAttributes:@{NSFontAttributeName:label.font}];
+        }
+        // went 1 point too large so compensate here
+        [label setFont:[label.font fontWithSize:label.font.pointSize - 1]];
+    }
+    return label.font.pointSize;
+}
+
+
+- (void)chooseCampaign {
+    CampaignController *campaignController = [CampaignController sharedInstance];
+    self.campaign = [campaignController  selectRandomCampaign:[TeamController sharedInstance].currentTeam.campaigns];
+    self.campaignAdImageView.image = self.campaign.bannerAd;
+}
+
+- (void)setUpCampaignAd{
+    self.campaignAdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height)];
+    self.campaignAdImageView.image = [UIImage imageNamed:@"banner_ad"];
+    [self.campaignAdButton addSubview:self.campaignAdImageView];
+    [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)campaignAdButtonPressed{
+    CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
+    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:self.campaign.fullScreenAd];
+    
+    [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
 #pragma mark - TableViewDelegate methods
@@ -162,7 +265,7 @@
     switch (indexPath.section){
         
         case 0:
-            height = 380;
+            height = 270;
             break;
         case 1:
             height = 30;
@@ -182,7 +285,7 @@
         case 0:
             break;
         case 1:
-            [self pushFullSchedule];
+//            [self pushFullSchedule];
             break;
         case 2:
             break;
@@ -232,6 +335,49 @@
             break;
     }
     return headerView;
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    NSLog(@"%f", velocity.y);
+}
+
+- (void)scrollViewDidScroll :(UIScrollView *)scrollView {
+    self.lastOffset = self.currentOffset;
+    self.currentOffset = scrollView.contentOffset;
+    NSLog(@"%f", self.lastOffset.y);
+    if (self.currentOffset.y < self.lastOffset.y) {
+        [self unhideToolBar];
+    } else {
+        [self hideToolBar];
+    }
+}
+
+- (void)hideToolBar{
+    if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > -64 && !self.isTransitioning ){
+        self.toolbarIsAnimating = YES;
+        self.toolBar.hidden = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolBar.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
+            self.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
+        } completion:^(BOOL finished) {
+            self.toolbarIsAnimating = NO;
+        }];
+        
+    }
+}
+
+- (void)unhideToolBar{
+    if(self.toolBar.hidden && !self.toolbarIsAnimating && !self.isTransitioning && self.currentOffset.y < 281){
+        self.toolbarIsAnimating = YES;
+        self.toolBar.hidden = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolBar.transform = CGAffineTransformIdentity;
+            self.campaignAdButton.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            self.toolbarIsAnimating = NO;
+        }];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

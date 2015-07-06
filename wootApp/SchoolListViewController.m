@@ -26,7 +26,7 @@
     
     [SchoolController sharedInstance];
 
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     self.dataSource = [[SchoolListDataSource alloc] init];
     self.tableView.dataSource = self.dataSource;
     self.tableView.delegate = self;
@@ -42,6 +42,24 @@
             });
         }
     }];
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
+    UIView *statusBarStripe = [[UIView alloc] init];
+    statusBarStripe.backgroundColor = [UIColor whiteColor];
+    statusBarStripe.frame = CGRectMake(0, 0, self.view.frame.size.width, 20);
+    [self.view addSubview:statusBarStripe];
+
+}
+
+- (void) backButtonPressed{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,6 +77,10 @@
             });
         }
     }];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.view.frame.size.width/3.538;
 }
 
 - (void)didReceiveMemoryWarning {

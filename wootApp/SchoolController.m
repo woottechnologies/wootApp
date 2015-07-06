@@ -41,18 +41,24 @@
                 NSMutableArray *mutSchoolArray = [[NSMutableArray alloc] init];
                 dispatch_group_t imageGroup = dispatch_group_create();
                 for (NSDictionary *dict in responseArray) {
-                    //NSLog(@"%@", dict);
                     School *newSchool = [[School alloc] initWithDictionary:dict];
                     dispatch_group_enter(imageGroup);
-                    [UIImage imageWithPath:[NSString stringWithFormat:@"%@", dict[LogoKey]] WithCompletion:^(BOOL success, UIImage *image) {
+                    [UIImage imageWithPath:dict[LogoKey] WithCompletion:^(BOOL success, UIImage *logo) {
                         if (success) {
-                            newSchool.logo = image;
+                            newSchool.logo = logo;
                         }
                         dispatch_group_leave(imageGroup);
                     }];
+                    dispatch_group_enter(imageGroup);
+                    [UIImage imageWithPath:dict[BannerKey] WithCompletion:^(BOOL success, UIImage *banner) {
+                        if (success) {
+                            newSchool.banner = banner;
+                        }
+                        dispatch_group_leave(imageGroup);
+                    }];
+                    
                     [mutSchoolArray addObject:newSchool];
                 }
-                
                 dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
                     self.schools = mutSchoolArray;
                     self.currentSchool = self.schools[0];

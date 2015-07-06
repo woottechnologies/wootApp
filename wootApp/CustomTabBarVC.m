@@ -11,6 +11,7 @@
 #import "UserController.h"
 #import "DockViewController.h"
 #import "SchoolListViewController.h"
+#import "UIView+FLKAutoLayout.h"
 #import "TeamViewController.h"
 #import "AthleteViewController.h"
 #import "CampaignController.h"
@@ -23,7 +24,6 @@
 @property (nonatomic, strong) UITableView *drawer;
 @property (nonatomic, strong) UIButton *drawerButton;
 @property (nonatomic, strong) UIButton *toggleAccountButton;
-@property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic, strong) DrawerDataSource *dataSource;
 
 @end
@@ -36,7 +36,8 @@
     self.delegate = self;
     self.tabBar.hidden = YES;
     
-    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
+//    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
+    self.toolBar = [[UIToolbar alloc] init];
     
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemTapped:)];
     
@@ -45,6 +46,10 @@
     
     [self.toolBar setItems:@[flexibleSpace, searchItem, flexibleSpace, selfItem, flexibleSpace]];
     [self.view addSubview:self.toolBar];
+    [self.toolBar alignLeadingEdgeWithView:self.view predicate:@"0"];
+    [self.toolBar alignTrailingEdgeWithView:self.view predicate:@"0"];
+    [self.toolBar alignBottomEdgeWithView:self.view predicate:@"0"];
+    [self.toolBar constrainHeight:@"44"];
     
     self.drawerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.drawerButton.enabled = NO;

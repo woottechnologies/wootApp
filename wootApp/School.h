@@ -21,6 +21,7 @@ static NSString *MascottKey = @"mascott";
 static NSString *LogoKey = @"logo";
 static NSString *PrimaryColorKey = @"primaryColor";
 static NSString *SecondaryColorKey = @"secondaryColor";
+static NSString *BannerKey = @"banner";
 
 @interface School : NSObject
 
@@ -36,6 +37,7 @@ static NSString *SecondaryColorKey = @"secondaryColor";
 @property (nonatomic, strong) UIImage *logo;
 @property (nonatomic, strong) UIColor *primaryColor;
 @property (nonatomic, strong) UIColor *secondaryColor;
+@property (nonatomic, strong) UIImage *banner;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -10,6 +10,8 @@
 
 @interface CustomTabBarVC : UITabBarController
 
+@property (nonatomic, strong) UIToolbar *toolBar;
+
 @property (nonatomic, strong) UIButton *campaignAdButton;
 @property (nonatomic, strong) UIImageView *campaignAdImageView;
 

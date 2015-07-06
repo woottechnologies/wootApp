@@ -12,4 +12,6 @@
 
 @interface TeamViewController : UIViewController <MostViewedPlayerTableViewCellDelegate, CoachingStaffCellDelegate>
 
+- (void)unhideToolBar;
+
 @end

@@ -43,6 +43,7 @@
 		553A29321B389DD900784798 /* StatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29311B389DD900784798 /* StatsController.m */; };
 		553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29341B3C654100784798 /* UIColor+CreateMethods.m */; };
 		553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29371B3DDFA200784798 /* NextGameTableViewCell.m */; };
+		55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
@@ -54,6 +55,8 @@
 		55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9041B1F7C4E003B3058 /* SchoolController.m */; };
 		55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9171B210A13003B3058 /* TeamDataSource.m */; };
 		55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE85AE1B264060006C8279 /* RosterViewController.m */; };
+		55C323051B444787002EBB65 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C323041B444787002EBB65 /* TestViewController.m */; };
+		55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C323071B446135002EBB65 /* DynamicFontSize.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,8 @@
 		553A29341B3C654100784798 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		553A29361B3DDFA200784798 /* NextGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextGameTableViewCell.h; sourceTree = "<group>"; };
 		553A29371B3DDFA200784798 /* NextGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextGameTableViewCell.m; sourceTree = "<group>"; };
+		55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListTableViewCell.h; sourceTree = "<group>"; };
+		55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +165,10 @@
 		55B4C9171B210A13003B3058 /* TeamDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDataSource.m; sourceTree = "<group>"; };
 		55BE85AD1B264060006C8279 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
 		55BE85AE1B264060006C8279 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
+		55C323031B444787002EBB65 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		55C323041B444787002EBB65 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		55C323061B446135002EBB65 /* DynamicFontSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicFontSize.h; sourceTree = "<group>"; };
+		55C323071B446135002EBB65 /* DynamicFontSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicFontSize.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +333,8 @@
 				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
 				4796A9861B33735E00D71779 /* SchoolListDataSource.h */,
 				4796A9871B33735E00D71779 /* SchoolListDataSource.m */,
+				55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */,
+				55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */,
 				553A28DD1B2773E600784798 /* Campaign.h */,
 				553A28DE1B2773E600784798 /* Campaign.m */,
 				553A28E01B27762700784798 /* CampaignController.h */,
@@ -350,6 +361,10 @@
 				4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */,
 				4796A9831B331E7A00D71779 /* NetworkController.h */,
 				4796A9841B331E7A00D71779 /* NetworkController.m */,
+				55C323031B444787002EBB65 /* TestViewController.h */,
+				55C323041B444787002EBB65 /* TestViewController.m */,
+				55C323061B446135002EBB65 /* DynamicFontSize.h */,
+				55C323071B446135002EBB65 /* DynamicFontSize.m */,
 				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
 				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
 				553A28D31B27649900784798 /* FLKAutoLayout */,
@@ -499,6 +514,7 @@
 				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
 				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
+				55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */,
 				473EA3591B29EE310033AFA1 /* GameController.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
 				553A28DF1B2773E600784798 /* Campaign.m in Sources */,
@@ -517,6 +533,7 @@
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachingStaffViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
+				55C323051B444787002EBB65 /* TestViewController.m in Sources */,
 				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
@@ -526,6 +543,7 @@
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
 				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,
+				55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */,
 				553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
