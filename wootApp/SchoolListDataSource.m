@@ -8,22 +8,20 @@
 
 #import "SchoolListDataSource.h"
 #import "SchoolController.h"
+#import "SchoolListTableViewCell.h"
 
 static NSString *cellID = @"cellID";
 
 @implementation SchoolListDataSource
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    SchoolListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[SchoolListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    
     SchoolController *schoolController = [SchoolController sharedInstance];
     School *school = [schoolController.schools objectAtIndex:indexPath.row];
-    cell.textLabel.text = school.name;
-    
+    [cell setUpCell:school];
     return cell;
 }
 

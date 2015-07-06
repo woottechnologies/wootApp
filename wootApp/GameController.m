@@ -68,7 +68,7 @@
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
-    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_games_2.php"];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_games.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];

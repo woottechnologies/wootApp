@@ -88,10 +88,10 @@ static NSString *bioCellID = @"bioCellID";
     
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSArray *sections = @[@"Stats", @"Bio", @"Pictures", @"Videos"];
-    return sections[section];
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    NSArray *sections = @[@"Stats", @"Bio", @"Pictures", @"Videos"];
+//    return sections[section];
+//}
 
 -(CGFloat)descriptionLabelHeight:(NSString *)string{
     
