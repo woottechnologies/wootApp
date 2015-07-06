@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "Campaign.h"
-#import "Team.h"
+#import "TeamController.h"
 
 @interface CampaignController : NSObject
 
 @property (nonatomic, strong, readonly) NSArray *campaigns;
-// @property (nonatomic, strong) Campaign *currentCampaign;
+@property (nonatomic, strong) Campaign *currentCampaign;
 
-+(instancetype) sharedInstance;
++ (instancetype) sharedInstance;
 - (void)loadCampaignsFromDBForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *campaigns))completion;
-- (Campaign *)selectRandomCampaign:(NSArray *)campaigns;
+- (void)selectRandomCampaign;
+- (void)incrementViewsWithAdType:(NSString *)adType;
 
 @end

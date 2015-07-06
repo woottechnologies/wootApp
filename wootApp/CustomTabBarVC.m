@@ -13,6 +13,9 @@
 #import "SchoolListViewController.h"
 #import "TeamViewController.h"
 #import "AthleteViewController.h"
+#import "CampaignController.h"
+#import "CampaignAdViewController.h"
+#import "UIView+FLKAutoLayout.h"
 @import MessageUI;
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
@@ -74,6 +77,8 @@
     self.drawer.backgroundColor = [UIColor whiteColor];
     self.drawer.hidden = YES;
     [self.view addSubview:self.drawer];
+    
+    [self setUpCampaignAd];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -151,6 +156,43 @@
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+#pragma mark - Advertisement
+
+- (void)chooseCampaign {
+    CampaignController *campaignController = [CampaignController sharedInstance];
+    [campaignController  selectRandomCampaign];
+    //self.campaignAdButton.imageView.image = campaignController.currentCampaign.bannerAd;
+    [self.campaignAdButton setImage:campaignController.currentCampaign.bannerAd forState:UIControlStateNormal];
+    //self.campaignAdImageView.image = campaignController.currentCampaign.bannerAd;
+    if (self.campaignAdButton.imageView.image) {
+        [campaignController incrementViewsWithAdType:@"B"];
+    }
+}
+
+- (void)setUpCampaignAd {
+    self.campaignAdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:self.campaignAdButton];
+    //self.campaignAdButton.frame = CGRectMake(0, self.view.frame.size.height - 114, self.view.frame.size.width, 50);
+    [self.campaignAdButton alignLeadingEdgeWithView:self.view predicate:@"0"];
+    [self.campaignAdButton alignTrailingEdgeWithView:self.view predicate:@"0"];
+    [self.campaignAdButton alignBottomEdgeWithView:self.view predicate:@"-44"];
+    [self.campaignAdButton constrainHeight:@"50"];
+    
+    self.campaignAdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height)];
+    [self.campaignAdButton addSubview:self.campaignAdImageView];
+    [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)campaignAdButtonPressed {
+    NSLog(@"hello");
+    CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
+    CampaignController *campaignController = [CampaignController sharedInstance];
+    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:campaignController.currentCampaign.fullScreenAd];
+    
+    UIViewController *vc = self.childViewControllers[0];
+    [vc presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate Methods

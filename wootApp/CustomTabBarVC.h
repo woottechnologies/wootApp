@@ -10,4 +10,9 @@
 
 @interface CustomTabBarVC : UITabBarController
 
+@property (nonatomic, strong) UIButton *campaignAdButton;
+@property (nonatomic, strong) UIImageView *campaignAdImageView;
+
+- (void)chooseCampaign;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CampaignAdViewController.h"
+#import "CampaignController.h"
 
 @interface CampaignAdViewController ()
 
@@ -27,6 +28,10 @@
     [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:button];
+    
+    if (self.campaignAdImageView.image) {
+        [[CampaignController sharedInstance] incrementViewsWithAdType:@"F"];
+    }
 }
 
 - (void)buttonPressed:(UIButton *)button {

@@ -29,6 +29,8 @@
     return sharedInstance;
 }
 
+#pragma mark - Read
+
 - (void)loadCampaignsFromDBForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *campaigns))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -66,7 +68,6 @@
                         dispatch_group_leave(imageGroup);
                     }];
                     
-                    // [mutCampaigns addObject:newCampaign];
                     if ([dict[TierKey] integerValue] == 1) {
                         for(int i = 0; i < 3; i++) {
                             [mutCampaigns addObject:newCampaign];
@@ -94,9 +95,42 @@
     [uploadTask resume];
 }
 
-- (Campaign *)selectRandomCampaign:(NSArray *)campaigns{
-    Campaign * currentCampaign = campaigns[arc4random_uniform((int)campaigns.count)];
-    return currentCampaign;
+- (void)selectRandomCampaign {
+    NSArray *campaigns = [TeamController sharedInstance].currentTeam.campaigns;
+    self.currentCampaign = campaigns[arc4random_uniform((int)campaigns.count)];
+}
+
+#pragma mark - Update
+
+- (void)incrementViewsWithAdType:(NSString *)adType {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"campaignID=%li&adType=%@", (long)self.currentCampaign.campaignID, adType];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"update_campaign_views.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            NSInteger returnCode = [responseDict[@"returnCode"] integerValue];
+            
+            if (returnCode == 10) {
+                // success
+            } else {
+                // error
+            }
+        } else {
+            // error
+        }
+    }];
+    
+    [uploadTask resume];
 }
          
 @end

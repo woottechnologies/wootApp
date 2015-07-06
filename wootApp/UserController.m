@@ -105,11 +105,11 @@
                 [self loadFavoritesFromDBWithCompletion:^(BOOL success, NSArray *favorites) {
                     if (success) {
                         self.currentUser.favorites = favorites;
-                        [self saveUserLocal];
                     }
                     dispatch_group_leave(favoritesGroup);
                 }];
                 dispatch_group_notify(favoritesGroup, dispatch_get_main_queue(), ^{
+                    [self saveUserLocal];
                     completion(YES, nil);
                 });
             } else if (returnCode == 20) {

@@ -21,6 +21,8 @@
 #import "DockViewController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "CoachingStaffViewController.h"
+#import "CustomTabBarVC.h"
+#import "AppDelegate.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -43,7 +45,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     if ([TeamController sharedInstance].currentTeam.campaigns) {
-        [self chooseCampaign];
+        //[self chooseCampaign];
     }
 }
 
@@ -85,10 +87,12 @@
     [self.view addSubview:self.campaignAdButton];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
+    AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+    CustomTabBarVC *customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     [campaignController loadCampaignsFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
         if (success) {
             [TeamController sharedInstance].currentTeam.campaigns = campaigns;
-            [self setUpCampaignAd];
+            [customTBVC chooseCampaign];
         }
     }];
      
@@ -149,26 +153,6 @@
     recordLabel.textColor = [UIColor whiteColor];
     //recordLabel.font = [UIFont systemFontOfSize:13.0];
     [self.header addSubview:recordLabel];
-}
-
-- (void)chooseCampaign {
-    CampaignController *campaignController = [CampaignController sharedInstance];
-    self.campaign = [campaignController  selectRandomCampaign:[TeamController sharedInstance].currentTeam.campaigns];
-    self.campaignAdImageView.image = self.campaign.bannerAd;
-}
-
-- (void)setUpCampaignAd{
-    self.campaignAdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.campaignAdButton.frame.size.width, self.campaignAdButton.frame.size.height)];
-    [self.campaignAdButton addSubview:self.campaignAdImageView];
-    [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self chooseCampaign];
-}
-
-- (void)campaignAdButtonPressed{
-    CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
-    campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:self.campaign.fullScreenAd];
-    
-    [self.navigationController presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
 #pragma mark - TableViewDelegate methods

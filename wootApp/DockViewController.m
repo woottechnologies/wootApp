@@ -61,7 +61,7 @@
     [self.view addSubview:self.exitButton];
     
     // background image
-    UIImage *backgroundImage = [UIImage imageNamed:@"oregon"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"woot_dock"];
     UIImageView *backgroundImageView = [[UIImageView alloc]initWithImage:backgroundImage];
     backgroundImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:backgroundImageView];
@@ -193,7 +193,7 @@
     userController.currentUser = newUser;
     
     [userController logInUserWithCompletion:^(BOOL success, NSString *error) {
-        if (success && !error) {
+        if (success) {
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
