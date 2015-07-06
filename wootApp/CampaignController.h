@@ -16,7 +16,7 @@
 // @property (nonatomic, strong) Campaign *currentCampaign;
 
 +(instancetype) sharedInstance;
-- (void)loadCampaignFromDBForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *campaigns))completion;
+- (void)loadCampaignsFromDBForTeam:(Team *)team WithCompletion:(void (^)(BOOL success, NSArray *campaigns))completion;
 - (Campaign *)selectRandomCampaign:(NSArray *)campaigns;
 
 @end

@@ -139,7 +139,7 @@
     [self.campaignAdButton constrainHeight:@"50"];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
-    [campaignController loadCampaignFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
+    [campaignController loadCampaignsFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
         if (success) {
             [TeamController sharedInstance].currentTeam.campaigns = campaigns;
             [self setUpCampaignAd];

@@ -292,9 +292,6 @@
     
     self.athlete6ImageView.image = athlete6.photo;
     self.athlete6NameLabel.text = athlete6.name;
-    
-  
-    //self.athlete4View.tag = 4;
 }
 
 - (void)buttonPressed:(UIButton *)sender{
