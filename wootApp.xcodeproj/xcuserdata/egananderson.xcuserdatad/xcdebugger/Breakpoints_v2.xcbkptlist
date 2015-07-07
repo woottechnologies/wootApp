@@ -89,7 +89,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
             endingLineNumber = "342"
-            landmarkName = "-backButtonPressed"
+            landmarkName = "-setupHeader"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,7 +185,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "-viewWillAppear:"
+            landmarkName = "-backButtonPressed"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

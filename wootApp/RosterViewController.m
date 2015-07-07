@@ -11,20 +11,29 @@
 #import "TeamController.h"
 #import "AthleteViewController.h"
 #import "RosterTableViewCell.h"
+#import "CustomTabBarVC.h"
+#import "AppDelegate.h"
 
 static NSString *RosterCellID = @"RosterCellID";
 
 @interface RosterViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
 @end
 
 @implementation RosterViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.customTBVC chooseCampaign];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    AppDelegate *appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     

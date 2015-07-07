@@ -11,11 +11,14 @@
 #import "SchoolController.h"
 #import "TeamController.h"
 #import "SchoolListDataSource.h"
+#import "AppDelegate.h"
+#import "CustomTabBarVC.h"
 
 @interface SchoolListViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SchoolListDataSource *dataSource;
+@property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
 @end
 
@@ -23,6 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppDelegate *appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     
     [SchoolController sharedInstance];
 
@@ -53,10 +59,11 @@
 
 }
 
-- (void) backButtonPressed{
+- (void)backButtonPressed {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+<<<<<<< HEAD
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -65,6 +72,11 @@
 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
 //    self.navigationController.navigationBar.hidden = YES;
+=======
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
+    self.customTBVC.campaignAdButton.hidden = YES;
+>>>>>>> 3377d027fd4d1a506f5ac0261bf37f0f629b2ef7
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

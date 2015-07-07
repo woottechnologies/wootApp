@@ -58,6 +58,8 @@
     [self.drawerButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.drawerButton];
 
+    [self setUpCampaignAd];
+    
     // account button
     self.toggleAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.toggleAccountButton.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
@@ -82,12 +84,19 @@
     self.drawer.backgroundColor = [UIColor whiteColor];
     self.drawer.hidden = YES;
     [self.view addSubview:self.drawer];
-    
-    [self setUpCampaignAd];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    UINavigationController *vc = self.childViewControllers[0];
+    [vc viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    UINavigationController *vc = self.childViewControllers[0];
+    [vc viewDidAppear:animated];
+    
     self.drawer.hidden = YES;
+   // self.campaignAdButton.hidden = YES;
     
     if ([UserController sharedInstance].currentUser.userID) {
         [self.toggleAccountButton setTitle:@"Log Out" forState:UIControlStateNormal];
@@ -184,10 +193,12 @@
     [self.campaignAdButton constrainHeight:@"50"];
     
     [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.campaignAdButton.hidden = YES;
 }
 
 - (void)campaignAdButtonPressed {
-    NSLog(@"hello");
+ 
     CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
     CampaignController *campaignController = [CampaignController sharedInstance];
     campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:campaignController.currentCampaign.fullScreenAd];

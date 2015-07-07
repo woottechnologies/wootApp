@@ -36,7 +36,8 @@
 @property (nonatomic, assign) CGPoint lastOffset;
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) UIToolbar *toolBar;
-@property (nonatomic, strong) AppDelegate *appDelegate;
+//@property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) CustomTabBarVC *customTBVC;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButton;
 @property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 @property (nonatomic, assign) BOOL toolbarIsAnimating;
@@ -54,14 +55,14 @@
 
 @implementation TeamViewController
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+   // [super viewDidAppear:animated];
     [self.tableView reloadData];
+    self.customTBVC.campaignAdButton.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+   // [super viewWillAppear:animated];
     if ([TeamController sharedInstance].currentTeam.campaigns) {
         //[self chooseCampaign];
     }
@@ -91,7 +92,7 @@
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+   // [super viewWillDisappear:animated];
     [self unhideToolBar];
     self.isTransitioning = YES;
 }
@@ -106,8 +107,9 @@
     self.isTransitioning = NO;
     self.navigationController.navigationBar.hidden = NO;
     
-    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    self.toolBar = ((CustomTabBarVC *)self.appDelegate.window.rootViewController).toolBar;
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.customTBVC = (CustomTabBarVC *)appDelegate.window.rootViewController;
+    self.toolBar = self.customTBVC.toolBar;
     self.toolBar.hidden = YES;
     [self unhideToolBar];
     self.toolBar.hidden = NO;
@@ -147,19 +149,11 @@
     [self.view addSubview:self.header];
     [self setupHeader];
     
-    self.campaignAdButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.view addSubview:self.campaignAdButton];
-    [self.campaignAdButton alignLeadingEdgeWithView:self.view predicate:@"0"];
-    [self.campaignAdButton alignTrailingEdgeWithView:self.view predicate:@"0"];
-    [self.campaignAdButton alignBottomEdgeWithView:self.view predicate:@"-44"];
-    [self.campaignAdButton constrainHeight:@"50"];
-    
     CampaignController *campaignController = [CampaignController sharedInstance];
-    CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
     [campaignController loadCampaignsFromDBForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *campaigns) {
         if (success) {
             [TeamController sharedInstance].currentTeam.campaigns = campaigns;
-            [customTBVC chooseCampaign];
+            [self.customTBVC chooseCampaign];
         }
     }];
     
@@ -514,10 +508,11 @@
 - (void)hideToolBar{
     if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > 0 && !self.isTransitioning ){
         self.toolbarIsAnimating = YES;
-        CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
+        self.toolBar.hidden = YES;
+     
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
-            customTBVC.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
+            self.customTBVC.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
 //            self.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
         } completion:^(BOOL finished) {
             self.toolbarIsAnimating = NO;
@@ -531,10 +526,10 @@
     if(self.toolBar.hidden && !self.toolbarIsAnimating && !self.isTransitioning && self.currentOffset.y < 281){
         self.toolbarIsAnimating = YES;
         self.toolBar.hidden = NO;
-        CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
+        
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformIdentity;
-            customTBVC.campaignAdButton.transform = CGAffineTransformIdentity;
+            self.customTBVC.campaignAdButton.transform = CGAffineTransformIdentity;
            // self.campaignAdButton.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             self.toolbarIsAnimating = NO;
