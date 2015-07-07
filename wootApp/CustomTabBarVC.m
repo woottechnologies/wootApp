@@ -58,6 +58,8 @@
     [self.drawerButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.drawerButton];
 
+    [self setUpCampaignAd];
+    
     // account button
     self.toggleAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.toggleAccountButton.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
@@ -82,8 +84,6 @@
     self.drawer.backgroundColor = [UIColor whiteColor];
     self.drawer.hidden = YES;
     [self.view addSubview:self.drawer];
-    
-    [self setUpCampaignAd];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
