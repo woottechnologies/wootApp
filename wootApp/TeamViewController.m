@@ -42,7 +42,12 @@
 @property (nonatomic, assign) BOOL toolbarIsAnimating;
 @property (nonatomic, assign) BOOL isTransitioning;
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UIImageView *circles;
+@property (nonatomic, strong) UIImageView *whiteCircle;
+@property (nonatomic, strong) UIImageView *colorCircle;
+@property (nonatomic, strong) UIImageView *logoCircle;
+@property (nonatomic, assign) float whiteCircleDiameter;
+@property (nonatomic, assign) float colorCircleDiameter;
+@property (nonatomic, assign) float logoCircleDiameter;
 
 @end
 
@@ -102,7 +107,7 @@
 
     self.lastOffset = CGPointMake(0, 0);
     self.currentOffset = CGPointMake(0, 0);
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 510) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 665) style:UITableViewStyleGrouped];
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
@@ -254,11 +259,6 @@
     headerPhoto.backgroundColor = [UIColor lightGrayColor];
     [self.headerView addSubview:headerPhoto];
     
-    UIView *statusBarStripe = [[UIView alloc] init];
-    statusBarStripe.backgroundColor = [UIColor whiteColor];
-    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
-    [self.view addSubview:statusBarStripe];
-    
     UIView *primaryColorStripe = [[UIView alloc] init];
     primaryColorStripe.backgroundColor = primaryColor;
 //    primaryColorStripe.backgroundColor = [UIColor blueColor];
@@ -276,33 +276,36 @@
     whiteStripe.frame = CGRectMake(0, headerPhotoBottom, self.view.frame.size.width, bigStripeHeight);
     [self.headerView addSubview:whiteStripe];
     
-    self.circles = [UIImageView new];
-    self.circles.backgroundColor = [UIColor whiteColor];
-    [self setRoundedView:self.circles toDiameter:windowWidth/2.083];
-    CGPoint circleCenter = self.circles.center;
+    self.whiteCircle = [UIImageView new];
+    self.whiteCircle.backgroundColor = [UIColor whiteColor];
+    self.whiteCircleDiameter = windowWidth/2.083;
+    [self setRoundedView:self.whiteCircle toDiameter:self.whiteCircleDiameter];
+    CGPoint circleCenter = self.whiteCircle.center;
     circleCenter.x = windowWidth/4 + 6;
     circleCenter.y = headerPhotoBottom;
-    self.circles.center = circleCenter;
-    [self.view addSubview:self.circles];
+    self.whiteCircle.center = circleCenter;
+    [self.view addSubview:self.whiteCircle];
     
-    UIImageView *colorCircle = [UIImageView new];
-    colorCircle.backgroundColor = primaryColor;
+    self.colorCircle = [UIImageView new];
+    self.colorCircle.backgroundColor = primaryColor;
+    self.colorCircleDiameter = windowWidth/2.388;
 //    colorCircle.backgroundColor = [UIColor blueColor];
-    [self setRoundedView:colorCircle toDiameter:windowWidth/2.388];
+    [self setRoundedView:self.colorCircle toDiameter:self.colorCircleDiameter];
     circleCenter.x = (windowWidth/2.083)/2;
     circleCenter.y = circleCenter.x;
-    colorCircle.center = circleCenter;
-    [self.circles addSubview:colorCircle];
+    self.colorCircle.center = circleCenter;
+    [self.whiteCircle addSubview:self.colorCircle];
     
     //    UIImageView *athleteCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"football_portrait_square"]];
-    UIImageView *logoCircle = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
-    logoCircle.clipsToBounds = YES;
-    [self setRoundedView:logoCircle toDiameter:windowWidth/2.5];
-    logoCircle.center = circleCenter;
-    [self.circles addSubview:logoCircle];
+    self.logoCircle = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
+    self.logoCircle.clipsToBounds = YES;
+    self.logoCircleDiameter = windowWidth/2.5;
+    [self setRoundedView:self.logoCircle toDiameter:self.logoCircleDiameter];
+    self.logoCircle.center = circleCenter;
+    [self.whiteCircle addSubview:self.logoCircle];
     
     UILabel *schoolNameLabel = [[UILabel alloc] init];
-    schoolNameLabel.frame = CGRectMake(circleCenter.x + windowWidth/4, windowWidth/75, windowWidth/3.261, windowWidth/17.8571429);
+    schoolNameLabel.frame = CGRectMake(circleCenter.x + windowWidth/3.7, windowWidth/75, windowWidth/3.261, windowWidth/17.8571429);
     NSString *mascotSingular = [schoolController.currentSchool.mascott substringToIndex:[schoolController.currentSchool.mascott length]-1];
     schoolNameLabel.text = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
     schoolNameLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
@@ -310,13 +313,17 @@
     [whiteStripe addSubview:schoolNameLabel];
     
     UILabel *teamRecordLabel = [[UILabel alloc] init];
-    teamRecordLabel.frame = CGRectMake(circleCenter.x + windowWidth/4, windowWidth/16.304, windowWidth/3.261, windowWidth/25);
+    teamRecordLabel.frame = CGRectMake(circleCenter.x + windowWidth/3.7, windowWidth/16.304, windowWidth/3.261, windowWidth/25);
     teamRecordLabel.text = [NSString stringWithFormat:@"%@", teamController.currentTeam.record];
     teamRecordLabel.font = [UIFont fontWithName:@"ArialMT" size:13];
     [teamRecordLabel setFont:[teamRecordLabel.font fontWithSize:[self maxFontSize:teamRecordLabel]]];
     [whiteStripe addSubview:teamRecordLabel];
     
-    
+    UIView *statusBarStripe = [[UIView alloc] init];
+    statusBarStripe.backgroundColor = [UIColor whiteColor];
+    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
+    [self.view addSubview:statusBarStripe];
+
 }
 
 - (void) backButtonPressed {
@@ -442,23 +449,50 @@
 - (void)scrollViewDidScroll :(UIScrollView *)scrollView {
     self.lastOffset = self.currentOffset;
     self.currentOffset = scrollView.contentOffset;
-    NSLog(@"%f", self.lastOffset.y);
+//    NSLog(@"%f", self.lastOffset.y);
     if (self.currentOffset.y < self.lastOffset.y) {
         [self unhideToolBar];
     } else {
         [self hideToolBar];
     }
     
+    float headerY = -(self.currentOffset.y + 64.5);
     if(self.currentOffset.y < 94.5){
-        float headerY = -(self.currentOffset.y + 64.5);
         self.headerView.frame = CGRectMake(0, headerY, self.view.frame.size.width, 215);
 //        self.tableView.frame = CGRectMake(0, headerY + 215, self.view.frame.size.width, 510-headerY);
-        CGPoint circlesCenter = self.circles.center;
-        circlesCenter.y = headerY/2 + 180;
-        self.circles.center = circlesCenter;
-        
+        CGPoint circlesCenter = self.whiteCircle.center;
+        circlesCenter.y = headerY*1.6 + 180;
+        self.whiteCircle.center = circlesCenter;
+//        CGRect circleFrame = self.circles.frame;
+//        circleFrame.size = CGSizeMake(self.circles.frame.size.width *headerScaler, self.circles.frame.size.height *headerScaler);
+//        float headerScaler = 1 - headerY/-318;
+//        NSLog(@"scaler %f", headerScaler);
+//        float whiteCircleDiameterScaled = self.whiteCircleDiameter *headerScaler;
+//        self.whiteCircle.frame = CGRectMake(10, headerY/2 + 140, whiteCircleDiameterScaled, whiteCircleDiameterScaled);
+//        [self setRoundedView:self.whiteCircle toDiameter:whiteCircleDiameterScaled];
+//        
+//        float colorCircleDiameterScaled = self.colorCircleDiameter *headerScaler;
+////        self.colorCircle.frame = CGRectMake(0, 0, colorCircleDiameterScaled, colorCircleDiameterScaled);
+//        CGRect colorCircleFrame = self.colorCircle.frame;
+//        colorCircleFrame.size = CGSizeMake(colorCircleDiameterScaled, colorCircleDiameterScaled);
+//        self.colorCircle.center = self.whiteCircle.center;
+//        [self setRoundedView:self.whiteCircle toDiameter:colorCircleDiameterScaled];
+//        self.colorCircle.center = self.whiteCircle.center;
+//        
+//        float logoCircleDiameterScaled = self.logoCircleDiameter *headerScaler;
+////        self.logoCircle.frame = CGRectMake(0, 0, logoCircleDiameterScaled, logoCircleDiameterScaled);
+//        CGRect logoCircleFrame = self.logoCircle.frame;
+//        logoCircleFrame.size = CGSizeMake(logoCircleDiameterScaled, logoCircleDiameterScaled);
+//        self.logoCircle.center = self.whiteCircle.center;
+//        [self setRoundedView:self.whiteCircle toDiameter:logoCircleDiameterScaled];
+//        self.logoCircle.center = self.whiteCircle.center;
+      
+        NSLog(@"width %f", self.whiteCircle.frame.size.width);
+//        self.circles.frame = circleFrame;
+//        self.circles.center = circlesCenter;
     } else {
         self.headerView.frame = CGRectMake(0, -160, self.view.frame.size.width, 215);
+        self.whiteCircle.center = CGPointMake(self.view.frame.size.width/4 + 6, -60);
     }
 
 }

@@ -356,7 +356,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TeamController *teamController = [TeamController sharedInstance];
+//    TeamController *teamController = [TeamController sharedInstance];
     
     float height = 0;
     
