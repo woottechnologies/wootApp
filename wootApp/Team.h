@@ -16,6 +16,7 @@ static NSString *LossesKey = @"losses";
 static NSString *ScheduleIDKey = @"scheduleID";
 static NSString *CoachingStaffPhotoKey = @"coachingStaffPhoto";
 static NSString *AthleteHeaderPhotoKey = @"athleteHeaderPhoto";
+static NSString *TeamHeaderPhotoKey = @"teamHeaderPhoto";
 
 @interface Team : NSObject
 
@@ -29,6 +30,7 @@ static NSString *AthleteHeaderPhotoKey = @"athleteHeaderPhoto";
 @property (nonatomic, strong) NSArray *coaches;
 @property (nonatomic, strong) UIImage *coachingStaffPhoto;
 @property (nonatomic, strong) UIImage *athleteHeaderPhoto;
+@property (nonatomic, strong) UIImage *teamHeaderPhoto;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

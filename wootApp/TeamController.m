@@ -67,6 +67,13 @@
                         }
                         dispatch_group_leave(imageGroup);
                     }];
+                    dispatch_group_enter(imageGroup);
+                    [UIImage imageWithPath:dict[TeamHeaderPhotoKey] WithCompletion:^(BOOL success, UIImage *image) {
+                        if (success) {
+                            newTeam.teamHeaderPhoto = image;
+                        }
+                        dispatch_group_leave(imageGroup);
+                    }];
 
                     [mutTeams addObject:newTeam];
                 }

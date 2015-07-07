@@ -48,6 +48,7 @@
 @property (nonatomic, assign) float whiteCircleDiameter;
 @property (nonatomic, assign) float colorCircleDiameter;
 @property (nonatomic, assign) float logoCircleDiameter;
+@property (nonatomic, strong) UIImageView *blackView;
 
 @end
 
@@ -65,12 +66,18 @@
         //[self chooseCampaign];
     }
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     self.toolbarIsAnimating = NO;
     [self unhideToolBar];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
+    SchoolController *schoolController = [SchoolController sharedInstance];
+    self.navigationController.navigationBar.backgroundColor = schoolController.currentSchool.primaryColor;
+    NSString *mascotSingular = [schoolController.currentSchool.mascott substringToIndex:[schoolController.currentSchool.mascott length]-1];
+    self.navigationController.navigationBar.topItem.title = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    self.navigationController.navigationBar.translucent = YES;
     
     UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
@@ -107,13 +114,13 @@
 
     self.lastOffset = CGPointMake(0, 0);
     self.currentOffset = CGPointMake(0, 0);
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 665) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 605) style:UITableViewStyleGrouped];
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
     [self.dataSource registerTableView:self.tableView viewController:self];
     self.tableView.dataSource = self.dataSource;
-    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 215)];
+    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 260)];
     self.tableView.tableHeaderView = tableHeaderView;
     [self.view addSubview:self.tableView];
     
@@ -230,11 +237,10 @@
     UIColor *primaryColor = schoolController.currentSchool.primaryColor;
     UIColor *secondaryColor = schoolController.currentSchool.secondaryColor;
     
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:nil action:nil];
+    self.navigationController.navigationBar.backgroundColor = primaryColor;
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    self.navigationController.navigationBar.translucent = YES;
     
     UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
@@ -254,7 +260,7 @@
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, headerPhotoBottom + bigStripeHeight + littleStripeHeight + bigStripeHeight)];
     [self.view addSubview:self.headerView];
     
-    UIImageView *headerPhoto = [[UIImageView alloc] initWithImage:teamController.currentTeam.athleteHeaderPhoto];
+    UIImageView *headerPhoto = [[UIImageView alloc] initWithImage:teamController.currentTeam.teamHeaderPhoto];
     headerPhoto.frame = CGRectMake(0, 0, windowWidth, headerPhotoBottom);
     headerPhoto.backgroundColor = [UIColor lightGrayColor];
     [self.headerView addSubview:headerPhoto];
@@ -284,17 +290,17 @@
     circleCenter.x = windowWidth/4 + 6;
     circleCenter.y = headerPhotoBottom;
     self.whiteCircle.center = circleCenter;
-    [self.view addSubview:self.whiteCircle];
+    [self.headerView addSubview:self.whiteCircle];
     
     self.colorCircle = [UIImageView new];
     self.colorCircle.backgroundColor = primaryColor;
     self.colorCircleDiameter = windowWidth/2.388;
 //    colorCircle.backgroundColor = [UIColor blueColor];
     [self setRoundedView:self.colorCircle toDiameter:self.colorCircleDiameter];
-    circleCenter.x = (windowWidth/2.083)/2;
-    circleCenter.y = circleCenter.x;
+//    circleCenter.x = (windowWidth/2.083)/2;
+//    circleCenter.y = circleCenter.x;
     self.colorCircle.center = circleCenter;
-    [self.whiteCircle addSubview:self.colorCircle];
+    [self.headerView addSubview:self.colorCircle];
     
     //    UIImageView *athleteCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"football_portrait_square"]];
     self.logoCircle = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
@@ -302,27 +308,32 @@
     self.logoCircleDiameter = windowWidth/2.5;
     [self setRoundedView:self.logoCircle toDiameter:self.logoCircleDiameter];
     self.logoCircle.center = circleCenter;
-    [self.whiteCircle addSubview:self.logoCircle];
+    [self.headerView addSubview:self.logoCircle];
     
     UILabel *schoolNameLabel = [[UILabel alloc] init];
-    schoolNameLabel.frame = CGRectMake(circleCenter.x + windowWidth/3.7, windowWidth/75, windowWidth/3.261, windowWidth/17.8571429);
-    NSString *mascotSingular = [schoolController.currentSchool.mascott substringToIndex:[schoolController.currentSchool.mascott length]-1];
-    schoolNameLabel.text = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
+    schoolNameLabel.frame = CGRectMake(circleCenter.x + windowWidth/3.7, 2, 150, 40);
+    schoolNameLabel.text = [NSString stringWithFormat:@"%@", schoolController.currentSchool.name];
     schoolNameLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
+    schoolNameLabel.textColor = primaryColor;
     [schoolNameLabel setFont:[schoolNameLabel.font fontWithSize:[self maxFontSize:schoolNameLabel]]];
     [whiteStripe addSubview:schoolNameLabel];
     
     UILabel *teamRecordLabel = [[UILabel alloc] init];
-    teamRecordLabel.frame = CGRectMake(circleCenter.x + windowWidth/3.7, windowWidth/16.304, windowWidth/3.261, windowWidth/25);
+    teamRecordLabel.frame = CGRectMake(circleCenter.x + windowWidth/3.7, 7, 100, 30);
     teamRecordLabel.text = [NSString stringWithFormat:@"%@", teamController.currentTeam.record];
-    teamRecordLabel.font = [UIFont fontWithName:@"ArialMT" size:13];
+    teamRecordLabel.font = [UIFont fontWithName:@"ArialMT" size:25];
+    teamRecordLabel.textColor = [UIColor whiteColor];
     [teamRecordLabel setFont:[teamRecordLabel.font fontWithSize:[self maxFontSize:teamRecordLabel]]];
-    [whiteStripe addSubview:teamRecordLabel];
+    [primaryColorStripe addSubview:teamRecordLabel];
     
-    UIView *statusBarStripe = [[UIView alloc] init];
-    statusBarStripe.backgroundColor = [UIColor whiteColor];
-    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
-    [self.view addSubview:statusBarStripe];
+    self.blackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width, self.headerView.frame.size.height)];
+    self.blackView.backgroundColor = [UIColor blackColor];
+    [self.headerView addSubview:self.blackView];
+    
+//    UIView *statusBarStripe = [[UIView alloc] init];
+//    statusBarStripe.backgroundColor = [UIColor whiteColor];
+//    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
+//    [self.view addSubview:statusBarStripe];
 
 }
 
@@ -449,20 +460,23 @@
 - (void)scrollViewDidScroll :(UIScrollView *)scrollView {
     self.lastOffset = self.currentOffset;
     self.currentOffset = scrollView.contentOffset;
-//    NSLog(@"%f", self.lastOffset.y);
+    NSLog(@"%f", self.lastOffset.y);
     if (self.currentOffset.y < self.lastOffset.y) {
         [self unhideToolBar];
     } else {
         [self hideToolBar];
     }
     
-    float headerY = -(self.currentOffset.y + 64.5);
-    if(self.currentOffset.y < 94.5){
+    float headerY = -(self.currentOffset.y + 20);
+    if(self.currentOffset.y < 260){
         self.headerView.frame = CGRectMake(0, headerY, self.view.frame.size.width, 215);
+        float blackViewAlpha = -headerY/290 - 0.068;
+//        NSLog(@"%f", blackViewAlpha);
+        self.blackView.alpha = blackViewAlpha;
 //        self.tableView.frame = CGRectMake(0, headerY + 215, self.view.frame.size.width, 510-headerY);
-        CGPoint circlesCenter = self.whiteCircle.center;
-        circlesCenter.y = headerY*1.6 + 180;
-        self.whiteCircle.center = circlesCenter;
+//        CGPoint circlesCenter = self.whiteCircle.center;
+//        circlesCenter.y = headerY*1.6 + 180;
+//        self.whiteCircle.center = circlesCenter;
 //        CGRect circleFrame = self.circles.frame;
 //        circleFrame.size = CGSizeMake(self.circles.frame.size.width *headerScaler, self.circles.frame.size.height *headerScaler);
 //        float headerScaler = 1 - headerY/-318;
@@ -487,18 +501,18 @@
 //        [self setRoundedView:self.whiteCircle toDiameter:logoCircleDiameterScaled];
 //        self.logoCircle.center = self.whiteCircle.center;
       
-        NSLog(@"width %f", self.whiteCircle.frame.size.width);
+//        NSLog(@"width %f", self.whiteCircle.frame.size.width);
 //        self.circles.frame = circleFrame;
 //        self.circles.center = circlesCenter;
     } else {
-        self.headerView.frame = CGRectMake(0, -160, self.view.frame.size.width, 215);
-        self.whiteCircle.center = CGPointMake(self.view.frame.size.width/4 + 6, -60);
+        self.headerView.frame = CGRectMake(0, -320, self.view.frame.size.width, 215);
+//        self.whiteCircle.center = CGPointMake(self.view.frame.size.width/4 + 6, -60);
     }
 
 }
 
 - (void)hideToolBar{
-    if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > -64 && !self.isTransitioning ){
+    if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > 0 && !self.isTransitioning ){
         self.toolbarIsAnimating = YES;
         CustomTabBarVC *customTBVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
         [UIView animateWithDuration:0.3 animations:^{

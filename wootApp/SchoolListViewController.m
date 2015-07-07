@@ -43,12 +43,13 @@
         }
     }];
     
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.hidden = YES;
     
-    UIView *statusBarStripe = [[UIView alloc] init];
-    statusBarStripe.backgroundColor = [UIColor whiteColor];
-    statusBarStripe.frame = CGRectMake(0, 0, self.view.frame.size.width, 20);
-    [self.view addSubview:statusBarStripe];
+//    UIView *statusBarStripe = [[UIView alloc] init];
+//    statusBarStripe.backgroundColor = [UIColor whiteColor];
+//    statusBarStripe.frame = CGRectMake(0, 0, self.view.frame.size.width, 20);
+//    [self.view addSubview:statusBarStripe];
 
 }
 
@@ -59,7 +60,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+//    self.navigationController.navigationBar.hidden = YES;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
