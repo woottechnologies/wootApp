@@ -86,8 +86,17 @@
     [self.view addSubview:self.drawer];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    UINavigationController *vc = self.childViewControllers[0];
+    [vc viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
+    UINavigationController *vc = self.childViewControllers[0];
+    [vc viewDidAppear:animated];
+    
     self.drawer.hidden = YES;
+   // self.campaignAdButton.hidden = YES;
     
     if ([UserController sharedInstance].currentUser.userID) {
         [self.toggleAccountButton setTitle:@"Log Out" forState:UIControlStateNormal];
@@ -184,10 +193,12 @@
     [self.campaignAdButton constrainHeight:@"50"];
     
     [self.campaignAdButton addTarget:self action:@selector(campaignAdButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.campaignAdButton.hidden = YES;
 }
 
 - (void)campaignAdButtonPressed {
-    NSLog(@"hello");
+ 
     CampaignAdViewController *campaignAdViewController = [CampaignAdViewController new];
     CampaignController *campaignController = [CampaignController sharedInstance];
     campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:campaignController.currentCampaign.fullScreenAd];

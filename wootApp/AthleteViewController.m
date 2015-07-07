@@ -23,23 +23,25 @@
 @property (nonatomic, strong) AthleteDataSource *dataSource;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButton;
 @property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
-@property (nonatomic, strong) AppDelegate *appDelegate;
+//@property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
 @end
 
 @implementation AthleteViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+   // [super viewWillAppear:animated];
     
-    CustomTabBarVC *customTabBarVC = (CustomTabBarVC *)self.appDelegate.window.rootViewController;
-    customTabBarVC.toolBar.hidden = NO;
+    self.customTBVC.toolBar.hidden = NO;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     
     [[StatsController sharedInstance] loadSummaryStatsFromDBForAthlete:[TeamController sharedInstance].currentAthlete WithCompletion:^(BOOL success, Stats *stats) {
@@ -51,8 +53,10 @@
         }
     }];
     
-    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    self.customTBVC = (CustomTabBarVC *)appDelegate.window.rootViewController;
     
+    [self.customTBVC chooseCampaign];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.width/2.095, self.view.frame.size.width, self.view.frame.size.height - 214) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;

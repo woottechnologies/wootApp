@@ -24,8 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
-//    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[TestViewController new]];
-//    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[TeamViewController new]];
+
     masterVC.tabBarItem = [[UITabBarItem alloc] init];
     masterVC.tabBarItem.title = @"Search";
 
