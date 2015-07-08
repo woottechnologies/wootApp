@@ -49,7 +49,7 @@
         }
     }];
     
-//    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 //    self.navigationController.navigationBar.hidden = YES;
     
 //    UIView *statusBarStripe = [[UIView alloc] init];
@@ -59,24 +59,17 @@
 
 }
 
-- (void)backButtonPressed {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)backButtonPressed {
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
-<<<<<<< HEAD
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    
-[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    
-//    self.navigationController.navigationBar.hidden = YES;
-=======
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.customTBVC.campaignAdButton.hidden = YES;
->>>>>>> 3377d027fd4d1a506f5ac0261bf37f0f629b2ef7
+    
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -75,7 +75,7 @@
     SchoolController *schoolController = [SchoolController sharedInstance];
     self.navigationController.navigationBar.backgroundColor = schoolController.currentSchool.primaryColor;
     NSString *mascotSingular = [schoolController.currentSchool.mascott substringToIndex:[schoolController.currentSchool.mascott length]-1];
-    self.navigationController.navigationBar.topItem.title = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
+    self.title = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 //    self.navigationController.navigationBar.shadowImage = [UIImage new];
 //    self.navigationController.navigationBar.translucent = YES;
@@ -104,8 +104,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    SchoolController *schoolController = [SchoolController sharedInstance];
+    
     self.isTransitioning = NO;
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = schoolController.currentSchool.primaryColor;
+    NSString *mascotSingular = [schoolController.currentSchool.mascott substringToIndex:[schoolController.currentSchool.mascott length]-1];
+    self.navigationController.navigationBar.topItem.title = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.customTBVC = (CustomTabBarVC *)appDelegate.window.rootViewController;
@@ -508,7 +513,6 @@
 - (void)hideToolBar{
     if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > 0 && !self.isTransitioning ){
         self.toolbarIsAnimating = YES;
-        self.toolBar.hidden = YES;
      
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
