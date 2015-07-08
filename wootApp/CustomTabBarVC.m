@@ -51,14 +51,14 @@
     [self.toolBar alignBottomEdgeWithView:self.view predicate:@"0"];
     [self.toolBar constrainHeight:@"44"];
     
+    [self setUpCampaignAd];
+    
     self.drawerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.drawerButton.enabled = NO;
     self.drawerButton.backgroundColor = [UIColor blackColor];
     self.drawerButton.alpha = 0.0;
     [self.drawerButton addTarget:self action:@selector(toggleDrawer) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.drawerButton];
-
-    [self setUpCampaignAd];
     
     // account button
     self.toggleAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -81,7 +81,7 @@
     UIImageView *headerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"woot_square.png"]];
     headerImageView.frame = CGRectMake(0, 0, self.drawer.frame.size.width, self.drawer.frame.size.width - 33.33);
     self.drawer.tableHeaderView = headerImageView;
-    self.drawer.backgroundColor = [UIColor redColor];
+    self.drawer.backgroundColor = [UIColor whiteColor];
     self.drawer.hidden = YES;
     [self.view addSubview:self.drawer];
 }
@@ -252,11 +252,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 125;
-    }
-    
-    if (section == 1) {
+    if (section == 0 || section == 1) {
         return 20;
     }
     
