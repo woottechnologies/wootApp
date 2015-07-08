@@ -86,7 +86,7 @@
     
     [self.customTBVC chooseCampaign];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.width/2.095, self.view.frame.size.width, self.view.frame.size.height - 214) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.dataSource = [AthleteDataSource new];
     [self.dataSource registerTableView:self.tableView viewController:self];
@@ -243,11 +243,10 @@
     UIColor *primaryColor = schoolController.currentSchool.primaryColor;
     UIColor *secondaryColor = schoolController.currentSchool.secondaryColor;
 
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:nil action:nil];
+    self.navigationController.navigationBar.backgroundColor = primaryColor;
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    self.navigationController.navigationBar.translucent = YES;
     
     UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
@@ -264,17 +263,17 @@
 //    backButton.tintColor = [UIColor whiteColor];
 //    self.navigationItem.leftBarButtonItem = backButton;
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, headerPhotoBottom + bigStripeHeight + littleStripeHeight + bigStripeHeight)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, windowWidth, headerPhotoBottom + bigStripeHeight + littleStripeHeight + bigStripeHeight)];
     [self.view addSubview:headerView];
     
     UIImageView *headerPhoto = [[UIImageView alloc] initWithImage:teamController.currentTeam.athleteHeaderPhoto];
     headerPhoto.frame = CGRectMake(0, 0, windowWidth, headerPhotoBottom);
     [headerView addSubview:headerPhoto];
     
-    UIView *statusBarStripe = [[UIView alloc] init];
-    statusBarStripe.backgroundColor = [UIColor whiteColor];
-    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
-    [self.view addSubview:statusBarStripe];
+//    UIView *statusBarStripe = [[UIView alloc] init];
+//    statusBarStripe.backgroundColor = [UIColor whiteColor];
+//    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
+//    [self.view addSubview:statusBarStripe];
     
     UIView *primaryColorStripe = [[UIView alloc] init];
     primaryColorStripe.backgroundColor = primaryColor;
@@ -323,6 +322,25 @@
     athleteNameLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
     [athleteNameLabel setFont:[athleteNameLabel.font fontWithSize:[self maxFontSize:athleteNameLabel]]];
     [whiteStripe addSubview:athleteNameLabel];
+    
+    UILabel *athleteHeightLabel = [[UILabel alloc] init];
+    athleteHeightLabel.frame = CGRectMake(150 + windowWidth/10.714, 7, 70, 30);
+    //    athleteNameLabel.text = @"Luke Robinson";
+    athleteHeightLabel.text = [NSString stringWithFormat:@"%@", [self inchesToFeet:teamController.currentAthlete.height]];
+    athleteHeightLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
+    athleteHeightLabel.textColor = [UIColor whiteColor];
+    [athleteHeightLabel setFont:[athleteHeightLabel.font fontWithSize:[self maxFontSize:athleteHeightLabel]]];
+    [primaryColorStripe addSubview:athleteHeightLabel];
+
+    UILabel *athleteWeightLabel = [[UILabel alloc] init];
+    athleteWeightLabel.frame = CGRectMake(220 + windowWidth/10.714, 7, 100, 30);
+    //    athleteNameLabel.text = @"Luke Robinson";
+    athleteWeightLabel.text = [NSString stringWithFormat:@"%lilbs", (long)teamController.currentAthlete.weight];
+    athleteWeightLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
+    athleteWeightLabel.textColor = [UIColor whiteColor];
+    [athleteWeightLabel setFont:[athleteWeightLabel.font fontWithSize:[self maxFontSize:athleteWeightLabel]]];
+    [primaryColorStripe addSubview:athleteWeightLabel];
+
     
     UILabel *athletePositionLabel = [[UILabel alloc] init];
     athletePositionLabel.frame = CGRectMake(athleteNumberLabel.center.x + windowWidth/10.714, windowWidth/16.304, windowWidth/3.261, windowWidth/25);
