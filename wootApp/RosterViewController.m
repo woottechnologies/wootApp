@@ -51,7 +51,7 @@ static NSString *RosterCellID = @"RosterCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     RosterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RosterCellID];
     if (!cell){
-        cell = [[RosterTableViewCell alloc] initWithAthlete:self.rosterSortedByNumber[indexPath.row] style:UITableViewCellStyleDefault reuseIdentifier:RosterCellID];
+        cell = [[RosterTableViewCell alloc] initWithAthlete:self.sortedRoster[indexPath.row] style:UITableViewCellStyleDefault reuseIdentifier:RosterCellID];
     }
 //    Athlete *athlete = self.rosterSortedByNumber[indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"#%ld    %@", (long)athlete.jerseyNumber, athlete.name];
@@ -60,14 +60,14 @@ static NSString *RosterCellID = @"RosterCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.rosterSortedByNumber.count;
+    return self.sortedRoster.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     TeamController *teamController = [TeamController sharedInstance];
-    teamController.currentAthlete = self.rosterSortedByNumber[indexPath.row];
+    teamController.currentAthlete = self.sortedRoster[indexPath.row];
     AthleteViewController *athleteVC = [AthleteViewController new];
     [self.navigationController pushViewController:athleteVC animated:YES];
 }

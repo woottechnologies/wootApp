@@ -10,6 +10,6 @@
 
 @interface RosterViewController : UIViewController
 
-@property (nonatomic, strong) NSArray *rosterSortedByNumber;
+@property (nonatomic, strong) NSArray *sortedRoster;
 
 @end

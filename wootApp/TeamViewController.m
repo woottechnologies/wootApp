@@ -578,7 +578,7 @@
 - (void)rosterButtonPressed{
     TeamController *teamController = [TeamController sharedInstance];
     RosterViewController *rosterViewController = [RosterViewController new];
-    rosterViewController.rosterSortedByNumber = [teamController sortRosterByNumber];
+    rosterViewController.sortedRoster = [teamController sortRosterByNumber];
     [self.navigationController pushViewController: rosterViewController animated:YES];
 }
 
