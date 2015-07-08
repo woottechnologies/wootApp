@@ -12,6 +12,8 @@
 #import "TestViewController.h"
 #import "TeamViewController.h"
 #import "AthleteViewController.h"
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 @interface AppDelegate ()
 
@@ -36,6 +38,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [Fabric with:@[TwitterKit]];
+
     return YES;
 }
 

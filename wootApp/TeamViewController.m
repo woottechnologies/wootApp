@@ -23,6 +23,8 @@
 #import "UIView+FLKAutoLayout.h"
 #import "CustomTabBarVC.h"
 #import "CoachingStaffViewController.h"
+#import <TwitterKit/TwitterKit.h>
+
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -105,6 +107,14 @@
     [super viewDidLoad];
     
     SchoolController *schoolController = [SchoolController sharedInstance];
+    
+    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
+        [[[Twitter sharedInstance] APIClient] loadTweetWithID:@"20" completion:^(TWTRTweet *tweet, NSError *error) {
+            TWTRTweetView *tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleRegular];
+//            [self.view addSubview:tweetView];
+        }];
+    }];
+
     
     self.isTransitioning = NO;
     self.navigationController.navigationBar.hidden = NO;

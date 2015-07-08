@@ -172,7 +172,7 @@
 
     while (roster.count < self.currentTeam.athletes.count){
         Athlete *athleteFirstAlphabetically = [Athlete new];
-        athleteFirstAlphabetically.name = @"~~~";
+        athleteFirstAlphabetically.name = @"~~~"; //the last character on the ascii table?
         for (Athlete *athlete in unsortedRosterWithNamesOnly){
             NSComparisonResult result = [athlete.name compare:athleteFirstAlphabetically.name];
             if (result == NSOrderedAscending && ![roster containsObject:athlete]){
