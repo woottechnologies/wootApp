@@ -28,7 +28,6 @@
 
 @interface TeamViewController () <UITableViewDelegate>
 
-@property (nonatomic, strong) UIView *header;
 @property (nonatomic, strong) UIImageView *headerImage;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) TeamDataSource *dataSource;
@@ -59,7 +58,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
    // [super viewDidAppear:animated];
-    [self.tableView reloadData];
     self.customTBVC.campaignAdButton.hidden = NO;
 }
 
@@ -74,13 +72,12 @@
     self.toolbarIsAnimating = NO;
     [self unhideToolBar];
     
+    [self.tableView reloadData];
+    
     SchoolController *schoolController = [SchoolController sharedInstance];
     self.navigationController.navigationBar.backgroundColor = schoolController.currentSchool.primaryColor;
     NSString *mascotSingular = [schoolController.currentSchool.mascott substringToIndex:[schoolController.currentSchool.mascott length]-1];
     self.title = [NSString stringWithFormat:@"%@ %@", mascotSingular, @"Football"];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    self.navigationController.navigationBar.shadowImage = [UIImage new];
-//    self.navigationController.navigationBar.translucent = YES;
     
     UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
@@ -90,7 +87,31 @@
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem=backArrowButton;
-
+    
+    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
+    UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [favoriteEmptyButton setBackgroundImage:favoriteEmpty forState:UIControlStateNormal];
+    favoriteEmptyButton.alpha = 0.5;
+    [favoriteEmptyButton addTarget:self action:@selector(favoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.favoriteButton =[[UIBarButtonItem alloc] initWithCustomView:favoriteEmptyButton];
+    
+    UIImage *favoriteFilled = [UIImage imageNamed:@"favorite_filled.png"];
+    UIButton *favoriteFilledButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [favoriteFilledButton setBackgroundImage:favoriteFilled forState:UIControlStateNormal];
+    favoriteFilledButton.alpha = 0.5;
+    [favoriteFilledButton addTarget:self action:@selector(unfavoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithCustomView:favoriteFilledButton];
+    
+    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+        NSString *favType = [dict objectForKey:FavTypeKey];
+        if (favID == [TeamController sharedInstance].currentTeam.teamID
+            && [favType isEqualToString:@"T"]) {
+            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        }
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -159,7 +180,11 @@
     }];
     
     self.view.backgroundColor = [UIColor whiteColor];
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 57bbbd0e90ef0208caf11a55a0125fa912c696a2
     [self setupHeader];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
@@ -177,58 +202,10 @@
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
     
-    self.favoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(favoriteTapped:)];
-    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(unfavoriteTapped:)];
-    
-    self.navigationItem.rightBarButtonItem = self.favoriteButton;
-    
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
-        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
-        NSString *favType = [dict objectForKey:FavTypeKey];
-        if (favID == [TeamController sharedInstance].currentTeam.teamID
-            && [favType isEqualToString:@"T"]) {
-            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
-        }
-    }
-    
     [[GameController sharedInstance] allGamesForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *games) {
         [TeamController sharedInstance].currentTeam.schedule = games;
     }];
 }
-
-//- (void)setupHeader {
-//    SchoolController *schoolController = [SchoolController sharedInstance];
-//    TeamController *teamController = [TeamController sharedInstance];
-//    
-//    UIColor *backgroundColor = [SchoolController sharedInstance].currentSchool.primaryColor;
-//    self.header.backgroundColor = backgroundColor;
-//    
-//    UIView *statusBarStripe = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-//    statusBarStripe.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:statusBarStripe];
-//    
-//
-//    UIImageView *logoView = [[UIImageView alloc] initWithImage:schoolController.currentSchool.logo];
-//    logoView.frame = CGRectMake(0, 0, 100, 100);
-//    logoView.center = CGPointMake(self.header.frame.size.width / 5, self.header.frame.size.height / 2);
-//    [self.header addSubview:logoView];
-//    
-//    UILabel *schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(logoView.frame.size.width + 40, 15, 250, 20)];
-//    schoolLabel.text = schoolController.currentSchool.name;
-//    schoolLabel.textColor = [UIColor whiteColor];
-//    [self.header addSubview:schoolLabel];
-//    
-//    UILabel *mascottLabel = [[UILabel alloc] initWithFrame:CGRectMake(logoView.frame.size.width + 40, 40, 100, 15)];
-//    mascottLabel.text = schoolController.currentSchool.mascott;
-//    mascottLabel.textColor = [UIColor whiteColor];
-//    mascottLabel.font = [UIFont systemFontOfSize:13.0];
-//    [self.header addSubview:mascottLabel];
-//    
-//    UILabel *recordLabel = [[UILabel alloc] initWithFrame:CGRectMake(logoView.frame.size.width + 40, 75, 100, 15)];
-//    recordLabel.text = teamController.currentTeam.record;
-//    recordLabel.textColor = [UIColor whiteColor];
-//    [self.header addSubview:recordLabel];
-//}
 
 - (void)setupHeader {
     //    [super viewDidLoad];
@@ -257,12 +234,6 @@
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem=backArrowButton;
-    
-    //    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
-    //    [backArrow drawInRect:CGRectMake(0, 0, 10, 20) blendMode:1 alpha:0.5];
-    //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backArrow style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
-    //    backButton.tintColor = [UIColor whiteColor];
-    //    self.navigationItem.leftBarButtonItem = backButton;
     
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, headerPhotoBottom + bigStripeHeight + littleStripeHeight + bigStripeHeight)];
     [self.view addSubview:self.headerView];
@@ -483,7 +454,7 @@
 - (void)scrollViewDidScroll :(UIScrollView *)scrollView {
     self.lastOffset = self.currentOffset;
     self.currentOffset = scrollView.contentOffset;
-    NSLog(@"%f", self.lastOffset.y);
+//    NSLog(@"%f", self.lastOffset.y);
     if (self.currentOffset.y < self.lastOffset.y) {
         [self unhideToolBar];
     } else {

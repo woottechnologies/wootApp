@@ -78,10 +78,10 @@
     self.drawer.delegate = self;
     self.drawer.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIImageView *headerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"football.png"]];
-    headerImageView.frame = CGRectMake(0, 0, self.drawer.frame.size.width, 150);
+    UIImageView *headerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"woot_square.png"]];
+    headerImageView.frame = CGRectMake(0, 0, self.drawer.frame.size.width, self.drawer.frame.size.width - 33.33);
     self.drawer.tableHeaderView = headerImageView;
-    self.drawer.backgroundColor = [UIColor whiteColor];
+    self.drawer.backgroundColor = [UIColor redColor];
     self.drawer.hidden = YES;
     [self.view addSubview:self.drawer];
 }

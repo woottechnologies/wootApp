@@ -34,14 +34,42 @@
    // [super viewWillAppear:animated];
     
     self.customTBVC.toolBar.hidden = NO;
-}
-
--(void)viewDidAppear:(BOOL)animated {
     
+    [[TeamController sharedInstance] incrementViewsForAthleteWithCompletion:^(BOOL success) {
+        if (success) {
+            NSLog(@"views = %li", [TeamController sharedInstance].currentAthlete.views);
+        }
+    }];
+    
+    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
+    UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [favoriteEmptyButton setBackgroundImage:favoriteEmpty forState:UIControlStateNormal];
+    favoriteEmptyButton.alpha = 0.5;
+    [favoriteEmptyButton addTarget:self action:@selector(favoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.favoriteButton =[[UIBarButtonItem alloc] initWithCustomView:favoriteEmptyButton];
+    
+    UIImage *favoriteFilled = [UIImage imageNamed:@"favorite_filled.png"];
+    UIButton *favoriteFilledButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [favoriteFilledButton setBackgroundImage:favoriteFilled forState:UIControlStateNormal];
+    favoriteFilledButton.alpha = 0.5;
+    [favoriteFilledButton addTarget:self action:@selector(unfavoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithCustomView:favoriteFilledButton];
+    
+    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+        NSString *favType = [dict objectForKey:FavTypeKey];
+        if (favID == [TeamController sharedInstance].currentAthlete.athleteID
+            && [favType isEqualToString:@"A"]) {
+            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        }
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     
     [[StatsController sharedInstance] loadSummaryStatsFromDBForAthlete:[TeamController sharedInstance].currentAthlete WithCompletion:^(BOOL success, Stats *stats) {
@@ -64,20 +92,6 @@
     [self.dataSource registerTableView:self.tableView viewController:self];
     self.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.tableView];
-    
-    self.favoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(favoriteTapped:)];
-    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(unfavoriteTapped:)];
-    
-    self.navigationItem.rightBarButtonItem = self.favoriteButton;
-    
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
-        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
-        NSString *favType = [dict objectForKey:FavTypeKey];
-        if (favID == [TeamController sharedInstance].currentAthlete.athleteID
-            && [favType isEqualToString:@"A"]) {
-            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
-        }
-    }
     
 //    [self.view addSubview:customTabBarVC.toolBar];
 //    [customTabBarVC.toolBar alignLeadingEdgeWithView:self.view predicate:@"0"];
