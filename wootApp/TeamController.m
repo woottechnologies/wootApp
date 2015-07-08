@@ -126,7 +126,6 @@
 
 
 - (NSArray *) mostViewedAthletes{
-    //[self loadAthletes];
     NSMutableArray *mostViewed = [[NSMutableArray alloc] init];
     while (mostViewed.count < 6) {
         Athlete *topAthlete = [Athlete new];
@@ -239,6 +238,42 @@
             }
         } else {
             completion(NO, nil);
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+- (void)incrementViewsForAthleteWithCompletion:(void (^)(BOOL success))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"athleteID=%li", (long)self.currentAthlete.athleteID];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"update_athlete_views.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            NSInteger returnCode = [responseDict[@"returnCode"] integerValue];
+            NSInteger views = [responseDict[@"views"] integerValue];
+            
+            if (returnCode == 10) {
+                // success
+                self.currentAthlete.views = views;
+                completion(YES);
+            } else {
+                // error
+                completion(NO);
+            }
+        } else {
+            // error
+            completion(NO);
         }
     }];
     

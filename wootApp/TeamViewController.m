@@ -56,7 +56,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
    // [super viewDidAppear:animated];
-    [self.tableView reloadData];
     self.customTBVC.campaignAdButton.hidden = NO;
 }
 
@@ -68,6 +67,8 @@
     
     self.toolbarIsAnimating = NO;
     [self unhideToolBar];
+    
+    [self.tableView reloadData];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -81,7 +82,31 @@
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem=backArrowButton;
-
+    
+    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
+    UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [favoriteEmptyButton setBackgroundImage:favoriteEmpty forState:UIControlStateNormal];
+    favoriteEmptyButton.alpha = 0.5;
+    [favoriteEmptyButton addTarget:self action:@selector(favoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.favoriteButton =[[UIBarButtonItem alloc] initWithCustomView:favoriteEmptyButton];
+    
+    UIImage *favoriteFilled = [UIImage imageNamed:@"favorite_filled.png"];
+    UIButton *favoriteFilledButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [favoriteFilledButton setBackgroundImage:favoriteFilled forState:UIControlStateNormal];
+    favoriteFilledButton.alpha = 0.5;
+    [favoriteFilledButton addTarget:self action:@selector(unfavoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithCustomView:favoriteFilledButton];
+    
+    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+        NSString *favType = [dict objectForKey:FavTypeKey];
+        if (favID == [TeamController sharedInstance].currentTeam.teamID
+            && [favType isEqualToString:@"T"]) {
+            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+        }
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -156,20 +181,6 @@
     
     [self.navigationController.navigationBar setBarTintColor:backgroundColor];
     [self.navigationController.navigationBar setTranslucent:NO];
-    
-    self.favoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(favoriteTapped:)];
-    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(unfavoriteTapped:)];
-    
-    self.navigationItem.rightBarButtonItem = self.favoriteButton;
-    
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
-        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
-        NSString *favType = [dict objectForKey:FavTypeKey];
-        if (favID == [TeamController sharedInstance].currentTeam.teamID
-            && [favType isEqualToString:@"T"]) {
-            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
-        }
-    }
     
     [[GameController sharedInstance] allGamesForTeam:[TeamController sharedInstance].currentTeam WithCompletion:^(BOOL success, NSArray *games) {
         [TeamController sharedInstance].currentTeam.schedule = games;
@@ -481,7 +492,7 @@
 //        [self setRoundedView:self.whiteCircle toDiameter:logoCircleDiameterScaled];
 //        self.logoCircle.center = self.whiteCircle.center;
       
-        NSLog(@"width %f", self.whiteCircle.frame.size.width);
+//        NSLog(@"width %f", self.whiteCircle.frame.size.width);
 //        self.circles.frame = circleFrame;
 //        self.circles.center = circlesCenter;
     } else {
