@@ -150,8 +150,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 150)];
-    [self.view addSubview:self.header];
     [self setupHeader];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
@@ -325,7 +323,7 @@
     [teamRecordLabel setFont:[teamRecordLabel.font fontWithSize:[self maxFontSize:teamRecordLabel]]];
     [primaryColorStripe addSubview:teamRecordLabel];
     
-    self.blackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width, self.headerView.frame.size.height)];
+    self.blackView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width, self.headerView.frame.size.height)];
     self.blackView.backgroundColor = [UIColor blackColor];
     [self.headerView addSubview:self.blackView];
     
@@ -407,6 +405,22 @@
         case 3:
             break;
     }
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section){
+            
+        case 0:
+            return YES;
+            break;
+        case 1:
+            return NO;
+            break;
+        case 2:
+            return YES;
+            break;
+    }
+    return NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
