@@ -26,7 +26,6 @@
 
 @interface TeamViewController () <UITableViewDelegate>
 
-@property (nonatomic, strong) UIView *header;
 @property (nonatomic, strong) UIImageView *headerImage;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) TeamDataSource *dataSource;
@@ -49,6 +48,7 @@
 @property (nonatomic, assign) float whiteCircleDiameter;
 @property (nonatomic, assign) float colorCircleDiameter;
 @property (nonatomic, assign) float logoCircleDiameter;
+@property (nonatomic, strong) UIImageView *blackView;
 
 @end
 
@@ -170,9 +170,7 @@
     }];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 150)];
-    [self.view addSubview:self.header];
+
     [self setupHeader];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
@@ -292,7 +290,7 @@
     [teamRecordLabel setFont:[teamRecordLabel.font fontWithSize:[self maxFontSize:teamRecordLabel]]];
     [primaryColorStripe addSubview:teamRecordLabel];
     
-    self.blackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width, self.headerView.frame.size.height)];
+    self.blackView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width, self.headerView.frame.size.height)];
     self.blackView.backgroundColor = [UIColor blackColor];
     [self.headerView addSubview:self.blackView];
     
