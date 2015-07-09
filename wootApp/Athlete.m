@@ -15,31 +15,6 @@
     if (self) {
         self.athleteID = [dictionary[AthleteIDKey] integerValue];
         self.name = dictionary[AthleteNameKey];
-<<<<<<< HEAD
-        if (dictionary[JerseyNumberKey] != (id)[NSNull null]) {
-            self.jerseyNumber = [dictionary[JerseyNumberKey] integerValue];
-        }
-       // self.photo = [UIImage imageNamed:[NSString stringWithFormat:@"%@", dictionary[PhotoKey]]];
-        self.position = dictionary[PositionKey];
-        if (dictionary[StatTypeKey] != (id)[NSNull null]) {
-            self.statType = [dictionary[StatTypeKey] integerValue];
-        }
-        if (dictionary[HeightKey] != (id)[NSNull null]) {
-            self.height = [dictionary[HeightKey] integerValue];
-        }
-        if (dictionary[WeightKey] != (id)[NSNull null]) {
-            self.weight = [dictionary[WeightKey] integerValue];
-        }
-        if (dictionary[YearKey] != (id)[NSNull null]) {
-            self.year = [dictionary[YearKey] integerValue];
-        }
-        if (dictionary[BioKey] != (id)[NSNull null]) {
-            self.bio = [NSString stringWithFormat:@"%@", dictionary[BioKey]];
-        }
-        if (dictionary[ViewsKey] != (id)[NSNull null]) {
-            self.views = [dictionary[ViewsKey] integerValue];
-        }
-=======
         
         self.position = dictionary[PositionKey];
         
@@ -71,7 +46,6 @@
             self.views = [dictionary[ViewsKey] integerValue];
         }
         
->>>>>>> 57bbbd0e90ef0208caf11a55a0125fa912c696a2
         if ([dictionary[IsCaptainKey] isEqualToString:@"Y"]) {
             self.isCaptain = YES;
         } else {

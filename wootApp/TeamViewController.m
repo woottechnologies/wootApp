@@ -129,13 +129,47 @@
     
     SchoolController *schoolController = [SchoolController sharedInstance];
     
-    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
-        [[[Twitter sharedInstance] APIClient] loadTweetWithID:@"20" completion:^(TWTRTweet *tweet, NSError *error) {
-            TWTRTweetView *tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleRegular];
+//    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
+//        [[[Twitter sharedInstance] APIClient] loadTweetWithID:@"" completion:^(TWTRTweet *tweet, NSError *error) {
+//            TWTRTweetView *tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleRegular];
 //            [self.view addSubview:tweetView];
-        }];
-    }];
-
+//        }];
+//    }];
+//    
+//    NSArray *tweets = [TWTRTweet tweetsWithJSONArray:nil];
+//    NSString *teamHashtag = @"WXFootball";
+//    NSString *statusesWithHashtags = [NSString stringWithFormat:@"https://api.twitter.com/1.1/search/tweets.json?q=%23wootapp+%23%@&result_type=recent", teamHashtag];
+//    NSDictionary *params = @{@"id" : @"20"};
+//    NSError *clientError;
+//    NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
+//                             URLRequestWithMethod:@"GET"
+//                             URL:statusesWithHashtags
+//                             parameters:nil
+//                             error:&clientError];
+//    
+//    if (request) {
+//        [[[Twitter sharedInstance] APIClient]
+//         sendTwitterRequest:request
+//         completion:^(NSURLResponse *response,
+//                      NSData *data,
+//                      NSError *connectionError) {
+//             if (data) {
+//                 // handle the response data e.g.
+//                 NSError *jsonError;
+//                 NSDictionary *json = [NSJSONSerialization
+//                                       JSONObjectWithData:data
+//                                       options:0
+//                                       error:&jsonError];
+//             }
+//             else {
+//                 NSLog(@"Error: %@", connectionError);
+//             }
+//         }];
+//    }
+//    else {
+//        NSLog(@"Error: %@", clientError);
+//    }
+    
     
     self.isTransitioning = NO;
     self.navigationController.navigationBar.hidden = NO;
@@ -180,11 +214,7 @@
     }];
     
     self.view.backgroundColor = [UIColor whiteColor];
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 57bbbd0e90ef0208caf11a55a0125fa912c696a2
     [self setupHeader];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
