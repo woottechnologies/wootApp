@@ -8,6 +8,7 @@
 
 #import "Stats.h"
 #import "TeamController.h"
+#import "AthleteController.h"
 
 typedef NS_ENUM(int16_t, summaryStatsType){
     QB = 1,
@@ -56,7 +57,7 @@ typedef NS_ENUM(int16_t, summaryStatsType){
 }
 
 - (NSDictionary *)summaryStats{
-    Athlete *athlete = [TeamController sharedInstance].currentAthlete;
+    Athlete *athlete = [AthleteController sharedInstance].currentAthlete;
     switch (athlete.statType) {
         case QB:
             if(self.gamesPlayed == 0 || !self.gamesPlayed){

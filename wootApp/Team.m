@@ -23,7 +23,7 @@
     
     if (self) {
         self.teamID = [dictionary[TeamIDKey] integerValue];
-        //self.schoolID = [dictionary[SchoolIDKey] integerValue];
+        self.schoolID = [dictionary[SchoolIDKey] integerValue];
         self.type = dictionary[TypeKey];
         self.wins = [dictionary[WinsKey] integerValue];
         self.losses = [dictionary[LossesKey] integerValue];
@@ -39,33 +39,12 @@
 }
 
 - (NSArray *)schedule {
-//    [[GameController sharedInstance] allGamesForTeam:self WithCompletion:^(BOOL success, NSArray *games) {
-//        if (success) {
-//             _schedule = games;
-//        }
-//    }];
-
-//    while (!_schedule) {
-//    
-//    }
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
                                         sortDescriptorWithKey:@"date"
                                         ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
     NSArray *sortedEventArray = [_schedule sortedArrayUsingDescriptors:sortDescriptors];
-//    NSMutableArray *sortedSchedule = [[NSMutableArray alloc] init];
-//    NSMutableArray *unsortedSchedule = [_schedule mutableCopy];
-//    while (sortedSchedule.count < _schedule.count){
-//        Game *earliestGame = [Game new];
-//        earliestGame.date = [NSDate distantFuture];
-//        for (Game *game in unsortedSchedule){
-//            if ([game.date compare:earliestGame.date] == NSOrderedAscending){
-//                earliestGame = game;
-//            }
-//        }
-//        [sortedSchedule addObject:earliestGame];
-//        [unsortedSchedule removeObject:earliestGame];
-//    }
+    
     return sortedEventArray;
 }
 

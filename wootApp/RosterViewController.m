@@ -13,6 +13,7 @@
 #import "RosterTableViewCell.h"
 #import "CustomTabBarVC.h"
 #import "AppDelegate.h"
+#import "AthleteController.h"
 
 static NSString *RosterCellID = @"RosterCellID";
 
@@ -66,8 +67,8 @@ static NSString *RosterCellID = @"RosterCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    TeamController *teamController = [TeamController sharedInstance];
-    teamController.currentAthlete = self.rosterSortedByNumber[indexPath.row];
+    AthleteController *athleteController = [AthleteController sharedInstance];
+    athleteController.currentAthlete = self.rosterSortedByNumber[indexPath.row];
     AthleteViewController *athleteVC = [AthleteViewController new];
     [self.navigationController pushViewController:athleteVC animated:YES];
 }

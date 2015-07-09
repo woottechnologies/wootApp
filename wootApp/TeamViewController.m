@@ -23,6 +23,7 @@
 #import "UIView+FLKAutoLayout.h"
 #import "CustomTabBarVC.h"
 #import "CoachingStaffViewController.h"
+#import "AthleteController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -152,7 +153,7 @@
     self.tableView.tableHeaderView = tableHeaderView;
     [self.view addSubview:self.tableView];
     
-    [[TeamController sharedInstance] loadAthletesFromDBWithCompletion:^(BOOL success) {
+    [[AthleteController sharedInstance] loadAthletesFromDBWithCompletion:^(BOOL success) {
         if (success) {
             //Updating UI must occur on main thread
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -520,8 +521,8 @@
 #pragma mark - MostViewedPlayerCell delegate methods
 
 - (void)athleteButtonPressed:(Athlete *)athlete{
-    TeamController *teamController = [TeamController sharedInstance];
-    teamController.currentAthlete = athlete;
+    AthleteController *athleteController = [AthleteController sharedInstance];
+    athleteController.currentAthlete = athlete;
     AthleteViewController *athleteVC = [AthleteViewController new];
     [self.navigationController pushViewController:athleteVC animated:YES];
 }

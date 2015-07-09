@@ -17,6 +17,8 @@
 #import "CampaignController.h"
 #import "CampaignAdViewController.h"
 #import "UIView+FLKAutoLayout.h"
+#import "AthleteController.h"
+#import "SchoolController.h"
 @import MessageUI;
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
@@ -224,6 +226,12 @@
             [[TeamController sharedInstance] selectTeamWithTeamID:teamID andCompletion:^(BOOL success, Team *team) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [TeamController sharedInstance].currentTeam = team;
+                    for (School *school in [SchoolController sharedInstance].schools) {
+                        if (school.schoolID == team.schoolID) {
+                            [SchoolController sharedInstance].currentSchool = school;
+                        }
+                    }
+                    
                     [vc popToRootViewControllerAnimated:NO];
                     [vc pushViewController:teamVC animated:YES];
                 });
@@ -231,9 +239,14 @@
         } else  {
             AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
             NSInteger athleteID = [[favorite objectForKey:FavIDKey] integerValue];
-            [[TeamController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
+            [[AthleteController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [TeamController sharedInstance].currentAthlete = athlete;
+                    [AthleteController sharedInstance].currentAthlete = athlete;
+                    for (School *school in [SchoolController sharedInstance].schools) {
+                        if (school.schoolID == athlete.schoolID) {
+                            [SchoolController sharedInstance].currentSchool = school;
+                        }
+                    }
                     [vc popToRootViewControllerAnimated:NO];
                     [vc pushViewController:athleteVC animated:YES];
                 });
