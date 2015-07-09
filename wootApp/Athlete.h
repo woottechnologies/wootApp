@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 #import "Stats.h"
+#import "School.h"
 
 static NSString *AthleteIDKey = @"id";
 static NSString *AthleteNameKey = @"name";
@@ -40,8 +41,7 @@ static NSString *ViewsKey = @"views";
 @property (nonatomic, assign) BOOL isStarter;
 @property (nonatomic, assign) NSInteger views;
 @property (nonatomic, strong) Stats *stats;
-
-// @property (nonatomic, strong) NSArray *stats;
+@property (nonatomic, assign) NSInteger schoolID;
 
 - (instancetype)initWithDictionary: (NSDictionary *)dictionary;
 

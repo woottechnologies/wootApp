@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4719A32B1B4DE466009A707E /* AthleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719A32A1B4DE466009A707E /* AthleteController.m */; };
 		472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 472F873B1B27741D0067C72F /* UIImage+PathForFile.m */; };
 		473EA3531B2939400033AFA1 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 473EA3521B2939400033AFA1 /* GameViewController.m */; };
 		473EA3561B29E4F80033AFA1 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 473EA3551B29E4F80033AFA1 /* Game.m */; };
@@ -75,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4719A3291B4DE466009A707E /* AthleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteController.h; sourceTree = "<group>"; };
+		4719A32A1B4DE466009A707E /* AthleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteController.m; sourceTree = "<group>"; };
 		472F873A1B27741D0067C72F /* UIImage+PathForFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PathForFile.h"; sourceTree = "<group>"; };
 		472F873B1B27741D0067C72F /* UIImage+PathForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PathForFile.m"; sourceTree = "<group>"; };
 		473EA3511B2939400033AFA1 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */,
 				47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */,
 				47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */,
+				4719A3291B4DE466009A707E /* AthleteController.h */,
+				4719A32A1B4DE466009A707E /* AthleteController.m */,
 			);
 			name = Athlete;
 			sourceTree = "<group>";
@@ -558,6 +563,7 @@
 				553A28DF1B2773E600784798 /* Campaign.m in Sources */,
 				553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */,
 				553A28E21B27762700784798 /* CampaignController.m in Sources */,
+				4719A32B1B4DE466009A707E /* AthleteController.m in Sources */,
 				553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */,
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,

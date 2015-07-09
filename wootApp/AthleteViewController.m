@@ -14,6 +14,7 @@
 #import "SchoolController.h"
 #import "AppDelegate.h"
 #import "CustomTabBarVC.h"
+#import "AthleteController.h"
 
 
 @interface AthleteViewController () <UITableViewDelegate>
@@ -35,11 +36,15 @@
     
     self.customTBVC.toolBar.hidden = NO;
     
-    [[TeamController sharedInstance] incrementViewsForAthleteWithCompletion:^(BOOL success) {
+    [[AthleteController sharedInstance] incrementViewsForAthleteWithCompletion:^(BOOL success) {
         if (success) {
-            NSLog(@"views = %li", [TeamController sharedInstance].currentAthlete.views);
+           // NSLog(@"views = %li", [AthleteController sharedInstance].currentAthlete.views);
+            
+            // set athlete views
         }
     }];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
     UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -60,7 +65,7 @@
     for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
         NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
         NSString *favType = [dict objectForKey:FavTypeKey];
-        if (favID == [TeamController sharedInstance].currentAthlete.athleteID
+        if (favID == [AthleteController sharedInstance].currentAthlete.athleteID
             && [favType isEqualToString:@"A"]) {
             self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
         }
@@ -70,11 +75,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
     
-    [[StatsController sharedInstance] loadSummaryStatsFromDBForAthlete:[TeamController sharedInstance].currentAthlete WithCompletion:^(BOOL success, Stats *stats) {
+    [[StatsController sharedInstance] loadSummaryStatsFromDBForAthlete:[AthleteController sharedInstance].currentAthlete WithCompletion:^(BOOL success, Stats *stats) {
         if (success) {
-            [TeamController sharedInstance].currentAthlete.stats = stats;
+            [AthleteController sharedInstance].currentAthlete.stats = stats;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -107,8 +113,8 @@
 //
 //    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 //    
-//    [self.navigationController.navigationBar setBarTintColor:backgroundColor];
-//    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setBarTintColor:[SchoolController sharedInstance].currentSchool.primaryColor];
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 /*
@@ -239,6 +245,7 @@
     
     TeamController *teamController = [TeamController sharedInstance];
     SchoolController *schoolController = [SchoolController sharedInstance];
+    AthleteController *athleteController = [AthleteController sharedInstance];
     
     UIColor *primaryColor = schoolController.currentSchool.primaryColor;
     UIColor *secondaryColor = schoolController.currentSchool.secondaryColor;
@@ -300,7 +307,7 @@
     [headerView addSubview:whiteCircle];
     
 //    UIImageView *athleteCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"football_portrait_square"]];
-    UIImageView *athleteCircle = [[UIImageView alloc] initWithImage:teamController.currentAthlete.photo];
+    UIImageView *athleteCircle = [[UIImageView alloc] initWithImage:athleteController.currentAthlete.photo];
     athleteCircle.clipsToBounds = YES;
     [self setRoundedView:athleteCircle toDiameter:windowWidth/2.388];
     athleteCircle.center = circleCenter;
@@ -309,7 +316,7 @@
     UILabel *athleteNumberLabel = [[UILabel alloc] init];
     athleteNumberLabel.frame = CGRectMake(windowWidth/2, windowWidth/93.75, windowWidth/6.25, windowWidth/10.135);
 //    athleteNumberLabel.text = @"#88";
-    athleteNumberLabel.text = [NSString stringWithFormat:@"#%li", (long)teamController.currentAthlete.jerseyNumber];
+    athleteNumberLabel.text = [NSString stringWithFormat:@"#%li", (long)athleteController.currentAthlete.jerseyNumber];
     athleteNumberLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:35];
     athleteNumberLabel.textColor = primaryColor;
     [athleteNumberLabel setFont:[athleteNumberLabel.font fontWithSize:[self maxFontSize:athleteNumberLabel]]];
@@ -318,7 +325,7 @@
     UILabel *athleteNameLabel = [[UILabel alloc] init];
     athleteNameLabel.frame = CGRectMake(athleteNumberLabel.center.x + windowWidth/10.714, windowWidth/75, windowWidth/3.261, windowWidth/17.8571429);
 //    athleteNameLabel.text = @"Luke Robinson";
-    athleteNameLabel.text = teamController.currentAthlete.name;
+    athleteNameLabel.text = athleteController.currentAthlete.name;
     athleteNameLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
     [athleteNameLabel setFont:[athleteNameLabel.font fontWithSize:[self maxFontSize:athleteNameLabel]]];
     [whiteStripe addSubview:athleteNameLabel];
@@ -326,7 +333,7 @@
     UILabel *athleteHeightLabel = [[UILabel alloc] init];
     athleteHeightLabel.frame = CGRectMake(150 + windowWidth/10.714, 7, 70, 30);
     //    athleteNameLabel.text = @"Luke Robinson";
-    athleteHeightLabel.text = [NSString stringWithFormat:@"%@", [self inchesToFeet:teamController.currentAthlete.height]];
+    athleteHeightLabel.text = [NSString stringWithFormat:@"%@", [self inchesToFeet:athleteController.currentAthlete.height]];
     athleteHeightLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
     athleteHeightLabel.textColor = [UIColor whiteColor];
     [athleteHeightLabel setFont:[athleteHeightLabel.font fontWithSize:[self maxFontSize:athleteHeightLabel]]];
@@ -335,7 +342,7 @@
     UILabel *athleteWeightLabel = [[UILabel alloc] init];
     athleteWeightLabel.frame = CGRectMake(220 + windowWidth/10.714, 7, 100, 30);
     //    athleteNameLabel.text = @"Luke Robinson";
-    athleteWeightLabel.text = [NSString stringWithFormat:@"%lilbs", (long)teamController.currentAthlete.weight];
+    athleteWeightLabel.text = [NSString stringWithFormat:@"%lilbs", (long)athleteController.currentAthlete.weight];
     athleteWeightLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
     athleteWeightLabel.textColor = [UIColor whiteColor];
     [athleteWeightLabel setFont:[athleteWeightLabel.font fontWithSize:[self maxFontSize:athleteWeightLabel]]];
@@ -345,7 +352,7 @@
     UILabel *athletePositionLabel = [[UILabel alloc] init];
     athletePositionLabel.frame = CGRectMake(athleteNumberLabel.center.x + windowWidth/10.714, windowWidth/16.304, windowWidth/3.261, windowWidth/25);
 //    athletePositionLabel.text = @"Senior QB";
-    athletePositionLabel.text = [NSString stringWithFormat:@"%@ %@", [self calculateYear:teamController.currentAthlete.year], teamController.currentAthlete.position];
+    athletePositionLabel.text = [NSString stringWithFormat:@"%@ %@", [self calculateYear:athleteController.currentAthlete.year], athleteController.currentAthlete.position];
     
     athletePositionLabel.font = [UIFont fontWithName:@"ArialMT" size:13];
     [athletePositionLabel setFont:[athletePositionLabel.font fontWithSize:[self maxFontSize:athletePositionLabel]]];
@@ -457,7 +464,7 @@
         [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
     } else {
         self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
-        [userController addFavorite:[TeamController sharedInstance].currentAthlete];
+        [userController addFavorite:[AthleteController sharedInstance].currentAthlete];
     }
 }
 
@@ -468,7 +475,7 @@
         [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
     } else {
         self.navigationItem.rightBarButtonItem = self.favoriteButton;
-        [userController removeFavorite:[TeamController sharedInstance].currentAthlete];
+        [userController removeFavorite:[AthleteController sharedInstance].currentAthlete];
     }
 }
 

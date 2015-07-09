@@ -61,7 +61,7 @@
                 }
                 dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
                     self.schools = mutSchoolArray;
-                    self.currentSchool = self.schools[0];
+                    //self.currentSchool = self.schools[0];
                     completion(YES);
                 });
             }

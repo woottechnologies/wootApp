@@ -10,6 +10,7 @@
 #import "TeamController.h"
 #import "Athlete.h"
 #import "SummaryStatsTableViewCell.h"
+#import "AthleteController.h"
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     StatsSection = 0,
@@ -41,7 +42,7 @@ static NSString *bioCellID = @"bioCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    Athlete *currentAthlete = [TeamController sharedInstance].currentAthlete;
+    Athlete *currentAthlete = [AthleteController sharedInstance].currentAthlete;
     switch (indexPath.section){
             
         case StatsSection:
@@ -79,7 +80,7 @@ static NSString *bioCellID = @"bioCellID";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    Athlete *currentAthlete = [TeamController sharedInstance].currentAthlete;
+    Athlete *currentAthlete = [AthleteController sharedInstance].currentAthlete;
     if(currentAthlete.statType != 7){
         return 1;
     } else {

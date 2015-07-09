@@ -56,6 +56,10 @@
         } else {
             self.isStarter = NO;
         }
+        
+        if (dictionary[SchoolIDKey] != (id)[NSNull null]) {
+            self.schoolID = [dictionary[SchoolIDKey] integerValue];
+        }
     }
     return self;
 }
