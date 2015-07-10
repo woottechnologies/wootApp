@@ -67,13 +67,9 @@ static NSString *RosterCellID = @"RosterCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-<<<<<<< HEAD
-    TeamController *teamController = [TeamController sharedInstance];
-    teamController.currentAthlete = self.sortedRoster[indexPath.row];
-=======
     AthleteController *athleteController = [AthleteController sharedInstance];
-    athleteController.currentAthlete = self.rosterSortedByNumber[indexPath.row];
->>>>>>> fbb284feda1e6304dc0151a697df41d722c1537e
+    athleteController.currentAthlete = self.sortedRoster[indexPath.row];
+
     AthleteViewController *athleteVC = [AthleteViewController new];
     [self.navigationController pushViewController:athleteVC animated:YES];
 }

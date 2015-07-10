@@ -12,13 +12,17 @@
 #import "PreviousGameTableViewCell.h"
 #import "NextGameTableViewCell.h"
 #import "CoachingStaffCell.h"
+#import "TeamTweetCell.h"
+#import "TeamTweetController.h"
+
+
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     TopPlayersSection = 0,
     ScheduleSection = 1,
     CoachesSection = 2,
     //PicturesSection = 2,
-    //VideosSection = 3
+    TweetSection = 3
 };
 
 static NSString *mostViewedPlayerCellID = @"mostViewedPlayerCellID";
@@ -26,6 +30,7 @@ static NSString *scheduleCellID = @"scheduleCellID";
 static NSString *nextGameCellID = @"nextGameCellID";
 static NSString *normalCellID = @"normalCellID";
 static NSString *coachingStaffCellID = @"coachingStaffCellID";
+static NSString *teamTweetCellID = @"teamTweetCellID";
 
 @interface TeamDataSource()
 
@@ -44,6 +49,7 @@ static NSString *coachingStaffCellID = @"coachingStaffCellID";
     [self.tableView registerClass:[NextGameTableViewCell class] forCellReuseIdentifier:nextGameCellID];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:normalCellID];
     [self.tableView registerClass:[CoachingStaffCell class] forCellReuseIdentifier:coachingStaffCellID];
+    [self.tableView registerClass:[TeamTweetCell class] forCellReuseIdentifier:teamTweetCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,6 +101,13 @@ static NSString *coachingStaffCellID = @"coachingStaffCellID";
                }
                ((CoachingStaffCell *)cell).delegate = self.viewController;
             break;
+        case TweetSection:
+               cell = [tableView dequeueReusableCellWithIdentifier:teamTweetCellID];
+               TeamTweetController *teamTweetController = [TeamTweetController sharedInstance];
+//               if ([teamTweetController.teamHashtag isEqualToString:teamController.currentTeam.teamHashtag] && teamTweetController.tweets) {
+                   [((TeamTweetCell *)cell) setUpCell:teamTweetController.tweets[indexPath.row]];
+               break;
+
     }
     
     return cell;
@@ -102,12 +115,12 @@ static NSString *coachingStaffCellID = @"coachingStaffCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *numberOfRowsPerSection = @[@1, @2, @1, @0];
+    NSArray *numberOfRowsPerSection = @[@1, @2, @1, @5];
     return [numberOfRowsPerSection[section] integerValue];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 4;
 }
 
 -(CGFloat)descriptionLabelHeight:(NSString *)string{

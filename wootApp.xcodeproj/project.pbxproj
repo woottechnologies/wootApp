@@ -44,7 +44,8 @@
 		553A29321B389DD900784798 /* StatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29311B389DD900784798 /* StatsController.m */; };
 		553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29341B3C654100784798 /* UIColor+CreateMethods.m */; };
 		553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29371B3DDFA200784798 /* NextGameTableViewCell.m */; };
-		5569EA7F1B4DD366007B540B /* TeamTweets.m in Sources */ = {isa = PBXBuildFile; fileRef = 5569EA7E1B4DD366007B540B /* TeamTweets.m */; };
+		554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 554308621B4F3FBD00571404 /* TeamTweetCell.m */; };
+		5569EA7F1B4DD366007B540B /* TeamTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5569EA7E1B4DD366007B540B /* TeamTweetController.m */; };
 		5569EA851B4DD946007B540B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA811B4DD946007B540B /* Fabric.framework */; };
 		5569EA861B4DD946007B540B /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA821B4DD946007B540B /* TwitterKit.framework */; };
 		5569EA871B4DD946007B540B /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5569EA831B4DD946007B540B /* TwitterKitResources.bundle */; };
@@ -149,8 +150,10 @@
 		553A29341B3C654100784798 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		553A29361B3DDFA200784798 /* NextGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextGameTableViewCell.h; sourceTree = "<group>"; };
 		553A29371B3DDFA200784798 /* NextGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextGameTableViewCell.m; sourceTree = "<group>"; };
-		5569EA7D1B4DD366007B540B /* TeamTweets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweets.h; sourceTree = "<group>"; };
-		5569EA7E1B4DD366007B540B /* TeamTweets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTweets.m; sourceTree = "<group>"; };
+		554308611B4F3FBD00571404 /* TeamTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweetCell.h; sourceTree = "<group>"; };
+		554308621B4F3FBD00571404 /* TeamTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTweetCell.m; sourceTree = "<group>"; };
+		5569EA7D1B4DD366007B540B /* TeamTweetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweetController.h; sourceTree = "<group>"; };
+		5569EA7E1B4DD366007B540B /* TeamTweetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTweetController.m; sourceTree = "<group>"; };
 		5569EA811B4DD946007B540B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5569EA821B4DD946007B540B /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		5569EA831B4DD946007B540B /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
@@ -273,8 +276,10 @@
 				55B4C9171B210A13003B3058 /* TeamDataSource.m */,
 				47541EB31B1F71E6005E3C53 /* TeamController.h */,
 				47541EB41B1F71E6005E3C53 /* TeamController.m */,
-				5569EA7D1B4DD366007B540B /* TeamTweets.h */,
-				5569EA7E1B4DD366007B540B /* TeamTweets.m */,
+				5569EA7D1B4DD366007B540B /* TeamTweetController.h */,
+				5569EA7E1B4DD366007B540B /* TeamTweetController.m */,
+				554308611B4F3FBD00571404 /* TeamTweetCell.h */,
+				554308621B4F3FBD00571404 /* TeamTweetCell.m */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
 				553A29321B389DD900784798 /* StatsController.m in Sources */,
 				553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */,
+				554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */,
 				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
 				4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */,
@@ -588,7 +594,7 @@
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
 				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,
 				55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */,
-				5569EA7F1B4DD366007B540B /* TeamTweets.m in Sources */,
+				5569EA7F1B4DD366007B540B /* TeamTweetController.m in Sources */,
 				553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
