@@ -173,17 +173,36 @@
 
 - (NSArray *) sortRosterByNumber{
     NSMutableArray *roster = [[NSMutableArray alloc] init];
-    NSMutableArray *unsortedRoster = [self.currentTeam.athletes mutableCopy];
-    while (roster.count < self.currentTeam.athletes.count){
+    NSMutableArray *unsortedRosterWithNumbers = [[NSMutableArray alloc] init];
+    NSMutableArray *unsortedRosterWithNamesOnly = [[NSMutableArray alloc] init];
+    for (Athlete *athlete in self.currentTeam.athletes) {
+        if (athlete.jerseyNumber) {
+            [unsortedRosterWithNumbers addObject:athlete];
+        } else {
+            [unsortedRosterWithNamesOnly addObject:athlete];
+        }
+    }
+    while (roster.count < unsortedRosterWithNumbers.count){
         Athlete *athleteWithSmallestNumber = [Athlete new];
         athleteWithSmallestNumber.jerseyNumber = 999999;
-        for (Athlete *athlete in unsortedRoster){
-            if (athlete.jerseyNumber < athleteWithSmallestNumber.jerseyNumber){
+        for (Athlete *athlete in unsortedRosterWithNumbers){
+            if (athlete.jerseyNumber < athleteWithSmallestNumber.jerseyNumber && ![roster containsObject:athlete]){
                 athleteWithSmallestNumber = athlete;
             }
         }
         [roster addObject:athleteWithSmallestNumber];
-        [unsortedRoster removeObject:athleteWithSmallestNumber];
+    }
+
+    while (roster.count < self.currentTeam.athletes.count){
+        Athlete *athleteFirstAlphabetically = [Athlete new];
+        athleteFirstAlphabetically.name = @"~~~"; //the last character on the ascii table?
+        for (Athlete *athlete in unsortedRosterWithNamesOnly){
+            NSComparisonResult result = [athlete.name compare:athleteFirstAlphabetically.name];
+            if (result == NSOrderedAscending && ![roster containsObject:athlete]){
+                athleteFirstAlphabetically = athlete;
+            }
+        }
+        [roster addObject:athleteFirstAlphabetically];
     }
     return roster;
 }

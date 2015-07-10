@@ -23,7 +23,9 @@
 #import "UIView+FLKAutoLayout.h"
 #import "CustomTabBarVC.h"
 #import "CoachDetailViewController.h"
+#import <TwitterKit/TwitterKit.h>
 #import "AthleteController.h"
+#import "TeamTweetController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -36,7 +38,6 @@
 @property (nonatomic, assign) CGPoint lastOffset;
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) UIToolbar *toolBar;
-//@property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButton;
 @property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
@@ -55,17 +56,10 @@
 
 @implementation TeamViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-   // [super viewDidAppear:animated];
     self.customTBVC.campaignAdButton.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-   // [super viewWillAppear:animated];
-    if ([TeamController sharedInstance].currentTeam.campaigns) {
-        //[self chooseCampaign];
-    }
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     self.toolbarIsAnimating = NO;
@@ -102,6 +96,8 @@
     
     self.navigationItem.rightBarButtonItem = self.favoriteButton;
     
+    self.blackView.alpha = 0;
+    
     for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
         NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
         NSString *favType = [dict objectForKey:FavTypeKey];
@@ -113,7 +109,6 @@
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-   // [super viewWillDisappear:animated];
     [self unhideToolBar];
     self.isTransitioning = YES;
 }
@@ -127,6 +122,10 @@
     
     SchoolController *schoolController = [SchoolController sharedInstance];
     
+    TeamTweetController* teamTweets = [TeamTweetController sharedInstance];
+    [teamTweets networkController];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:@"requestFinished" object:nil];
+
     self.isTransitioning = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = schoolController.currentSchool.primaryColor;
@@ -139,10 +138,10 @@
     self.toolBar.hidden = YES;
     [self unhideToolBar];
     self.toolBar.hidden = NO;
-
+    
     self.lastOffset = CGPointMake(0, 0);
     self.currentOffset = CGPointMake(0, 0);
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 605) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 700) style:UITableViewStyleGrouped];
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
@@ -170,7 +169,7 @@
     }];
     
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
     [self setupHeader];
     
     CampaignController *campaignController = [CampaignController sharedInstance];
@@ -193,6 +192,13 @@
     }];
 }
 
+- (void)loadTweets {
+    
+    [self.tableView reloadData];
+    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, 600);
+
+}
+
 - (void)setupHeader {
     //    [super viewDidLoad];
     
@@ -208,9 +214,9 @@
     UIColor *secondaryColor = schoolController.currentSchool.secondaryColor;
     
     self.navigationController.navigationBar.backgroundColor = primaryColor;
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    self.navigationController.navigationBar.shadowImage = [UIImage new];
-//    self.navigationController.navigationBar.translucent = YES;
+    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    //    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    //    self.navigationController.navigationBar.translucent = YES;
     
     UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
@@ -231,13 +237,11 @@
     
     UIView *primaryColorStripe = [[UIView alloc] init];
     primaryColorStripe.backgroundColor = primaryColor;
-//    primaryColorStripe.backgroundColor = [UIColor blueColor];
     primaryColorStripe.frame = CGRectMake(0, headerPhotoBottom + bigStripeHeight + littleStripeHeight, windowWidth, bigStripeHeight);
     [self.headerView addSubview:primaryColorStripe];
     
     UIView *secondaryColorStripe = [[UIView alloc] init];
     secondaryColorStripe.backgroundColor = secondaryColor;
-//    secondaryColorStripe.backgroundColor = [UIColor redColor];
     secondaryColorStripe.frame = CGRectMake(0, headerPhotoBottom + bigStripeHeight, windowWidth, littleStripeHeight);
     [self.headerView addSubview:secondaryColorStripe];
     
@@ -259,10 +263,10 @@
     self.colorCircle = [UIImageView new];
     self.colorCircle.backgroundColor = primaryColor;
     self.colorCircleDiameter = windowWidth/2.388;
-//    colorCircle.backgroundColor = [UIColor blueColor];
+    //    colorCircle.backgroundColor = [UIColor blueColor];
     [self setRoundedView:self.colorCircle toDiameter:self.colorCircleDiameter];
-//    circleCenter.x = (windowWidth/2.083)/2;
-//    circleCenter.y = circleCenter.x;
+    //    circleCenter.x = (windowWidth/2.083)/2;
+    //    circleCenter.y = circleCenter.x;
     self.colorCircle.center = circleCenter;
     [self.headerView addSubview:self.colorCircle];
     
@@ -294,18 +298,18 @@
     self.blackView.backgroundColor = [UIColor blackColor];
     [self.headerView addSubview:self.blackView];
     
-//    UIView *statusBarStripe = [[UIView alloc] init];
-//    statusBarStripe.backgroundColor = [UIColor whiteColor];
-//    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
-//    [self.view addSubview:statusBarStripe];
-
+    //    UIView *statusBarStripe = [[UIView alloc] init];
+    //    statusBarStripe.backgroundColor = [UIColor whiteColor];
+    //    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
+    //    [self.view addSubview:statusBarStripe];
+    
 }
 
 - (void) backButtonPressed {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setRoundedView:(UIImageView *)roundedView toDiameter:(float)newSize;{
+- (void)setRoundedView:(UIImageView *)roundedView toDiameter:(float)newSize {
     CGPoint saveCenter = roundedView.center;
     CGRect newFrame = CGRectMake(roundedView.frame.origin.x, roundedView.frame.origin.y, newSize, newSize);
     roundedView.frame = newFrame;
@@ -342,8 +346,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height;
+    TWTRTweet *tweet;
+    TeamTweetController *teamTweetController = [TeamTweetController sharedInstance];
+    if (teamTweetController.tweets && teamTweetController.tweets.count>indexPath.row) {
+        tweet = teamTweetController.tweets[indexPath.row];
+    }
+    
     switch (indexPath.section){
-        
+            
         case 0:
             height = 270;
             break;
@@ -354,6 +364,11 @@
             height = 190;
             break;
         case 3:
+            if (tweet) {
+                height = [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.view.bounds)];
+            } else {
+                height = 0;
+            }
             break;
     }
     return height;
@@ -374,6 +389,25 @@
         case 3:
             break;
     }
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section){
+            
+        case 0:
+            return YES;
+            break;
+        case 1:
+            return NO;
+            break;
+        case 2:
+            return YES;
+            break;
+        case 3:
+            return NO;
+            break;
+    }
+    return NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -408,12 +442,13 @@
             
             [sectionActionButton setTitle:@"See All" forState:UIControlStateNormal];
             [sectionActionButton addTarget:self action:@selector(pushFullSchedule) forControlEvents:UIControlEventTouchUpInside];
-
+            
             break;
         case 2:
             sectionTitleLabel.text = @"Coaches";
             break;
         case 3:
+            sectionTitleLabel.text = @"Trending";
             break;
     }
     return headerView;
@@ -426,7 +461,7 @@
 - (void)scrollViewDidScroll :(UIScrollView *)scrollView {
     self.lastOffset = self.currentOffset;
     self.currentOffset = scrollView.contentOffset;
-//    NSLog(@"%f", self.lastOffset.y);
+    //    NSLog(@"%f", self.lastOffset.y);
     if (self.currentOffset.y < self.lastOffset.y) {
         [self unhideToolBar];
     } else {
@@ -437,54 +472,54 @@
     if(self.currentOffset.y < 260){
         self.headerView.frame = CGRectMake(0, headerY, self.view.frame.size.width, 215);
         float blackViewAlpha = -headerY/290 - 0.068;
-//        NSLog(@"%f", blackViewAlpha);
+        //        NSLog(@"%f", blackViewAlpha);
         self.blackView.alpha = blackViewAlpha;
-//        self.tableView.frame = CGRectMake(0, headerY + 215, self.view.frame.size.width, 510-headerY);
-//        CGPoint circlesCenter = self.whiteCircle.center;
-//        circlesCenter.y = headerY*1.6 + 180;
-//        self.whiteCircle.center = circlesCenter;
-//        CGRect circleFrame = self.circles.frame;
-//        circleFrame.size = CGSizeMake(self.circles.frame.size.width *headerScaler, self.circles.frame.size.height *headerScaler);
-//        float headerScaler = 1 - headerY/-318;
-//        NSLog(@"scaler %f", headerScaler);
-//        float whiteCircleDiameterScaled = self.whiteCircleDiameter *headerScaler;
-//        self.whiteCircle.frame = CGRectMake(10, headerY/2 + 140, whiteCircleDiameterScaled, whiteCircleDiameterScaled);
-//        [self setRoundedView:self.whiteCircle toDiameter:whiteCircleDiameterScaled];
-//        
-//        float colorCircleDiameterScaled = self.colorCircleDiameter *headerScaler;
-////        self.colorCircle.frame = CGRectMake(0, 0, colorCircleDiameterScaled, colorCircleDiameterScaled);
-//        CGRect colorCircleFrame = self.colorCircle.frame;
-//        colorCircleFrame.size = CGSizeMake(colorCircleDiameterScaled, colorCircleDiameterScaled);
-//        self.colorCircle.center = self.whiteCircle.center;
-//        [self setRoundedView:self.whiteCircle toDiameter:colorCircleDiameterScaled];
-//        self.colorCircle.center = self.whiteCircle.center;
-//        
-//        float logoCircleDiameterScaled = self.logoCircleDiameter *headerScaler;
-////        self.logoCircle.frame = CGRectMake(0, 0, logoCircleDiameterScaled, logoCircleDiameterScaled);
-//        CGRect logoCircleFrame = self.logoCircle.frame;
-//        logoCircleFrame.size = CGSizeMake(logoCircleDiameterScaled, logoCircleDiameterScaled);
-//        self.logoCircle.center = self.whiteCircle.center;
-//        [self setRoundedView:self.whiteCircle toDiameter:logoCircleDiameterScaled];
-//        self.logoCircle.center = self.whiteCircle.center;
-      
-//        NSLog(@"width %f", self.whiteCircle.frame.size.width);
-//        self.circles.frame = circleFrame;
-//        self.circles.center = circlesCenter;
+        //        self.tableView.frame = CGRectMake(0, headerY + 215, self.view.frame.size.width, 510-headerY);
+        //        CGPoint circlesCenter = self.whiteCircle.center;
+        //        circlesCenter.y = headerY*1.6 + 180;
+        //        self.whiteCircle.center = circlesCenter;
+        //        CGRect circleFrame = self.circles.frame;
+        //        circleFrame.size = CGSizeMake(self.circles.frame.size.width *headerScaler, self.circles.frame.size.height *headerScaler);
+        //        float headerScaler = 1 - headerY/-318;
+        //        NSLog(@"scaler %f", headerScaler);
+        //        float whiteCircleDiameterScaled = self.whiteCircleDiameter *headerScaler;
+        //        self.whiteCircle.frame = CGRectMake(10, headerY/2 + 140, whiteCircleDiameterScaled, whiteCircleDiameterScaled);
+        //        [self setRoundedView:self.whiteCircle toDiameter:whiteCircleDiameterScaled];
+        //
+        //        float colorCircleDiameterScaled = self.colorCircleDiameter *headerScaler;
+        ////        self.colorCircle.frame = CGRectMake(0, 0, colorCircleDiameterScaled, colorCircleDiameterScaled);
+        //        CGRect colorCircleFrame = self.colorCircle.frame;
+        //        colorCircleFrame.size = CGSizeMake(colorCircleDiameterScaled, colorCircleDiameterScaled);
+        //        self.colorCircle.center = self.whiteCircle.center;
+        //        [self setRoundedView:self.whiteCircle toDiameter:colorCircleDiameterScaled];
+        //        self.colorCircle.center = self.whiteCircle.center;
+        //
+        //        float logoCircleDiameterScaled = self.logoCircleDiameter *headerScaler;
+        ////        self.logoCircle.frame = CGRectMake(0, 0, logoCircleDiameterScaled, logoCircleDiameterScaled);
+        //        CGRect logoCircleFrame = self.logoCircle.frame;
+        //        logoCircleFrame.size = CGSizeMake(logoCircleDiameterScaled, logoCircleDiameterScaled);
+        //        self.logoCircle.center = self.whiteCircle.center;
+        //        [self setRoundedView:self.whiteCircle toDiameter:logoCircleDiameterScaled];
+        //        self.logoCircle.center = self.whiteCircle.center;
+        
+        //        NSLog(@"width %f", self.whiteCircle.frame.size.width);
+        //        self.circles.frame = circleFrame;
+        //        self.circles.center = circlesCenter;
     } else {
         self.headerView.frame = CGRectMake(0, -320, self.view.frame.size.width, 215);
-//        self.whiteCircle.center = CGPointMake(self.view.frame.size.width/4 + 6, -60);
+        //        self.whiteCircle.center = CGPointMake(self.view.frame.size.width/4 + 6, -60);
     }
-
+    
 }
 
 - (void)hideToolBar{
     if(!self.toolBar.hidden && !self.toolbarIsAnimating && self.currentOffset.y > 0 && !self.isTransitioning ){
         self.toolbarIsAnimating = YES;
-     
+        
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
             self.customTBVC.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
-//            self.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
+            //            self.campaignAdButton.transform = CGAffineTransformMakeTranslation(0, (self.toolBar.frame.size.height));
         } completion:^(BOOL finished) {
             self.toolbarIsAnimating = NO;
             self.toolBar.hidden = YES;
@@ -501,7 +536,7 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.toolBar.transform = CGAffineTransformIdentity;
             self.customTBVC.campaignAdButton.transform = CGAffineTransformIdentity;
-           // self.campaignAdButton.transform = CGAffineTransformIdentity;
+            // self.campaignAdButton.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             self.toolbarIsAnimating = NO;
         }];
@@ -531,7 +566,7 @@
 - (void)rosterButtonPressed{
     TeamController *teamController = [TeamController sharedInstance];
     RosterViewController *rosterViewController = [RosterViewController new];
-    rosterViewController.rosterSortedByNumber = [teamController sortRosterByNumber];
+    rosterViewController.sortedRoster = [teamController sortRosterByNumber];
     [self.navigationController pushViewController: rosterViewController animated:YES];
 }
 
@@ -568,13 +603,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

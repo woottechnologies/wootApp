@@ -51,7 +51,6 @@
         } else {
             self.isCaptain = NO;
         }
-        
         if ([dictionary[IsStarterKey] isEqualToString:@"Y"]) {
             self.isStarter = YES;
         } else {

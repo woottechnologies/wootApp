@@ -33,6 +33,7 @@ static NSString *TeamNameKey = @"teamName";
 @property (nonatomic, strong) UIImage *athleteHeaderPhoto;
 @property (nonatomic, strong) UIImage *teamHeaderPhoto;
 @property (nonatomic, strong) NSString *teamName;
+@property (nonatomic, strong) NSString *teamHashtag;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

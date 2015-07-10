@@ -12,6 +12,8 @@
 #import "TestViewController.h"
 #import "TeamViewController.h"
 #import "AthleteViewController.h"
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 @interface AppDelegate ()
 
@@ -36,6 +38,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+//    [[Twitter sharedInstance] startWithConsumerKey:@"4XKVAaWK76YUhrEpzMA0IlxSN" consumerSecret:@"IZjo0qtCXj58DJWambtbsZuJhONqV7U8YdjXPIKRF11YApj49u"];
+    [Fabric with:@[[Twitter sharedInstance]]];
+
     return YES;
 }
 

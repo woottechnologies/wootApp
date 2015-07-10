@@ -32,7 +32,9 @@
 
 - (void)setUpCell:(Athlete *)athlete{
     UILabel *jerseyNumberLabel = [[UILabel alloc]init];
-    jerseyNumberLabel.text = [NSString stringWithFormat:@"#%li", athlete.jerseyNumber];
+    if (athlete.jerseyNumber) {
+        jerseyNumberLabel.text = [NSString stringWithFormat:@"#%li", athlete.jerseyNumber];
+    }
     UILabel *nameLabel = [[UILabel alloc]init];
     nameLabel.text = athlete.name;
 //    UILabel *positionLabel = [[UILabel alloc]init];
