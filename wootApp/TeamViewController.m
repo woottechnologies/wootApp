@@ -56,6 +56,7 @@
 
 @implementation TeamViewController
 
+- (void)viewDidAppear:(BOOL)animated {
     self.customTBVC.campaignAdButton.hidden = NO;
 }
 
