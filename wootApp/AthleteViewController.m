@@ -357,8 +357,6 @@
     athletePositionLabel.font = [UIFont fontWithName:@"ArialMT" size:13];
     [athletePositionLabel setFont:[athletePositionLabel.font fontWithSize:[self maxFontSize:athletePositionLabel]]];
     [whiteStripe addSubview:athletePositionLabel];
-    
-    
 }
 
 - (void) backButtonPressed {

@@ -22,7 +22,7 @@
 #import "DockViewController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "CustomTabBarVC.h"
-#import "CoachingStaffViewController.h"
+#import "CoachDetailViewController.h"
 #import "AthleteController.h"
 
 @interface TeamViewController () <UITableViewDelegate>
@@ -82,10 +82,9 @@
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
     [backButton setBackgroundImage:backArrow forState:UIControlStateNormal];
     backButton.alpha = 0.5;
-    [backButton addTarget:self action:@selector(backButtonPressed)
-         forControlEvents:UIControlEventTouchUpInside];
+    [backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem=backArrowButton;
+    self.navigationItem.leftBarButtonItem = backArrowButton;
     
     UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
     UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -361,6 +360,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     switch (indexPath.section){
             
         case 0:
@@ -537,7 +538,7 @@
 #pragma mark - CoachingStaffCell delegate methods
 
 -(void)coachButtonPressed {
-    CoachingStaffViewController *coachingStaffVC = [[CoachingStaffViewController alloc] init];
+    CoachDetailViewController *coachingStaffVC = [[CoachDetailViewController alloc] init];
     
     [self.navigationController pushViewController:coachingStaffVC animated:YES];
 }
