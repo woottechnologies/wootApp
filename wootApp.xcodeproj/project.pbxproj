@@ -606,13 +606,10 @@
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
 				553A28EB1B29E09F00784798 /* PreviousGameTableViewCell.m in Sources */,
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
-				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
-<<<<<<< HEAD
-				4797DEC61B41F799006BBC43 /* CoachingStaffViewController.m in Sources */,
+				4797DEB31B39FD07006BBC43 /* UserController.m in 
+Sources */,
 				552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */,
-=======
 				4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */,
->>>>>>> 268b67bc9f1c4bb32f91b60e2077b66f1802593a
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
 				55C323051B444787002EBB65 /* TestViewController.m in Sources */,
 				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
