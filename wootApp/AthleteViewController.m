@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UIView *header;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) AthleteDataSource *dataSource;
+@property (nonatomic, strong) UIBarButtonItem *followButton;
+@property (nonatomic, strong) UIBarButtonItem *unfollowButton;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButton;
 @property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 //@property (nonatomic, strong) AppDelegate *appDelegate;
@@ -46,30 +48,45 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
-    UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [favoriteEmptyButton setBackgroundImage:favoriteEmpty forState:UIControlStateNormal];
-    favoriteEmptyButton.alpha = 0.5;
-    [favoriteEmptyButton addTarget:self action:@selector(favoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
-    self.favoriteButton =[[UIBarButtonItem alloc] initWithCustomView:favoriteEmptyButton];
+    self.followButton = [[UIBarButtonItem alloc] initWithTitle:@"Follow" style:UIBarButtonItemStylePlain target:self action:@selector(followTapped:)];
     
-    UIImage *favoriteFilled = [UIImage imageNamed:@"favorite_filled.png"];
-    UIButton *favoriteFilledButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [favoriteFilledButton setBackgroundImage:favoriteFilled forState:UIControlStateNormal];
-    favoriteFilledButton.alpha = 0.5;
-    [favoriteFilledButton addTarget:self action:@selector(unfavoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
-    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithCustomView:favoriteFilledButton];
+    self.unfollowButton = [[UIBarButtonItem alloc] initWithTitle:@"Unfollow" style:UIBarButtonItemStylePlain target:self action:@selector(unfollowTapped:)];
     
-    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+    self.navigationItem.rightBarButtonItem = self.followButton;
     
     for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
-        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
-        NSString *favType = [dict objectForKey:FavTypeKey];
-        if (favID == [AthleteController sharedInstance].currentAthlete.athleteID
-            && [favType isEqualToString:@"A"]) {
+        NSInteger followID = [[dict objectForKey:FollowingIDKey] integerValue];
+        NSString *followType = [dict objectForKey:FollowingTypeKey];
+        if (followID == [TeamController sharedInstance].currentTeam.teamID
+            && [followType isEqualToString:@"A"]) {
             self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
         }
     }
+    
+//    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
+//    UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [favoriteEmptyButton setBackgroundImage:favoriteEmpty forState:UIControlStateNormal];
+//    favoriteEmptyButton.alpha = 0.5;
+//    [favoriteEmptyButton addTarget:self action:@selector(favoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    self.favoriteButton =[[UIBarButtonItem alloc] initWithCustomView:favoriteEmptyButton];
+//    
+//    UIImage *favoriteFilled = [UIImage imageNamed:@"favorite_filled.png"];
+//    UIButton *favoriteFilledButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [favoriteFilledButton setBackgroundImage:favoriteFilled forState:UIControlStateNormal];
+//    favoriteFilledButton.alpha = 0.5;
+//    [favoriteFilledButton addTarget:self action:@selector(unfavoriteTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    self.unfavoriteButton = [[UIBarButtonItem alloc] initWithCustomView:favoriteFilledButton];
+//    
+//    self.navigationItem.rightBarButtonItem = self.favoriteButton;
+//    
+//    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+//        NSInteger favID = [[dict objectForKey:FavIDKey] integerValue];
+//        NSString *favType = [dict objectForKey:FavTypeKey];
+//        if (favID == [AthleteController sharedInstance].currentAthlete.athleteID
+//            && [favType isEqualToString:@"A"]) {
+//            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+//        }
+//    }
 }
 
 - (void)viewDidLoad {
@@ -455,27 +472,47 @@
     return yearString;
 }
 
-- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
+#pragma mark - follow buttons
+
+- (void)followTapped:(UIBarButtonItem *)item {
     UserController *userController = [UserController sharedInstance];
     
     if (!userController.currentUser) {
         [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
     } else {
-        self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
-        [userController addFavorite:[AthleteController sharedInstance].currentAthlete];
+        self.navigationItem.rightBarButtonItem = self.unfollowButton;
+        [userController followAccount:[AthleteController sharedInstance].currentAthlete];
     }
 }
 
-- (void)unfavoriteTapped:(UIBarButtonItem *)item {
+- (void)unfollowTapped:(UIBarButtonItem *)item {
     UserController *userController = [UserController sharedInstance];
     
-    if (!userController.currentUser) {
-        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
-    } else {
-        self.navigationItem.rightBarButtonItem = self.favoriteButton;
-        [userController removeFavorite:[AthleteController sharedInstance].currentAthlete];
-    }
+    self.navigationItem.rightBarButtonItem = self.followButton;
+    [userController unfollowAccount:[AthleteController sharedInstance].currentAthlete];
 }
+
+//- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
+//    UserController *userController = [UserController sharedInstance];
+//    
+//    if (!userController.currentUser) {
+//        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+//    } else {
+//        self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+//        [userController addFavorite:[AthleteController sharedInstance].currentAthlete];
+//    }
+//}
+//
+//- (void)unfavoriteTapped:(UIBarButtonItem *)item {
+//    UserController *userController = [UserController sharedInstance];
+//    
+//    if (!userController.currentUser) {
+//        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+//    } else {
+//        self.navigationItem.rightBarButtonItem = self.favoriteButton;
+//        [userController removeFavorite:[AthleteController sharedInstance].currentAthlete];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

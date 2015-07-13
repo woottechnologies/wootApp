@@ -28,7 +28,6 @@
     UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
 
     masterVC.tabBarItem = [[UITabBarItem alloc] init];
-    masterVC.tabBarItem.title = @"Search";
 
     CustomTabBarVC *tabBarVC = [[CustomTabBarVC alloc] init];
     tabBarVC.viewControllers = @[masterVC];

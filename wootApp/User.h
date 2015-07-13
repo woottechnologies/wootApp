@@ -16,6 +16,7 @@ static NSString *EmailKey = @"email";
 @property (nonatomic, assign) NSInteger userID;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSArray *following;
 @property (nonatomic, strong) NSArray *favorites;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
