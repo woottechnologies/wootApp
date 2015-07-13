@@ -480,7 +480,7 @@
 - (void)scrollViewDidScroll :(UIScrollView *)scrollView {
     self.lastOffset = self.currentOffset;
     self.currentOffset = scrollView.contentOffset;
-    //    NSLog(@"%f", self.lastOffset.y);
+        NSLog(@"%f", self.lastOffset.y);
     if (self.currentOffset.y < self.lastOffset.y) {
         [self unhideToolBar];
     } else {
@@ -548,7 +548,7 @@
 }
 
 - (void)unhideToolBar{
-    if(self.toolBar.hidden && !self.toolbarIsAnimating && !self.isTransitioning && self.currentOffset.y < 281){
+    if(self.toolBar.hidden && !self.toolbarIsAnimating && !self.isTransitioning && self.currentOffset.y < self.tableView.contentSize.height){
         self.toolbarIsAnimating = YES;
         self.toolBar.hidden = NO;
         
