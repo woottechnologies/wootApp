@@ -30,6 +30,8 @@
 		4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBE1B41E40D006BBC43 /* Coach.m */; };
 		4797DEC61B41F799006BBC43 /* CoachingStaffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC51B41F799006BBC43 /* CoachingStaffViewController.m */; };
 		4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */; };
+		552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032F61B541DF2003FF149 /* HomeFeedViewController.m */; };
+		552032FB1B542091003FF149 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032FA1B542091003FF149 /* HomeFeedDataSource.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
@@ -122,6 +124,10 @@
 		4797DEC51B41F799006BBC43 /* CoachingStaffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachingStaffViewController.m; sourceTree = "<group>"; };
 		4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MoreMethods.h"; sourceTree = "<group>"; };
 		4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MoreMethods.m"; sourceTree = "<group>"; };
+		552032F51B541DF2003FF149 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
+		552032F61B541DF2003FF149 /* HomeFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedViewController.m; path = ../wootApp/HomeFeedViewController.m; sourceTree = "<group>"; };
+		552032F91B542091003FF149 /* HomeFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFeedDataSource.h; sourceTree = "<group>"; };
+		552032FA1B542091003FF149 /* HomeFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFeedDataSource.m; sourceTree = "<group>"; };
 		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
 		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
 		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
@@ -244,6 +250,16 @@
 		4797DEC01B41F204006BBC43 /* School */ = {
 			isa = PBXGroup;
 			children = (
+				55B4C8FD1B1F7930003B3058 /* School.h */,
+				55B4C8FE1B1F7930003B3058 /* School.m */,
+				55B4C9031B1F7C4E003B3058 /* SchoolController.h */,
+				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
+				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
+				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
+				4796A9861B33735E00D71779 /* SchoolListDataSource.h */,
+				4796A9871B33735E00D71779 /* SchoolListDataSource.m */,
+				55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */,
+				55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */,
 			);
 			name = School;
 			sourceTree = "<group>";
@@ -297,6 +313,18 @@
 			name = Coach;
 			sourceTree = "<group>";
 		};
+		552032F81B541E1E003FF149 /* Home Feed */ = {
+			isa = PBXGroup;
+			children = (
+				552032F51B541DF2003FF149 /* HomeFeedViewController.h */,
+				552032F61B541DF2003FF149 /* HomeFeedViewController.m */,
+				552032F91B542091003FF149 /* HomeFeedDataSource.h */,
+				552032FA1B542091003FF149 /* HomeFeedDataSource.m */,
+			);
+			name = "Home Feed";
+			path = wootApp.xcodeproj;
+			sourceTree = SOURCE_ROOT;
+		};
 		553A28D31B27649900784798 /* FLKAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +362,7 @@
 			children = (
 				55B4C8A61B1E386F003B3058 /* AppDelegate.h */,
 				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
+				552032F81B541E1E003FF149 /* Home Feed */,
 				4797DEAD1B39F8E5006BBC43 /* CustomTabBar */,
 				4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */,
 				4797DEB41B39FD1B006BBC43 /* User */,
@@ -351,16 +380,6 @@
 				55BE85AE1B264060006C8279 /* RosterViewController.m */,
 				553A28EC1B2B382200784798 /* RosterTableViewCell.h */,
 				553A28ED1B2B382200784798 /* RosterTableViewCell.m */,
-				55B4C8FD1B1F7930003B3058 /* School.h */,
-				55B4C8FE1B1F7930003B3058 /* School.m */,
-				55B4C9031B1F7C4E003B3058 /* SchoolController.h */,
-				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
-				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
-				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
-				4796A9861B33735E00D71779 /* SchoolListDataSource.h */,
-				4796A9871B33735E00D71779 /* SchoolListDataSource.m */,
-				55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */,
-				55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */,
 				553A28DD1B2773E600784798 /* Campaign.h */,
 				553A28DE1B2773E600784798 /* Campaign.m */,
 				553A28E01B27762700784798 /* CampaignController.h */,
@@ -560,6 +579,7 @@
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
+				552032FB1B542091003FF149 /* HomeFeedDataSource.m in Sources */,
 				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
 				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
@@ -582,6 +602,7 @@
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachingStaffViewController.m in Sources */,
+				552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
 				55C323051B444787002EBB65 /* TestViewController.m in Sources */,
 				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
