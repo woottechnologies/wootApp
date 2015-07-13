@@ -484,7 +484,7 @@
 				TargetAttributes = {
 					55B4C89E1B1E386F003B3058 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = F77WGCCN72;
+						DevelopmentTeam = L7MQU2ZUG5;
 					};
 					55B4C8B71B1E386F003B3058 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -720,6 +720,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/wootApp",
@@ -727,6 +728,7 @@
 				INFOPLIST_FILE = wootApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -735,6 +737,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/wootApp",
@@ -742,6 +745,7 @@
 				INFOPLIST_FILE = wootApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
