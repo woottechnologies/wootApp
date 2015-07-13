@@ -8,6 +8,7 @@
 
 #import "CampaignAdViewController.h"
 #import "CampaignController.h"
+#import "UIView+FLKAutoLayout.h"
 
 @interface CampaignAdViewController ()
 
@@ -20,21 +21,23 @@
     // Do any additional setup after loading the view.
     self.campaignAdImageView.frame = self.view.frame;
     [self.view addSubview:self.campaignAdImageView];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(280, 30, 70, 30);
-    button.backgroundColor = [UIColor whiteColor];
     
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:button];
-    
+    // exit button
+    UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:exitButton];
+    [exitButton alignTopEdgeWithView:self.view predicate:@"30"];
+    [exitButton alignTrailingEdgeWithView:self.view predicate:@"-30"];
+    [exitButton constrainHeight:@"20"];
+    [exitButton constrainWidth:@"20"];
+    [exitButton setImage:[UIImage imageNamed:@"button_x.png"] forState:UIControlStateNormal];
+    [exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
     if (self.campaignAdImageView.image) {
         [[CampaignController sharedInstance] incrementViewsWithAdType:@"F"];
     }
 }
 
-- (void)buttonPressed:(UIButton *)button {
+- (void)exitButtonPressed:(UIButton *)button {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

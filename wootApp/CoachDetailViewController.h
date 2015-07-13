@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CoachingStaffViewController : UIViewController
+@interface CoachDetailViewController : UIViewController
 
 @end

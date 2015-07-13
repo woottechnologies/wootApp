@@ -40,25 +40,36 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+
     
+//    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+//    [backButton setBackgroundImage:backArrow forState:UIControlStateNormal];
+//    backButton.alpha = 0.5;
+//    [backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    self.navigationItem.leftBarButtonItem = backArrowButton;
+//    
     // back button
-    self.backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:self.backButton];
     [self.backButton alignTop:@"30" leading:@"30" toView:self.view];
-    [self.backButton constrainHeight:@"30"];
-    [self.backButton constrainWidth:@"30"];
-    self.backButton.backgroundColor = [UIColor redColor];
+    [self.backButton constrainHeight:@"20"];
+    [self.backButton constrainWidth:@"10"];
+    [self.backButton setImage:[UIImage imageNamed:@"back_arrow.png"] forState:UIControlStateNormal];
     self.backButton.hidden = YES;
     self.backButton.tag = -1;
     [self.backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.backButton];
     
     // exit button
-    self.exitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.exitButton.frame = CGRectMake(self.view.frame.size.width - 60, 30, 30, 30);
-    self.exitButton.backgroundColor = [UIColor redColor];
-    [self.exitButton setTitle:@"X" forState:UIControlStateNormal];
-    [self.exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:self.exitButton];
+    [self.exitButton alignTopEdgeWithView:self.view predicate:@"30"];
+    [self.exitButton alignTrailingEdgeWithView:self.view predicate:@"-30"];
+    [self.exitButton constrainHeight:@"20"];
+    [self.exitButton constrainWidth:@"20"];
+    [self.exitButton setImage:[UIImage imageNamed:@"button_x.png"] forState:UIControlStateNormal];
+    [self.exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     // background image
     UIImage *backgroundImage = [UIImage imageNamed:@"woot_dock"];
@@ -164,6 +175,7 @@
     self.backButton.tag = 2;
     self.emailLogIn.hidden = NO;
     self.passwordLogIn.hidden = NO;
+    
     self.logInButton.hidden = NO;
 }
 
@@ -208,9 +220,12 @@
 - (void)backButtonPressed:(UIButton *)backButton {
     [self.errorLabel setText:@""];
     
+    
     if (backButton.tag == 1) {
         self.backButton.hidden = YES;
         self.backButton.tag = -1;
+//        self.navigationItem.leftBarButtonItem = nil;
+        
         self.emailField.hidden = YES;
         self.passwordField.hidden = YES;
         self.signUpButton.hidden = YES;
@@ -221,8 +236,9 @@
         self.showSignUp.hidden = NO;
         self.showLogIn.hidden = NO;
     } else {
-        self.backButton.hidden = YES;
-        self.backButton.tag = -1;
+//        self.navigationItem.leftBarButtonItem
+//        self.backButton.hidden = YES;
+//        self.backButton.tag = -1;
         self.emailLogIn.hidden = YES;
         self.passwordLogIn.hidden = YES;
         self.logInButton.hidden = YES;

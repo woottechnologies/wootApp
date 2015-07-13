@@ -28,7 +28,7 @@
         self.wins = [dictionary[WinsKey] integerValue];
         self.losses = [dictionary[LossesKey] integerValue];
         self.record = [self record];
-        //self.scheduleID = [dictionary[ScheduleIDKey] integerValue];
+        self.teamName = dictionary[TeamNameKey];
     }
     
     return self;

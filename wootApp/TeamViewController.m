@@ -22,11 +22,10 @@
 #import "DockViewController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "CustomTabBarVC.h"
-#import "CoachingStaffViewController.h"
+#import "CoachDetailViewController.h"
 #import <TwitterKit/TwitterKit.h>
 #import "AthleteController.h"
 #import "TeamTweetController.h"
-
 
 @interface TeamViewController () <UITableViewDelegate>
 
@@ -39,7 +38,6 @@
 @property (nonatomic, assign) CGPoint lastOffset;
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) UIToolbar *toolBar;
-//@property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 @property (nonatomic, strong) UIBarButtonItem *favoriteButton;
 @property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
@@ -59,16 +57,10 @@
 @implementation TeamViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-    // [super viewDidAppear:animated];
     self.customTBVC.campaignAdButton.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // [super viewWillAppear:animated];
-    if ([TeamController sharedInstance].currentTeam.campaigns) {
-        //[self chooseCampaign];
-    }
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     self.toolbarIsAnimating = NO;
@@ -85,10 +77,9 @@
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
     [backButton setBackgroundImage:backArrow forState:UIControlStateNormal];
     backButton.alpha = 0.5;
-    [backButton addTarget:self action:@selector(backButtonPressed)
-         forControlEvents:UIControlEventTouchUpInside];
+    [backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem=backArrowButton;
+    self.navigationItem.leftBarButtonItem = backArrowButton;
     
     UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
     UIButton *favoriteEmptyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -119,7 +110,6 @@
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-    // [super viewWillDisappear:animated];
     [self unhideToolBar];
     self.isTransitioning = YES;
 }
@@ -248,13 +238,11 @@
     
     UIView *primaryColorStripe = [[UIView alloc] init];
     primaryColorStripe.backgroundColor = primaryColor;
-    //    primaryColorStripe.backgroundColor = [UIColor blueColor];
     primaryColorStripe.frame = CGRectMake(0, headerPhotoBottom + bigStripeHeight + littleStripeHeight, windowWidth, bigStripeHeight);
     [self.headerView addSubview:primaryColorStripe];
     
     UIView *secondaryColorStripe = [[UIView alloc] init];
     secondaryColorStripe.backgroundColor = secondaryColor;
-    //    secondaryColorStripe.backgroundColor = [UIColor redColor];
     secondaryColorStripe.frame = CGRectMake(0, headerPhotoBottom + bigStripeHeight, windowWidth, littleStripeHeight);
     [self.headerView addSubview:secondaryColorStripe];
     
@@ -322,8 +310,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setRoundedView:(UIImageView *)roundedView toDiameter:(float)newSize;
-{
+- (void)setRoundedView:(UIImageView *)roundedView toDiameter:(float)newSize {
     CGPoint saveCenter = roundedView.center;
     CGRect newFrame = CGRectMake(roundedView.frame.origin.x, roundedView.frame.origin.y, newSize, newSize);
     roundedView.frame = newFrame;
@@ -389,12 +376,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     switch (indexPath.section){
             
         case 0:
             break;
         case 1:
-            //            [self pushFullSchedule];
+//            [self pushFullSchedule];
             break;
         case 2:
             break;
@@ -585,7 +574,7 @@
 #pragma mark - CoachingStaffCell delegate methods
 
 -(void)coachButtonPressed {
-    CoachingStaffViewController *coachingStaffVC = [[CoachingStaffViewController alloc] init];
+    CoachDetailViewController *coachingStaffVC = [[CoachDetailViewController alloc] init];
     
     [self.navigationController pushViewController:coachingStaffVC animated:YES];
 }
