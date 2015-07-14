@@ -10,6 +10,7 @@
 #import "NetworkController.h"
 #import "SchoolController.h"
 
+
 @implementation UserController
 
 + (instancetype)sharedInstance {

@@ -26,7 +26,7 @@
     [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
         if (guestSession) {
             NSString *searchURL = @"https://api.twitter.com/1.1/search/tweets.json";
-            self.teamHashtag = @"#USMNT #Soccer";
+            self.teamHashtag = @"@TimHowardGK";
             NSDictionary *params = @{@"q" : self.teamHashtag};
             NSError *clientError;
             NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
@@ -48,7 +48,7 @@
                          
                          self.tweets = [TWTRTweet tweetsWithJSONArray:searchResults[@"statuses"]];
                          
-                         [[NSNotificationCenter defaultCenter] postNotificationName:@"requestFinished" object:nil];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"teamTweetRequestFinished" object:nil];
                      }
                      else {
                          NSLog(@"Error: %@", connectionError);

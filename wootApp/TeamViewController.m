@@ -160,7 +160,7 @@
     
     self.lastOffset = CGPointMake(0, 0);
     self.currentOffset = CGPointMake(0, 0);
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 700) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 550) style:UITableViewStyleGrouped];
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     self.tableView.delegate = self;
     self.dataSource = [TeamDataSource new];
@@ -214,7 +214,7 @@
 - (void)loadTweets {
     
     [self.tableView reloadData];
-    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, 600);
+    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, 550);
 
 }
 
