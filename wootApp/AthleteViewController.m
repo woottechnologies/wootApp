@@ -54,12 +54,12 @@
     
     self.navigationItem.rightBarButtonItem = self.followButton;
     
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.following) {
         NSInteger followID = [[dict objectForKey:FollowingIDKey] integerValue];
         NSString *followType = [dict objectForKey:FollowingTypeKey];
-        if (followID == [TeamController sharedInstance].currentTeam.teamID
+        if (followID == [AthleteController sharedInstance].currentAthlete.athleteID
             && [followType isEqualToString:@"A"]) {
-            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+            self.navigationItem.rightBarButtonItem = self.unfollowButton;
         }
     }
     
@@ -129,7 +129,7 @@
 //    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
 //
 //    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-//    
+
     [self.navigationController.navigationBar setBarTintColor:[SchoolController sharedInstance].currentSchool.primaryColor];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
@@ -478,7 +478,9 @@
     UserController *userController = [UserController sharedInstance];
     
     if (!userController.currentUser) {
-        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+        DockViewController *dockVC = [[DockViewController alloc] init];
+        dockVC.followButtonType = @"A";
+        [self.navigationController presentViewController:dockVC animated:YES completion:nil];
     } else {
         self.navigationItem.rightBarButtonItem = self.unfollowButton;
         [userController followAccount:[AthleteController sharedInstance].currentAthlete];

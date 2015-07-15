@@ -14,6 +14,7 @@
 #import "AthleteViewController.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
+#import "UserProfileViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,11 +27,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
-
     masterVC.tabBarItem = [[UITabBarItem alloc] init];
+    
+    UINavigationController *userProfile = [[UINavigationController alloc] initWithRootViewController:[UserProfileViewController new]];
 
     CustomTabBarVC *tabBarVC = [[CustomTabBarVC alloc] init];
-    tabBarVC.viewControllers = @[masterVC];
+    tabBarVC.viewControllers = @[masterVC, userProfile];
 
     self.window.rootViewController = tabBarVC;
 

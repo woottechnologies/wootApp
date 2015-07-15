@@ -25,7 +25,8 @@
 
 @property (nonatomic, strong) UITableView *drawer;
 @property (nonatomic, strong) UIButton *drawerButton;
-@property (nonatomic, strong) UIButton *toggleAccountButton;
+@property (nonatomic, strong) UIButton *logOut;
+//@property (nonatomic, strong) UIButton *toggleAccountButton;
 @property (nonatomic, strong) DrawerDataSource *dataSource;
 
 @end
@@ -63,17 +64,17 @@
     [self.view addSubview:self.drawerButton];
     
     // account button
-    self.toggleAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.toggleAccountButton.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
-    self.toggleAccountButton.enabled = NO;
-    self.toggleAccountButton.backgroundColor = [UIColor redColor];
-    [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
-    [self.toggleAccountButton addTarget:self action:@selector(accountButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.logOut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.logOut.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
+    self.logOut.enabled = NO;
+    self.logOut.backgroundColor = [UIColor redColor];
+    [self.logOut setTitle:@"Log Out" forState:UIControlStateNormal];
+    [self.logOut addTarget:self action:@selector(logOutPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.toggleAccountButton];
+    [self.view addSubview:self.logOut];
     
     // drawer tableview
-    self.drawer = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width  * 2 / 3, self.view.frame.size.height - self.toggleAccountButton.frame.size.height) style:UITableViewStyleGrouped];
+    self.drawer = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width  * 2 / 3, self.view.frame.size.height - self.logOut.frame.size.height) style:UITableViewStyleGrouped];
     self.dataSource = [[DrawerDataSource alloc] init];
     [self.dataSource registerTableView:self.drawer viewController:self];
     self.drawer.dataSource = self.dataSource;
@@ -89,37 +90,45 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    UINavigationController *vc = self.childViewControllers[0];
-    [vc viewWillAppear:animated];
+    for (UINavigationController *vc in self.childViewControllers) {
+        [vc viewWillAppear:animated];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    UINavigationController *vc = self.childViewControllers[0];
-    [vc viewDidAppear:animated];
+    for (UINavigationController *vc in self.childViewControllers) {
+        [vc viewDidAppear:animated];
+    }
     
     self.drawer.hidden = YES;
    // self.campaignAdButton.hidden = YES;
-    
-    if ([UserController sharedInstance].currentUser.userID) {
-        [self.toggleAccountButton setTitle:@"Log Out" forState:UIControlStateNormal];
-    } else {
-        [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
-    }
 }
 
 #pragma mark - UIBarButtonItems for tool bar
 
 - (void)searchItemTapped:(UIBarButtonItem *)searchItem {
-    if (!self.drawer.hidden) {
-        [self toggleDrawer];
-    }
+//    if (!self.drawer.hidden) {
+//        [self toggleDrawer];
+//    }
     
     UINavigationController *vc = self.childViewControllers[0];
+    self.selectedViewController = vc;
     [vc popToRootViewControllerAnimated:YES];
 }
 
 - (void)selfItemTapped:(UIBarButtonItem *)selfItem {
-    [self toggleDrawer];
+   // [self toggleDrawer];
+    
+    UINavigationController *vc = self.childViewControllers[1];
+    
+    if (![UserController sharedInstance].currentUser) {
+        vc = self.childViewControllers[0];
+        [vc presentViewController:[DockViewController new] animated:YES completion:nil];
+    } else {
+        vc = self.childViewControllers[1];
+        self.selectedViewController = vc;
+        [vc popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)toggleDrawer {
@@ -129,45 +138,37 @@
                                                 withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.3 animations:^{
             self.drawer.center = CGPointMake(self.view.frame.size.width - self.drawer.frame.size.width / 2, self.drawer.center.y);
-            self.toggleAccountButton.center = CGPointMake(self.view.frame.size.width - self.toggleAccountButton.frame.size.width / 2, self.toggleAccountButton.center.y);
+            self.logOut.center = CGPointMake(self.view.frame.size.width - self.logOut.frame.size.width / 2, self.logOut.center.y);
             self.drawerButton.alpha = 0.4;
         }];
         self.drawer.hidden = NO;
         self.drawerButton.enabled = YES;
-        self.toggleAccountButton.enabled = YES;
+        self.logOut.enabled = YES;
     } else {
         [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                 withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.3 animations:^{
             self.drawer.center = CGPointMake(self.view.frame.size.width + self.drawer.frame.size.width / 2, self.drawer.center.y);
-            self.toggleAccountButton.center = CGPointMake(self.view.frame.size.width + self.toggleAccountButton.frame.size.width / 2, self.toggleAccountButton.center.y);
+            self.logOut.center = CGPointMake(self.view.frame.size.width + self.logOut.frame.size.width / 2, self.logOut.center.y);
             self.drawerButton.alpha = 0.0;
         } completion:^(BOOL finished) {
             if (finished) {
                 self.drawer.hidden = YES;
                 self.drawerButton.enabled = NO;
-                self.toggleAccountButton.enabled = NO;
+                self.logOut.enabled = NO;
             }
         }];
     }
 }
 
-- (void)accountButtonPressed:(UIButton *)accountButton {
-    if ([accountButton.titleLabel.text isEqualToString:@"Log Out"]) {
-        [UserController sharedInstance].currentUser = nil;
-        [self toggleDrawer];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserKey];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:FavoritesKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.toggleAccountButton setTitle:@"Log In or Sign Up" forState:UIControlStateNormal];
-    } else {
-        DockViewController *dockVC = [[DockViewController alloc] init];
-        
-        UIViewController *vc = self.childViewControllers[0];
-        [vc presentViewController:dockVC animated:YES completion:^{
-            [self toggleDrawer];
-        }];
-    }
+- (void)logOutPressed:(UIButton *)logOut {
+    [UserController sharedInstance].currentUser = nil;
+    [self toggleDrawer];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserKey];
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:FavoritesKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    self.selectedViewController = self.childViewControllers[0];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -215,44 +216,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
-        // favorites
-        NSDictionary *favorite = [[UserController sharedInstance].currentUser.favorites objectAtIndex:indexPath.row];
-
-        UINavigationController *vc = self.childViewControllers[0];
         
-        if ([[favorite objectForKey:FavTypeKey] isEqualToString:@"T"]) {
-            TeamViewController *teamVC = [[TeamViewController alloc] init];
-            NSInteger teamID = [[favorite objectForKey:FavIDKey] integerValue];
-            [[TeamController sharedInstance] selectTeamWithTeamID:teamID andCompletion:^(BOOL success, Team *team) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [TeamController sharedInstance].currentTeam = team;
-                    for (School *school in [SchoolController sharedInstance].schools) {
-                        if (school.schoolID == team.schoolID) {
-                            [SchoolController sharedInstance].currentSchool = school;
-                        }
-                    }
-                    
-                    [vc popToRootViewControllerAnimated:NO];
-                    [vc pushViewController:teamVC animated:YES];
-                });
-            }];
-        } else  {
-            AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
-            NSInteger athleteID = [[favorite objectForKey:FavIDKey] integerValue];
-            [[AthleteController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [AthleteController sharedInstance].currentAthlete = athlete;
-                    for (School *school in [SchoolController sharedInstance].schools) {
-                        if (school.schoolID == athlete.schoolID) {
-                            [SchoolController sharedInstance].currentSchool = school;
-                        }
-                    }
-                    [vc popToRootViewControllerAnimated:NO];
-                    [vc pushViewController:athleteVC animated:YES];
-                });
-            }];
-        }
-        [self toggleDrawer];
     } else {
         // contact
         NSLog(@"contact");
@@ -285,7 +249,7 @@
     
     UIViewController *vc = self.childViewControllers[0];
     [vc presentViewController:composer animated:YES completion:^{
-        [self toggleDrawer];
+  //      [self toggleDrawer];
     }];
 }
 
