@@ -11,6 +11,6 @@
 
 @interface TeamTweetCell : UITableViewCell
 
-- (void)setUpCell:(TWTRTweet *) tweet;
+- (void)setUpTweetCell:(TWTRTweet *) tweet;
 
 @end

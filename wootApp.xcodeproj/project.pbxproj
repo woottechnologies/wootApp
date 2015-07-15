@@ -34,6 +34,7 @@
 		47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED071B557CE2006B03E8 /* UserProfileViewController.m */; };
 		47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */; };
 		47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */; };
+		551D2A541B56E97300F18BCD /* AthleteTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D2A531B56E97300F18BCD /* AthleteTweetController.m */; };
 		552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032F61B541DF2003FF149 /* HomeFeedViewController.m */; };
 		552032FE1B54314D003FF149 /* HomeFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032FD1B54314D003FF149 /* HomeFeedController.m */; };
 		552033011B558186003FF149 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552033001B558186003FF149 /* HomeFeedDataSource.m */; };
@@ -137,6 +138,8 @@
 		47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
 		47ECED0D1B56DAE3006B03E8 /* FollowingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingDataSource.h; sourceTree = "<group>"; };
 		47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingDataSource.m; sourceTree = "<group>"; };
+		551D2A521B56E97300F18BCD /* AthleteTweetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AthleteTweetController.h; path = ../AthleteTweetController.h; sourceTree = "<group>"; };
+		551D2A531B56E97300F18BCD /* AthleteTweetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AthleteTweetController.m; path = ../AthleteTweetController.m; sourceTree = "<group>"; };
 		552032F51B541DF2003FF149 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
 		552032F61B541DF2003FF149 /* HomeFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedViewController.m; path = ../wootApp/HomeFeedViewController.m; sourceTree = "<group>"; };
 		552032FC1B54314D003FF149 /* HomeFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedController.h; path = ../wootApp/HomeFeedController.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */,
 				4719A3291B4DE466009A707E /* AthleteController.h */,
 				4719A32A1B4DE466009A707E /* AthleteController.m */,
+				551D2A521B56E97300F18BCD /* AthleteTweetController.h */,
+				551D2A531B56E97300F18BCD /* AthleteTweetController.m */,
 			);
 			name = Athlete;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
 				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
+				551D2A541B56E97300F18BCD /* AthleteTweetController.m in Sources */,
 				55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */,
 				473EA3591B29EE310033AFA1 /* GameController.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,

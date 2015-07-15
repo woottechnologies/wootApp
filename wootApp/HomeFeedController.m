@@ -9,6 +9,7 @@
 #import "HomeFeedController.h"
 #import "NetworkController.h"
 #import "SchoolController.h"
+#import "UserController.h"
 
 
 @implementation HomeFeedController
@@ -23,49 +24,50 @@
     return sharedInstance;
 }
 
-- (void) loadHashtagsFromDBWithCompletion:(void (^)(BOOL success, NSArray *hashtags))completion {
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    
-    
-    NSString *post = [NSString stringWithFormat:@"userID=%li", self.currentUser.userID];
-    
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_hashtag.php"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        if (data.length > 0 && error == nil) {
-            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            
-            if (responseArray.count > 0) {
-                NSString *hashtag;
-                for (NSDictionary *dict in responseArray) {
-                    NSString *hashtag = [dict objectForKey:HashtagKey];
-                }
-                completion(YES, hashtag);
-            } else {
-                completion(YES, nil);
-            }
-        } else {
-            completion(NO, nil);
-        }
-    }];
-    
-    [uploadTask resume];
-}
+//- (void) loadHashtagsFromDBWithCompletion:(void (^)(BOOL success, NSArray *hashtags))completion {
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    
+//    
+//    
+//    NSString *post = [NSString stringWithFormat:@"userID=%li", self.currentUser.userID];
+//    
+//    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_hashtag.php"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    [request setHTTPMethod:@"POST"];
+//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//    
+//    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        
+//        if (data.length > 0 && error == nil) {
+//            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//            
+//            if (responseArray.count > 0) {
+//                NSString *hashtag;
+//                for (NSDictionary *dict in responseArray) {
+//                    NSString *hashtag = [dict objectForKey:HashtagKey];
+//                }
+//                completion(YES, hashtag);
+//            } else {
+//                completion(YES, nil);
+//            }
+//        } else {
+//            completion(NO, nil);
+//        }
+//    }];
+//    
+//    [uploadTask resume];
+//}
 
 - (void) loadTweetsFromHashtags{
+    User *currentUser = [UserController sharedInstance].currentUser;
     [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
         NSMutableArray *mutableTweets = [[NSMutableArray alloc] init];
         if (guestSession) {
-            for (NSString *hashtag in self.hashtags) {
+            for (NSDictionary *following in currentUser.following) {
                 NSString *searchURL = @"https://api.twitter.com/1.1/search/tweets.json";
                 //            self.currentHashtag = @"#USMNT #Soccer";
-                NSDictionary *params = @{@"q" : hashtag};
+                NSDictionary *params = @{@"q" : following[@"twitter"]};
                 NSError *clientError;
                 NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
                                          URLRequestWithMethod:@"GET"

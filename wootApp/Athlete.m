@@ -60,6 +60,8 @@
         if (dictionary[SchoolIDKey] != (id)[NSNull null]) {
             self.schoolID = [dictionary[SchoolIDKey] integerValue];
         }
+        
+        self.twitter = dictionary[AthleteTwitterKey];
     }
     return self;
 }

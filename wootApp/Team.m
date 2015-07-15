@@ -29,6 +29,7 @@
         self.losses = [dictionary[LossesKey] integerValue];
         self.record = [self record];
         self.teamName = dictionary[TeamNameKey];
+        self.twitter = dictionary[TwitterKey];
     }
     
     return self;

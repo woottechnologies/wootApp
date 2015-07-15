@@ -11,10 +11,12 @@
 #import "Athlete.h"
 #import "SummaryStatsTableViewCell.h"
 #import "AthleteController.h"
+#import "TeamTweetCell.h"
+#import "AthleteTweetController.h"
 
 typedef NS_ENUM(int16_t, AthleteDataSourceSection){
     StatsSection = 0,
-    BioSection = 1,
+    TwitterSection = 1,
     PicturesSection = 2,
     VideosSection = 3
 };
@@ -22,6 +24,7 @@ typedef NS_ENUM(int16_t, AthleteDataSourceSection){
 static NSString *cellID = @"cellID";
 static NSString *summaryStatsCellID = @"summaryStatsCellID";
 static NSString *bioCellID = @"bioCellID";
+static NSString *athleteTwitterCellID = @"athleteTwitterCellID";
 
 @interface AthleteDataSource()
 
@@ -38,40 +41,34 @@ static NSString *bioCellID = @"bioCellID";
     self.viewController = viewController;
     [self.tableView registerClass:[SummaryStatsTableViewCell class] forCellReuseIdentifier:summaryStatsCellID];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:bioCellID];
+    [self.tableView registerClass:[TeamTweetCell class] forCellReuseIdentifier:athleteTwitterCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell;
     Athlete *currentAthlete = [AthleteController sharedInstance].currentAthlete;
     switch (indexPath.section){
             
         case StatsSection:
-            cell = [tableView dequeueReusableCellWithIdentifier:summaryStatsCellID];
+        {
+            SummaryStatsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:summaryStatsCellID];
             //NSArray *athletes = teamController.currentTeam.athletes;
             if (currentAthlete.stats) {
-                [((SummaryStatsTableViewCell *)cell) loadDataWithStats:[currentAthlete.stats summaryStats]];
+                [cell loadDataWithStats:[currentAthlete.stats summaryStats]];
+                return cell;
             }
-            break;
-        case BioSection:
-            //if (currentAthlete.bio) {
-            //cell.textLabel.text = currentAthlete.bio;
-            //}
-            //cell.textLabel.text = currentAthlete.bio;
-           // cell.frame = CGRectMake(0, 0, 320, 200);
-            //      cell.textLabel.frame = CGRectMake(0, 0, 320, 100);
-            cell.textLabel.numberOfLines = 0;
-            //NSLog(@"%@", currentAthlete.bio);
-            break;
-        case PicturesSection:
-            break;
-        case VideosSection:
-            break;
-            
-            
+        }
+        case TwitterSection:
+        {
+            TeamTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:athleteTwitterCellID];
+            AthleteTweetController *athleteTweetController = [AthleteTweetController sharedInstance];
+            if ([athleteTweetController.athleteHandle isEqualToString:currentAthlete.twitter] && athleteTweetController.tweets.count > indexPath.row) {
+                TWTRTweet *tweet = athleteTweetController.tweets[indexPath.row];
+                [cell setUpTweetCell:tweet];
+            }
+        }
     }
     
-    return cell;
-    
+    return [UITableViewCell new];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

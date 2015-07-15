@@ -32,7 +32,7 @@
     return self;
 }
 
-- (void)setUpCell:(TWTRTweet *) tweet{
+- (void)setUpTweetCell:(TWTRTweet *) tweet{
     self.tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleCompact];
     self.tweetView.frame = CGRectMake(0, 0, 375, [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.bounds)]);
     [self.contentView addSubview:self.tweetView];

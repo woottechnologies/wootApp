@@ -9,6 +9,7 @@
 #import "HomeFeedViewController.h"
 #import "HomeFeedController.h"
 #import "HomeFeedDataSource.h"
+#import "TeamTweetController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate>
 
@@ -22,8 +23,8 @@
     [super viewDidLoad];
     
     HomeFeedController* homeFeedController = [HomeFeedController sharedInstance];
-    [homeFeedController loadHashtagsFromDBWithCompletion];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:@"teamTweetRequestFinished" object:nil];
+    [homeFeedController loadTweetsFromHashtags];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:teamTweetRequestFinished object:nil];
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -38,6 +39,18 @@
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     return NO;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height;
+    HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
+    if (homeFeedController.tweets && homeFeedController.tweets.count>indexPath.row) {
+        TWTRTweet *tweet = homeFeedController.tweets[indexPath.row];
+        height = [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.view.bounds)];
+    } else {
+        height = 0;
+    }
+    return height;
 }
 
 - (void)loadTweets {

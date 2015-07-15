@@ -104,8 +104,9 @@ static NSString *teamTweetCellID = @"teamTweetCellID";
         case TweetSection:
                cell = [tableView dequeueReusableCellWithIdentifier:teamTweetCellID];
                TeamTweetController *teamTweetController = [TeamTweetController sharedInstance];
-//               if ([teamTweetController.teamHashtag isEqualToString:teamController.currentTeam.teamHashtag] && teamTweetController.tweets) {
-                   [((TeamTweetCell *)cell) setUpCell:teamTweetController.tweets[indexPath.row]];
+               if ([teamTweetController.teamHashtag isEqualToString:teamController.currentTeam.twitter] && teamTweetController.tweets) {
+                   [((TeamTweetCell *)cell) setUpTweetCell:teamTweetController.tweets[indexPath.row]];
+               }
                break;
 
     }

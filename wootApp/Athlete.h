@@ -24,6 +24,8 @@ static NSString *BioKey = @"bio";
 static NSString *IsCaptainKey = @"captain";
 static NSString *IsStarterKey = @"starter";
 static NSString *ViewsKey = @"views";
+static NSString *AthleteTwitterKey = @"twitter";
+
 
 @interface Athlete : NSObject
 
@@ -42,6 +44,7 @@ static NSString *ViewsKey = @"views";
 @property (nonatomic, assign) NSInteger views;
 @property (nonatomic, strong) Stats *stats;
 @property (nonatomic, assign) NSInteger schoolID;
+@property (nonatomic, strong) NSString *twitter;
 
 - (instancetype)initWithDictionary: (NSDictionary *)dictionary;
 

@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <TwitterKit/TwitterKit.h>
 
-@interface TeamTweetController : UITableViewCell
+static NSString *teamTweetRequestFinished = @"teamTweetRequestFinished";
+
+@interface TeamTweetController : NSObject
 @property (nonatomic, strong) NSString *teamHashtag;
 @property (nonatomic, strong) NSArray *tweets;
 @property (nonatomic, strong) TWTRTweet *tweet;
 
 + (TeamTweetController *)sharedInstance;
 
-- (void)networkController;
+- (void)teamTweetNetworkController;
 
 @end

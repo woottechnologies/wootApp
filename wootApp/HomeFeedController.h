@@ -20,6 +20,7 @@ static NSString *HashtagKey = @"hashtag";
 @property (nonatomic, strong) NSArray *tweets;
 
 + (instancetype) sharedInstance;
-- (void) loadHashtagsFromDBWithCompletion;
+//- (void) loadHashtagsFromDBWithCompletion;
+- (void) loadTweetsFromHashtags;
 
 @end

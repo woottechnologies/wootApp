@@ -149,8 +149,9 @@
                     NSNumber *followingId = [NSNumber numberWithInteger:[[dict objectForKey:FollowingIDKey] integerValue]];
                     NSString *name = [dict objectForKey:FollowingNameKey];
                     NSString *type = [dict objectForKey:FollowingTypeKey];
+                    NSString *twitter = [dict objectForKey:FollowingTwitterKey];
                     
-                    NSDictionary *followingDict = @{FollowingIDKey:followingId, FollowingNameKey:name, FollowingTypeKey:type};
+                    NSDictionary *followingDict = @{FollowingIDKey:followingId, FollowingNameKey:name, FollowingTypeKey:type, FollowingTwitterKey:twitter};
                     [mutFollowing addObject:followingDict];
                 }
                 completion(YES, mutFollowing);

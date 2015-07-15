@@ -15,6 +15,9 @@
 #import "AppDelegate.h"
 #import "CustomTabBarVC.h"
 #import "AthleteController.h"
+#import <TwitterKit/TwitterKit.h>
+#import "TeamTweetController.h"
+#import "AthleteTweetController.h"
 
 
 @interface AthleteViewController () <UITableViewDelegate>
@@ -108,6 +111,10 @@
     self.customTBVC = (CustomTabBarVC *)appDelegate.window.rootViewController;
     
     [self.customTBVC chooseCampaign];
+    
+    AthleteTweetController* athleteTweetController = [AthleteTweetController sharedInstance];
+    [athleteTweetController athleteTweetNetworkController];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:athleteTweetRequestFinished object:nil];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
@@ -376,6 +383,13 @@
     [whiteStripe addSubview:athletePositionLabel];
 }
 
+- (void)loadTweets {
+    
+    [self.tableView reloadData];
+    self.tableView.frame = CGRectMake(0, 220, self.view.frame.size.width, 380);
+    
+}
+
 - (void) backButtonPressed {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -418,11 +432,23 @@
     
     float height = 0;
     
+    TWTRTweet *tweet;
+    TeamTweetController *teamTweetController = [TeamTweetController sharedInstance];
+    if (teamTweetController.tweets && teamTweetController.tweets.count>indexPath.row) {
+        tweet = teamTweetController.tweets[indexPath.row];
+    }
+    
     switch (indexPath.section){
         case 0:
             height = 300;
             break;
         case 1:
+            if (tweet) {
+                height = [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.view.bounds)];
+            } else {
+                height = 0;
+            }
+
             break;
         case 2:
             break;

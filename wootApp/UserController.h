@@ -16,6 +16,7 @@ static NSString *FollowingKey = @"following";
 static NSString *FollowingIDKey = @"id";
 static NSString *FollowingNameKey = @"name";
 static NSString *FollowingTypeKey = @"type";
+static NSString *FollowingTwitterKey = @"twitter";
 
 @interface UserController : NSObject
 

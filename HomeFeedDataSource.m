@@ -28,15 +28,20 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
+    TeamTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
     //    if ([teamTweetController.teamHashtag isEqualToString:teamController.currentTeam.teamHashtag] && teamTweetController.tweets) {
-    [((TeamTweetCell *)cell) setUpCell:homeFeedController.tweets[indexPath.row]];
+    [cell setUpTweetCell:homeFeedController.tweets[indexPath.row]];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
+    if (homeFeedController.tweets.count < 20) {
+        return homeFeedController.tweets.count;
+    } else {
+      return 20;
+    }
 }
 
 @end

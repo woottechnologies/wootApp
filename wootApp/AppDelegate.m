@@ -15,6 +15,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import "UserProfileViewController.h"
+#import "HomeFeedViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +28,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
+//    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[HomeFeedViewController new]];
+    
     masterVC.tabBarItem = [[UITabBarItem alloc] init];
     
     UINavigationController *userProfile = [[UINavigationController alloc] initWithRootViewController:[UserProfileViewController new]];

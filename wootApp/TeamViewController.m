@@ -141,9 +141,9 @@
     
     SchoolController *schoolController = [SchoolController sharedInstance];
     
-    TeamTweetController* teamTweets = [TeamTweetController sharedInstance];
-    [teamTweets networkController];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:@"requestFinished" object:nil];
+    TeamTweetController* teamTweetController = [TeamTweetController sharedInstance];
+    [teamTweetController teamTweetNetworkController];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:teamTweetRequestFinished object:nil];
 
     self.isTransitioning = NO;
     self.navigationController.navigationBar.hidden = NO;

@@ -1,35 +1,34 @@
 //
-//  TeamTweets.m
+//  AthleteTweetController.m
 //  wootApp
 //
-//  Created by Egan Anderson on 7/8/15.
+//  Created by Egan Anderson on 7/15/15.
 //  Copyright (c) 2015 Woot Technologies. All rights reserved.
 //
 
-#import "TeamTweetController.h"
-#import "TeamController.h"
+#import "AthleteTweetController.h"
+#import "AthleteController.h"
 
-
-@implementation TeamTweetController
-+ (TeamTweetController *)sharedInstance {
+@implementation AthleteTweetController
++ (AthleteTweetController *)sharedInstance {
     
-    static TeamTweetController *sharedInstance = nil;
+    static AthleteTweetController *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [TeamTweetController new];
+        sharedInstance = [AthleteTweetController new];
     });
     return sharedInstance;
     
 }
 
-- (void)teamTweetNetworkController{
+- (void)athleteTweetNetworkController{
     
     [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
-        TeamController *teamController = [TeamController sharedInstance];
+        AthleteController *athleteController = [AthleteController sharedInstance];
         if (guestSession) {
             NSString *searchURL = @"https://api.twitter.com/1.1/search/tweets.json";
-            self.teamHashtag = teamController.currentTeam.twitter;
-            NSDictionary *params = @{@"q" : self.teamHashtag};
+            self.athleteHandle = athleteController.currentAthlete.twitter;
+            NSDictionary *params = @{@"q" : self.athleteHandle};
             NSError *clientError;
             NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
                                      URLRequestWithMethod:@"GET"
@@ -50,7 +49,7 @@
                          
                          self.tweets = [TWTRTweet tweetsWithJSONArray:searchResults[@"statuses"]];
                          
-                         [[NSNotificationCenter defaultCenter] postNotificationName:teamTweetRequestFinished object:nil];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:athleteTweetRequestFinished object:nil];
                      }
                      else {
                          NSLog(@"Error: %@", connectionError);
@@ -67,3 +66,4 @@
 }
 
 @end
+
