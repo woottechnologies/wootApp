@@ -10,4 +10,6 @@
 
 @interface DockViewController : UIViewController
 
+@property (nonatomic, strong) NSString *followButtonType;
+
 @end

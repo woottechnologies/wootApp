@@ -20,5 +20,6 @@ static NSString *EmailKey = @"email";
 @property (nonatomic, strong) NSArray *favorites;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (BOOL)isFollowing:(id)account;
 
 @end

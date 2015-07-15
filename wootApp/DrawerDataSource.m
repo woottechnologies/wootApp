@@ -28,16 +28,11 @@ static NSString *cellID = @"cellID";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    
-    NSDictionary *fav;
-    
+
     switch (indexPath.section){
             
         case 0:
             cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-            
-            fav = [[UserController sharedInstance].currentUser.favorites objectAtIndex:indexPath.row];
-            cell.textLabel.text = [fav objectForKey:FavNameKey];
             break;
         default:
             cell = [tableView dequeueReusableCellWithIdentifier:cellID];

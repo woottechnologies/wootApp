@@ -31,6 +31,9 @@
 		4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBE1B41E40D006BBC43 /* Coach.m */; };
 		4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */; };
 		4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */; };
+		47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED071B557CE2006B03E8 /* UserProfileViewController.m */; };
+		47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */; };
+		47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */; };
 		552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032F61B541DF2003FF149 /* HomeFeedViewController.m */; };
 		552032FB1B542091003FF149 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032FA1B542091003FF149 /* HomeFeedDataSource.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
@@ -127,6 +130,12 @@
 		4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailViewController.m; sourceTree = "<group>"; };
 		4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MoreMethods.h"; sourceTree = "<group>"; };
 		4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MoreMethods.m"; sourceTree = "<group>"; };
+		47ECED061B557CE2006B03E8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		47ECED071B557CE2006B03E8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		47ECED091B56D9CD006B03E8 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
+		47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
+		47ECED0D1B56DAE3006B03E8 /* FollowingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingDataSource.h; sourceTree = "<group>"; };
+		47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingDataSource.m; sourceTree = "<group>"; };
 		552032F51B541DF2003FF149 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
 		552032F61B541DF2003FF149 /* HomeFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedViewController.m; path = ../wootApp/HomeFeedViewController.m; sourceTree = "<group>"; };
 		552032F91B542091003FF149 /* HomeFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFeedDataSource.h; sourceTree = "<group>"; };
@@ -244,6 +253,9 @@
 			children = (
 				4797DEAE1B39FCF7006BBC43 /* User.h */,
 				4797DEAF1B39FCF7006BBC43 /* User.m */,
+				47ECED061B557CE2006B03E8 /* UserProfileViewController.h */,
+				47ECED071B557CE2006B03E8 /* UserProfileViewController.m */,
+				47ECED0C1B56DA9D006B03E8 /* following */,
 				4797DEB11B39FD07006BBC43 /* UserController.h */,
 				4797DEB21B39FD07006BBC43 /* UserController.m */,
 			);
@@ -316,6 +328,17 @@
 				4797DEBB1B41E246006BBC43 /* CoachingStaffCell.m */,
 			);
 			name = Coach;
+			sourceTree = "<group>";
+		};
+		47ECED0C1B56DA9D006B03E8 /* following */ = {
+			isa = PBXGroup;
+			children = (
+				47ECED091B56D9CD006B03E8 /* FollowingViewController.h */,
+				47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */,
+				47ECED0D1B56DAE3006B03E8 /* FollowingDataSource.h */,
+				47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */,
+			);
+			name = following;
 			sourceTree = "<group>";
 		};
 		552032F81B541E1E003FF149 /* Home Feed */ = {
@@ -599,6 +622,7 @@
 				553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */,
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
+				47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */,
 				4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */,
 				553A292C1B353FC900784798 /* Stats.m in Sources */,
 				4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */,
@@ -606,14 +630,15 @@
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
 				553A28EB1B29E09F00784798 /* PreviousGameTableViewCell.m in Sources */,
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
-				4797DEB31B39FD07006BBC43 /* UserController.m in 
-Sources */,
+				47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */,
+				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
 				552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
 				55C323051B444787002EBB65 /* TestViewController.m in Sources */,
 				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
+				47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
 				4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,

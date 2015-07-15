@@ -10,6 +10,9 @@
 #import "UserController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "NSString+MoreMethods.h"
+#import "AppDelegate.h"
+#import "CustomTabBarVC.h"
+#import "AthleteController.h"
 
 @interface DockViewController () <UITextFieldDelegate>
 
@@ -19,6 +22,7 @@
 @property (nonatomic, strong) UIButton *showSignUp;
 @property (nonatomic, strong) UIButton *showLogIn;
 @property (nonatomic, strong) UILabel *errorLabel;
+@property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
 // Sign Up
 @property (nonatomic, strong) UITextField *firstNameField;
@@ -41,6 +45,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
+    AppDelegate *appD = [[UIApplication sharedApplication] delegate];
+    self.customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     
 //    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
 //    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
@@ -189,7 +195,21 @@
     
     [userController registerInDBWithCompletion:^(BOOL success, NSString *error) {
         if (success) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            // land them wherever they were
+            if (!self.followButtonType) {
+                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[1];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else if ([self.followButtonType isEqualToString:@"T"]) {
+                [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    self.followButtonType = nil;
+                }];
+            } else {
+                [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    self.followButtonType = nil;
+                }];
+            }
         } else {
             [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
         }
@@ -206,7 +226,29 @@
     
     [userController logInUserWithCompletion:^(BOOL success, NSString *error) {
         if (success) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            // land them wherever they were
+            if (!self.followButtonType) {
+                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[1];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else if ([self.followButtonType isEqualToString:@"T"]) {
+                if ([[UserController sharedInstance].currentUser isFollowing:[TeamController sharedInstance].currentTeam]) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                } else {
+                    [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        self.followButtonType = nil;
+                    }];
+                }
+            } else {
+                if ([[UserController sharedInstance].currentUser isFollowing:[AthleteController sharedInstance].currentAthlete]) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                } else {
+                    [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        self.followButtonType = nil;
+                    }];
+                }
+            }
         } else {
             [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
         }
@@ -214,6 +256,7 @@
 }
 
 - (void)exitButtonPressed:(UIButton *)exitButton {
+    self.followButtonType = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -15,5 +15,6 @@
 @property (nonatomic, strong) UIButton *campaignAdButton;
 
 - (void)chooseCampaign;
+- (void)toggleDrawer;
 
 @end

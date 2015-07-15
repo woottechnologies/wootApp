@@ -90,12 +90,12 @@
     
     self.navigationItem.rightBarButtonItem = self.followButton;
     
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.favorites) {
+    for (NSDictionary *dict in [UserController sharedInstance].currentUser.following) {
         NSInteger followID = [[dict objectForKey:FollowingIDKey] integerValue];
         NSString *followType = [dict objectForKey:FollowingTypeKey];
         if (followID == [TeamController sharedInstance].currentTeam.teamID
             && [followType isEqualToString:@"T"]) {
-            self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
+            self.navigationItem.rightBarButtonItem = self.unfollowButton;
         }
     }
     
@@ -603,7 +603,9 @@
     UserController *userController = [UserController sharedInstance];
     
     if (!userController.currentUser) {
-        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
+        DockViewController *dockVC = [[DockViewController alloc] init];
+        dockVC.followButtonType = @"T";
+        [self.navigationController presentViewController:dockVC animated:YES completion:nil];
     } else {
         self.navigationItem.rightBarButtonItem = self.unfollowButton;
         [userController followAccount:[TeamController sharedInstance].currentTeam];
@@ -615,30 +617,6 @@
     
     self.navigationItem.rightBarButtonItem = self.followButton;
     [userController unfollowAccount:[TeamController sharedInstance].currentTeam];
-}
-
-#pragma mark - fav buttons
-
-- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {
-    UserController *userController = [UserController sharedInstance];
-    
-    if (!userController.currentUser) {
-        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
-    } else {
-        self.navigationItem.rightBarButtonItem = self.unfavoriteButton;
-        [userController addFavorite:[TeamController sharedInstance].currentTeam];
-    }
-}
-
-- (void)unfavoriteTapped:(UIBarButtonItem *)item {
-    UserController *userController = [UserController sharedInstance];
-    
-    if (!userController.currentUser) {
-        [self.navigationController presentViewController:[DockViewController new] animated:YES completion:nil];
-    } else {
-        self.navigationItem.rightBarButtonItem = self.favoriteButton;
-        [userController removeFavorite:[TeamController sharedInstance].currentTeam];
-    }
 }
 
 /*
