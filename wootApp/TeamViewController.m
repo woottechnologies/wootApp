@@ -364,7 +364,7 @@
 #pragma mark - TableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height;
+    CGFloat height = 0;
     TWTRTweet *tweet;
     TeamTweetController *teamTweetController = [TeamTweetController sharedInstance];
     if (teamTweetController.tweets && teamTweetController.tweets.count>indexPath.row) {

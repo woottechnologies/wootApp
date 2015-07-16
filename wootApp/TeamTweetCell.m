@@ -29,11 +29,13 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self.tweetView = [[TWTRTweetView alloc] initWithTweet:nil style:TWTRTweetViewStyleCompact];
     return self;
 }
 
 - (void)setUpTweetCell:(TWTRTweet *) tweet{
-    self.tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleCompact];
+    TWTRTweetView *newTweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleCompact];
+    self.tweetView = newTweetView;
     self.tweetView.frame = CGRectMake(0, 0, 375, [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.bounds)]);
     [self.contentView addSubview:self.tweetView];
 }

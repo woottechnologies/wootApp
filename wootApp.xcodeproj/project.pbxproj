@@ -35,9 +35,8 @@
 		47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */; };
 		47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */; };
 		551D2A541B56E97300F18BCD /* AthleteTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D2A531B56E97300F18BCD /* AthleteTweetController.m */; };
-		552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032F61B541DF2003FF149 /* HomeFeedViewController.m */; };
-		552032FE1B54314D003FF149 /* HomeFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032FD1B54314D003FF149 /* HomeFeedController.m */; };
-		552033011B558186003FF149 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552033001B558186003FF149 /* HomeFeedDataSource.m */; };
+		552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552F843A1B573C550064FDE6 /* HomeFeedDataSource.m */; };
+		552F843E1B573C9D0064FDE6 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552F843D1B573C9D0064FDE6 /* HomeFeedViewController.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
 		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
 		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
@@ -58,6 +57,7 @@
 		5569EA861B4DD946007B540B /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA821B4DD946007B540B /* TwitterKit.framework */; };
 		5569EA871B4DD946007B540B /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5569EA831B4DD946007B540B /* TwitterKitResources.bundle */; };
 		5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA841B4DD946007B540B /* TwitterCore.framework */; };
+		556D45CE1B5749FE00F4254E /* HomeFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45CD1B5749FE00F4254E /* HomeFeedController.m */; };
 		55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
@@ -140,12 +140,10 @@
 		47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingDataSource.m; sourceTree = "<group>"; };
 		551D2A521B56E97300F18BCD /* AthleteTweetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AthleteTweetController.h; path = ../AthleteTweetController.h; sourceTree = "<group>"; };
 		551D2A531B56E97300F18BCD /* AthleteTweetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AthleteTweetController.m; path = ../AthleteTweetController.m; sourceTree = "<group>"; };
-		552032F51B541DF2003FF149 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
-		552032F61B541DF2003FF149 /* HomeFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedViewController.m; path = ../wootApp/HomeFeedViewController.m; sourceTree = "<group>"; };
-		552032FC1B54314D003FF149 /* HomeFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedController.h; path = ../wootApp/HomeFeedController.h; sourceTree = "<group>"; };
-		552032FD1B54314D003FF149 /* HomeFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedController.m; path = ../wootApp/HomeFeedController.m; sourceTree = "<group>"; };
-		552032FF1B558186003FF149 /* HomeFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedDataSource.h; path = ../HomeFeedDataSource.h; sourceTree = "<group>"; };
-		552033001B558186003FF149 /* HomeFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedDataSource.m; path = ../HomeFeedDataSource.m; sourceTree = "<group>"; };
+		552F84391B573C550064FDE6 /* HomeFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFeedDataSource.h; sourceTree = "<group>"; };
+		552F843A1B573C550064FDE6 /* HomeFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFeedDataSource.m; sourceTree = "<group>"; };
+		552F843C1B573C9D0064FDE6 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
+		552F843D1B573C9D0064FDE6 /* HomeFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedViewController.m; path = ../wootApp/HomeFeedViewController.m; sourceTree = "<group>"; };
 		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
 		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
 		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
@@ -182,6 +180,8 @@
 		5569EA821B4DD946007B540B /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		5569EA831B4DD946007B540B /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
 		5569EA841B4DD946007B540B /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		556D45CC1B5749FE00F4254E /* HomeFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedController.h; path = wootApp/HomeFeedController.h; sourceTree = SOURCE_ROOT; };
+		556D45CD1B5749FE00F4254E /* HomeFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedController.m; path = wootApp/HomeFeedController.m; sourceTree = SOURCE_ROOT; };
 		55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListTableViewCell.h; sourceTree = "<group>"; };
 		55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,12 +352,12 @@
 		552032F81B541E1E003FF149 /* Home Feed */ = {
 			isa = PBXGroup;
 			children = (
-				552032FC1B54314D003FF149 /* HomeFeedController.h */,
-				552032FD1B54314D003FF149 /* HomeFeedController.m */,
-				552032F51B541DF2003FF149 /* HomeFeedViewController.h */,
-				552032F61B541DF2003FF149 /* HomeFeedViewController.m */,
-				552032FF1B558186003FF149 /* HomeFeedDataSource.h */,
-				552033001B558186003FF149 /* HomeFeedDataSource.m */,
+				556D45CC1B5749FE00F4254E /* HomeFeedController.h */,
+				556D45CD1B5749FE00F4254E /* HomeFeedController.m */,
+				552F84391B573C550064FDE6 /* HomeFeedDataSource.h */,
+				552F843A1B573C550064FDE6 /* HomeFeedDataSource.m */,
+				552F843C1B573C9D0064FDE6 /* HomeFeedViewController.h */,
+				552F843D1B573C9D0064FDE6 /* HomeFeedViewController.m */,
 			);
 			name = "Home Feed";
 			path = wootApp.xcodeproj;
@@ -611,9 +611,9 @@
 				553A29321B389DD900784798 /* StatsController.m in Sources */,
 				553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */,
 				554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */,
+				552F843E1B573C9D0064FDE6 /* HomeFeedViewController.m in Sources */,
 				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
-				552032FE1B54314D003FF149 /* HomeFeedController.m in Sources */,
 				4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
@@ -632,10 +632,11 @@
 				4719A32B1B4DE466009A707E /* AthleteController.m in Sources */,
 				553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */,
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
+				552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */,
 				4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */,
-				552033011B558186003FF149 /* HomeFeedDataSource.m in Sources */,
+				556D45CE1B5749FE00F4254E /* HomeFeedController.m in Sources */,
 				553A292C1B353FC900784798 /* Stats.m in Sources */,
 				4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */,
 				553A28EE1B2B382200784798 /* RosterTableViewCell.m in Sources */,
@@ -644,7 +645,6 @@
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */,
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
-				552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
 				55C323051B444787002EBB65 /* TestViewController.m in Sources */,

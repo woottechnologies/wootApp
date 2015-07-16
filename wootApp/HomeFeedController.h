@@ -10,6 +10,7 @@
 #import "User.h"
 #import <TwitterKit/TwitterKit.h>
 
+static NSString *homeTweetRequestFinished = @"homeTweetRequestFinished";
 static NSString *HashtagKey = @"hashtag";
 
 @interface HomeFeedController : NSObject
@@ -21,6 +22,6 @@ static NSString *HashtagKey = @"hashtag";
 
 + (instancetype) sharedInstance;
 //- (void) loadHashtagsFromDBWithCompletion;
-- (void) loadTweetsFromHashtags;
+- (void) loadTweetsFromHashtagsWithCompletion:(void (^)(BOOL success))completion;
 
 @end
