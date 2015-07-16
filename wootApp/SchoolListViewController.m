@@ -39,15 +39,15 @@
     
     [self.view addSubview:self.tableView];
     
-    [[SchoolController sharedInstance] loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
-        if (success) {
-            //Updating UI must occur on main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"loading schools worked");
-                [self.tableView reloadData];
-            });
-        }
-    }];
+//    [[SchoolController sharedInstance] loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
+//        if (success) {
+//            //Updating UI must occur on main thread
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                NSLog(@"loading schools worked");
+//                [self.tableView reloadData];
+//            });
+//        }
+//    }];
     
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 //    self.navigationController.navigationBar.hidden = YES;
@@ -64,12 +64,12 @@
 //}
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.customTBVC.campaignAdButton.hidden = YES;
-    
-
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

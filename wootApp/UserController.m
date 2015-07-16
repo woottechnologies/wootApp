@@ -182,7 +182,7 @@
 
 #pragma mark - Update
 
-- (void)followAccount:(id)account {
+- (void)followAccount:(id)account withCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
     NSMutableArray *tempFollowing = [[NSMutableArray alloc] initWithArray:self.currentUser.following];
@@ -228,21 +228,23 @@
             
             if (returnCode == 10) {
                 // success
-                self.currentUser.following = tempFollowing;
+                self.currentUser.following = [tempFollowing copy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                completion(YES);
             } else if (returnCode == 20) {
                 // error
+                completion(NO);
             }
         } else {
-            // completion(NO, @"Error with network request");
+            completion(NO);
         }
     }];
     
     [uploadTask resume];
 }
 
-- (void)unfollowAccount:(id)account {
+- (void)unfollowAccount:(id)account withCompletion:(void (^)(BOOL success))completion  {
     NSURLSession *session = [NSURLSession sharedSession];
     
     NSMutableArray *tempFollowing = [[NSMutableArray alloc] initWithArray:self.currentUser.following];
@@ -288,14 +290,16 @@
             
             if (returnCode == 10) {
                 // success
-                self.currentUser.following = tempFollowing;
+                self.currentUser.following = [tempFollowing copy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                completion(YES);
             } else if (returnCode == 20) {
                 // error
+                completion(NO);
             }
         } else {
-            // completion(NO, @"Error with network request");
+            completion(NO);
         }
     }];
     

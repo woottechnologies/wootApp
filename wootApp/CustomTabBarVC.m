@@ -39,6 +39,12 @@
     self.delegate = self;
     self.tabBar.hidden = YES;
     
+    [[SchoolController sharedInstance] loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
+        if (success) {
+            
+        }
+    }];
+    
 //    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
     self.toolBar = [[UIToolbar alloc] init];
     

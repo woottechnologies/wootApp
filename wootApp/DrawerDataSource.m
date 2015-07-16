@@ -29,10 +29,11 @@ static NSString *cellID = @"cellID";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
 
-    switch (indexPath.section){
+    switch (indexPath.row){
             
         case 0:
             cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            cell.textLabel.text = @"Edit Profile";
             break;
         default:
             cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -44,19 +45,11 @@ static NSString *cellID = @"cellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return [UserController sharedInstance].currentUser.favorites.count;
-            break;
-            
-        default:
-            return 1;
-            break;
-    }
+    return 2;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 @end

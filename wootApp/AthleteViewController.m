@@ -27,8 +27,8 @@
 @property (nonatomic, strong) AthleteDataSource *dataSource;
 @property (nonatomic, strong) UIBarButtonItem *followButton;
 @property (nonatomic, strong) UIBarButtonItem *unfollowButton;
-@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
-@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
+//@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
+//@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 //@property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
@@ -55,15 +55,10 @@
     
     self.unfollowButton = [[UIBarButtonItem alloc] initWithTitle:@"Unfollow" style:UIBarButtonItemStylePlain target:self action:@selector(unfollowTapped:)];
     
-    self.navigationItem.rightBarButtonItem = self.followButton;
-    
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.following) {
-        NSInteger followID = [[dict objectForKey:FollowingIDKey] integerValue];
-        NSString *followType = [dict objectForKey:FollowingTypeKey];
-        if (followID == [AthleteController sharedInstance].currentAthlete.athleteID
-            && [followType isEqualToString:@"A"]) {
-            self.navigationItem.rightBarButtonItem = self.unfollowButton;
-        }
+    if ([[UserController sharedInstance].currentUser isFollowing:[AthleteController sharedInstance].currentAthlete]) {
+        self.navigationItem.rightBarButtonItem = self.unfollowButton;
+    } else {
+        self.navigationItem.rightBarButtonItem = self.followButton;
     }
     
 //    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
@@ -509,7 +504,7 @@
         [self.navigationController presentViewController:dockVC animated:YES completion:nil];
     } else {
         self.navigationItem.rightBarButtonItem = self.unfollowButton;
-        [userController followAccount:[AthleteController sharedInstance].currentAthlete];
+        [userController followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:nil];
     }
 }
 
@@ -517,7 +512,7 @@
     UserController *userController = [UserController sharedInstance];
     
     self.navigationItem.rightBarButtonItem = self.followButton;
-    [userController unfollowAccount:[AthleteController sharedInstance].currentAthlete];
+    [userController unfollowAccount:[AthleteController sharedInstance].currentAthlete withCompletion:nil];
 }
 
 //- (void)favoriteTapped:(UIBarButtonItem *)favoriteItem {

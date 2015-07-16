@@ -40,6 +40,10 @@
 
 @implementation DockViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -200,14 +204,20 @@
                 self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[2];
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else if ([self.followButtonType isEqualToString:@"T"]) {
-                [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    self.followButtonType = nil;
+                [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam withCompletion:^(BOOL success) {
+                    if (success) {
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            self.followButtonType = nil;
+                        }];
+                    }
                 }];
             } else {
-                [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    self.followButtonType = nil;
+                [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:^(BOOL success) {
+                    if (success) {
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            self.followButtonType = nil;
+                        }];
+                    }
                 }];
             }
         } else {
@@ -234,18 +244,24 @@
                 if ([[UserController sharedInstance].currentUser isFollowing:[TeamController sharedInstance].currentTeam]) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else {
-                    [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        self.followButtonType = nil;
+                    [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam withCompletion:^(BOOL success) {
+                        if (success) {
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                self.followButtonType = nil;
+                            }];
+                        }
                     }];
                 }
             } else {
                 if ([[UserController sharedInstance].currentUser isFollowing:[AthleteController sharedInstance].currentAthlete]) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else {
-                    [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        self.followButtonType = nil;
+                    [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:^(BOOL success) {
+                        if (success) {
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                self.followButtonType = nil;
+                            }];
+                        }
                     }];
                 }
             }
