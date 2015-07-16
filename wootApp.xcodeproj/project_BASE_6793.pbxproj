@@ -1,0 +1,837 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4719A32B1B4DE466009A707E /* AthleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719A32A1B4DE466009A707E /* AthleteController.m */; };
+		4719A32E1B4EF69D009A707E /* CoachDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719A32D1B4EF69D009A707E /* CoachDataSource.m */; };
+		472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 472F873B1B27741D0067C72F /* UIImage+PathForFile.m */; };
+		473EA3531B2939400033AFA1 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 473EA3521B2939400033AFA1 /* GameViewController.m */; };
+		473EA3561B29E4F80033AFA1 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 473EA3551B29E4F80033AFA1 /* Game.m */; };
+		473EA3591B29EE310033AFA1 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 473EA3581B29EE310033AFA1 /* GameController.m */; };
+		47541EB21B1F700C005E3C53 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB11B1F700C005E3C53 /* Team.m */; };
+		47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EB41B1F71E6005E3C53 /* TeamController.m */; };
+		47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541EC71B1FA394005E3C53 /* TeamViewController.m */; };
+		47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */; };
+		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
+		47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */; };
+		4796A9851B331E7A00D71779 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9841B331E7A00D71779 /* NetworkController.m */; };
+		4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9871B33735E00D71779 /* SchoolListDataSource.m */; };
+		4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */; };
+		4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */; };
+		4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEA71B39F75B006BBC43 /* DockViewController.m */; };
+		4797DEB01B39FCF7006BBC43 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEAF1B39FCF7006BBC43 /* User.m */; };
+		4797DEB31B39FD07006BBC43 /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEB21B39FD07006BBC43 /* UserController.m */; };
+		4797DEB61B3CA27C006BBC43 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4797DEB51B3CA27C006BBC43 /* MessageUI.framework */; };
+		4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBB1B41E246006BBC43 /* CoachingStaffCell.m */; };
+		4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBE1B41E40D006BBC43 /* Coach.m */; };
+		4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */; };
+		4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */; };
+		552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032F61B541DF2003FF149 /* HomeFeedViewController.m */; };
+		552032FB1B542091003FF149 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552032FA1B542091003FF149 /* HomeFeedDataSource.m */; };
+		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
+		553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */; };
+		553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */; };
+		553A28DF1B2773E600784798 /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28DE1B2773E600784798 /* Campaign.m */; };
+		553A28E21B27762700784798 /* CampaignController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E11B27762700784798 /* CampaignController.m */; };
+		553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E41B27991800784798 /* CampaignAdViewController.m */; };
+		553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28E71B28ED3B00784798 /* ScheduleViewController.m */; };
+		553A28EB1B29E09F00784798 /* PreviousGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28EA1B29E09F00784798 /* PreviousGameTableViewCell.m */; };
+		553A28EE1B2B382200784798 /* RosterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28ED1B2B382200784798 /* RosterTableViewCell.m */; };
+		553A292C1B353FC900784798 /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A292B1B353FC800784798 /* Stats.m */; };
+		553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A292E1B386A0E00784798 /* SummaryStatsTableViewCell.m */; };
+		553A29321B389DD900784798 /* StatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29311B389DD900784798 /* StatsController.m */; };
+		553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29341B3C654100784798 /* UIColor+CreateMethods.m */; };
+		553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29371B3DDFA200784798 /* NextGameTableViewCell.m */; };
+		554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 554308621B4F3FBD00571404 /* TeamTweetCell.m */; };
+		5569EA7F1B4DD366007B540B /* TeamTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5569EA7E1B4DD366007B540B /* TeamTweetController.m */; };
+		5569EA851B4DD946007B540B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA811B4DD946007B540B /* Fabric.framework */; };
+		5569EA861B4DD946007B540B /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA821B4DD946007B540B /* TwitterKit.framework */; };
+		5569EA871B4DD946007B540B /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5569EA831B4DD946007B540B /* TwitterKitResources.bundle */; };
+		5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA841B4DD946007B540B /* TwitterCore.framework */; };
+		55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */; };
+		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
+		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
+		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
+		55B4C8B01B1E386F003B3058 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8AF1B1E386F003B3058 /* Images.xcassets */; };
+		55B4C8B31B1E386F003B3058 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */; };
+		55B4C8BF1B1E386F003B3058 /* wootAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8BE1B1E386F003B3058 /* wootAppTests.m */; };
+		55B4C8FF1B1F7930003B3058 /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8FE1B1F7930003B3058 /* School.m */; };
+		55B4C9021B1F7966003B3058 /* Athlete.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9011B1F7966003B3058 /* Athlete.m */; };
+		55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9041B1F7C4E003B3058 /* SchoolController.m */; };
+		55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C9171B210A13003B3058 /* TeamDataSource.m */; };
+		55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE85AE1B264060006C8279 /* RosterViewController.m */; };
+		55C323051B444787002EBB65 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C323041B444787002EBB65 /* TestViewController.m */; };
+		55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C323071B446135002EBB65 /* DynamicFontSize.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55B4C8B91B1E386F003B3058 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55B4C8971B1E386F003B3058 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55B4C89E1B1E386F003B3058;
+			remoteInfo = wootApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4719A3291B4DE466009A707E /* AthleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteController.h; sourceTree = "<group>"; };
+		4719A32A1B4DE466009A707E /* AthleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteController.m; sourceTree = "<group>"; };
+		4719A32C1B4EF69D009A707E /* CoachDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDataSource.h; sourceTree = "<group>"; };
+		4719A32D1B4EF69D009A707E /* CoachDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDataSource.m; sourceTree = "<group>"; };
+		472F873A1B27741D0067C72F /* UIImage+PathForFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PathForFile.h"; sourceTree = "<group>"; };
+		472F873B1B27741D0067C72F /* UIImage+PathForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PathForFile.m"; sourceTree = "<group>"; };
+		473EA3511B2939400033AFA1 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		473EA3521B2939400033AFA1 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		473EA3541B29E4F80033AFA1 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		473EA3551B29E4F80033AFA1 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		473EA3571B29EE310033AFA1 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		473EA3581B29EE310033AFA1 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		47541EB01B1F700C005E3C53 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		47541EB11B1F700C005E3C53 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		47541EB31B1F71E6005E3C53 /* TeamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamController.h; sourceTree = "<group>"; };
+		47541EB41B1F71E6005E3C53 /* TeamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamController.m; sourceTree = "<group>"; };
+		47541EC61B1FA394005E3C53 /* TeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamViewController.h; sourceTree = "<group>"; };
+		47541EC71B1FA394005E3C53 /* TeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamViewController.m; sourceTree = "<group>"; };
+		47541EC91B20C7B1005E3C53 /* AthleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteViewController.h; sourceTree = "<group>"; };
+		47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteViewController.m; sourceTree = "<group>"; };
+		47541ECC1B20C7EC005E3C53 /* AthleteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteDataSource.h; sourceTree = "<group>"; };
+		47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteDataSource.m; sourceTree = "<group>"; };
+		47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostViewedPlayersTableViewCell.h; sourceTree = "<group>"; };
+		47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
+		4796A9831B331E7A00D71779 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		4796A9841B331E7A00D71779 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		4796A9861B33735E00D71779 /* SchoolListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListDataSource.h; sourceTree = "<group>"; };
+		4796A9871B33735E00D71779 /* SchoolListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListDataSource.m; sourceTree = "<group>"; };
+		4797DE9A1B387B47006BBC43 /* CustomTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarVC.h; sourceTree = "<group>"; };
+		4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarVC.m; sourceTree = "<group>"; };
+		4797DE9D1B38C1DE006BBC43 /* DrawerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerDataSource.h; sourceTree = "<group>"; };
+		4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerDataSource.m; sourceTree = "<group>"; };
+		4797DEA61B39F75B006BBC43 /* DockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockViewController.h; sourceTree = "<group>"; };
+		4797DEA71B39F75B006BBC43 /* DockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DockViewController.m; sourceTree = "<group>"; };
+		4797DEAE1B39FCF7006BBC43 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		4797DEAF1B39FCF7006BBC43 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		4797DEB11B39FD07006BBC43 /* UserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserController.h; sourceTree = "<group>"; };
+		4797DEB21B39FD07006BBC43 /* UserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserController.m; sourceTree = "<group>"; };
+		4797DEB51B3CA27C006BBC43 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4797DEBA1B41E246006BBC43 /* CoachingStaffCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachingStaffCell.h; sourceTree = "<group>"; };
+		4797DEBB1B41E246006BBC43 /* CoachingStaffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachingStaffCell.m; sourceTree = "<group>"; };
+		4797DEBD1B41E40D006BBC43 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
+		4797DEBE1B41E40D006BBC43 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
+		4797DEC41B41F799006BBC43 /* CoachDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDetailViewController.h; sourceTree = "<group>"; };
+		4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailViewController.m; sourceTree = "<group>"; };
+		4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MoreMethods.h"; sourceTree = "<group>"; };
+		4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MoreMethods.m"; sourceTree = "<group>"; };
+		552032F51B541DF2003FF149 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
+		552032F61B541DF2003FF149 /* HomeFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedViewController.m; path = ../wootApp/HomeFeedViewController.m; sourceTree = "<group>"; };
+		552032F91B542091003FF149 /* HomeFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFeedDataSource.h; sourceTree = "<group>"; };
+		552032FA1B542091003FF149 /* HomeFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFeedDataSource.m; sourceTree = "<group>"; };
+		553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLKAutoLayoutPredicateList.h; sourceTree = "<group>"; };
+		553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLKAutoLayoutPredicateList.m; sourceTree = "<group>"; };
+		553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
+		553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLKAutoLayout.m"; sourceTree = "<group>"; };
+		553A28D81B27649900784798 /* UIView+FLKAutoLayoutPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLKAutoLayoutPredicate.h"; sourceTree = "<group>"; };
+		553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLKAutoLayoutPredicate.m"; sourceTree = "<group>"; };
+		553A28DD1B2773E600784798 /* Campaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campaign.h; sourceTree = "<group>"; };
+		553A28DE1B2773E600784798 /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
+		553A28E01B27762700784798 /* CampaignController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignController.h; sourceTree = "<group>"; };
+		553A28E11B27762700784798 /* CampaignController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignController.m; sourceTree = "<group>"; };
+		553A28E31B27991800784798 /* CampaignAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignAdViewController.h; sourceTree = "<group>"; };
+		553A28E41B27991800784798 /* CampaignAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignAdViewController.m; sourceTree = "<group>"; };
+		553A28E61B28ED3B00784798 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		553A28E71B28ED3B00784798 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		553A28E91B29E09F00784798 /* PreviousGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousGameTableViewCell.h; sourceTree = "<group>"; };
+		553A28EA1B29E09F00784798 /* PreviousGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousGameTableViewCell.m; sourceTree = "<group>"; };
+		553A28EC1B2B382200784798 /* RosterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterTableViewCell.h; sourceTree = "<group>"; };
+		553A28ED1B2B382200784798 /* RosterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterTableViewCell.m; sourceTree = "<group>"; };
+		553A292A1B353FC700784798 /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
+		553A292B1B353FC800784798 /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
+		553A292D1B386A0E00784798 /* SummaryStatsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryStatsTableViewCell.h; sourceTree = "<group>"; };
+		553A292E1B386A0E00784798 /* SummaryStatsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryStatsTableViewCell.m; sourceTree = "<group>"; };
+		553A29301B389DD900784798 /* StatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsController.h; sourceTree = "<group>"; };
+		553A29311B389DD900784798 /* StatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsController.m; sourceTree = "<group>"; };
+		553A29331B3C654100784798 /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CreateMethods.h"; sourceTree = "<group>"; };
+		553A29341B3C654100784798 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
+		553A29361B3DDFA200784798 /* NextGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextGameTableViewCell.h; sourceTree = "<group>"; };
+		553A29371B3DDFA200784798 /* NextGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextGameTableViewCell.m; sourceTree = "<group>"; };
+		554308611B4F3FBD00571404 /* TeamTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweetCell.h; sourceTree = "<group>"; };
+		554308621B4F3FBD00571404 /* TeamTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTweetCell.m; sourceTree = "<group>"; };
+		5569EA7D1B4DD366007B540B /* TeamTweetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweetController.h; sourceTree = "<group>"; };
+		5569EA7E1B4DD366007B540B /* TeamTweetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTweetController.m; sourceTree = "<group>"; };
+		5569EA811B4DD946007B540B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		5569EA821B4DD946007B540B /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		5569EA831B4DD946007B540B /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
+		5569EA841B4DD946007B540B /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListTableViewCell.h; sourceTree = "<group>"; };
+		55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListTableViewCell.m; sourceTree = "<group>"; };
+		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		55B4C8A61B1E386F003B3058 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		55B4C8A71B1E386F003B3058 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolListViewController.h; sourceTree = "<group>"; };
+		55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolListViewController.m; sourceTree = "<group>"; };
+		55B4C8AF1B1E386F003B3058 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		55B4C8B21B1E386F003B3058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		55B4C8B81B1E386F003B3058 /* wootAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wootAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B4C8BD1B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55B4C8BE1B1E386F003B3058 /* wootAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wootAppTests.m; sourceTree = "<group>"; };
+		55B4C8FD1B1F7930003B3058 /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = School.h; sourceTree = "<group>"; };
+		55B4C8FE1B1F7930003B3058 /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
+		55B4C9001B1F7966003B3058 /* Athlete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Athlete.h; sourceTree = "<group>"; };
+		55B4C9011B1F7966003B3058 /* Athlete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Athlete.m; sourceTree = "<group>"; };
+		55B4C9031B1F7C4E003B3058 /* SchoolController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolController.h; sourceTree = "<group>"; };
+		55B4C9041B1F7C4E003B3058 /* SchoolController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolController.m; sourceTree = "<group>"; };
+		55B4C9161B210A13003B3058 /* TeamDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDataSource.h; sourceTree = "<group>"; };
+		55B4C9171B210A13003B3058 /* TeamDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDataSource.m; sourceTree = "<group>"; };
+		55BE85AD1B264060006C8279 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
+		55BE85AE1B264060006C8279 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
+		55C323031B444787002EBB65 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		55C323041B444787002EBB65 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		55C323061B446135002EBB65 /* DynamicFontSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicFontSize.h; sourceTree = "<group>"; };
+		55C323071B446135002EBB65 /* DynamicFontSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicFontSize.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		55B4C89C1B1E386F003B3058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4797DEB61B3CA27C006BBC43 /* MessageUI.framework in Frameworks */,
+				5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */,
+				5569EA851B4DD946007B540B /* Fabric.framework in Frameworks */,
+				5569EA861B4DD946007B540B /* TwitterKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55B4C8B51B1E386F003B3058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				4797DEA61B39F75B006BBC43 /* DockViewController.h */,
+				4797DEA71B39F75B006BBC43 /* DockViewController.m */,
+			);
+			name = "Log In / Sign Up";
+			sourceTree = "<group>";
+		};
+		4797DEAD1B39F8E5006BBC43 /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4797DE9A1B387B47006BBC43 /* CustomTabBarVC.h */,
+				4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */,
+				4797DE9D1B38C1DE006BBC43 /* DrawerDataSource.h */,
+				4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */,
+			);
+			name = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		4797DEB41B39FD1B006BBC43 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				4797DEAE1B39FCF7006BBC43 /* User.h */,
+				4797DEAF1B39FCF7006BBC43 /* User.m */,
+				4797DEB11B39FD07006BBC43 /* UserController.h */,
+				4797DEB21B39FD07006BBC43 /* UserController.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		4797DEC01B41F204006BBC43 /* School */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C8FD1B1F7930003B3058 /* School.h */,
+				55B4C8FE1B1F7930003B3058 /* School.m */,
+				55B4C9031B1F7C4E003B3058 /* SchoolController.h */,
+				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
+				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
+				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
+				4796A9861B33735E00D71779 /* SchoolListDataSource.h */,
+				4796A9871B33735E00D71779 /* SchoolListDataSource.m */,
+				55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */,
+				55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */,
+			);
+			name = School;
+			sourceTree = "<group>";
+		};
+		4797DEC11B41F24B006BBC43 /* Athlete */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C9001B1F7966003B3058 /* Athlete.h */,
+				55B4C9011B1F7966003B3058 /* Athlete.m */,
+				47541EC91B20C7B1005E3C53 /* AthleteViewController.h */,
+				47541ECA1B20C7B1005E3C53 /* AthleteViewController.m */,
+				47541ECC1B20C7EC005E3C53 /* AthleteDataSource.h */,
+				47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */,
+				47541ECF1B263536005E3C53 /* MostViewedPlayersTableViewCell.h */,
+				47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */,
+				4719A3291B4DE466009A707E /* AthleteController.h */,
+				4719A32A1B4DE466009A707E /* AthleteController.m */,
+			);
+			name = Athlete;
+			sourceTree = "<group>";
+		};
+		4797DEC21B41F25E006BBC43 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				47541EB01B1F700C005E3C53 /* Team.h */,
+				47541EB11B1F700C005E3C53 /* Team.m */,
+				47541EC61B1FA394005E3C53 /* TeamViewController.h */,
+				47541EC71B1FA394005E3C53 /* TeamViewController.m */,
+				55B4C9161B210A13003B3058 /* TeamDataSource.h */,
+				55B4C9171B210A13003B3058 /* TeamDataSource.m */,
+				47541EB31B1F71E6005E3C53 /* TeamController.h */,
+				47541EB41B1F71E6005E3C53 /* TeamController.m */,
+				5569EA7D1B4DD366007B540B /* TeamTweetController.h */,
+				5569EA7E1B4DD366007B540B /* TeamTweetController.m */,
+				554308611B4F3FBD00571404 /* TeamTweetCell.h */,
+				554308621B4F3FBD00571404 /* TeamTweetCell.m */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		4797DEC31B41F30B006BBC43 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				4797DEBD1B41E40D006BBC43 /* Coach.h */,
+				4797DEBE1B41E40D006BBC43 /* Coach.m */,
+				4797DEC41B41F799006BBC43 /* CoachDetailViewController.h */,
+				4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */,
+				4719A32C1B4EF69D009A707E /* CoachDataSource.h */,
+				4719A32D1B4EF69D009A707E /* CoachDataSource.m */,
+				4797DEBA1B41E246006BBC43 /* CoachingStaffCell.h */,
+				4797DEBB1B41E246006BBC43 /* CoachingStaffCell.m */,
+			);
+			name = Coach;
+			sourceTree = "<group>";
+		};
+		552032F81B541E1E003FF149 /* Home Feed */ = {
+			isa = PBXGroup;
+			children = (
+				552032F51B541DF2003FF149 /* HomeFeedViewController.h */,
+				552032F61B541DF2003FF149 /* HomeFeedViewController.m */,
+				552032F91B542091003FF149 /* HomeFeedDataSource.h */,
+				552032FA1B542091003FF149 /* HomeFeedDataSource.m */,
+			);
+			name = "Home Feed";
+			path = wootApp.xcodeproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		553A28D31B27649900784798 /* FLKAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				553A28D41B27649900784798 /* FLKAutoLayoutPredicateList.h */,
+				553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */,
+				553A28D61B27649900784798 /* UIView+FLKAutoLayout.h */,
+				553A28D71B27649900784798 /* UIView+FLKAutoLayout.m */,
+				553A28D81B27649900784798 /* UIView+FLKAutoLayoutPredicate.h */,
+				553A28D91B27649900784798 /* UIView+FLKAutoLayoutPredicate.m */,
+			);
+			path = FLKAutoLayout;
+			sourceTree = "<group>";
+		};
+		55B4C8961B1E386F003B3058 = {
+			isa = PBXGroup;
+			children = (
+				4797DEB51B3CA27C006BBC43 /* MessageUI.framework */,
+				55B4C8A11B1E386F003B3058 /* wootApp */,
+				55B4C8BB1B1E386F003B3058 /* wootAppTests */,
+				55B4C8A01B1E386F003B3058 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		55B4C8A01B1E386F003B3058 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C89F1B1E386F003B3058 /* wootApp.app */,
+				55B4C8B81B1E386F003B3058 /* wootAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55B4C8A11B1E386F003B3058 /* wootApp */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C8A61B1E386F003B3058 /* AppDelegate.h */,
+				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
+				552032F81B541E1E003FF149 /* Home Feed */,
+				4797DEAD1B39F8E5006BBC43 /* CustomTabBar */,
+				4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */,
+				4797DEB41B39FD1B006BBC43 /* User */,
+				4797DEC21B41F25E006BBC43 /* Team */,
+				4797DEC11B41F24B006BBC43 /* Athlete */,
+				4797DEC31B41F30B006BBC43 /* Coach */,
+				4797DEC01B41F204006BBC43 /* School */,
+				473EA3511B2939400033AFA1 /* GameViewController.h */,
+				473EA3521B2939400033AFA1 /* GameViewController.m */,
+				473EA3541B29E4F80033AFA1 /* Game.h */,
+				473EA3551B29E4F80033AFA1 /* Game.m */,
+				473EA3571B29EE310033AFA1 /* GameController.h */,
+				473EA3581B29EE310033AFA1 /* GameController.m */,
+				55BE85AD1B264060006C8279 /* RosterViewController.h */,
+				55BE85AE1B264060006C8279 /* RosterViewController.m */,
+				553A28EC1B2B382200784798 /* RosterTableViewCell.h */,
+				553A28ED1B2B382200784798 /* RosterTableViewCell.m */,
+				553A28DD1B2773E600784798 /* Campaign.h */,
+				553A28DE1B2773E600784798 /* Campaign.m */,
+				553A28E01B27762700784798 /* CampaignController.h */,
+				553A28E11B27762700784798 /* CampaignController.m */,
+				553A28E31B27991800784798 /* CampaignAdViewController.h */,
+				553A28E41B27991800784798 /* CampaignAdViewController.m */,
+				553A28E61B28ED3B00784798 /* ScheduleViewController.h */,
+				553A28E71B28ED3B00784798 /* ScheduleViewController.m */,
+				553A28E91B29E09F00784798 /* PreviousGameTableViewCell.h */,
+				553A28EA1B29E09F00784798 /* PreviousGameTableViewCell.m */,
+				553A29361B3DDFA200784798 /* NextGameTableViewCell.h */,
+				553A29371B3DDFA200784798 /* NextGameTableViewCell.m */,
+				553A292A1B353FC700784798 /* Stats.h */,
+				553A292B1B353FC800784798 /* Stats.m */,
+				553A29301B389DD900784798 /* StatsController.h */,
+				553A29311B389DD900784798 /* StatsController.m */,
+				553A292D1B386A0E00784798 /* SummaryStatsTableViewCell.h */,
+				553A292E1B386A0E00784798 /* SummaryStatsTableViewCell.m */,
+				553A29331B3C654100784798 /* UIColor+CreateMethods.h */,
+				553A29341B3C654100784798 /* UIColor+CreateMethods.m */,
+				472F873A1B27741D0067C72F /* UIImage+PathForFile.h */,
+				472F873B1B27741D0067C72F /* UIImage+PathForFile.m */,
+				4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */,
+				4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */,
+				4796A9831B331E7A00D71779 /* NetworkController.h */,
+				4796A9841B331E7A00D71779 /* NetworkController.m */,
+				55C323031B444787002EBB65 /* TestViewController.h */,
+				55C323041B444787002EBB65 /* TestViewController.m */,
+				55C323061B446135002EBB65 /* DynamicFontSize.h */,
+				55C323071B446135002EBB65 /* DynamicFontSize.m */,
+				55B4C8AF1B1E386F003B3058 /* Images.xcassets */,
+				55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */,
+				5569EA811B4DD946007B540B /* Fabric.framework */,
+				5569EA821B4DD946007B540B /* TwitterKit.framework */,
+				5569EA831B4DD946007B540B /* TwitterKitResources.bundle */,
+				5569EA841B4DD946007B540B /* TwitterCore.framework */,
+				553A28D31B27649900784798 /* FLKAutoLayout */,
+				55B4C8A21B1E386F003B3058 /* Supporting Files */,
+			);
+			path = wootApp;
+			sourceTree = "<group>";
+		};
+		55B4C8A21B1E386F003B3058 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C8A31B1E386F003B3058 /* Info.plist */,
+				55B4C8A41B1E386F003B3058 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55B4C8BB1B1E386F003B3058 /* wootAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C8BE1B1E386F003B3058 /* wootAppTests.m */,
+				55B4C8BC1B1E386F003B3058 /* Supporting Files */,
+			);
+			path = wootAppTests;
+			sourceTree = "<group>";
+		};
+		55B4C8BC1B1E386F003B3058 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C8BD1B1E386F003B3058 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		55B4C89E1B1E386F003B3058 /* wootApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55B4C8C21B1E386F003B3058 /* Build configuration list for PBXNativeTarget "wootApp" */;
+			buildPhases = (
+				55B4C89B1B1E386F003B3058 /* Sources */,
+				55B4C89C1B1E386F003B3058 /* Frameworks */,
+				55B4C89D1B1E386F003B3058 /* Resources */,
+				5569EA801B4DD8AE007B540B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wootApp;
+			productName = wootApp;
+			productReference = 55B4C89F1B1E386F003B3058 /* wootApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		55B4C8B71B1E386F003B3058 /* wootAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55B4C8C51B1E386F003B3058 /* Build configuration list for PBXNativeTarget "wootAppTests" */;
+			buildPhases = (
+				55B4C8B41B1E386F003B3058 /* Sources */,
+				55B4C8B51B1E386F003B3058 /* Frameworks */,
+				55B4C8B61B1E386F003B3058 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55B4C8BA1B1E386F003B3058 /* PBXTargetDependency */,
+			);
+			name = wootAppTests;
+			productName = wootAppTests;
+			productReference = 55B4C8B81B1E386F003B3058 /* wootAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		55B4C8971B1E386F003B3058 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Woot Technologies";
+				TargetAttributes = {
+					55B4C89E1B1E386F003B3058 = {
+						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = F77WGCCN72;
+					};
+					55B4C8B71B1E386F003B3058 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 55B4C89E1B1E386F003B3058;
+					};
+				};
+			};
+			buildConfigurationList = 55B4C89A1B1E386F003B3058 /* Build configuration list for PBXProject "wootApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 55B4C8961B1E386F003B3058;
+			productRefGroup = 55B4C8A01B1E386F003B3058 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55B4C89E1B1E386F003B3058 /* wootApp */,
+				55B4C8B71B1E386F003B3058 /* wootAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		55B4C89D1B1E386F003B3058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55B4C8B31B1E386F003B3058 /* LaunchScreen.xib in Resources */,
+				5569EA871B4DD946007B540B /* TwitterKitResources.bundle in Resources */,
+				55B4C8B01B1E386F003B3058 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55B4C8B61B1E386F003B3058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5569EA801B4DD8AE007B540B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 9bb2c75eaa7ac0a325d331050373aaa669dae729 dd7c3c01238cb2b2d9500bcbd2d3661396a345480cd6970980f917be8caff63a";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55B4C89B1B1E386F003B3058 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
+				553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */,
+				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
+				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
+				553A29321B389DD900784798 /* StatsController.m in Sources */,
+				553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */,
+				554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */,
+				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
+				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
+				4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */,
+				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
+				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
+				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
+				552032FB1B542091003FF149 /* HomeFeedDataSource.m in Sources */,
+				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
+				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
+				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
+				55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */,
+				473EA3591B29EE310033AFA1 /* GameController.m in Sources */,
+				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
+				553A28DF1B2773E600784798 /* Campaign.m in Sources */,
+				553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */,
+				553A28E21B27762700784798 /* CampaignController.m in Sources */,
+				4719A32E1B4EF69D009A707E /* CoachDataSource.m in Sources */,
+				4719A32B1B4DE466009A707E /* AthleteController.m in Sources */,
+				553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */,
+				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
+				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
+				4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */,
+				553A292C1B353FC900784798 /* Stats.m in Sources */,
+				4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */,
+				553A28EE1B2B382200784798 /* RosterTableViewCell.m in Sources */,
+				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
+				553A28EB1B29E09F00784798 /* PreviousGameTableViewCell.m in Sources */,
+				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
+				4797DEB31B39FD07006BBC43 /* UserController.m in 
+Sources */,
+				552032F71B541DF2003FF149 /* HomeFeedViewController.m in Sources */,
+				4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */,
+				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
+				55C323051B444787002EBB65 /* TestViewController.m in Sources */,
+				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
+				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
+				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
+				4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */,
+				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
+				4797DEB01B39FCF7006BBC43 /* User.m in Sources */,
+				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
+				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
+				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,
+				55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */,
+				5569EA7F1B4DD366007B540B /* TeamTweetController.m in Sources */,
+				553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55B4C8B41B1E386F003B3058 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55B4C8BF1B1E386F003B3058 /* wootAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55B4C8BA1B1E386F003B3058 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55B4C89E1B1E386F003B3058 /* wootApp */;
+			targetProxy = 55B4C8B91B1E386F003B3058 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55B4C8B21B1E386F003B3058 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		55B4C8C01B1E386F003B3058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		55B4C8C11B1E386F003B3058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		55B4C8C31B1E386F003B3058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/wootApp",
+				);
+				INFOPLIST_FILE = wootApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55B4C8C41B1E386F003B3058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/wootApp",
+				);
+				INFOPLIST_FILE = wootApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		55B4C8C61B1E386F003B3058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = wootAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wootApp.app/wootApp";
+			};
+			name = Debug;
+		};
+		55B4C8C71B1E386F003B3058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = wootAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wootApp.app/wootApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		55B4C89A1B1E386F003B3058 /* Build configuration list for PBXProject "wootApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55B4C8C01B1E386F003B3058 /* Debug */,
+				55B4C8C11B1E386F003B3058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55B4C8C21B1E386F003B3058 /* Build configuration list for PBXNativeTarget "wootApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55B4C8C31B1E386F003B3058 /* Debug */,
+				55B4C8C41B1E386F003B3058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55B4C8C51B1E386F003B3058 /* Build configuration list for PBXNativeTarget "wootAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55B4C8C61B1E386F003B3058 /* Debug */,
+				55B4C8C71B1E386F003B3058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55B4C8971B1E386F003B3058 /* Project object */;
+}
