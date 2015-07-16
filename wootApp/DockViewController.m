@@ -197,7 +197,7 @@
         if (success) {
             // land them wherever they were
             if (!self.followButtonType) {
-                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[1];
+                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[2];
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else if ([self.followButtonType isEqualToString:@"T"]) {
                 [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];

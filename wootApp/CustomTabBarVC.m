@@ -42,12 +42,14 @@
 //    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
     self.toolBar = [[UIToolbar alloc] init];
     
+    UIBarButtonItem *homeFeedItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(homeFeedItemTapped:)];
+    
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemTapped:)];
     
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *selfItem = [[UIBarButtonItem alloc] initWithTitle:@"self" style:UIBarButtonItemStylePlain target:self action:@selector(selfItemTapped:)];
     
-    [self.toolBar setItems:@[flexibleSpace, searchItem, flexibleSpace, selfItem, flexibleSpace]];
+    [self.toolBar setItems:@[flexibleSpace, homeFeedItem, flexibleSpace, searchItem, flexibleSpace, selfItem, flexibleSpace]];
     [self.view addSubview:self.toolBar];
     [self.toolBar alignLeadingEdgeWithView:self.view predicate:@"0"];
     [self.toolBar alignTrailingEdgeWithView:self.view predicate:@"0"];
@@ -106,12 +108,18 @@
 
 #pragma mark - UIBarButtonItems for tool bar
 
+- (void)homeFeedItemTapped:(UIBarButtonItem *)homeFeedItem {
+    UINavigationController *vc = self.childViewControllers[0];
+    self.selectedViewController = vc;
+    [vc popToRootViewControllerAnimated:YES];
+}
+
 - (void)searchItemTapped:(UIBarButtonItem *)searchItem {
 //    if (!self.drawer.hidden) {
 //        [self toggleDrawer];
 //    }
     
-    UINavigationController *vc = self.childViewControllers[0];
+    UINavigationController *vc = self.childViewControllers[1];
     self.selectedViewController = vc;
     [vc popToRootViewControllerAnimated:YES];
 }
@@ -119,13 +127,13 @@
 - (void)selfItemTapped:(UIBarButtonItem *)selfItem {
    // [self toggleDrawer];
     
-    UINavigationController *vc = self.childViewControllers[1];
+    UINavigationController *vc = self.childViewControllers[2];
     
     if (![UserController sharedInstance].currentUser) {
-        vc = self.childViewControllers[0];
+        vc = self.childViewControllers[1];
         [vc presentViewController:[DockViewController new] animated:YES completion:nil];
     } else {
-        vc = self.childViewControllers[1];
+        vc = self.childViewControllers[2];
         self.selectedViewController = vc;
         [vc popToRootViewControllerAnimated:YES];
     }
@@ -165,10 +173,10 @@
     [UserController sharedInstance].currentUser = nil;
     [self toggleDrawer];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserKey];
-    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:FavoritesKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FollowingKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    self.selectedViewController = self.childViewControllers[0];
+    self.selectedViewController = self.childViewControllers[1];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -206,7 +214,7 @@
     CampaignController *campaignController = [CampaignController sharedInstance];
     campaignAdViewController.campaignAdImageView = [[UIImageView alloc] initWithImage:campaignController.currentCampaign.fullScreenAd];
     
-    UIViewController *vc = self.childViewControllers[0];
+    UIViewController *vc = self.childViewControllers[1];
     [vc presentViewController:campaignAdViewController animated:YES completion:nil];
 }
 
@@ -247,7 +255,7 @@
     composer.mailComposeDelegate = self;
     [composer setToRecipients:@[@"woottechonolgies@gmail.com"]];
     
-    UIViewController *vc = self.childViewControllers[0];
+    UIViewController *vc = self.childViewControllers[1];
     [vc presentViewController:composer animated:YES completion:^{
   //      [self toggleDrawer];
     }];

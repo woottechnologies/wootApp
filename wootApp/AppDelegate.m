@@ -27,15 +27,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
+    UINavigationController *search = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
 //    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[HomeFeedViewController new]];
     
-    masterVC.tabBarItem = [[UITabBarItem alloc] init];
+    search.tabBarItem = [[UITabBarItem alloc] init];
     
     UINavigationController *userProfile = [[UINavigationController alloc] initWithRootViewController:[UserProfileViewController new]];
+    UINavigationController *homeFeed = [[UINavigationController alloc] initWithRootViewController:[HomeFeedViewController new]];
 
     CustomTabBarVC *tabBarVC = [[CustomTabBarVC alloc] init];
-    tabBarVC.viewControllers = @[masterVC, userProfile];
+    
+    tabBarVC.viewControllers = @[homeFeed, search, userProfile];
 
     self.window.rootViewController = tabBarVC;
 

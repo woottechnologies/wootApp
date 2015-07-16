@@ -195,7 +195,8 @@
         
         newFollowDict = @{FollowingIDKey:[NSNumber numberWithInteger:newFollow.teamID],
                           FollowingNameKey:newFollow.teamName,
-                          FollowingTypeKey:@"T"};
+                          FollowingTypeKey:@"T",
+                          FollowingTwitterKey:newFollow.twitter};
         
         postString = [NSString stringWithFormat:@"userID=%li&followID=%li&followType=T", (long)self.currentUser.userID, (long)newFollow.teamID];
     } else {
@@ -203,7 +204,8 @@
         
         newFollowDict = @{FollowingIDKey:[NSNumber numberWithInteger:newFollow.athleteID],
                           FollowingNameKey:newFollow.name,
-                          FollowingTypeKey:@"A"};
+                          FollowingTypeKey:@"A",
+                          FollowingTwitterKey:newFollow.twitter};
         
         postString = [NSString stringWithFormat:@"userID=%li&followID=%li&followType=A", (long)self.currentUser.userID, (long)newFollow.athleteID];
     }
@@ -253,7 +255,8 @@
         
         oldFollowDict = @{FollowingIDKey:[NSNumber numberWithInteger:oldFollow.teamID],
                             FollowingNameKey:oldFollow.teamName,
-                            FollowingTypeKey:@"T"};
+                            FollowingTypeKey:@"T",
+                            FollowingTwitterKey:oldFollow.twitter};
         
         postString = [NSString stringWithFormat:@"userID=%li&followID=%li&followType=T", (long)self.currentUser.userID, (long)oldFollow.teamID];
     } else {
@@ -261,7 +264,8 @@
         
         oldFollowDict = @{FollowingIDKey:[NSNumber numberWithInteger:oldFollow.athleteID],
                             FollowingNameKey:oldFollow.name,
-                            FollowingTypeKey:@"A"};
+                            FollowingTypeKey:@"A",
+                            FollowingTwitterKey:oldFollow.twitter};
         
         postString = [NSString stringWithFormat:@"userID=%li&favoriteID=%li&favoriteType=A", (long)self.currentUser.userID, (long)oldFollow.athleteID];
     }
