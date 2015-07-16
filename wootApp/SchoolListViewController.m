@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SchoolListDataSource *dataSource;
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -31,6 +32,10 @@
     self.customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     
     [SchoolController sharedInstance];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, self.navigationController.navigationBar.frame.size.height - 15, self.view.frame.size.width - 40, 30)];
+    self.searchBar.placeholder = @"Search";
+    self.navigationItem.titleView = self.searchBar;
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     self.dataSource = [[SchoolListDataSource alloc] init];

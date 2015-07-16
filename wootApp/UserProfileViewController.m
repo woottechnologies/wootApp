@@ -53,13 +53,13 @@
     
     CGPoint circleCenter = CGPointMake(self.view.frame.size.width / 2, 100);
     
-    UIImageView *blackCircle = [UIImageView new];
-    blackCircle.backgroundColor = [UIColor lightGrayColor];
-    [self setRoundedView:blackCircle toDiameter:self.view.frame.size.width/2.355];
-    blackCircle.center = circleCenter;
-    [self.view addSubview:blackCircle];
+//    UIImageView *blackCircle = [UIImageView new];
+//    blackCircle.backgroundColor = [UIColor lightGrayColor];
+//    [self setRoundedView:blackCircle toDiameter:self.view.frame.size.width/2.355];
+//    blackCircle.center = circleCenter;
+//    [self.view addSubview:blackCircle];
     
-    self.profileCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile_picture_placeholder.png"]];
+    self.profileCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile_placeholder.png"]];
     self.profileCircle.clipsToBounds = YES;
     self.profileCircle.backgroundColor = [UIColor blackColor];
     [self setRoundedView:self.profileCircle toDiameter:self.view.frame.size.width/2.388];
