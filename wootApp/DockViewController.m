@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIButton *showSignUp;
 @property (nonatomic, strong) UIButton *showLogIn;
 @property (nonatomic, strong) UILabel *errorLabel;
+@property (nonatomic, strong) UIVisualEffectView *blurView;
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
 // Sign Up
@@ -60,6 +61,22 @@
 //    UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
 //    self.navigationItem.leftBarButtonItem = backArrowButton;
 //    
+    
+    // background image
+    UIImage *backgroundImage = [UIImage imageNamed:@"woot_dock"];
+    UIImageView *backgroundImageView = [[UIImageView alloc]initWithImage:backgroundImage];
+    backgroundImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:backgroundImageView];
+    [self.view sendSubviewToBack:backgroundImageView];
+    
+    // blur view
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    self.blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    self.blurView.frame = self.view.bounds;
+    [self.view addSubview:self.blurView];
+    self.blurView.hidden = YES;
+    
     // back button
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:self.backButton];
@@ -80,13 +97,7 @@
     [self.exitButton constrainWidth:@"20"];
     [self.exitButton setImage:[UIImage imageNamed:@"button_x.png"] forState:UIControlStateNormal];
     [self.exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    // background image
-    UIImage *backgroundImage = [UIImage imageNamed:@"woot_dock"];
-    UIImageView *backgroundImageView = [[UIImageView alloc]initWithImage:backgroundImage];
-    backgroundImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:backgroundImageView];
-    [self.view sendSubviewToBack:backgroundImageView];
+
     
     // sign up button
     self.showSignUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -175,6 +186,7 @@
     self.emailField.hidden = NO;
     self.passwordField.hidden = NO;
     self.signUpButton.hidden = NO;
+    self.blurView.hidden = NO;
 }
 
 - (void)showLogIn:(UIButton *)button {
@@ -185,8 +197,8 @@
     self.backButton.tag = 2;
     self.emailLogIn.hidden = NO;
     self.passwordLogIn.hidden = NO;
-    
     self.logInButton.hidden = NO;
+    self.blurView.hidden = NO;
 }
 
 - (void)signUpPressed:(UIButton *)signUpButton {
@@ -284,7 +296,8 @@
         self.backButton.hidden = YES;
         self.backButton.tag = -1;
 //        self.navigationItem.leftBarButtonItem = nil;
-        
+
+        self.blurView.hidden = YES;
         self.emailField.hidden = YES;
         self.passwordField.hidden = YES;
         self.signUpButton.hidden = YES;
@@ -298,6 +311,7 @@
 //        self.navigationItem.leftBarButtonItem
 //        self.backButton.hidden = YES;
 //        self.backButton.tag = -1;
+        self.blurView.hidden = YES;
         self.emailLogIn.hidden = YES;
         self.passwordLogIn.hidden = YES;
         self.logInButton.hidden = YES;
