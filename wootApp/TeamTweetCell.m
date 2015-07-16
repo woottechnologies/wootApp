@@ -34,8 +34,7 @@
 }
 
 - (void)setUpTweetCell:(TWTRTweet *) tweet{
-    TWTRTweetView *newTweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleCompact];
-    self.tweetView = newTweetView;
+    [self.tweetView configureWithTweet:tweet];
     self.tweetView.frame = CGRectMake(0, 0, 375, [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.bounds)]);
     [self.contentView addSubview:self.tweetView];
 }

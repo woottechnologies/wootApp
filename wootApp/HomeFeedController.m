@@ -64,13 +64,14 @@
     User *currentUser = [UserController sharedInstance].currentUser;
     [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
         NSMutableArray *mutableTweets = [[NSMutableArray alloc] init];
+        NSMutableArray *tweetsAndNames = [[NSMutableArray alloc] init];
         if (guestSession) {
             dispatch_group_t tweetGroup = dispatch_group_create();
 //            dispatch_group_enter(tweetGroup);
             for (NSDictionary *following in currentUser.following) {
                 NSString *searchURL = @"https://api.twitter.com/1.1/search/tweets.json";
                 //            self.currentHashtag = @"#USMNT #Soccer";
-                NSDictionary *params = @{@"q" : following[@"twitter"]};
+                NSDictionary *params = @{@"q" : following[FollowingTwitterKey]};
                 NSError *clientError;
                 NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
                                          URLRequestWithMethod:@"GET"
@@ -91,6 +92,9 @@
                              NSDictionary *searchResults = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
                              
                              [mutableTweets addObjectsFromArray:[TWTRTweet tweetsWithJSONArray:searchResults[@"statuses"]]];
+                             for (TWTRTweet *tweet in mutableTweets) {
+                                 [tweetsAndNames addObject:@{@"tweetID":tweet.tweetID, @"name":following[FollowingNameKey], @"type":following[FollowingTypeKey], @"id":following[FollowingIDKey]}];
+                             }
                              dispatch_group_leave(tweetGroup);
                          }
                          else {
@@ -105,6 +109,7 @@
 //            dispatch_group_leave(tweetGroup);
             dispatch_group_notify(tweetGroup, dispatch_get_main_queue(), ^{
                 self.tweets = mutableTweets;
+                self.tweetsAndNames = tweetsAndNames;
                 [self sortTweetsChronologically];
                 completion(YES);
             });

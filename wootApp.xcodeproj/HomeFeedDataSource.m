@@ -7,7 +7,7 @@
 //
 
 #import "HomeFeedDataSource.h"
-#import "TeamTweetCell.h"
+#import "HomeFeedCell.h"
 #import "HomeFeedController.h"
 
 static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
@@ -24,13 +24,22 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
 - (void)registerTableView:(UITableView *)tableView viewController:(HomeFeedViewController *)viewController {
     self.tableView = tableView;
     self.viewController = viewController;
-    [self.tableView registerClass:[TeamTweetCell class] forCellReuseIdentifier:homeFeedTweetCellID];
+    [self.tableView registerClass:[HomeFeedCell class] forCellReuseIdentifier:homeFeedTweetCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TeamTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
+    HomeFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    [cell setUpTweetCell:homeFeedController.tweets[indexPath.row]];
+    TWTRTweet *tweet = homeFeedController.tweets[indexPath.row];
+    NSDictionary *posterInfo;
+    for (NSDictionary *tweetAndInfo in homeFeedController.tweetsAndNames) {
+        if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
+            posterInfo = tweetAndInfo;
+            [cell setUpTweetCell:tweet posterInfo:posterInfo];
+            return cell;
+        }
+    }
+    [cell setUpTweetCell:tweet posterInfo:posterInfo];
     return cell;
 }
 

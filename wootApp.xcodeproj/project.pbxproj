@@ -58,6 +58,7 @@
 		5569EA871B4DD946007B540B /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5569EA831B4DD946007B540B /* TwitterKitResources.bundle */; };
 		5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA841B4DD946007B540B /* TwitterCore.framework */; };
 		556D45CE1B5749FE00F4254E /* HomeFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45CD1B5749FE00F4254E /* HomeFeedController.m */; };
+		556D45D11B5808D100F4254E /* HomeFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45D01B5808D100F4254E /* HomeFeedCell.m */; };
 		55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
@@ -182,6 +183,8 @@
 		5569EA841B4DD946007B540B /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		556D45CC1B5749FE00F4254E /* HomeFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedController.h; path = wootApp/HomeFeedController.h; sourceTree = SOURCE_ROOT; };
 		556D45CD1B5749FE00F4254E /* HomeFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedController.m; path = wootApp/HomeFeedController.m; sourceTree = SOURCE_ROOT; };
+		556D45CF1B5808D100F4254E /* HomeFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedCell.h; path = ../wootApp/HomeFeedCell.h; sourceTree = "<group>"; };
+		556D45D01B5808D100F4254E /* HomeFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedCell.m; path = ../wootApp/HomeFeedCell.m; sourceTree = "<group>"; };
 		55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListTableViewCell.h; sourceTree = "<group>"; };
 		55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,6 +361,8 @@
 				552F843A1B573C550064FDE6 /* HomeFeedDataSource.m */,
 				552F843C1B573C9D0064FDE6 /* HomeFeedViewController.h */,
 				552F843D1B573C9D0064FDE6 /* HomeFeedViewController.m */,
+				556D45CF1B5808D100F4254E /* HomeFeedCell.h */,
+				556D45D01B5808D100F4254E /* HomeFeedCell.m */,
 			);
 			name = "Home Feed";
 			path = wootApp.xcodeproj;
@@ -536,7 +541,7 @@
 				TargetAttributes = {
 					55B4C89E1B1E386F003B3058 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = L7MQU2ZUG5;
+						DevelopmentTeam = F77WGCCN72;
 					};
 					55B4C8B71B1E386F003B3058 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -604,6 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				556D45D11B5808D100F4254E /* HomeFeedCell.m in Sources */,
 				553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
 				553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */,
 				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
