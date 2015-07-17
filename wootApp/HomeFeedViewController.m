@@ -22,7 +22,6 @@
 
 @property (nonatomic, strong) HomeFeedDataSource *dataSource;
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
-@property (nonatomic, strong) NSArray *following;
 
 @end
 
@@ -62,15 +61,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    if (self.following != [UserController sharedInstance].currentUser.following) {
-        [homeFeedController loadTweetsFromHashtagsWithCompletion:^(BOOL success) {
-            if (success) {
-                [self.tableView reloadData];
-            }
-        }];
-        self.following = [UserController sharedInstance].currentUser.following;
-    }
-    
+    [homeFeedController loadTweetsFromHashtagsWithCompletion:^(BOOL success) {
+        if (success) {
+            [self.tableView reloadData];
+        }
+    }];
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
