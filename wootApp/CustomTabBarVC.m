@@ -19,6 +19,7 @@
 #import "UIView+FLKAutoLayout.h"
 #import "AthleteController.h"
 #import "SchoolController.h"
+#import "UIColor+CreateMethods.h"
 @import MessageUI;
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
@@ -39,17 +40,49 @@
     self.delegate = self;
     self.tabBar.hidden = YES;
     
+    [[SchoolController sharedInstance] loadSchoolsFromDatabaseWithCompletion:^(BOOL success) {
+        if (success) {
+            
+        }
+    }];
+    
 //    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44.0)];
     self.toolBar = [[UIToolbar alloc] init];
     
-    UIBarButtonItem *homeFeedItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(homeFeedItemTapped:)];
+    UIImage *home = [UIImage imageNamed:@"home_icon.png"];
+    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [homeButton setBackgroundImage:home forState:UIControlStateNormal];
+    homeButton.alpha = 0.5;
+    [homeButton addTarget:self action:@selector(homeFeedItemTapped:)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *homeFeedItem =[[UIBarButtonItem alloc] initWithCustomView:homeButton];
     
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemTapped:)];
+//    UIBarButtonItem *homeFeedItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(homeFeedItemTapped:)];
+    
+    UIImage *search = [UIImage imageNamed:@"search_icon.png"];
+    UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [searchButton setBackgroundImage:search forState:UIControlStateNormal];
+    searchButton.alpha = 0.5;
+    [searchButton addTarget:self action:@selector(searchItemTapped:)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *searchItem =[[UIBarButtonItem alloc] initWithCustomView:searchButton];
+    
+//    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemTapped:)];
+    
+    UIImage *profile = [UIImage imageNamed:@"profile_icon.png"];
+    UIButton *profileButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [profileButton setBackgroundImage:profile forState:UIControlStateNormal];
+    profileButton.alpha = 0.5;
+    [profileButton addTarget:self action:@selector(selfItemTapped:)
+           forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *selfItem =[[UIBarButtonItem alloc] initWithCustomView:profileButton];
     
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *selfItem = [[UIBarButtonItem alloc] initWithTitle:@"self" style:UIBarButtonItemStylePlain target:self action:@selector(selfItemTapped:)];
+//    UIBarButtonItem *selfItem = [[UIBarButtonItem alloc] initWithTitle:@"self" style:UIBarButtonItemStylePlain target:self action:@selector(selfItemTapped:)];
     
     [self.toolBar setItems:@[flexibleSpace, homeFeedItem, flexibleSpace, searchItem, flexibleSpace, selfItem, flexibleSpace]];
+    self.toolBar.barTintColor = [UIColor darkGrayColor];
+    self.toolBar.barTintColor = [UIColor colorWithHex:@"#1a1c1c" alpha:1.0];
     [self.view addSubview:self.toolBar];
     [self.toolBar alignLeadingEdgeWithView:self.view predicate:@"0"];
     [self.toolBar alignTrailingEdgeWithView:self.view predicate:@"0"];
@@ -69,7 +102,8 @@
     self.logOut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.logOut.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
     self.logOut.enabled = NO;
-    self.logOut.backgroundColor = [UIColor redColor];
+    self.logOut.backgroundColor = [UIColor lightGrayColor];
+    [self.logOut setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.logOut setTitle:@"Log Out" forState:UIControlStateNormal];
     [self.logOut addTarget:self action:@selector(logOutPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -115,25 +149,17 @@
 }
 
 - (void)searchItemTapped:(UIBarButtonItem *)searchItem {
-//    if (!self.drawer.hidden) {
-//        [self toggleDrawer];
-//    }
-    
     UINavigationController *vc = self.childViewControllers[1];
     self.selectedViewController = vc;
     [vc popToRootViewControllerAnimated:YES];
 }
 
 - (void)selfItemTapped:(UIBarButtonItem *)selfItem {
-   // [self toggleDrawer];
-    
-    UINavigationController *vc = self.childViewControllers[2];
-    
     if (![UserController sharedInstance].currentUser) {
-        vc = self.childViewControllers[1];
-        [vc presentViewController:[DockViewController new] animated:YES completion:nil];
+        UIViewController *selectedVC = self.selectedViewController;
+        [selectedVC presentViewController:[DockViewController new] animated:YES completion:nil];
     } else {
-        vc = self.childViewControllers[2];
+        UINavigationController *vc = self.childViewControllers[2];
         self.selectedViewController = vc;
         [vc popToRootViewControllerAnimated:YES];
     }

@@ -25,7 +25,7 @@ static NSString *FollowingTwitterKey = @"twitter";
 + (instancetype)sharedInstance;
 - (void)registerInDBWithCompletion:(void (^)(BOOL success, NSString *error))completion;
 - (void)logInUserWithCompletion:(void (^)(BOOL success, NSString *error))completion;
-- (void)followAccount:(id)account;
-- (void)unfollowAccount:(id)account;
+- (void)followAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
+- (void)unfollowAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
 
 @end

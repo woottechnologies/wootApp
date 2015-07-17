@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "CustomTabBarVC.h"
 #import "AthleteController.h"
+#import "UIColor+CreateMethods.h"
 
 @interface DockViewController () <UITextFieldDelegate>
 
@@ -40,6 +41,12 @@
 @end
 
 @implementation DockViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -99,16 +106,18 @@
     self.showSignUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.showSignUp.frame = CGRectMake(20, 520, self.view.frame.size.width - 40, 50);
     [self.showSignUp setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [self.showSignUp setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.showSignUp addTarget:self action:@selector(showSignUp:) forControlEvents:UIControlEventTouchUpInside];
-    self.showSignUp.backgroundColor = [UIColor lightGrayColor];
+    self.showSignUp.backgroundColor = [UIColor colorWithHex:@"#2bff80" alpha:1.0];
     [self.view addSubview:self.showSignUp];
     
     // log in button
     self.showLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.showLogIn.frame = CGRectMake(20, 590, self.view.frame.size.width - 40, 50);
     [self.showLogIn setTitle:@"Log In" forState:UIControlStateNormal];
+    [self.showLogIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.showLogIn addTarget:self action:@selector(showLogIn:) forControlEvents:UIControlEventTouchUpInside];
-    self.showLogIn.backgroundColor = [UIColor lightGrayColor];
+    self.showLogIn.backgroundColor = [UIColor colorWithHex:@"#2b58ff" alpha:1.0];
     [self.view addSubview:self.showLogIn];
     
     // error label
@@ -142,8 +151,9 @@
     self.signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.signUpButton.frame = CGRectMake(20, 305, self.view.frame.size.width - 40, 40);
     [self.signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [self.signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.signUpButton addTarget:self action:@selector(signUpPressed:) forControlEvents:UIControlEventTouchUpInside];
-    self.signUpButton.backgroundColor = [UIColor redColor];
+    self.signUpButton.backgroundColor = [UIColor colorWithHex:@"#2bff80" alpha:1.0];
     [self.view addSubview:self.signUpButton];
     self.signUpButton.hidden = YES;
 }
@@ -167,8 +177,9 @@
     self.logInButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.logInButton.frame = CGRectMake(20, 305, self.view.frame.size.width - 40, 40);
     [self.logInButton setTitle:@"Log In" forState:UIControlStateNormal];
+    [self.logInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.logInButton addTarget:self action:@selector(logInPressed:) forControlEvents:UIControlEventTouchUpInside];
-    self.logInButton.backgroundColor = [UIColor purpleColor];
+    self.logInButton.backgroundColor = [UIColor colorWithHex:@"#2b58ff" alpha:1.0];
     [self.view addSubview:self.logInButton];
     self.logInButton.hidden = YES;
 }
@@ -212,14 +223,20 @@
                 self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[2];
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else if ([self.followButtonType isEqualToString:@"T"]) {
-                [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    self.followButtonType = nil;
+                [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam withCompletion:^(BOOL success) {
+                    if (success) {
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            self.followButtonType = nil;
+                        }];
+                    }
                 }];
             } else {
-                [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    self.followButtonType = nil;
+                [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:^(BOOL success) {
+                    if (success) {
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            self.followButtonType = nil;
+                        }];
+                    }
                 }];
             }
         } else {
@@ -246,18 +263,24 @@
                 if ([[UserController sharedInstance].currentUser isFollowing:[TeamController sharedInstance].currentTeam]) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else {
-                    [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        self.followButtonType = nil;
+                    [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam withCompletion:^(BOOL success) {
+                        if (success) {
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                self.followButtonType = nil;
+                            }];
+                        }
                     }];
                 }
             } else {
                 if ([[UserController sharedInstance].currentUser isFollowing:[AthleteController sharedInstance].currentAthlete]) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else {
-                    [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        self.followButtonType = nil;
+                    [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:^(BOOL success) {
+                        if (success) {
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                self.followButtonType = nil;
+                            }];
+                        }
                     }];
                 }
             }
@@ -269,6 +292,8 @@
 
 - (void)exitButtonPressed:(UIButton *)exitButton {
     self.followButtonType = nil;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                            withAnimation:UIStatusBarAnimationNone];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

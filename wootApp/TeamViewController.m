@@ -41,8 +41,8 @@
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 @property (nonatomic, strong) UIBarButtonItem *followButton;
 @property (nonatomic, strong) UIBarButtonItem *unfollowButton;
-@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
-@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
+//@property (nonatomic, strong) UIBarButtonItem *favoriteButton;
+//@property (nonatomic, strong) UIBarButtonItem *unfavoriteButton;
 @property (nonatomic, assign) BOOL toolbarIsAnimating;
 @property (nonatomic, assign) BOOL isTransitioning;
 @property (nonatomic, strong) UIView *headerView;
@@ -90,13 +90,10 @@
     
     self.navigationItem.rightBarButtonItem = self.followButton;
     
-    for (NSDictionary *dict in [UserController sharedInstance].currentUser.following) {
-        NSInteger followID = [[dict objectForKey:FollowingIDKey] integerValue];
-        NSString *followType = [dict objectForKey:FollowingTypeKey];
-        if (followID == [TeamController sharedInstance].currentTeam.teamID
-            && [followType isEqualToString:@"T"]) {
-            self.navigationItem.rightBarButtonItem = self.unfollowButton;
-        }
+    if ([[UserController sharedInstance].currentUser isFollowing:[TeamController sharedInstance].currentTeam]) {
+        self.navigationItem.rightBarButtonItem = self.unfollowButton;
+    } else {
+        self.navigationItem.rightBarButtonItem = self.followButton;
     }
     
 //    UIImage *favoriteEmpty = [UIImage imageNamed:@"favorite_empty.png"];
@@ -608,7 +605,7 @@
         [self.navigationController presentViewController:dockVC animated:YES completion:nil];
     } else {
         self.navigationItem.rightBarButtonItem = self.unfollowButton;
-        [userController followAccount:[TeamController sharedInstance].currentTeam];
+        [userController followAccount:[TeamController sharedInstance].currentTeam withCompletion:nil];
     }
 }
 
@@ -616,7 +613,7 @@
     UserController *userController = [UserController sharedInstance];
     
     self.navigationItem.rightBarButtonItem = self.followButton;
-    [userController unfollowAccount:[TeamController sharedInstance].currentTeam];
+    [userController unfollowAccount:[TeamController sharedInstance].currentTeam withCompletion:nil];
 }
 
 /*
