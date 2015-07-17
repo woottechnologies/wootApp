@@ -14,6 +14,7 @@
 #import "AthleteViewController.h"
 #import "AthleteController.h"
 #import "SchoolController.h"
+#import "UIColor+CreateMethods.h"
 
 @interface FollowingViewController () <UITableViewDelegate>
 
@@ -25,6 +26,21 @@
 @implementation FollowingViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHex:@"#1a1c1c" alpha:0.3];
+    self.navigationController.navigationBar.barTintColor = [UIColor darkGrayColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    [backButton setBackgroundImage:backArrow forState:UIControlStateNormal];
+    backButton.alpha = 0.5;
+    [backButton addTarget:self action:@selector(backButtonPressed)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem=backArrowButton;
+
+
     [self.tableView reloadData];
 }
 
@@ -74,6 +90,10 @@
             });
         }];
     }
+}
+
+- (void) backButtonPressed {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

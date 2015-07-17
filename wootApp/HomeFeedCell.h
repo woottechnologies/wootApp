@@ -8,9 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import <TwitterKit/TwitterKit.h>
+#import "AthleteController.h"
+#import "TeamController.h"
+
+@protocol HomeFeedCellDelegate;
 
 @interface HomeFeedCell : UITableViewCell
 
+@property (weak, nonatomic) id<HomeFeedCellDelegate> delegate;
+
 - (void)setUpTweetCell:(TWTRTweet *) tweet posterInfo:(NSDictionary *)posterInfo;
+
+@end
+
+@protocol HomeFeedCellDelegate <NSObject>
+
+- (void)athleteNameButtonPressed:(Athlete *)athlete;
+
+- (void)teamNameButtonPressed:(Team *)team;
 
 @end

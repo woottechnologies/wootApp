@@ -73,7 +73,8 @@
             } else if (!userController.currentUser || userController.currentUser.following.count == 0){
                 [self.tableView removeFromSuperview];
                 [self.view addSubview:self.noFeedLabel];
-            } 
+            }
+            [self.tableView reloadData];
         }
     }];
     
@@ -94,6 +95,7 @@
     wootView.frame = CGRectMake(0, 0, 90, 30);
     [wootView setContentMode:UIViewContentModeScaleAspectFit];
     [self.navigationController.navigationBar.topItem setTitleView:wootView];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -152,6 +154,21 @@
         height = 0;
     }
     return height;
+}
+
+- (void) athleteNameButtonPressed:(Athlete *)athlete {
+    AthleteController *athleteController = [AthleteController sharedInstance];
+    athleteController.currentAthlete = athlete;
+    AthleteViewController *athleteVC = [AthleteViewController new];
+    [self.navigationController pushViewController:athleteVC animated:YES];
+
+}
+
+- (void)teamNameButtonPressed:(Team *)team {
+    TeamController *teamController = [TeamController sharedInstance];
+    teamController.currentTeam = team;
+    TeamViewController *teamVC = [TeamViewController new];
+    [self.navigationController pushViewController:teamVC animated:YES];
 }
 
 @end

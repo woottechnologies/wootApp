@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeFeedCell.h"
 
 
-@interface HomeFeedViewController : UIViewController
+@interface HomeFeedViewController : UIViewController <HomeFeedCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 

@@ -64,6 +64,7 @@
     User *currentUser = [UserController sharedInstance].currentUser;
     [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
         NSMutableArray *mutableTweets = [[NSMutableArray alloc] init];
+        NSMutableArray *mutableTweetsNoRetweets = [[NSMutableArray alloc] init];
         NSMutableArray *tweetsAndNames = [[NSMutableArray alloc] init];
         if (guestSession) {
             dispatch_group_t tweetGroup = dispatch_group_create();
@@ -93,7 +94,10 @@
                              
                              [mutableTweets addObjectsFromArray:[TWTRTweet tweetsWithJSONArray:searchResults[@"statuses"]]];
                              for (TWTRTweet *tweet in mutableTweets) {
-                                 [tweetsAndNames addObject:@{@"tweetID":tweet.tweetID, @"name":following[FollowingNameKey], @"type":following[FollowingTypeKey], @"id":following[FollowingIDKey]}];
+                                 if (!tweet.isRetweet) {
+                                     [mutableTweetsNoRetweets addObject:tweet];
+                                     [tweetsAndNames addObject:@{@"tweetID":tweet.tweetID, @"name":following[FollowingNameKey], @"type":following[FollowingTypeKey], @"id":following[FollowingIDKey]}];
+                                 }
                              }
                              dispatch_group_leave(tweetGroup);
                          }
@@ -108,7 +112,7 @@
             }
 //            dispatch_group_leave(tweetGroup);
             dispatch_group_notify(tweetGroup, dispatch_get_main_queue(), ^{
-                self.tweets = mutableTweets;
+                self.tweets = mutableTweetsNoRetweets;
                 self.tweetsAndNames = tweetsAndNames;
                 [self sortTweetsChronologically];
                 completion(YES);
@@ -123,7 +127,7 @@
 -(void) sortTweetsChronologically{
     NSMutableArray *sortedTweets = [[NSMutableArray alloc] init];
     NSMutableArray *unsortedTweets = [self.tweets mutableCopy];
-    while (sortedTweets.count < self.tweets.count) {
+    while (unsortedTweets.count > 0) {
         TWTRTweet *oldestTweet = unsortedTweets[0];
         for (TWTRTweet *tweet in unsortedTweets){
             if ([tweet.createdAt compare:oldestTweet.createdAt] == NSOrderedDescending){
