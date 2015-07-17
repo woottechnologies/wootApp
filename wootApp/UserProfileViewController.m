@@ -62,6 +62,7 @@
     self.profileCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile_placeholder.png"]];
     self.profileCircle.clipsToBounds = YES;
     self.profileCircle.backgroundColor = [UIColor blackColor];
+    self.profileCircle.alpha = 0.84;
     [self setRoundedView:self.profileCircle toDiameter:self.view.frame.size.width/2.388];
     self.profileCircle.center = circleCenter;
     

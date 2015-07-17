@@ -44,6 +44,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    if ([self.window respondsToSelector:@selector(setTintColor:)]) self.window.tintColor = [UIColor whiteColor];
+    
 //    [[Twitter sharedInstance] startWithConsumerKey:@"4XKVAaWK76YUhrEpzMA0IlxSN" consumerSecret:@"IZjo0qtCXj58DJWambtbsZuJhONqV7U8YdjXPIKRF11YApj49u"];
     [Fabric with:@[[Twitter sharedInstance]]];
 

@@ -13,6 +13,7 @@
 #import "SchoolListDataSource.h"
 #import "AppDelegate.h"
 #import "CustomTabBarVC.h"
+#import "UIColor+CreateMethods.h"
 
 @interface SchoolListViewController () <UITableViewDelegate>
 
@@ -72,8 +73,8 @@
     [self.tableView reloadData];
     
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHex:@"#1a1c1c" alpha:1.0];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.customTBVC.campaignAdButton.hidden = YES;
 }
 

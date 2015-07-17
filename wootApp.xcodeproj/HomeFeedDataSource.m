@@ -36,6 +36,7 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
         if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
             posterInfo = tweetAndInfo;
             [cell setUpTweetCell:tweet posterInfo:posterInfo];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
         }
     }
