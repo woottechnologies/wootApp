@@ -261,10 +261,14 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else if ([self.followButtonType isEqualToString:@"T"]) {
                 if ([[UserController sharedInstance].currentUser isFollowing:[TeamController sharedInstance].currentTeam]) {
+                    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                            withAnimation:UIStatusBarAnimationNone];
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else {
                     [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam withCompletion:^(BOOL success) {
                         if (success) {
+                            [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                    withAnimation:UIStatusBarAnimationNone];
                             [self dismissViewControllerAnimated:YES completion:^{
                                 self.followButtonType = nil;
                             }];
@@ -273,10 +277,14 @@
                 }
             } else {
                 if ([[UserController sharedInstance].currentUser isFollowing:[AthleteController sharedInstance].currentAthlete]) {
+                    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                            withAnimation:UIStatusBarAnimationNone];
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else {
                     [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:^(BOOL success) {
                         if (success) {
+                            [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                    withAnimation:UIStatusBarAnimationNone];
                             [self dismissViewControllerAnimated:YES completion:^{
                                 self.followButtonType = nil;
                             }];

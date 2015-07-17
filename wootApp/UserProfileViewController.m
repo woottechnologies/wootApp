@@ -108,7 +108,7 @@
     self.followingButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.followingButton.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
     [self.followingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.followingButton setTitle:[NSString stringWithFormat:@"%li\nfollowing", [UserController sharedInstance].currentUser.following.count] forState:UIControlStateNormal];
+//    [self.followingButton setTitle:[NSString stringWithFormat:@"%li\nfollowing", [UserController sharedInstance].currentUser.following.count] forState:UIControlStateNormal];
     //[self.followingButton setTitle:@"Following" forState:UIControlStateNormal];
     [self.followingButton addTarget:self action:@selector(followingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.followingButton];
@@ -129,6 +129,8 @@
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.customTBVC.campaignAdButton.hidden = YES;
+    
+    [self.followingButton setTitle:[NSString stringWithFormat:@"%li\nfollowing", [UserController sharedInstance].currentUser.following.count] forState:UIControlStateNormal];
 }
 
 - (void)optionsButtonPressed:(UIBarButtonItem *)item {

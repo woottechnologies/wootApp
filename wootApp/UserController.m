@@ -301,13 +301,19 @@
                 self.currentUser.following = [tempFollowing copy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                completion(YES);
+                if (completion) {
+                    completion(YES);
+                }
             } else if (returnCode == 20) {
                 // error
-                completion(NO);
+                if (completion) {
+                    completion(NO);
+                }
             }
         } else {
-            completion(NO);
+            if (completion) {
+                completion(NO);
+            }
         }
     }];
     
