@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SchoolListViewController.h"
+#import "SearchViewController.h"
 #import "CustomTabBarVC.h"
 #import "TestViewController.h"
 #import "TeamViewController.h"
@@ -27,7 +27,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UINavigationController *search = [[UINavigationController alloc] initWithRootViewController:[SchoolListViewController new]];
+    UINavigationController *search = [[UINavigationController alloc] initWithRootViewController:[SearchViewController new]];
 //    UINavigationController *masterVC = [[UINavigationController alloc] initWithRootViewController:[HomeFeedViewController new]];
     
     search.tabBarItem = [[UITabBarItem alloc] init];

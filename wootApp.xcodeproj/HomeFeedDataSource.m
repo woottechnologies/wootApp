@@ -41,6 +41,7 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
         }
     }
     [cell setUpTweetCell:tweet posterInfo:posterInfo];
+    cell.delegate = self.viewController;
     return cell;
 }
 
@@ -51,6 +52,8 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
     } else {
       return 20;
     }
+    return 1;
+    
 }
 
 @end

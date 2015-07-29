@@ -10,7 +10,7 @@
 #import "DrawerDataSource.h"
 #import "UserController.h"
 #import "DockViewController.h"
-#import "SchoolListViewController.h"
+#import "SearchViewController.h"
 #import "UIView+FLKAutoLayout.h"
 #import "TeamViewController.h"
 #import "AthleteViewController.h"

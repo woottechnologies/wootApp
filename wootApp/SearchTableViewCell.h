@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "School.h"
 
-@interface SchoolListTableViewCell : UITableViewCell
+@interface SearchTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *cellImage;
 

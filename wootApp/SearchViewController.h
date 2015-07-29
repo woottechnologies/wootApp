@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SchoolListViewController : UIViewController
+@interface SearchViewController : UIViewController
 
 
 @end
