@@ -20,7 +20,7 @@
 		47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ECD1B20C7EC005E3C53 /* AthleteDataSource.m */; };
 		47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */; };
 		4796A9851B331E7A00D71779 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9841B331E7A00D71779 /* NetworkController.m */; };
-		4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9871B33735E00D71779 /* SchoolListDataSource.m */; };
+		4796A9881B33735E00D71779 /* SearchDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796A9871B33735E00D71779 /* SearchDataSource.m */; };
 		4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */; };
 		4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DE9E1B38C1DE006BBC43 /* DrawerDataSource.m */; };
 		4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEA71B39F75B006BBC43 /* DockViewController.m */; };
@@ -51,6 +51,7 @@
 		553A29321B389DD900784798 /* StatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29311B389DD900784798 /* StatsController.m */; };
 		553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29341B3C654100784798 /* UIColor+CreateMethods.m */; };
 		553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A29371B3DDFA200784798 /* NextGameTableViewCell.m */; };
+		553FE3961B61764800A27ADB /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553FE3951B61764800A27ADB /* SearchController.m */; };
 		554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 554308621B4F3FBD00571404 /* TeamTweetCell.m */; };
 		5569EA7F1B4DD366007B540B /* TeamTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5569EA7E1B4DD366007B540B /* TeamTweetController.m */; };
 		5569EA851B4DD946007B540B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA811B4DD946007B540B /* Fabric.framework */; };
@@ -59,10 +60,10 @@
 		5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA841B4DD946007B540B /* TwitterCore.framework */; };
 		556D45CE1B5749FE00F4254E /* HomeFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45CD1B5749FE00F4254E /* HomeFeedController.m */; };
 		556D45D11B5808D100F4254E /* HomeFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45D01B5808D100F4254E /* HomeFeedCell.m */; };
-		55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */; };
+		55A13E411B45DE54009001BE /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SearchTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
-		55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */; };
+		55B4C8AB1B1E386F003B3058 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SearchViewController.m */; };
 		55B4C8B01B1E386F003B3058 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8AF1B1E386F003B3058 /* Images.xcassets */; };
 		55B4C8B31B1E386F003B3058 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B4C8B11B1E386F003B3058 /* LaunchScreen.xib */; };
 		55B4C8BF1B1E386F003B3058 /* wootAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8BE1B1E386F003B3058 /* wootAppTests.m */; };
@@ -112,8 +113,8 @@
 		47541ED01B263536005E3C53 /* MostViewedPlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostViewedPlayersTableViewCell.m; sourceTree = "<group>"; };
 		4796A9831B331E7A00D71779 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
 		4796A9841B331E7A00D71779 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
-		4796A9861B33735E00D71779 /* SchoolListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListDataSource.h; sourceTree = "<group>"; };
-		4796A9871B33735E00D71779 /* SchoolListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListDataSource.m; sourceTree = "<group>"; };
+		4796A9861B33735E00D71779 /* SearchDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDataSource.h; sourceTree = "<group>"; };
+		4796A9871B33735E00D71779 /* SearchDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDataSource.m; sourceTree = "<group>"; };
 		4797DE9A1B387B47006BBC43 /* CustomTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarVC.h; sourceTree = "<group>"; };
 		4797DE9B1B387B47006BBC43 /* CustomTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarVC.m; sourceTree = "<group>"; };
 		4797DE9D1B38C1DE006BBC43 /* DrawerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerDataSource.h; sourceTree = "<group>"; };
@@ -173,6 +174,8 @@
 		553A29341B3C654100784798 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		553A29361B3DDFA200784798 /* NextGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextGameTableViewCell.h; sourceTree = "<group>"; };
 		553A29371B3DDFA200784798 /* NextGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextGameTableViewCell.m; sourceTree = "<group>"; };
+		553FE3941B61764800A27ADB /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchController.h; sourceTree = "<group>"; };
+		553FE3951B61764800A27ADB /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchController.m; sourceTree = "<group>"; };
 		554308611B4F3FBD00571404 /* TeamTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweetCell.h; sourceTree = "<group>"; };
 		554308621B4F3FBD00571404 /* TeamTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTweetCell.m; sourceTree = "<group>"; };
 		5569EA7D1B4DD366007B540B /* TeamTweetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTweetController.h; sourceTree = "<group>"; };
@@ -185,15 +188,15 @@
 		556D45CD1B5749FE00F4254E /* HomeFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedController.m; path = wootApp/HomeFeedController.m; sourceTree = SOURCE_ROOT; };
 		556D45CF1B5808D100F4254E /* HomeFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedCell.h; path = ../wootApp/HomeFeedCell.h; sourceTree = "<group>"; };
 		556D45D01B5808D100F4254E /* HomeFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedCell.m; path = ../wootApp/HomeFeedCell.m; sourceTree = "<group>"; };
-		55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolListTableViewCell.h; sourceTree = "<group>"; };
-		55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolListTableViewCell.m; sourceTree = "<group>"; };
+		55A13E3F1B45DE54009001BE /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
+		55A13E401B45DE54009001BE /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55B4C8A61B1E386F003B3058 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		55B4C8A71B1E386F003B3058 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolListViewController.h; sourceTree = "<group>"; };
-		55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolListViewController.m; sourceTree = "<group>"; };
+		55B4C8A91B1E386F003B3058 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		55B4C8AA1B1E386F003B3058 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		55B4C8AF1B1E386F003B3058 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55B4C8B21B1E386F003B3058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		55B4C8B81B1E386F003B3058 /* wootAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wootAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,12 +281,6 @@
 				55B4C8FE1B1F7930003B3058 /* School.m */,
 				55B4C9031B1F7C4E003B3058 /* SchoolController.h */,
 				55B4C9041B1F7C4E003B3058 /* SchoolController.m */,
-				55B4C8A91B1E386F003B3058 /* SchoolListViewController.h */,
-				55B4C8AA1B1E386F003B3058 /* SchoolListViewController.m */,
-				4796A9861B33735E00D71779 /* SchoolListDataSource.h */,
-				4796A9871B33735E00D71779 /* SchoolListDataSource.m */,
-				55A13E3F1B45DE54009001BE /* SchoolListTableViewCell.h */,
-				55A13E401B45DE54009001BE /* SchoolListTableViewCell.m */,
 			);
 			name = School;
 			sourceTree = "<group>";
@@ -381,6 +378,21 @@
 			path = FLKAutoLayout;
 			sourceTree = "<group>";
 		};
+		553FE3931B6175EE00A27ADB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				55B4C8A91B1E386F003B3058 /* SearchViewController.h */,
+				55B4C8AA1B1E386F003B3058 /* SearchViewController.m */,
+				4796A9861B33735E00D71779 /* SearchDataSource.h */,
+				4796A9871B33735E00D71779 /* SearchDataSource.m */,
+				55A13E3F1B45DE54009001BE /* SearchTableViewCell.h */,
+				55A13E401B45DE54009001BE /* SearchTableViewCell.m */,
+				553FE3941B61764800A27ADB /* SearchController.h */,
+				553FE3951B61764800A27ADB /* SearchController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		55B4C8961B1E386F003B3058 = {
 			isa = PBXGroup;
 			children = (
@@ -403,9 +415,10 @@
 		55B4C8A11B1E386F003B3058 /* wootApp */ = {
 			isa = PBXGroup;
 			children = (
+				552032F81B541E1E003FF149 /* Home Feed */,
+				553FE3931B6175EE00A27ADB /* Search */,
 				55B4C8A61B1E386F003B3058 /* AppDelegate.h */,
 				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
-				552032F81B541E1E003FF149 /* Home Feed */,
 				4797DEAD1B39F8E5006BBC43 /* CustomTabBar */,
 				4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */,
 				4797DEB41B39FD1B006BBC43 /* User */,
@@ -620,7 +633,7 @@
 				552F843E1B573C9D0064FDE6 /* HomeFeedViewController.m in Sources */,
 				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
-				4796A9881B33735E00D71779 /* SchoolListDataSource.m in Sources */,
+				4796A9881B33735E00D71779 /* SearchDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
@@ -630,13 +643,14 @@
 				551D2A541B56E97300F18BCD /* AthleteTweetController.m in Sources */,
 				55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */,
 				473EA3591B29EE310033AFA1 /* GameController.m in Sources */,
-				55B4C8AB1B1E386F003B3058 /* SchoolListViewController.m in Sources */,
+				55B4C8AB1B1E386F003B3058 /* SearchViewController.m in Sources */,
 				553A28DF1B2773E600784798 /* Campaign.m in Sources */,
 				553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */,
 				553A28E21B27762700784798 /* CampaignController.m in Sources */,
 				4719A32E1B4EF69D009A707E /* CoachDataSource.m in Sources */,
 				4719A32B1B4DE466009A707E /* AthleteController.m in Sources */,
 				553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */,
+				553FE3961B61764800A27ADB /* SearchController.m in Sources */,
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
 				552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
@@ -664,7 +678,7 @@
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
 				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,
-				55A13E411B45DE54009001BE /* SchoolListTableViewCell.m in Sources */,
+				55A13E411B45DE54009001BE /* SearchTableViewCell.m in Sources */,
 				5569EA7F1B4DD366007B540B /* TeamTweetController.m in Sources */,
 				553A29351B3C654100784798 /* UIColor+CreateMethods.m in Sources */,
 			);

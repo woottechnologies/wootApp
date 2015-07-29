@@ -99,48 +99,48 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    TWTRTweet *tweet = homeFeedController.tweets[indexPath.row];
-    NSDictionary *posterInfo;
-    for (NSDictionary *tweetAndInfo in homeFeedController.tweetsAndNames) {
-        if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
-            posterInfo = tweetAndInfo;
-            break;
-        }
-    }
-    NSString *type = posterInfo[FollowingTypeKey];
-    
-    if ([type isEqualToString:@"T"]) {
-        TeamViewController *teamVC = [[TeamViewController alloc] init];
-        NSInteger teamID = [[posterInfo objectForKey:FollowingIDKey] integerValue];
-        [[TeamController sharedInstance] selectTeamWithTeamID:teamID andCompletion:^(BOOL success, Team *team) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [TeamController sharedInstance].currentTeam = team;
-                for (School *school in [SchoolController sharedInstance].schools) {
-                    if (school.schoolID == team.schoolID) {
-                        [SchoolController sharedInstance].currentSchool = school;
-                    }
-                }
-                [self.navigationController pushViewController:teamVC animated:YES];
-                [tableView deselectRowAtIndexPath:indexPath animated:NO];
-            });
-        }];
-    } else {
-        AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
-        NSInteger athleteID = [[posterInfo objectForKey:FollowingIDKey] integerValue];
-        [[AthleteController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [AthleteController sharedInstance].currentAthlete = athlete;
-                for (School *school in [SchoolController sharedInstance].schools) {
-                    if (school.schoolID == athlete.schoolID) {
-                        [SchoolController sharedInstance].currentSchool = school;
-                    }
-                }
-                [self.navigationController pushViewController:athleteVC animated:YES];
-                [tableView deselectRowAtIndexPath:indexPath animated:NO];
-            });
-        }];
-    }
+//    HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
+//    TWTRTweet *tweet = homeFeedController.tweets[indexPath.row];
+//    NSDictionary *posterInfo;
+//    for (NSDictionary *tweetAndInfo in homeFeedController.tweetsAndNames) {
+//        if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
+//            posterInfo = tweetAndInfo;
+//            break;
+//        }
+//    }
+//    NSString *type = posterInfo[FollowingTypeKey];
+//    
+//    if ([type isEqualToString:@"T"]) {
+//        TeamViewController *teamVC = [[TeamViewController alloc] init];
+//        NSInteger teamID = [[posterInfo objectForKey:FollowingIDKey] integerValue];
+//        [[TeamController sharedInstance] selectTeamWithTeamID:teamID andCompletion:^(BOOL success, Team *team) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [TeamController sharedInstance].currentTeam = team;
+//                for (School *school in [SchoolController sharedInstance].schools) {
+//                    if (school.schoolID == team.schoolID) {
+//                        [SchoolController sharedInstance].currentSchool = school;
+//                    }
+//                }
+//                [self.navigationController pushViewController:teamVC animated:YES];
+//                [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//            });
+//        }];
+//    } else {
+//        AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
+//        NSInteger athleteID = [[posterInfo objectForKey:FollowingIDKey] integerValue];
+//        [[AthleteController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [AthleteController sharedInstance].currentAthlete = athlete;
+//                for (School *school in [SchoolController sharedInstance].schools) {
+//                    if (school.schoolID == athlete.schoolID) {
+//                        [SchoolController sharedInstance].currentSchool = school;
+//                    }
+//                }
+//                [self.navigationController pushViewController:athleteVC animated:YES];
+//                [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//            });
+//        }];
+//    }
 
 }
 
@@ -161,7 +161,6 @@
     athleteController.currentAthlete = athlete;
     AthleteViewController *athleteVC = [AthleteViewController new];
     [self.navigationController pushViewController:athleteVC animated:YES];
-
 }
 
 - (void)teamNameButtonPressed:(Team *)team {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Woot Technologies. All rights reserved.
 //
 
-#import "SchoolListViewController.h"
+#import "SearchViewController.h"
 #import "MostViewedPlayersTableViewCell.h"
 #import "CoachingStaffCell.h"
 

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-@interface SchoolListDataSource : NSObject <UITableViewDataSource>
+@interface SearchDataSource : NSObject <UITableViewDataSource>
 
 @end

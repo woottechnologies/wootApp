@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Woot Technologies. All rights reserved.
 //
 
-#import "SchoolListTableViewCell.h"
+#import "SearchTableViewCell.h"
 #import "UIView+FLKAutoLayout.h"
 
-@interface SchoolListTableViewCell ()
+@interface SearchTableViewCell ()
 
 @end
 
-@implementation SchoolListTableViewCell
+@implementation SearchTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
