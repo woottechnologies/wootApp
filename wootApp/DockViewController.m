@@ -102,24 +102,54 @@
     [self.exitButton setImage:[UIImage imageNamed:@"button_x.png"] forState:UIControlStateNormal];
     [self.exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
+    NSLog(@"height = %f", self.view.frame.size.height);
     
     // sign up button
+//    self.showSignUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    self.showSignUp.frame = CGRectMake(20, 520, self.view.frame.size.width - 40, 50);
+//    //self.showSignUp.frame = CGRectMake(20, self.view.frame.size.height - 140, self.view.frame.size.width, 50);
+//    [self.showSignUp setTitle:@"Sign Up" forState:UIControlStateNormal];
+//    [self.showSignUp setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self.showSignUp addTarget:self action:@selector(showSignUp:) forControlEvents:UIControlEventTouchUpInside];
+//    self.showSignUp.backgroundColor = [UIColor colorWithHex:@"#2bff80" alpha:1.0];
+//    [self.view addSubview:self.showSignUp];
+    
+    // sign up
     self.showSignUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.showSignUp.frame = CGRectMake(20, 520, self.view.frame.size.width - 40, 50);
+    [self.view addSubview:self.showSignUp];
+    [self.showSignUp alignLeadingEdgeWithView:self.view predicate:@"20"];
+    [self.showSignUp alignTrailingEdgeWithView:self.view predicate:@"-20"];
+    [self.showSignUp constrainHeight:@"50"];
+    [self.showSignUp constrainWidth:[NSString stringWithFormat:@"%f", self.view.frame.size.width - 40]];
+    //[self.showSignUp constrainBottomSpaceToView:self.showLogIn predicate:@"20"];
     [self.showSignUp setTitle:@"Sign Up" forState:UIControlStateNormal];
     [self.showSignUp setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.showSignUp addTarget:self action:@selector(showSignUp:) forControlEvents:UIControlEventTouchUpInside];
     self.showSignUp.backgroundColor = [UIColor colorWithHex:@"#2bff80" alpha:1.0];
-    [self.view addSubview:self.showSignUp];
     
-    // log in button
+    // log in
     self.showLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.showLogIn.frame = CGRectMake(20, 590, self.view.frame.size.width - 40, 50);
+    [self.view addSubview:self.showLogIn];
+    [self.showLogIn alignBottomEdgeWithView:self.view predicate:@"-25"];
+    [self.showLogIn alignLeadingEdgeWithView:self.view predicate:@"20"];
+    [self.showLogIn alignTrailingEdgeWithView:self.view predicate:@"-20"];
+    [self.showLogIn constrainHeight:@"50"];
+    [self.showLogIn constrainWidth:[NSString stringWithFormat:@"%f", self.view.frame.size.width - 40]];
+    [self.showLogIn constrainTopSpaceToView:self.showSignUp predicate:@"18"];
     [self.showLogIn setTitle:@"Log In" forState:UIControlStateNormal];
     [self.showLogIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.showLogIn addTarget:self action:@selector(showLogIn:) forControlEvents:UIControlEventTouchUpInside];
     self.showLogIn.backgroundColor = [UIColor colorWithHex:@"#2b58ff" alpha:1.0];
-    [self.view addSubview:self.showLogIn];
+    
+    // log in button
+//    self.showLogIn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    self.showLogIn.frame = CGRectMake(20, 590, self.view.frame.size.width - 40, 50);
+//    //self.showLogIn.frame = CGRectMake(20, self.view.frame.size.height - 70 , self.view.frame.size.width, 50);
+//    [self.showLogIn setTitle:@"Log In" forState:UIControlStateNormal];
+//    [self.showLogIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self.showLogIn addTarget:self action:@selector(showLogIn:) forControlEvents:UIControlEventTouchUpInside];
+//    self.showLogIn.backgroundColor = [UIColor colorWithHex:@"#2b58ff" alpha:1.0];
+//    [self.view addSubview:self.showLogIn];
     
     // error label
     self.errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 265, self.view.frame.size.width - 40, 30)];
