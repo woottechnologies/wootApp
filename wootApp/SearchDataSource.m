@@ -25,6 +25,9 @@ static NSString *cellID = @"cellID";
             NSDictionary *team = [searchController.teams objectAtIndex:indexPath.row];
             cell.textLabel.text = team[@"teamName"];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@, %@)", team[@"schoolName"], team[@"city"], team[@"state"]];
+        } else if (searchController.isSearching == YES){
+            cell.textLabel.text = @"Searching...";
+            cell.detailTextLabel.text = @"";
         } else {
             cell.textLabel.text = @"No results found";
             cell.detailTextLabel.text = @"";
@@ -35,11 +38,15 @@ static NSString *cellID = @"cellID";
             NSDictionary *person = [searchController.people objectAtIndex:indexPath.row];
             cell.textLabel.text = person[@"name"];
             cell.detailTextLabel.text = person[@"teamName"];
+        } else if (searchController.isSearching == YES){
+            cell.textLabel.text = @"Searching...";
+            cell.detailTextLabel.text = @"";
         } else {
             cell.textLabel.text = @"No results found";
             cell.detailTextLabel.text = @"";
         }
     }
+    searchController.isSearching = NO;
     return cell;
 }
 

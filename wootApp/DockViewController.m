@@ -101,7 +101,6 @@
     [self.exitButton constrainWidth:@"20"];
     [self.exitButton setImage:[UIImage imageNamed:@"button_x.png"] forState:UIControlStateNormal];
     [self.exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
     
     // sign up button
     self.showSignUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
