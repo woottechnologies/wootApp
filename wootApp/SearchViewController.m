@@ -25,6 +25,7 @@
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) UIBarButtonItem *cancelButton;
 
 @end
 
@@ -38,10 +39,16 @@
     
     [SchoolController sharedInstance];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, self.navigationController.navigationBar.frame.size.height - 15, self.view.frame.size.width - 40, 30)];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, self.navigationController.navigationBar.frame.size.height - 15, self.view.frame.size.width - 100, 30)];
     self.searchBar.placeholder = @"Search";
     self.searchBar.delegate = self;
     self.navigationItem.titleView = self.searchBar;
+    
+    self.cancelButton = [[UIBarButtonItem alloc] init];
+    self.cancelButton.title = @"Cancel";
+    [self.cancelButton setTarget:self];
+    [self.cancelButton setAction:@selector(cancelSearch)];
+    self.navigationItem.rightBarButtonItem = self.cancelButton;
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"teams", @"people"]];
     self.segmentedControl.center = CGPointMake(self.view.frame.size.width / 2, 80);
@@ -173,6 +180,10 @@
         }];
     }
     
+}
+
+- (void)cancelSearch {
+    [self.searchBar resignFirstResponder];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {

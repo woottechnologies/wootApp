@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSArray *people;
 @property (nonatomic, assign) NSInteger selectedSegmentIndex;
 @property (nonatomic, assign) BOOL hasSearched;
+@property (nonatomic, assign) BOOL isSearching;
 
 +(instancetype) sharedInstance;
 - (void)searchTeamsWithCompletion:(void (^)(BOOL success))completion;
