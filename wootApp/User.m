@@ -16,7 +16,8 @@
     
     if (self) {
         self.userID = [dictionary[UserIDKey] integerValue];
-        self.email = dictionary[EmailKey];
+        self.username = dictionary[UsernameKey];
+        //self.email = dictionary[EmailKey];
     }
     
     return self;

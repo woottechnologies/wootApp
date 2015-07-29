@@ -30,12 +30,13 @@
     NSURLSession *session = [NSURLSession sharedSession];
     
     NSString *email = self.currentUser.email;
+    NSString *username = self.currentUser.username;
     NSString *password = self.currentUser.password;
     
-    NSString *post = [NSString stringWithFormat:@"email=%@&passwd=%@", email, password];
+    NSString *post = [NSString stringWithFormat:@"email=%@&username=%@&passwd=%@", email, username, password];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"insert_user.php"];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"insert_user_new.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -50,11 +51,14 @@
             if (returnCode == 10) {
                 NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
                 self.currentUser.userID = userID;
+                self.currentUser.email = nil;
                 self.currentUser.password = nil;
                 [self saveUserLocal];
                 completion(YES, nil);
             } else if (returnCode == 20) {
                 completion(NO, @"That email address is already in use.");
+            } else if (returnCode == 40) {
+                completion(NO, @"That username is already in use.");
             }
         } else {
             completion(NO, @"No internet connection detected.");
@@ -64,28 +68,18 @@
     [uploadTask resume];
 }
 
-- (void)saveUserLocal {
-    NSDictionary *userDict = @{UserIDKey:[NSNumber numberWithInteger:self.currentUser.userID],
-                               EmailKey:self.currentUser.email};
-    [[NSUserDefaults standardUserDefaults] setObject:userDict forKey:UserKey];
-    [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
-    //[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.favorites forKey:FavoritesKey];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 #pragma mark - Read
 
 - (void)logInUserWithCompletion:(void (^)(BOOL success, NSString *error))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *email = self.currentUser.email;
+    NSString *username = self.currentUser.username;
     NSString *password = self.currentUser.password;
     
-    NSString *post = [NSString stringWithFormat:@"email=%@&passwd=%@", email, password];
+    NSString *post = [NSString stringWithFormat:@"username=%@&passwd=%@", username, password];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_user.php"];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"select_user_new.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -99,9 +93,9 @@
             dispatch_group_t followingGroup = dispatch_group_create();
             if (returnCode == 10) {
                 NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
-                NSString *email = [responseDict objectForKey:@"email"];
+                NSString *handle = [responseDict objectForKey:@"handle"];
                 self.currentUser.userID = userID;
-                self.currentUser.email = email;
+                self.currentUser.username = handle;
                 self.currentUser.password = nil;
                 dispatch_group_enter(followingGroup);
                 [self loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
@@ -115,9 +109,9 @@
                     completion(YES, nil);
                 });
             } else if (returnCode == 20) {
-                completion(NO, @"Incorrect email or password. Please try again.");
+                completion(NO, @"Incorrect username or password. Please try again.");
             } else {
-                completion(NO, @"Sorry. There are no users with that email address.");
+                completion(NO, @"Username not found.");
             }
         } else {
             completion(NO, @"No internet connection detected.");
@@ -174,13 +168,24 @@
     } else {
         self.currentUser = [[User alloc] initWithDictionary:userDict];
         
-        NSArray *followingLocal = [[NSUserDefaults standardUserDefaults] objectForKey:FollowingKey];
-        self.currentUser.following = followingLocal;
+//        NSArray *followingLocal = [[NSUserDefaults standardUserDefaults] objectForKey:FollowingKey];
+//        self.currentUser.following = followingLocal;
         
     }
 }
 
 #pragma mark - Update
+
+- (void)saveUserLocal {
+    NSDictionary *userDict = @{UserIDKey:[NSNumber numberWithInteger:self.currentUser.userID],
+                               UsernameKey:self.currentUser.username};
+    [[NSUserDefaults standardUserDefaults] setObject:userDict forKey:UserKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:self.currentUser.following.count forKey:FollowingCountKey];
+    //    [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
+    //[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.favorites forKey:FavoritesKey];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 - (void)followAccount:(id)account withCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
@@ -229,7 +234,8 @@
             if (returnCode == 10) {
                 // success
                 self.currentUser.following = [tempFollowing copy];
-                [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
+                [[NSUserDefaults standardUserDefaults] setInteger:self.currentUser.following.count forKey:FollowingCountKey];
+//                [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 if (completion) {
@@ -299,7 +305,8 @@
             if (returnCode == 10) {
                 // success
                 self.currentUser.following = [tempFollowing copy];
-                [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
+                [[NSUserDefaults standardUserDefaults] setInteger:self.currentUser.following.count forKey:FollowingCountKey];
+//                [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 if (completion) {
                     completion(YES);

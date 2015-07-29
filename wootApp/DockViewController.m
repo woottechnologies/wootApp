@@ -27,14 +27,15 @@
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
 
 // Sign Up
-@property (nonatomic, strong) UITextField *firstNameField;
-@property (nonatomic, strong) UITextField *lastNameField;
-@property (nonatomic, strong) UITextField *emailField;
-@property (nonatomic, strong) UITextField *passwordField;
+//@property (nonatomic, strong) UITextField *firstNameField;
+//@property (nonatomic, strong) UITextField *lastNameField;
+@property (nonatomic, strong) UITextField *emailSignUp;
+@property (nonatomic, strong) UITextField *usernameSignUp;
+@property (nonatomic, strong) UITextField *passwordSignUp;
 @property (nonatomic, strong) UIButton *signUpButton;
 
 // Log In
-@property (nonatomic, strong) UITextField *emailLogIn;
+@property (nonatomic, strong) UITextField *usernameLogin;
 @property (nonatomic, strong) UITextField *passwordLogIn;
 @property (nonatomic, strong) UIButton *logInButton;
 
@@ -45,7 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)viewDidLoad {
@@ -123,7 +124,8 @@
     // error label
     self.errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 265, self.view.frame.size.width - 40, 30)];
     self.errorLabel.font = [UIFont systemFontOfSize:11];
-    self.errorLabel.textColor = [UIColor grayColor];
+    self.errorLabel.textColor = [UIColor whiteColor];
+    //self.errorLabel.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.errorLabel];
     //self.errorLabel.hidden = YES;
     
@@ -132,21 +134,29 @@
 }
 
 - (void)setupSignUp {
-    self.emailField = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.frame.size.width - 40, 40)];
-    self.emailField.borderStyle = UITextBorderStyleRoundedRect;
-    self.emailField.placeholder = @"Email";
-    self.emailField.delegate = self;
-    self.emailField.clearsOnInsertion = YES;
-    [self.view addSubview:self.emailField];
-    self.emailField.hidden = YES;
+    self.emailSignUp = [[UITextField alloc]initWithFrame:CGRectMake(20, 130, self.view.frame.size.width - 40, 40)];
+    self.emailSignUp.borderStyle = UITextBorderStyleRoundedRect;
+    self.emailSignUp.placeholder = @"Email";
+    self.emailSignUp.delegate = self;
+    self.emailSignUp.clearsOnInsertion = YES;
+    [self.view addSubview:self.emailSignUp];
+    self.emailSignUp.hidden = YES;
     
-    self.passwordField = [[UITextField alloc]initWithFrame:CGRectMake(20, 230, self.view.frame.size.width - 40, 40)];
-    self.passwordField.borderStyle = UITextBorderStyleRoundedRect;
-    self.passwordField.placeholder = @"Password";
-    self.passwordField.secureTextEntry = YES;
-    self.passwordField.delegate = self;
-    [self.view addSubview:self.passwordField];
-    self.passwordField.hidden = YES;
+    self.usernameSignUp = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.frame.size.width - 40, 40)];
+    self.usernameSignUp.borderStyle = UITextBorderStyleRoundedRect;
+    self.usernameSignUp.placeholder = @"Username";
+    self.usernameSignUp.delegate = self;
+    self.usernameSignUp.clearsOnInsertion = YES;
+    [self.view addSubview:self.usernameSignUp];
+    self.usernameSignUp.hidden = YES;
+    
+    self.passwordSignUp = [[UITextField alloc]initWithFrame:CGRectMake(20, 230, self.view.frame.size.width - 40, 40)];
+    self.passwordSignUp.borderStyle = UITextBorderStyleRoundedRect;
+    self.passwordSignUp.placeholder = @"Password";
+    self.passwordSignUp.secureTextEntry = YES;
+    self.passwordSignUp.delegate = self;
+    [self.view addSubview:self.passwordSignUp];
+    self.passwordSignUp.hidden = YES;
     
     self.signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.signUpButton.frame = CGRectMake(20, 305, self.view.frame.size.width - 40, 40);
@@ -159,12 +169,12 @@
 }
 
 - (void)setupLogIn {
-    self.emailLogIn = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.frame.size.width - 40, 40)];
-    self.emailLogIn.borderStyle = UITextBorderStyleRoundedRect;
-    self.emailLogIn.placeholder = @"Email";
-    self.emailLogIn.delegate = self;
-    [self.view addSubview:self.emailLogIn];
-    self.emailLogIn.hidden = YES;
+    self.usernameLogin = [[UITextField alloc]initWithFrame:CGRectMake(20, 180, self.view.frame.size.width - 40, 40)];
+    self.usernameLogin.borderStyle = UITextBorderStyleRoundedRect;
+    self.usernameLogin.placeholder = @"Username";
+    self.usernameLogin.delegate = self;
+    [self.view addSubview:self.usernameLogin];
+    self.usernameLogin.hidden = YES;
     
     self.passwordLogIn = [[UITextField alloc]initWithFrame:CGRectMake(20, 230, self.view.frame.size.width - 40, 40)];
     self.passwordLogIn.borderStyle = UITextBorderStyleRoundedRect;
@@ -190,8 +200,9 @@
     
     self.backButton.hidden = NO;
     self.backButton.tag = 1;
-    self.emailField.hidden = NO;
-    self.passwordField.hidden = NO;
+    self.emailSignUp.hidden = NO;
+    self.usernameSignUp.hidden = NO;
+    self.passwordSignUp.hidden = NO;
     self.signUpButton.hidden = NO;
     self.blurView.hidden = NO;
 }
@@ -202,7 +213,7 @@
     
     self.backButton.hidden = NO;
     self.backButton.tag = 2;
-    self.emailLogIn.hidden = NO;
+    self.usernameLogin.hidden = NO;
     self.passwordLogIn.hidden = NO;
     self.logInButton.hidden = NO;
     self.blurView.hidden = NO;
@@ -210,8 +221,9 @@
 
 - (void)signUpPressed:(UIButton *)signUpButton {
     User *newUser = [[User alloc] init];
-    newUser.email = self.emailField.text;
-    newUser.password = self.passwordField.text;
+    newUser.email = self.emailSignUp.text;
+    newUser.username = self.usernameSignUp.text;
+    newUser.password = self.passwordSignUp.text;
     
     UserController *userController = [UserController sharedInstance];
     userController.currentUser = newUser;
@@ -220,11 +232,15 @@
         if (success) {
             // land them wherever they were
             if (!self.followButtonType) {
-                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[2];
+                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[0];
+                [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                        withAnimation:UIStatusBarAnimationNone];
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else if ([self.followButtonType isEqualToString:@"T"]) {
                 [[UserController sharedInstance] followAccount:[TeamController sharedInstance].currentTeam withCompletion:^(BOOL success) {
                     if (success) {
+                        [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                withAnimation:UIStatusBarAnimationNone];
                         [self dismissViewControllerAnimated:YES completion:^{
                             self.followButtonType = nil;
                         }];
@@ -233,6 +249,8 @@
             } else {
                 [[UserController sharedInstance] followAccount:[AthleteController sharedInstance].currentAthlete withCompletion:^(BOOL success) {
                     if (success) {
+                        [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                withAnimation:UIStatusBarAnimationNone];
                         [self dismissViewControllerAnimated:YES completion:^{
                             self.followButtonType = nil;
                         }];
@@ -240,24 +258,28 @@
                 }];
             }
         } else {
-            [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
+            });
         }
     }];
 }
 
 - (void)logInPressed:(UIButton *)logInButton {
-    User *newUser = [[User alloc] init];
-    newUser.email = self.emailLogIn.text;
-    newUser.password = self.passwordLogIn.text;
+    User *existingUser = [[User alloc] init];
+    existingUser.username = self.usernameLogin.text;
+    existingUser.password = self.passwordLogIn.text;
     
     UserController *userController = [UserController sharedInstance];
-    userController.currentUser = newUser;
+    userController.currentUser = existingUser;
     
     [userController logInUserWithCompletion:^(BOOL success, NSString *error) {
         if (success) {
             // land them wherever they were
             if (!self.followButtonType) {
                 self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[1];
+                [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                        withAnimation:UIStatusBarAnimationNone];
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else if ([self.followButtonType isEqualToString:@"T"]) {
                 if ([[UserController sharedInstance].currentUser isFollowing:[TeamController sharedInstance].currentTeam]) {
@@ -293,7 +315,9 @@
                 }
             }
         } else {
-            [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.errorLabel setText:[NSString stringWithFormat:@"%@", error]];
+            });
         }
     }];
 }
@@ -312,15 +336,16 @@
     if (backButton.tag == 1) {
         self.backButton.hidden = YES;
         self.backButton.tag = -1;
-//        self.navigationItem.leftBarButtonItem = nil;
 
         self.blurView.hidden = YES;
-        self.emailField.hidden = YES;
-        self.passwordField.hidden = YES;
+        self.emailSignUp.hidden = YES;
+        self.usernameSignUp.hidden = YES;
+        self.passwordSignUp.hidden = YES;
         self.signUpButton.hidden = YES;
         
-        self.emailField.text = @"";
-        self.passwordField.text = @"";
+        self.emailSignUp.text = @"";
+        self.usernameSignUp.text = @"";
+        self.passwordSignUp.text = @"";
         
         self.showSignUp.hidden = NO;
         self.showLogIn.hidden = NO;
@@ -329,11 +354,12 @@
 //        self.backButton.hidden = YES;
 //        self.backButton.tag = -1;
         self.blurView.hidden = YES;
-        self.emailLogIn.hidden = YES;
+        self.usernameLogin.hidden = YES;
         self.passwordLogIn.hidden = YES;
         self.logInButton.hidden = YES;
         
-        self.emailLogIn.text = @"";
+        self.usernameLogin.text = @"";
+        self.usernameLogin.text = @"";
         self.passwordLogIn.text = @"";
         
         self.showSignUp.hidden = NO;
@@ -344,13 +370,17 @@
 #pragma mark - TextFieldDelegates
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    if ([textField isEqual:self.emailField]) {
+    if ([textField isEqual:self.emailSignUp]) {
         if (![textField.text isValidEmail]) {
             [self.errorLabel setText:@"Invalid email address."];
         } else {
             [self.errorLabel setText:@""];
         }
     }
+    
+//    if ([textField isEqual:self.usernameSignUp] && textField.text.length < 4) {
+//        [self.errorLabel setText:@"Username must be at least 4 characters."];
+//    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {

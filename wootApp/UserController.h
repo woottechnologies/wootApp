@@ -12,6 +12,7 @@
 #import "UserProfileViewController.h"
 
 static NSString *UserKey = @"user";
+static NSString *FollowingCountKey = @"followingCount";
 static NSString *FollowingKey = @"following";
 static NSString *FollowingIDKey = @"id";
 static NSString *FollowingNameKey = @"name";
@@ -25,6 +26,7 @@ static NSString *FollowingTwitterKey = @"twitter";
 + (instancetype)sharedInstance;
 - (void)registerInDBWithCompletion:(void (^)(BOOL success, NSString *error))completion;
 - (void)logInUserWithCompletion:(void (^)(BOOL success, NSString *error))completion;
+- (void)loadFollowingFromDBWithCompletion:(void (^)(BOOL success, NSArray *following))completion;
 - (void)followAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
 - (void)unfollowAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
 

@@ -16,7 +16,7 @@
 @interface UserProfileViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *optionsButton;
-@property (nonatomic, strong) UILabel *emailLabel;
+@property (nonatomic, strong) UILabel *usernameLabel;
 @property (nonatomic, strong) UIButton *postsButton;
 @property (nonatomic, strong) UIButton *followingButton;
 @property (nonatomic, strong) UIButton *followersButton;
@@ -26,6 +26,16 @@
 @end
 
 @implementation UserProfileViewController
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    self.customTBVC.campaignAdButton.hidden = YES;
+    
+    self.usernameLabel.text = [UserController sharedInstance].currentUser.username;
+    [self.followingButton setTitle:[NSString stringWithFormat:@"%li\nfollowing", [[NSUserDefaults standardUserDefaults] integerForKey:FollowingCountKey]] forState:UIControlStateNormal];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -88,10 +98,10 @@
      [self.profileCircle.layer addSublayer:borderLayer];
      */
     
-    self.emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 75, self.profileCircle.frame.size.height + 30, 150, 30)];
-    self.emailLabel.textAlignment = NSTextAlignmentCenter;
-    self.emailLabel.text = [UserController sharedInstance].currentUser.email;
-    [self.view addSubview:self.emailLabel];
+    self.usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 75, self.profileCircle.frame.size.height + 30, 150, 30)];
+    self.usernameLabel.textAlignment = NSTextAlignmentCenter;
+    self.usernameLabel.text = [UserController sharedInstance].currentUser.username;
+    [self.view addSubview:self.usernameLabel];
     
     self.postsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.postsButton.frame = CGRectMake(self.view.frame.size.width / 4 - 40, self.view.frame.size.height / 2 - 69, 80, 30);
@@ -124,15 +134,6 @@
     [self.view addSubview:self.followersButton];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    self.customTBVC.campaignAdButton.hidden = YES;
-    
-    [self.followingButton setTitle:[NSString stringWithFormat:@"%li\nfollowing", [UserController sharedInstance].currentUser.following.count] forState:UIControlStateNormal];
-}
-
 - (void)optionsButtonPressed:(UIBarButtonItem *)item {
     AppDelegate *appD = [[UIApplication sharedApplication] delegate];
     CustomTabBarVC *customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
@@ -142,7 +143,16 @@
 
 - (void)followingButtonPressed:(UIButton *)button {
     FollowingViewController *followingVC = [[FollowingViewController alloc] init];
-    [self.navigationController pushViewController:followingVC animated:YES];
+    UserController *userController = [UserController sharedInstance];
+    
+    [userController loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
+        if (success) {
+            userController.currentUser.following = following;
+            [self.navigationController pushViewController:followingVC animated:YES];
+        } else {
+            NSLog(@"error loading following");
+        }
+    }];
 }
 
 - (void)postsButtonPressed:(UIButton *)button {
