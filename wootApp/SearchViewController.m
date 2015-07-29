@@ -152,6 +152,8 @@
     searchController.people = [[NSArray alloc] init];
     searchController.hasSearched = YES;
     
+    self.cancelButton.enabled = NO;
+    
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         searchController.schoolNameSearch = searchBar.text;
         [searchController searchTeamsWithCompletion:^(BOOL success) {
@@ -179,16 +181,23 @@
             }
         }];
     }
-    
+    searchController.isSearching = YES;
+    [self.tableView reloadData];
 }
 
 - (void)cancelSearch {
     [self.searchBar resignFirstResponder];
+    self.cancelButton.enabled = NO;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [SearchController sharedInstance].hasSearched = NO;
     [self.tableView reloadData];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    self.cancelButton.enabled = YES;
+    return YES;
 }
 
 - (void)segmentedControlToggled{

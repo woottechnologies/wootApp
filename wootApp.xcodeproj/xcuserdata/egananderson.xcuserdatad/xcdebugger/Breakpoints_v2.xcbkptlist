@@ -644,7 +644,7 @@
                   moduleName = "wootApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/egananderson/Documents/DevMountain/Woot/wootApp/wootApp/HomeFeedCell.m"
-                  timestampString = "459887826.513078"
+                  timestampString = "459893701.848984"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "120"
@@ -659,7 +659,7 @@
                   moduleName = "wootApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/egananderson/Documents/DevMountain/Woot/wootApp/wootApp/HomeFeedCell.m"
-                  timestampString = "459887826.51322"
+                  timestampString = "459893701.849265"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "120"
@@ -788,11 +788,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "wootApp/SearchViewController.m"
-            timestampString = "459887826.094449"
+            timestampString = "459893701.499856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-searchBar:textDidChange:"
             landmarkType = "5">
          </BreakpointContent>
@@ -804,12 +804,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "wootApp/SearchDataSource.m"
-            timestampString = "459884968.914067"
+            timestampString = "459891995.378742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wootApp/SearchViewController.m"
+            timestampString = "459893701.499856"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "-searchBarShouldBeginEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
