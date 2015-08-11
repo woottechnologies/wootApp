@@ -14,6 +14,8 @@
 #import "CustomTabBarVC.h"
 #import "AppDelegate.h"
 #import "AthleteController.h"
+#import "SearchController.h"
+#import "SuggestedUsersViewController.h"
 
 static NSString *RosterCellID = @"RosterCellID";
 
@@ -69,9 +71,18 @@ static NSString *RosterCellID = @"RosterCellID";
     
     AthleteController *athleteController = [AthleteController sharedInstance];
     athleteController.currentAthlete = self.sortedRoster[indexPath.row];
+    
+    // if statement
+    
+    SearchController *searchController = [SearchController sharedInstance];
+    searchController.userNameSearch = ((Athlete *)self.sortedRoster[indexPath.row]).name;
+    SuggestedUsersViewController *suggestedUsersVC = [SuggestedUsersViewController new];
+    [self.navigationController pushViewController:suggestedUsersVC animated:YES];
+    
+    // else statement
 
-    AthleteViewController *athleteVC = [AthleteViewController new];
-    [self.navigationController pushViewController:athleteVC animated:YES];
+//    AthleteViewController *athleteVC = [AthleteViewController new];
+//    [self.navigationController pushViewController:athleteVC animated:YES];
 }
 
 /*

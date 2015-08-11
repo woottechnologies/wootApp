@@ -60,6 +60,9 @@
 		5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5569EA841B4DD946007B540B /* TwitterCore.framework */; };
 		556D45CE1B5749FE00F4254E /* HomeFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45CD1B5749FE00F4254E /* HomeFeedController.m */; };
 		556D45D11B5808D100F4254E /* HomeFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556D45D01B5808D100F4254E /* HomeFeedCell.m */; };
+		559DD1801B796E9000875B92 /* SuggestedUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD17E1B796E9000875B92 /* SuggestedUsersViewController.m */; };
+		559DD1841B79710200875B92 /* SuggestedUsersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1831B79710200875B92 /* SuggestedUsersDataSource.m */; };
+		559DD1871B7A868F00875B92 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1861B7A868F00875B92 /* UserViewController.m */; };
 		55A13E411B45DE54009001BE /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SearchTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
@@ -188,6 +191,12 @@
 		556D45CD1B5749FE00F4254E /* HomeFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedController.m; path = wootApp/HomeFeedController.m; sourceTree = SOURCE_ROOT; };
 		556D45CF1B5808D100F4254E /* HomeFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedCell.h; path = ../wootApp/HomeFeedCell.h; sourceTree = "<group>"; };
 		556D45D01B5808D100F4254E /* HomeFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeFeedCell.m; path = ../wootApp/HomeFeedCell.m; sourceTree = "<group>"; };
+		559DD17D1B796E9000875B92 /* SuggestedUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedUsersViewController.h; sourceTree = "<group>"; };
+		559DD17E1B796E9000875B92 /* SuggestedUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedUsersViewController.m; sourceTree = "<group>"; };
+		559DD1821B79710200875B92 /* SuggestedUsersDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedUsersDataSource.h; sourceTree = "<group>"; };
+		559DD1831B79710200875B92 /* SuggestedUsersDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedUsersDataSource.m; sourceTree = "<group>"; };
+		559DD1851B7A868F00875B92 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		559DD1861B7A868F00875B92 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		55A13E3F1B45DE54009001BE /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
 		55A13E401B45DE54009001BE /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,6 +276,8 @@
 				4797DEAF1B39FCF7006BBC43 /* User.m */,
 				47ECED061B557CE2006B03E8 /* UserProfileViewController.h */,
 				47ECED071B557CE2006B03E8 /* UserProfileViewController.m */,
+				559DD1851B7A868F00875B92 /* UserViewController.h */,
+				559DD1861B7A868F00875B92 /* UserViewController.m */,
 				47ECED0C1B56DA9D006B03E8 /* following */,
 				4797DEB11B39FD07006BBC43 /* UserController.h */,
 				4797DEB21B39FD07006BBC43 /* UserController.m */,
@@ -415,10 +426,10 @@
 		55B4C8A11B1E386F003B3058 /* wootApp */ = {
 			isa = PBXGroup;
 			children = (
-				552032F81B541E1E003FF149 /* Home Feed */,
-				553FE3931B6175EE00A27ADB /* Search */,
 				55B4C8A61B1E386F003B3058 /* AppDelegate.h */,
 				55B4C8A71B1E386F003B3058 /* AppDelegate.m */,
+				552032F81B541E1E003FF149 /* Home Feed */,
+				553FE3931B6175EE00A27ADB /* Search */,
 				4797DEAD1B39F8E5006BBC43 /* CustomTabBar */,
 				4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */,
 				4797DEB41B39FD1B006BBC43 /* User */,
@@ -436,6 +447,10 @@
 				55BE85AE1B264060006C8279 /* RosterViewController.m */,
 				553A28EC1B2B382200784798 /* RosterTableViewCell.h */,
 				553A28ED1B2B382200784798 /* RosterTableViewCell.m */,
+				559DD17D1B796E9000875B92 /* SuggestedUsersViewController.h */,
+				559DD17E1B796E9000875B92 /* SuggestedUsersViewController.m */,
+				559DD1821B79710200875B92 /* SuggestedUsersDataSource.h */,
+				559DD1831B79710200875B92 /* SuggestedUsersDataSource.m */,
 				553A28DD1B2773E600784798 /* Campaign.h */,
 				553A28DE1B2773E600784798 /* Campaign.m */,
 				553A28E01B27762700784798 /* CampaignController.h */,
@@ -623,6 +638,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				556D45D11B5808D100F4254E /* HomeFeedCell.m in Sources */,
+				559DD1801B796E9000875B92 /* SuggestedUsersViewController.m in Sources */,
 				553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
 				553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */,
 				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
@@ -667,6 +683,7 @@
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
+				559DD1841B79710200875B92 /* SuggestedUsersDataSource.m in Sources */,
 				55C323051B444787002EBB65 /* TestViewController.m in Sources */,
 				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
@@ -675,6 +692,7 @@
 				4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
 				4797DEB01B39FCF7006BBC43 /* User.m in Sources */,
+				559DD1871B7A868F00875B92 /* UserViewController.m in Sources */,
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
 				55BE85AF1B264060006C8279 /* RosterViewController.m in Sources */,

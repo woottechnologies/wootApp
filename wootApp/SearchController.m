@@ -57,10 +57,10 @@
     [uploadTask resume];
 }
 
-- (void)searchPeopleWithCompletion:(void (^)(BOOL success))completion {
+- (void)searchUsersWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *post = [NSString stringWithFormat:@"keyword=%@", self.peopleNameSearch];
+    NSString *post = [NSString stringWithFormat:@"keyword=%@", self.userNameSearch];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     

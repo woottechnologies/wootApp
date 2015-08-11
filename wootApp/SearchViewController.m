@@ -123,7 +123,7 @@
     } else if (searchController.selectedSegmentIndex == 1) {
         NSDictionary *personDict = [[SearchController sharedInstance].people objectAtIndex:indexPath.row];
         AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
-        NSInteger athleteID = [[personDict objectForKey:TeamIDKey] integerValue];
+        NSInteger athleteID = [[personDict objectForKey:AthleteIDKey] integerValue];
         [[AthleteController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [AthleteController sharedInstance].currentAthlete = athlete;
@@ -168,8 +168,8 @@
             }
         }];
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
-        searchController.peopleNameSearch = searchBar.text;
-        [searchController searchPeopleWithCompletion:^(BOOL success) {
+        searchController.userNameSearch = searchBar.text;
+        [searchController searchUsersWithCompletion:^(BOOL success) {
             if (success){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
