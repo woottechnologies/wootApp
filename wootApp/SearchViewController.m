@@ -17,6 +17,8 @@
 #import "SearchController.h"
 #import "AthleteViewController.h"
 #import "AthleteController.h"
+#import "PersonController.h"
+#import "PersonViewController.h"
 
 @interface SearchViewController () <UITableViewDelegate, UISearchBarDelegate>
 
@@ -122,17 +124,17 @@
         }];
     } else if (searchController.selectedSegmentIndex == 1) {
         NSDictionary *personDict = [[SearchController sharedInstance].people objectAtIndex:indexPath.row];
-        AthleteViewController *athleteVC = [[AthleteViewController alloc] init];
-        NSInteger athleteID = [[personDict objectForKey:AthleteIDKey] integerValue];
-        [[AthleteController sharedInstance] selectAthleteWithAthleteID:athleteID andCompletion:^(BOOL success, Athlete *athlete) {
+        PersonViewController *personVC = [[PersonViewController alloc] init];
+        NSInteger personID = [[personDict objectForKey:PersonIDKey] integerValue];
+        [[PersonController sharedInstance] selectPersonWithUserID:personID andCompletion:^(BOOL success, Person *person) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [AthleteController sharedInstance].currentAthlete = athlete;
-                for (School *school in [SchoolController sharedInstance].schools) {
-                    if (school.schoolID == athlete.schoolID) {
-                        [SchoolController sharedInstance].currentSchool = school;
-                    }
-                }
-                [self.navigationController pushViewController:athleteVC animated:YES];
+                [PersonController sharedInstance].currentPerson = person;
+//                for (School *school in [SchoolController sharedInstance].schools) {
+//                    if (school.schoolID == athlete.schoolID) {
+//                        [SchoolController sharedInstance].currentSchool = school;
+//                    }
+//                }
+                [self.navigationController pushViewController:personVC animated:YES];
                 [tableView deselectRowAtIndexPath:indexPath animated:NO];
             
             });
@@ -168,8 +170,8 @@
             }
         }];
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
-        searchController.userNameSearch = searchBar.text;
-        [searchController searchUsersWithCompletion:^(BOOL success) {
+        searchController.personNameSearch = searchBar.text;
+        [searchController searchPeopleWithCompletion:^(BOOL success) {
             if (success){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];

@@ -63,6 +63,12 @@
 		559DD1801B796E9000875B92 /* SuggestedUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD17E1B796E9000875B92 /* SuggestedUsersViewController.m */; };
 		559DD1841B79710200875B92 /* SuggestedUsersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1831B79710200875B92 /* SuggestedUsersDataSource.m */; };
 		559DD1871B7A868F00875B92 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1861B7A868F00875B92 /* UserViewController.m */; };
+		559DD18B1B7A975100875B92 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD18A1B7A975100875B92 /* Person.m */; };
+		559DD18E1B7A975D00875B92 /* PersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD18D1B7A975D00875B92 /* PersonController.m */; };
+		559DD1911B7A977100875B92 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1901B7A977100875B92 /* PersonViewController.m */; };
+		559DD1941B7AA58200875B92 /* PersonDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1931B7AA58200875B92 /* PersonDataSource.m */; };
+		559DD1971B7AA65700875B92 /* PersonTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1961B7AA65700875B92 /* PersonTweetController.m */; };
+		559DD19A1B7AA66700875B92 /* PersonTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1991B7AA66700875B92 /* PersonTweetCell.m */; };
 		55A13E411B45DE54009001BE /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SearchTableViewCell.m */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
@@ -197,6 +203,18 @@
 		559DD1831B79710200875B92 /* SuggestedUsersDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedUsersDataSource.m; sourceTree = "<group>"; };
 		559DD1851B7A868F00875B92 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		559DD1861B7A868F00875B92 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		559DD1891B7A975100875B92 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		559DD18A1B7A975100875B92 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		559DD18C1B7A975D00875B92 /* PersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonController.h; sourceTree = "<group>"; };
+		559DD18D1B7A975D00875B92 /* PersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonController.m; sourceTree = "<group>"; };
+		559DD18F1B7A977100875B92 /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
+		559DD1901B7A977100875B92 /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
+		559DD1921B7AA58200875B92 /* PersonDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDataSource.h; sourceTree = "<group>"; };
+		559DD1931B7AA58200875B92 /* PersonDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDataSource.m; sourceTree = "<group>"; };
+		559DD1951B7AA65700875B92 /* PersonTweetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTweetController.h; sourceTree = "<group>"; };
+		559DD1961B7AA65700875B92 /* PersonTweetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTweetController.m; sourceTree = "<group>"; };
+		559DD1981B7AA66700875B92 /* PersonTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTweetCell.h; sourceTree = "<group>"; };
+		559DD1991B7AA66700875B92 /* PersonTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTweetCell.m; sourceTree = "<group>"; };
 		55A13E3F1B45DE54009001BE /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
 		55A13E401B45DE54009001BE /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,9 +296,9 @@
 				47ECED071B557CE2006B03E8 /* UserProfileViewController.m */,
 				559DD1851B7A868F00875B92 /* UserViewController.h */,
 				559DD1861B7A868F00875B92 /* UserViewController.m */,
-				47ECED0C1B56DA9D006B03E8 /* following */,
 				4797DEB11B39FD07006BBC43 /* UserController.h */,
 				4797DEB21B39FD07006BBC43 /* UserController.m */,
+				47ECED0C1B56DA9D006B03E8 /* following */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -404,6 +422,25 @@
 			name = Search;
 			sourceTree = "<group>";
 		};
+		559DD1881B7A970B00875B92 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				559DD1891B7A975100875B92 /* Person.h */,
+				559DD18A1B7A975100875B92 /* Person.m */,
+				559DD18C1B7A975D00875B92 /* PersonController.h */,
+				559DD18D1B7A975D00875B92 /* PersonController.m */,
+				559DD18F1B7A977100875B92 /* PersonViewController.h */,
+				559DD1901B7A977100875B92 /* PersonViewController.m */,
+				559DD1921B7AA58200875B92 /* PersonDataSource.h */,
+				559DD1931B7AA58200875B92 /* PersonDataSource.m */,
+				559DD1951B7AA65700875B92 /* PersonTweetController.h */,
+				559DD1961B7AA65700875B92 /* PersonTweetController.m */,
+				559DD1981B7AA66700875B92 /* PersonTweetCell.h */,
+				559DD1991B7AA66700875B92 /* PersonTweetCell.m */,
+			);
+			name = Person;
+			sourceTree = "<group>";
+		};
 		55B4C8961B1E386F003B3058 = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +470,7 @@
 				4797DEAD1B39F8E5006BBC43 /* CustomTabBar */,
 				4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */,
 				4797DEB41B39FD1B006BBC43 /* User */,
+				559DD1881B7A970B00875B92 /* Person */,
 				4797DEC21B41F25E006BBC43 /* Team */,
 				4797DEC11B41F24B006BBC43 /* Athlete */,
 				4797DEC31B41F30B006BBC43 /* Coach */,
@@ -645,10 +683,13 @@
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
 				553A29321B389DD900784798 /* StatsController.m in Sources */,
 				553A29381B3DDFA200784798 /* NextGameTableViewCell.m in Sources */,
+				559DD19A1B7AA66700875B92 /* PersonTweetCell.m in Sources */,
+				559DD18E1B7A975D00875B92 /* PersonController.m in Sources */,
 				554308631B4F3FBD00571404 /* TeamTweetCell.m in Sources */,
 				552F843E1B573C9D0064FDE6 /* HomeFeedViewController.m in Sources */,
 				4796A9851B331E7A00D71779 /* NetworkController.m in Sources */,
 				55B4C9181B210A13003B3058 /* TeamDataSource.m in Sources */,
+				559DD1941B7AA58200875B92 /* PersonDataSource.m in Sources */,
 				4796A9881B33735E00D71779 /* SearchDataSource.m in Sources */,
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
@@ -666,6 +707,7 @@
 				4719A32E1B4EF69D009A707E /* CoachDataSource.m in Sources */,
 				4719A32B1B4DE466009A707E /* AthleteController.m in Sources */,
 				553A292F1B386A0E00784798 /* SummaryStatsTableViewCell.m in Sources */,
+				559DD1911B7A977100875B92 /* PersonViewController.m in Sources */,
 				553FE3961B61764800A27ADB /* SearchController.m in Sources */,
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
 				552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */,
@@ -688,8 +730,10 @@
 				4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */,
 				55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */,
 				47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */,
+				559DD18B1B7A975100875B92 /* Person.m in Sources */,
 				47541ED11B263536005E3C53 /* MostViewedPlayersTableViewCell.m in Sources */,
 				4797DE9F1B38C1DE006BBC43 /* DrawerDataSource.m in Sources */,
+				559DD1971B7AA65700875B92 /* PersonTweetController.m in Sources */,
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
 				4797DEB01B39FCF7006BBC43 /* User.m in Sources */,
 				559DD1871B7A868F00875B92 /* UserViewController.m in Sources */,

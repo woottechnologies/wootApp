@@ -10,7 +10,7 @@
 @import UIKit;
 
 static NSString *SchoolIDKey = @"id";
-static NSString *NameKey = @"name";
+static NSString *SchoolNameKey = @"name";
 static NSString *AddressKey = @"street";
 static NSString *CityKey = @"city";
 static NSString *StateKey = @"state";

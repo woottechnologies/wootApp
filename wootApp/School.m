@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         self.schoolID = [dictionary[SchoolIDKey] integerValue];
-        self.name = dictionary[NameKey];
+        self.name = dictionary[SchoolNameKey];
         self.address = dictionary[AddressKey];
         self.city = dictionary[CityKey];
         self.state = dictionary[StateKey];

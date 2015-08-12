@@ -44,7 +44,7 @@
     searchController.people = [[NSArray alloc] init];
     
 
-        [searchController searchUsersWithCompletion:^(BOOL success) {
+        [searchController searchPeopleWithCompletion:^(BOOL success) {
             if (success){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];

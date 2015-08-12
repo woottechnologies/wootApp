@@ -57,10 +57,41 @@
     [uploadTask resume];
 }
 
-- (void)searchUsersWithCompletion:(void (^)(BOOL success))completion {
+//- (void)searchUsersWithCompletion:(void (^)(BOOL success))completion {
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    
+//    NSString *post = [NSString stringWithFormat:@"keyword=%@", self.userNameSearch];
+//    
+//    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//    
+//    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"search_people.php"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    [request setHTTPMethod:@"POST"];
+//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//    
+//    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        
+//        if (data.length > 0 && error == nil) {
+//            NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//            
+//            if (responseArray.count > 0) {
+//                self.users = responseArray;
+//                completion(YES);
+//            } else {
+//                completion(NO);
+//            }
+//        } else {
+//            completion(NO);
+//        }
+//    }];
+//    
+//    [uploadTask resume];
+//}
+
+- (void)searchPeopleWithCompletion:(void (^)(BOOL success))completion {
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSString *post = [NSString stringWithFormat:@"keyword=%@", self.userNameSearch];
+    NSString *post = [NSString stringWithFormat:@"keyword=%@", self.personNameSearch];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
@@ -87,6 +118,7 @@
     
     [uploadTask resume];
 }
+
 
 
 @end
