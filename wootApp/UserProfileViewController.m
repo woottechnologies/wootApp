@@ -28,12 +28,12 @@
 @implementation UserProfileViewController
 
 -(void)viewWillAppear:(BOOL)animated {
+    self.navigationItem.title = [NSString stringWithFormat:@"@%@", [UserController sharedInstance].currentUser.username];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.customTBVC.campaignAdButton.hidden = YES;
     
-    self.usernameLabel.text = [UserController sharedInstance].currentUser.username;
     [self.followingButton setTitle:[NSString stringWithFormat:@"%li\nfollowing", [[NSUserDefaults standardUserDefaults] integerForKey:FollowingCountKey]] forState:UIControlStateNormal];
 }
 
@@ -45,7 +45,7 @@
     self.customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    //[self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = NO;
     
@@ -78,33 +78,8 @@
     
     [self.view addSubview:self.profileCircle];
     
-    /*
-     #define kBoarderWidth 3.0
-     #define kCornerRadius 8.0
-     CALayer *borderLayer = [CALayer layer];
-     CGRect borderFrame = CGRectMake(0, 0, (imageView.frame.size.width), (imageView.frame.size.height));
-     [borderLayer setBackgroundColor:[[UIColor clearColor] CGColor]];
-     [borderLayer setFrame:borderFrame];
-     [borderLayer setCornerRadius:kCornerRadius];
-     [borderLayer setBorderWidth:kBorderWidth];
-     [borderLayer setBorderColor:[[UIColor redColor] CGColor]];
-     [imageView.layer addSublayer:borderLayer];
-     
-     CALayer *borderLayer = [CALayer layer];
-     CGRect borderFrame = CGRectMake(0, 0, self.profileCircle.frame.size.width, self.profileCircle.frame.size.width);
-     [borderLayer setBackgroundColor:[[UIColor clearColor] CGColor]];
-     [borderLayer setFrame:borderFrame];
-     [borderLayer setBorderColor:[[UIColor blackColor] CGColor]];
-     [self.profileCircle.layer addSublayer:borderLayer];
-     */
-    
-    self.usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 75, self.profileCircle.frame.size.height + 30, 150, 30)];
-    self.usernameLabel.textAlignment = NSTextAlignmentCenter;
-    self.usernameLabel.text = [UserController sharedInstance].currentUser.username;
-    [self.view addSubview:self.usernameLabel];
-    
     self.postsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.postsButton.frame = CGRectMake(self.view.frame.size.width / 4 - 40, self.view.frame.size.height / 2 - 69, 80, 30);
+    self.postsButton.frame = CGRectMake(self.view.frame.size.width / 4 - 40, self.profileCircle.frame.size.height + 50, 80, 30);
     self.postsButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.postsButton.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
     [self.postsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -114,7 +89,7 @@
     [self.view addSubview:self.postsButton];
     
     self.followingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.followingButton.frame = CGRectMake(self.view.frame.size.width / 2 - 40, self.view.frame.size.height / 2 - 69, 80, 30);
+    self.followingButton.frame = CGRectMake(self.view.frame.size.width / 2 - 40, self.profileCircle.frame.size.height + 50, 80, 30);
     self.followingButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.followingButton.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
     [self.followingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -124,7 +99,7 @@
     [self.view addSubview:self.followingButton];
     
     self.followersButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.followersButton.frame = CGRectMake(self.view.frame.size.width / 4 * 3 - 40, self.view.frame.size.height / 2 - 69, 80, 30);
+    self.followersButton.frame = CGRectMake(self.view.frame.size.width / 4 * 3 - 40, self.profileCircle.frame.size.height + 50, 80, 30);
     self.followersButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.followersButton.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
     [self.followersButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -171,15 +146,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

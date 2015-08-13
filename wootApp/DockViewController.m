@@ -155,7 +155,6 @@
     self.errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 265, self.view.frame.size.width - 40, 30)];
     self.errorLabel.font = [UIFont systemFontOfSize:11];
     self.errorLabel.textColor = [UIColor whiteColor];
-    //self.errorLabel.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.errorLabel];
     //self.errorLabel.hidden = YES;
     

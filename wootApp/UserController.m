@@ -51,7 +51,6 @@
             if (returnCode == 10) {
                 NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
                 self.currentUser.userID = userID;
-                self.currentUser.email = nil;
                 self.currentUser.password = nil;
                 [self saveUserLocal];
                 completion(YES, nil);
@@ -94,9 +93,11 @@
             if (returnCode == 10) {
                 NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
                 NSString *handle = [responseDict objectForKey:@"handle"];
+                NSString *email = [responseDict objectForKey:@"email"];
                 self.currentUser.userID = userID;
                 self.currentUser.username = handle;
                 self.currentUser.password = nil;
+                self.currentUser.email = email;
                 dispatch_group_enter(followingGroup);
                 [self loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
                     if (success) {
@@ -178,10 +179,11 @@
 
 - (void)saveUserLocal {
     NSDictionary *userDict = @{UserIDKey:[NSNumber numberWithInteger:self.currentUser.userID],
-                               UsernameKey:self.currentUser.username};
+                               UsernameKey:self.currentUser.username,
+                               EmailKey:self.currentUser.email};
     [[NSUserDefaults standardUserDefaults] setObject:userDict forKey:UserKey];
     [[NSUserDefaults standardUserDefaults] setInteger:self.currentUser.following.count forKey:FollowingCountKey];
-    //    [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
+    //[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
     //[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.favorites forKey:FavoritesKey];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -321,6 +323,154 @@
             if (completion) {
                 completion(NO);
             }
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+- (void)changeUsernameUsingString:(id)newUsername andCompletion:(void (^)(BOOL success, NSString *error))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"userID=%li&username=%@", self.currentUser.userID, newUsername];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"update_username.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseDict.count > 0) {
+                NSInteger returnCode = [[responseDict objectForKey:@"returnCode"] integerValue];
+                
+                if (returnCode == 10) {
+                    self.currentUser.username = newUsername;
+                    [self saveUserLocal];
+                    completion(YES, nil);
+                } else if (returnCode == 20) {
+                    completion(NO, @"That username is already taken.");
+                } else {
+                    completion(NO, @"Unable to change username at this time.");
+                }
+            } else {
+                completion(NO, @"Unable to change username at this time.");
+            }
+        } else {
+            completion(NO, @"No internet connection detected.");
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+- (void)changeEmailUsingString:(id)newEmail andCompletion:(void (^)(BOOL success, NSString *error))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"userID=%li&email=%@", self.currentUser.userID, newEmail];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"update_email.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseDict.count > 0) {
+                NSInteger returnCode = [[responseDict objectForKey:@"returnCode"] integerValue];
+                
+                if (returnCode == 10) {
+                    self.currentUser.email = newEmail;
+                    [self saveUserLocal];
+                    completion(YES, nil);
+                } else if (returnCode == 20) {
+                    completion(NO, @"That email address is already in use.");
+                } else {
+                    completion(NO, @"Unable to change email at this time.");
+                }
+            } else {
+                completion(NO, @"Unable to change email at this time.");
+            }
+        } else {
+            completion(NO, @"No internet connection detected.");
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+- (void)confirmPasswordUsingString:(id)password andCompletion:(void (^)(BOOL success, NSString *error))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"userID=%li&passwd=%@", self.currentUser.userID, password];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"check_user_passwd.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseDict.count > 0) {
+                NSInteger returnCode = [[responseDict objectForKey:@"returnCode"] integerValue];
+                
+                if (returnCode == 10) {
+                    completion(YES, nil);
+                } else {
+                    completion(NO, @"Incorrect password.");
+                }
+            } else {
+                completion(NO, @"Unable to confirm password at this time.");
+            }
+        } else {
+            completion(NO, @"No internet connection detected.");
+        }
+    }];
+    
+    [uploadTask resume];
+}
+
+- (void)changePasswordUsingString:(id)password andCompletion:(void (^)(BOOL success, NSString *error))completion {
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSString *post = [NSString stringWithFormat:@"userID=%li&passwd=%@", self.currentUser.userID, password];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *urlString = [[NetworkController baseURL] stringByAppendingString:@"update_user_passwd.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:postData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (data.length > 0 && error == nil) {
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            if (responseDict.count > 0) {
+                NSInteger returnCode = [[responseDict objectForKey:@"returnCode"] integerValue];
+                
+                if (returnCode == 10) {
+                    completion(YES, nil);
+                } else {
+                    completion(NO, @"Unable to change password at this time.");
+                }
+            } else {
+                completion(NO, @"Unable to change password at this time.");
+            }
+        } else {
+            completion(NO, @"No internet connection detected.");
         }
     }];
     
