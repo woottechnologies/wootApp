@@ -11,10 +11,12 @@
 static NSString *UserIDKey = @"id";
 static NSString *EmailKey = @"email";
 static NSString *UsernameKey = @"handle";
+static NSString *NameKey = @"name";
 
 @interface User : NSObject
 
 @property (nonatomic, assign) NSInteger userID;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
