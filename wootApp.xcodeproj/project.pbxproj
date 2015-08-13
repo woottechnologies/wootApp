@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47005A981B7919AB0095D537 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47005A971B7919AB0095D537 /* EditUserViewController.m */; };
 		4719A32B1B4DE466009A707E /* AthleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719A32A1B4DE466009A707E /* AthleteController.m */; };
 		4719A32E1B4EF69D009A707E /* CoachDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719A32D1B4EF69D009A707E /* CoachDataSource.m */; };
 		472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 472F873B1B27741D0067C72F /* UIImage+PathForFile.m */; };
@@ -31,6 +32,10 @@
 		4797DEBF1B41E40D006BBC43 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEBE1B41E40D006BBC43 /* Coach.m */; };
 		4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */; };
 		4797DEC91B432452006BBC43 /* NSString+MoreMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */; };
+		47C040801B7A670100105BC4 /* EditDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C0407F1B7A670100105BC4 /* EditDataSource.m */; };
+		47C040831B7A9C0200105BC4 /* UsernameEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040821B7A9C0200105BC4 /* UsernameEditVC.m */; };
+		47C040861B7A9C1D00105BC4 /* PasswordEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040851B7A9C1D00105BC4 /* PasswordEditVC.m */; };
+		47C040891B7A9C3100105BC4 /* EmailEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040881B7A9C3100105BC4 /* EmailEditVC.m */; };
 		47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED071B557CE2006B03E8 /* UserProfileViewController.m */; };
 		47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */; };
 		47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */; };
@@ -96,6 +101,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47005A961B7919AB0095D537 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
+		47005A971B7919AB0095D537 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 		4719A3291B4DE466009A707E /* AthleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleteController.h; sourceTree = "<group>"; };
 		4719A32A1B4DE466009A707E /* AthleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleteController.m; sourceTree = "<group>"; };
 		4719A32C1B4EF69D009A707E /* CoachDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDataSource.h; sourceTree = "<group>"; };
@@ -143,6 +150,14 @@
 		4797DEC51B41F799006BBC43 /* CoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailViewController.m; sourceTree = "<group>"; };
 		4797DEC71B432452006BBC43 /* NSString+MoreMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MoreMethods.h"; sourceTree = "<group>"; };
 		4797DEC81B432452006BBC43 /* NSString+MoreMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MoreMethods.m"; sourceTree = "<group>"; };
+		47C0407E1B7A670100105BC4 /* EditDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDataSource.h; sourceTree = "<group>"; };
+		47C0407F1B7A670100105BC4 /* EditDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDataSource.m; sourceTree = "<group>"; };
+		47C040811B7A9C0200105BC4 /* UsernameEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsernameEditVC.h; sourceTree = "<group>"; };
+		47C040821B7A9C0200105BC4 /* UsernameEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsernameEditVC.m; sourceTree = "<group>"; };
+		47C040841B7A9C1D00105BC4 /* PasswordEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordEditVC.h; sourceTree = "<group>"; };
+		47C040851B7A9C1D00105BC4 /* PasswordEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordEditVC.m; sourceTree = "<group>"; };
+		47C040871B7A9C3100105BC4 /* EmailEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailEditVC.h; sourceTree = "<group>"; };
+		47C040881B7A9C3100105BC4 /* EmailEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailEditVC.m; sourceTree = "<group>"; };
 		47ECED061B557CE2006B03E8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		47ECED071B557CE2006B03E8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		47ECED091B56D9CD006B03E8 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
@@ -294,6 +309,8 @@
 				4797DEAF1B39FCF7006BBC43 /* User.m */,
 				47ECED061B557CE2006B03E8 /* UserProfileViewController.h */,
 				47ECED071B557CE2006B03E8 /* UserProfileViewController.m */,
+				47C0407D1B7A665A00105BC4 /* edit */,
+				47ECED0C1B56DA9D006B03E8 /* following */,
 				559DD1851B7A868F00875B92 /* UserViewController.h */,
 				559DD1861B7A868F00875B92 /* UserViewController.m */,
 				4797DEB11B39FD07006BBC43 /* UserController.h */,
@@ -365,6 +382,31 @@
 				4797DEBB1B41E246006BBC43 /* CoachingStaffCell.m */,
 			);
 			name = Coach;
+			sourceTree = "<group>";
+		};
+		47C0407D1B7A665A00105BC4 /* edit */ = {
+			isa = PBXGroup;
+			children = (
+				47005A961B7919AB0095D537 /* EditUserViewController.h */,
+				47005A971B7919AB0095D537 /* EditUserViewController.m */,
+				47C0407E1B7A670100105BC4 /* EditDataSource.h */,
+				47C0407F1B7A670100105BC4 /* EditDataSource.m */,
+				47C0408A1B7A9C4200105BC4 /* options */,
+			);
+			name = edit;
+			sourceTree = "<group>";
+		};
+		47C0408A1B7A9C4200105BC4 /* options */ = {
+			isa = PBXGroup;
+			children = (
+				47C040811B7A9C0200105BC4 /* UsernameEditVC.h */,
+				47C040821B7A9C0200105BC4 /* UsernameEditVC.m */,
+				47C040841B7A9C1D00105BC4 /* PasswordEditVC.h */,
+				47C040851B7A9C1D00105BC4 /* PasswordEditVC.m */,
+				47C040871B7A9C3100105BC4 /* EmailEditVC.h */,
+				47C040881B7A9C3100105BC4 /* EmailEditVC.m */,
+			);
+			name = options;
 			sourceTree = "<group>";
 		};
 		47ECED0C1B56DA9D006B03E8 /* following */ = {
@@ -679,6 +721,8 @@
 				559DD1801B796E9000875B92 /* SuggestedUsersViewController.m in Sources */,
 				553A28DC1B27649900784798 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
 				553A28E81B28ED3B00784798 /* ScheduleViewController.m in Sources */,
+				47005A981B7919AB0095D537 /* EditUserViewController.m in Sources */,
+				47C040861B7A9C1D00105BC4 /* PasswordEditVC.m in Sources */,
 				553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */,
 				47541EB51B1F71E6005E3C53 /* TeamController.m in Sources */,
 				553A29321B389DD900784798 /* StatsController.m in Sources */,
@@ -694,6 +738,7 @@
 				47541EC81B1FA394005E3C53 /* TeamViewController.m in Sources */,
 				4797DE9C1B387B47006BBC43 /* CustomTabBarVC.m in Sources */,
 				47541ECB1B20C7B1005E3C53 /* AthleteViewController.m in Sources */,
+				47C040801B7A670100105BC4 /* EditDataSource.m in Sources */,
 				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
 				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
@@ -710,6 +755,7 @@
 				559DD1911B7A977100875B92 /* PersonViewController.m in Sources */,
 				553FE3961B61764800A27ADB /* SearchController.m in Sources */,
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
+				47C040831B7A9C0200105BC4 /* UsernameEditVC.m in Sources */,
 				552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */,
@@ -723,6 +769,7 @@
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */,
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
+				47C040891B7A9C3100105BC4 /* EmailEditVC.m in Sources */,
 				4797DEC61B41F799006BBC43 /* CoachDetailViewController.m in Sources */,
 				4797DEBC1B41E246006BBC43 /* CoachingStaffCell.m in Sources */,
 				559DD1841B79710200875B92 /* SuggestedUsersDataSource.m in Sources */,

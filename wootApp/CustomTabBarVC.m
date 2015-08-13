@@ -20,6 +20,7 @@
 #import "AthleteController.h"
 #import "SchoolController.h"
 #import "UIColor+CreateMethods.h"
+#import "EditUserViewController.h"
 @import MessageUI;
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
@@ -249,11 +250,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 0) {
-        
+    if (indexPath.row == 0) {
+        // edit
+        [self openUserEditor];
     } else {
         // contact
-        NSLog(@"contact");
         [self openEmailComposer];
     }
 }
@@ -274,6 +275,20 @@
     return 0.0000000000000000001f;
 }
 
+
+#pragma mark - openUserEditor
+
+- (void)openUserEditor {
+   // EditUserViewController *editUserVC = [[EditUserViewController alloc] init];
+    
+    UINavigationController *navEditVC = [[UINavigationController alloc] initWithRootViewController:[[EditUserViewController alloc] init]];
+    
+    UINavigationController *vc = (UINavigationController *)self.childViewControllers[2];
+    [vc presentViewController:navEditVC animated:YES completion:^{
+        [self toggleDrawer];
+    }];
+}
+
 #pragma mark - Email Composer
 
 - (void)openEmailComposer {
@@ -281,9 +296,9 @@
     composer.mailComposeDelegate = self;
     [composer setToRecipients:@[@"woottechonolgies@gmail.com"]];
     
-    UIViewController *vc = self.childViewControllers[1];
+    UINavigationController *vc = (UINavigationController *)self.childViewControllers[2];
     [vc presentViewController:composer animated:YES completion:^{
-  //      [self toggleDrawer];
+        [self toggleDrawer];
     }];
 }
 

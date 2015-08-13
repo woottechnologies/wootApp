@@ -30,5 +30,9 @@ static NSString *FollowingTwitterKey = @"twitter";
 - (void)followAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
 - (void)unfollowAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
 - (void)saveUserLocal;
+- (void)changeUsernameUsingString:(id)newUsername andCompletion:(void (^)(BOOL success, NSString *error))completion;
+- (void)changeEmailUsingString:(id)newEmail andCompletion:(void (^)(BOOL success, NSString *error))completion;
+- (void)confirmPasswordUsingString:(id)password andCompletion:(void (^)(BOOL success, NSString *error))completion;
+- (void)changePasswordUsingString:(id)password andCompletion:(void (^)(BOOL success, NSString *error))completion;
 
 @end

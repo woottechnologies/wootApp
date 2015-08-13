@@ -101,7 +101,7 @@
     [self.exitButton constrainWidth:@"20"];
     [self.exitButton setImage:[UIImage imageNamed:@"button_x.png"] forState:UIControlStateNormal];
     [self.exitButton addTarget:self action:@selector(exitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
+    NSLog(@"height = %f", self.view.frame.size.height);
     
     // sign up button
 //    self.showSignUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -154,7 +154,6 @@
     self.errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(32, 265, self.view.frame.size.width - 40, 30)];
     self.errorLabel.font = [UIFont systemFontOfSize:11];
     self.errorLabel.textColor = [UIColor whiteColor];
-    //self.errorLabel.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.errorLabel];
     //self.errorLabel.hidden = YES;
     
