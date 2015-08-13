@@ -148,7 +148,11 @@
     [userController loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
         if (success) {
             userController.currentUser.following = following;
-            [self.navigationController pushViewController:followingVC animated:YES];
+            [userController saveUserLocal];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController pushViewController:followingVC animated:YES];
+            });
+            
         } else {
             NSLog(@"error loading following");
         }

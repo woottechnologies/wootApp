@@ -29,5 +29,6 @@ static NSString *FollowingTwitterKey = @"twitter";
 - (void)loadFollowingFromDBWithCompletion:(void (^)(BOOL success, NSArray *following))completion;
 - (void)followAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
 - (void)unfollowAccount:(id)account withCompletion:(void (^)(BOOL success))completion;
+- (void)saveUserLocal;
 
 @end

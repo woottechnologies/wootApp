@@ -18,7 +18,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[UserController alloc] init];
-        [sharedInstance loadUserLocal];
+        [sharedInstance loadUser];
     });
     
     return sharedInstance;
@@ -174,6 +174,15 @@
     }
 }
 
+- (void)loadUser {
+    [self loadUserLocal];
+    [self loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
+        if (success) {
+            self.currentUser.following = following;
+        }
+    }];
+}
+
 #pragma mark - Update
 
 - (void)saveUserLocal {
@@ -283,7 +292,7 @@
                             FollowingTypeKey:@"A",
                             FollowingTwitterKey:oldFollow.twitter};
         
-        postString = [NSString stringWithFormat:@"userID=%li&favoriteID=%li&favoriteType=A", (long)self.currentUser.userID, (long)oldFollow.athleteID];
+        postString = [NSString stringWithFormat:@"userID=%li&followID=%li&followType=A", (long)self.currentUser.userID, (long)oldFollow.athleteID];
     }
     
     [tempFollowing removeObject:oldFollowDict];

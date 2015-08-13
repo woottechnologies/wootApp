@@ -18,6 +18,7 @@
 #import "CustomTabBarVC.h"
 #import "AppDelegate.h"
 #import "UIColor+CreateMethods.h"
+#import "UserController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate>
 
@@ -32,31 +33,47 @@
 -(void) viewDidLoad{
     [super viewDidLoad];
     
-    HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    [homeFeedController loadTweetsFromHashtagsWithCompletion:^(BOOL success) {
-        if (success) {
-            [self.tableView reloadData];
-        }
-    }];
-    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.dataSource = [HomeFeedDataSource new];
     [self.dataSource registerTableView:self.tableView viewController:self];
     self.tableView.dataSource = self.dataSource;
+    [self.view addSubview:self.tableView];
+    
+    self.noFeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, 30)];
+    self.noFeedLabel.text = @"You aren't currently following anybody";
+    self.noFeedLabel.textColor = [UIColor lightGrayColor];
+    [self.noFeedLabel setTextAlignment:NSTextAlignmentCenter];
+    self.noFeedLabel.hidden = YES;
+    [self.view addSubview:self.noFeedLabel];
     
     UserController *userController = [UserController sharedInstance];
-    if (userController.currentUser && userController.currentUser.following.count > 0) {
-        [self.view addSubview:self.tableView];
-    } else {
-        UILabel *noFeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, 30)];
-        noFeedLabel.text = @"You aren't currently following anybody";
-        noFeedLabel.textColor = [UIColor lightGrayColor];
-        [noFeedLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.view addSubview:noFeedLabel];
-    }
+    [userController loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
+        if (success) {
+            userController.currentUser.following = following;
+            HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [homeFeedController loadTweetsFromHashtagsWithCompletion:^(BOOL success) {
+                    if (success) {
+                        self.tableView.hidden = NO;
+                        self.noFeedLabel.hidden = YES;
+                        [self.tableView reloadData];
+                    }
+                }];
+            });
+        }
+    }];
     
+    
+    
+    if (userController.currentUser && userController.currentUser.following.count > 0) {
+        self.tableView.hidden = NO;
+        self.noFeedLabel.hidden = YES;
+    } else {
+        self.noFeedLabel.hidden = NO;
+        self.tableView.hidden = YES;
     }
+}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -67,14 +84,16 @@
     UserController *userController = [UserController sharedInstance];
     [homeFeedController loadTweetsFromHashtagsWithCompletion:^(BOOL success) {
         if (success) {
-            if (![self.tableView isDescendantOfView:self.view] && userController.currentUser && userController.currentUser.following.count > 0) {
-                [self.noFeedLabel removeFromSuperview];
-                [self.view addSubview:self.tableView];
+            if (self.tableView.isHidden && userController.currentUser && userController.currentUser.following.count > 0) {
+                self.noFeedLabel.hidden = YES;
+                self.tableView.hidden = NO;
             } else if (!userController.currentUser || userController.currentUser.following.count == 0){
-                [self.tableView removeFromSuperview];
-                [self.view addSubview:self.noFeedLabel];
+                self.tableView.hidden = YES;
+                self.noFeedLabel.hidden = NO;
             }
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
         }
     }];
     
