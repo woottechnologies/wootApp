@@ -12,15 +12,20 @@
 #import "AthleteTweetController.h"
 #import "SchoolController.h"
 #import "PersonController.h"
-#import "PersonDataSource.h"
+#import "PersonFeedDataSource.h"
+#import "UIColor+CreateMethods.h"
+#import "PersonInfoDataSource.h"
 
 
 @interface PersonViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) CustomTabBarVC *customTBVC;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) PersonDataSource *dataSource;
+@property (nonatomic, strong) UITableView *feedTableView;
+@property (nonatomic, strong) UITableView *infoTableView;
+@property (nonatomic, strong) PersonFeedDataSource *feedDataSource;
+@property (nonatomic, strong) PersonInfoDataSource *infoDataSource;
 @property (nonatomic, strong) UIView *header;
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -36,54 +41,40 @@
     
     [self.customTBVC chooseCampaign];
     
-//    AthleteTweetController* athleteTweetController = [AthleteTweetController sharedInstance];
-//    [athleteTweetController athleteTweetNetworkController];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTweets) name:athleteTweetRequestFinished object:nil];
-//    
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
-    self.tableView.delegate = self;
-    self.dataSource = [PersonDataSource new];
-    [self.dataSource registerTableView:self.tableView viewController:self];
-    self.tableView.dataSource = self.dataSource;
-    [self.view addSubview:self.tableView];
+    self.feedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
+    self.feedTableView.delegate = self;
+    self.feedDataSource = [PersonFeedDataSource new];
+    [self.feedDataSource registerTableView:self.feedTableView viewController:self];
+    self.feedTableView.dataSource = self.feedDataSource;
+    [self.view addSubview:self.feedTableView];
+    self.feedTableView.hidden = NO;
     
-    //    [self.view addSubview:customTabBarVC.toolBar];
-    //    [customTabBarVC.toolBar alignLeadingEdgeWithView:self.view predicate:@"0"];
-    //    [customTabBarVC.toolBar alignTrailingEdgeWithView:self.view predicate:@"0"];
-    //    [customTabBarVC.toolBar alignBottomEdgeWithView:self.view predicate:@"0"];
-    //    [customTabBarVC.toolBar constrainHeight:@"44"];
+    self.infoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
+    self.infoDataSource = [PersonInfoDataSource new];
+    [self.infoDataSource registerTableView:self.infoTableView viewController:self];
+    self.infoTableView.dataSource = self.infoDataSource;
+    [self.view addSubview:self.infoTableView];
+    self.infoTableView.hidden = YES;
     
     self.header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
     [self.view addSubview:self.header];
     [self setupHeader];
     
-    //    UIColor *backgroundColor = [UIColor colorWithRed:0.141 green:0.18 blue:0.518 alpha:1];
-    //
-    //    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    
-    [self.navigationController.navigationBar setBarTintColor:[SchoolController sharedInstance].currentSchool.primaryColor];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHex:@"#19b78c" alpha:1]];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    PersonController *personController = [PersonController sharedInstance];
+    self.navigationItem.title = [NSString stringWithFormat:@"@%@", personController.currentPerson.username];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
 }
 
 - (void)setupHeader {
-    //    [super viewDidLoad];
-    
     float windowWidth = self.view.frame.size.width;
-    float headerPhotoBottom = windowWidth/2.083;
-    float bigStripeHeight = windowWidth/8.333;
-    float littleStripeHeight = windowWidth/46.875;
+    float headerPhotoBottom = windowWidth*0.43;
+    float buttonStripeHeight = windowWidth*0.12;
     
-    SchoolController *schoolController = [SchoolController sharedInstance];
     PersonController *personController = [PersonController sharedInstance];
-    
-    UIColor *primaryColor = schoolController.currentSchool.primaryColor;
-    UIColor *secondaryColor = schoolController.currentSchool.secondaryColor;
-    
-    self.navigationController.navigationBar.backgroundColor = primaryColor;
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    //    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    //    self.navigationController.navigationBar.translucent = YES;
-    
+
     UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
     [backButton setBackgroundImage:backArrow forState:UIControlStateNormal];
@@ -93,100 +84,69 @@
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem=backArrowButton;
     
-    //    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
-    //    [backArrow drawInRect:CGRectMake(0, 0, 10, 20) blendMode:1 alpha:0.5];
-    //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backArrow style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
-    //    backButton.tintColor = [UIColor whiteColor];
-    //    self.navigationItem.leftBarButtonItem = backButton;
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, windowWidth, headerPhotoBottom + bigStripeHeight + littleStripeHeight + bigStripeHeight)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowWidth, headerPhotoBottom + buttonStripeHeight)];
     [self.view addSubview:headerView];
     
-    UIImageView *headerPhoto = [[UIImageView alloc] initWithImage:personController.currentPerson.headerPhoto];
+    UIImageView *headerPhoto;
+    if (personController.currentPerson.headerPhoto) {
+        headerPhoto = [[UIImageView alloc] initWithImage:personController.currentPerson.headerPhoto];
+    } else {
+        headerPhoto = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"woot_headerimage"]];
+    }
     headerPhoto.frame = CGRectMake(0, 0, windowWidth, headerPhotoBottom);
     [headerView addSubview:headerPhoto];
+   
+    UIView *buttonStripe = [[UIView alloc] init];
+    buttonStripe.backgroundColor = [UIColor colorWithHex:@"#807c7c" alpha:1];
+    buttonStripe.frame = CGRectMake(0, headerPhotoBottom, windowWidth, buttonStripeHeight);
+    [headerView addSubview:buttonStripe];
     
-    //    UIView *statusBarStripe = [[UIView alloc] init];
-    //    statusBarStripe.backgroundColor = [UIColor whiteColor];
-    //    statusBarStripe.frame = CGRectMake(0, 0, windowWidth, 20);
-    //    [self.view addSubview:statusBarStripe];
+    UIButton *feedButton = [[UIButton alloc] initWithFrame:CGRectMake(55, 11, 30, 22)];
+    [feedButton setBackgroundImage:[UIImage imageNamed:@"list_icon"] forState:UIControlStateNormal];
+    [feedButton addTarget:self action:@selector(feedButtonPressed)
+         forControlEvents:UIControlEventTouchUpInside];
+    [buttonStripe addSubview:feedButton];
     
-    UIView *primaryColorStripe = [[UIView alloc] init];
-    primaryColorStripe.backgroundColor = primaryColor;
-    primaryColorStripe.frame = CGRectMake(0, headerPhotoBottom + bigStripeHeight + littleStripeHeight, windowWidth, bigStripeHeight);
-    [headerView addSubview:primaryColorStripe];
-    
-    UIView *secondaryColorStripe = [[UIView alloc] init];
-    secondaryColorStripe.backgroundColor = secondaryColor;
-    secondaryColorStripe.frame = CGRectMake(0, headerPhotoBottom + bigStripeHeight, windowWidth, littleStripeHeight);
-    [headerView addSubview:secondaryColorStripe];
-    
-    UIView *whiteStripe = [[UIView alloc] init];
-    whiteStripe.backgroundColor = [UIColor whiteColor];
-    whiteStripe.frame = CGRectMake(0, headerPhotoBottom, self.view.frame.size.width, bigStripeHeight);
-    [headerView addSubview:whiteStripe];
+    UIButton *infoButton = [[UIButton alloc] initWithFrame:CGRectMake(285, 20, 30, 7)];
+    [infoButton setBackgroundImage:[UIImage imageNamed:@"dots_icon"] forState:UIControlStateNormal];
+    [infoButton addTarget:self action:@selector(infoButtonPressed)
+         forControlEvents:UIControlEventTouchUpInside];
+    [buttonStripe addSubview:infoButton];
     
     UIImageView *whiteCircle = [UIImageView new];
     whiteCircle.backgroundColor = [UIColor whiteColor];
-    [self setRoundedView:whiteCircle toDiameter:windowWidth/2.083];
+    [self setRoundedView:whiteCircle toDiameter:windowWidth*0.29];
     CGPoint circleCenter = whiteCircle.center;
-    circleCenter.x = windowWidth/4 + 6;
-    circleCenter.y = headerPhotoBottom;
+    circleCenter.x = windowWidth/2;
+    circleCenter.y = headerPhotoBottom - windowWidth*0.06;
     whiteCircle.center = circleCenter;
     [headerView addSubview:whiteCircle];
     
-    //    UIImageView *athleteCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"football_portrait_square"]];
-    UIImageView *personCircle = [[UIImageView alloc] initWithImage:personController.currentPerson.photo];
+    UIImageView *personCircle;
+    if (personController.currentPerson.photo) {
+        personCircle = [[UIImageView alloc] initWithImage:personController.currentPerson.photo];
+    } else {
+        personCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noimage_profilepic"]];
+    }
     personCircle.clipsToBounds = YES;
-    [self setRoundedView:personCircle toDiameter:windowWidth/2.388];
+    [self setRoundedView:personCircle toDiameter:windowWidth*0.245];
     personCircle.center = circleCenter;
+    personCircle.backgroundColor = [UIColor redColor];
     [headerView addSubview:personCircle];
-    
-    UILabel *athleteNumberLabel = [[UILabel alloc] init];
-    athleteNumberLabel.frame = CGRectMake(windowWidth/2, windowWidth/93.75, windowWidth/6.25, windowWidth/10.135);
-    //    athleteNumberLabel.text = @"#88";
-    athleteNumberLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:35];
-    athleteNumberLabel.textColor = primaryColor;
-//    [athleteNumberLabel setFont:[athleteNumberLabel.font fontWithSize:[self maxFontSize:athleteNumberLabel]]];
-    [whiteStripe addSubview:athleteNumberLabel];
-    
-    UILabel *personNameLabel = [[UILabel alloc] init];
-    personNameLabel.frame = CGRectMake(athleteNumberLabel.center.x + windowWidth/10.714, windowWidth/75, windowWidth/3.261, windowWidth/17.8571429);
-    //    athleteNameLabel.text = @"Luke Robinson";
-    personNameLabel.text = personController.currentPerson.name;
-    personNameLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
-//    [personNameLabel setFont:[personNameLabel.font fontWithSize:[self maxFontSize:personNameLabel]]];
-    [whiteStripe addSubview:personNameLabel];
-    
-    UILabel *athleteHeightLabel = [[UILabel alloc] init];
-    athleteHeightLabel.frame = CGRectMake(150 + windowWidth/10.714, 7, 70, 30);
-    //    athleteNameLabel.text = @"Luke Robinson";
-    athleteHeightLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
-    athleteHeightLabel.textColor = [UIColor whiteColor];
-//    [athleteHeightLabel setFont:[athleteHeightLabel.font fontWithSize:[self maxFontSize:athleteHeightLabel]]];
-    [primaryColorStripe addSubview:athleteHeightLabel];
-    
-    UILabel *athleteWeightLabel = [[UILabel alloc] init];
-    athleteWeightLabel.frame = CGRectMake(220 + windowWidth/10.714, 7, 100, 30);
-    //    athleteNameLabel.text = @"Luke Robinson";
-   
-    athleteWeightLabel.font = [UIFont fontWithName:@"ArialMT" size:15];
-    athleteWeightLabel.textColor = [UIColor whiteColor];
-//    [athleteWeightLabel setFont:[athleteWeightLabel.font fontWithSize:[self maxFontSize:athleteWeightLabel]]];
-    [primaryColorStripe addSubview:athleteWeightLabel];
-    
-    
-    UILabel *athletePositionLabel = [[UILabel alloc] init];
-    athletePositionLabel.frame = CGRectMake(athleteNumberLabel.center.x + windowWidth/10.714, windowWidth/16.304, windowWidth/3.261, windowWidth/25);
-    //    athletePositionLabel.text = @"Senior QB";
-       
-    athletePositionLabel.font = [UIFont fontWithName:@"ArialMT" size:13];
-//    [athletePositionLabel setFont:[athletePositionLabel.font fontWithSize:[self maxFontSize:athletePositionLabel]]];
-    [whiteStripe addSubview:athletePositionLabel];
 }
 
 - (void) backButtonPressed {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) feedButtonPressed {
+    self.infoTableView.hidden = YES;
+    self.feedTableView.hidden = NO;
+}
+
+- (void) infoButtonPressed {
+    self.feedTableView.hidden = YES;
+    self.infoTableView.hidden = NO;
 }
 
 - (void)setRoundedView:(UIImageView *)roundedView toDiameter:(float)newSize;{

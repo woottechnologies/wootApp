@@ -55,24 +55,19 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [homeFeedController loadTweetsFromHashtagsWithCompletion:^(BOOL success) {
                     if (success) {
-                        self.tableView.hidden = NO;
-                        self.noFeedLabel.hidden = YES;
+                        if (userController.currentUser && userController.currentUser.following.count > 0) {
+                            self.tableView.hidden = NO;
+                            self.noFeedLabel.hidden = YES;
+                        } else {
+                            self.noFeedLabel.hidden = NO;
+                            self.tableView.hidden = YES;
+                        }
                         [self.tableView reloadData];
                     }
                 }];
             });
         }
     }];
-    
-    
-    
-    if (userController.currentUser && userController.currentUser.following.count > 0) {
-        self.tableView.hidden = NO;
-        self.noFeedLabel.hidden = YES;
-    } else {
-        self.noFeedLabel.hidden = NO;
-        self.tableView.hidden = YES;
-    }
 }
 
 - (void)dealloc {

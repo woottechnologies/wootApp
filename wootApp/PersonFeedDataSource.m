@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Woot Technologies. All rights reserved.
 //
 
-#import "PersonDataSource.h"
+#import "PersonFeedDataSource.h"
 #import "PersonTweetCell.h"
 #import "PersonController.h"
 #import "PersonTweetController.h"
 
 static NSString *personTwitterCellID = @"twitterCellID";
 
-@interface PersonDataSource()
+@interface PersonFeedDataSource()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) PersonViewController *viewController;
@@ -21,7 +21,7 @@ static NSString *personTwitterCellID = @"twitterCellID";
 @end
 
 
-@implementation PersonDataSource
+@implementation PersonFeedDataSource
 
 - (void)registerTableView:(UITableView *)tableView viewController:(PersonViewController *)viewController {
     self.tableView = tableView;
@@ -42,12 +42,7 @@ return [UITableViewCell new];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *numberOfRowsPerSection = @[@0, @0, @0, @0];
-    return [numberOfRowsPerSection[section] integerValue];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 0;
 }
 
 -(CGFloat)descriptionLabelHeight:(NSString *)string{
