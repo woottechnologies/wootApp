@@ -40,7 +40,7 @@
     self.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.tableView];
     
-    self.noFeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, 30)];
+    self.noFeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2 - 80, self.view.frame.size.width, 30)];
     self.noFeedLabel.text = @"You aren't currently following anybody";
     self.noFeedLabel.textColor = [UIColor lightGrayColor];
     [self.noFeedLabel setTextAlignment:NSTextAlignmentCenter];
@@ -93,7 +93,8 @@
     }];
     
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHex:@"#1a1c1c" alpha:0.8];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHex:@"#19b78c" alpha:1]];
+    [self.navigationController.navigationBar setTranslucent:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.customTBVC = (CustomTabBarVC *)appDelegate.window.rootViewController;
@@ -105,7 +106,7 @@
 //}
 
 - (void) viewDidAppear:(BOOL)animated{
-    UIImageView *wootView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"woot_woot_green"]];
+    UIImageView *wootView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"woot_woot_white"]];
     wootView.frame = CGRectMake(0, 0, 90, 30);
     [wootView setContentMode:UIViewContentModeScaleAspectFit];
     [self.navigationController.navigationBar.topItem setTitleView:wootView];

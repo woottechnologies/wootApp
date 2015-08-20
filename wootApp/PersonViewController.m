@@ -25,7 +25,6 @@
 @property (nonatomic, strong) PersonFeedDataSource *feedDataSource;
 @property (nonatomic, strong) PersonInfoDataSource *infoDataSource;
 @property (nonatomic, strong) UIView *header;
-@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -34,6 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    float windowWidth = self.view.frame.size.width;
+    float headerPhotoBottom = windowWidth*0.43;
+    float buttonStripeHeight = windowWidth*0.12;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -41,7 +44,7 @@
     
     [self.customTBVC chooseCampaign];
     
-    self.feedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
+    self.feedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerPhotoBottom + buttonStripeHeight, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
     self.feedTableView.delegate = self;
     self.feedDataSource = [PersonFeedDataSource new];
     [self.feedDataSource registerTableView:self.feedTableView viewController:self];
@@ -49,7 +52,7 @@
     [self.view addSubview:self.feedTableView];
     self.feedTableView.hidden = NO;
     
-    self.infoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 220, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
+    self.infoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerPhotoBottom + buttonStripeHeight, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
     self.infoDataSource = [PersonInfoDataSource new];
     [self.infoDataSource registerTableView:self.infoTableView viewController:self];
     self.infoTableView.dataSource = self.infoDataSource;
@@ -101,13 +104,13 @@
     buttonStripe.frame = CGRectMake(0, headerPhotoBottom, windowWidth, buttonStripeHeight);
     [headerView addSubview:buttonStripe];
     
-    UIButton *feedButton = [[UIButton alloc] initWithFrame:CGRectMake(55, 11, 30, 22)];
+    UIButton *feedButton = [[UIButton alloc] initWithFrame:CGRectMake(55, 9, 30, 30)];
     [feedButton setBackgroundImage:[UIImage imageNamed:@"list_icon"] forState:UIControlStateNormal];
     [feedButton addTarget:self action:@selector(feedButtonPressed)
          forControlEvents:UIControlEventTouchUpInside];
     [buttonStripe addSubview:feedButton];
     
-    UIButton *infoButton = [[UIButton alloc] initWithFrame:CGRectMake(285, 20, 30, 7)];
+    UIButton *infoButton = [[UIButton alloc] initWithFrame:CGRectMake(285, 9, 30, 30)];
     [infoButton setBackgroundImage:[UIImage imageNamed:@"dots_icon"] forState:UIControlStateNormal];
     [infoButton addTarget:self action:@selector(infoButtonPressed)
          forControlEvents:UIControlEventTouchUpInside];
