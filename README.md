@@ -1,1 +1,1 @@
-# wootApp
+Woot is a social media centered around high school athletics that will strengthen a team’s community by connecting athletes, fans, coaches, and local sponsors.

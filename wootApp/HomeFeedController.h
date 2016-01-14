@@ -18,7 +18,7 @@ static NSString *HashtagKey = @"hashtag";
 @property (nonatomic, strong) User *currentUser;
 @property (nonatomic, strong) NSArray *hashtags;
 @property (nonatomic, strong) NSString *currentHashtag;
-@property (nonatomic, strong) NSArray *tweets;
+@property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSArray *tweetsAndNames;
 
 + (instancetype) sharedInstance;

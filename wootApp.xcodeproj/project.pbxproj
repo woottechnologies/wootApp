@@ -42,6 +42,7 @@
 		551D2A541B56E97300F18BCD /* AthleteTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D2A531B56E97300F18BCD /* AthleteTweetController.m */; };
 		552979011B850C1F001909CB /* PersonInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552979001B850C1F001909CB /* PersonInfoDataSource.m */; };
 		552979041B850ECC001909CB /* PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 552979031B850ECC001909CB /* PersonInfoCell.m */; };
+		552979071B8699A3001909CB /* UserInfoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552979061B8699A3001909CB /* UserInfoDataSource.m */; };
 		552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 552F843A1B573C550064FDE6 /* HomeFeedDataSource.m */; };
 		552F843E1B573C9D0064FDE6 /* HomeFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552F843D1B573C9D0064FDE6 /* HomeFeedViewController.m */; };
 		553A28DA1B27649900784798 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A28D51B27649900784798 /* FLKAutoLayoutPredicateList.m */; };
@@ -77,6 +78,7 @@
 		559DD1971B7AA65700875B92 /* PersonTweetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1961B7AA65700875B92 /* PersonTweetController.m */; };
 		559DD19A1B7AA66700875B92 /* PersonTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 559DD1991B7AA66700875B92 /* PersonTweetCell.m */; };
 		55A13E411B45DE54009001BE /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A13E401B45DE54009001BE /* SearchTableViewCell.m */; };
+		55AFB5221C31DE41001FF1CF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 55AFB5211C31DE41001FF1CF /* README.md */; };
 		55B4C8A51B1E386F003B3058 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A41B1E386F003B3058 /* main.m */; };
 		55B4C8A81B1E386F003B3058 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8A71B1E386F003B3058 /* AppDelegate.m */; };
 		55B4C8AB1B1E386F003B3058 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4C8AA1B1E386F003B3058 /* SearchViewController.m */; };
@@ -172,6 +174,8 @@
 		552979001B850C1F001909CB /* PersonInfoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoDataSource.m; sourceTree = "<group>"; };
 		552979021B850ECC001909CB /* PersonInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoCell.h; sourceTree = "<group>"; };
 		552979031B850ECC001909CB /* PersonInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoCell.m; sourceTree = "<group>"; };
+		552979051B8699A3001909CB /* UserInfoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDataSource.h; sourceTree = "<group>"; };
+		552979061B8699A3001909CB /* UserInfoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDataSource.m; sourceTree = "<group>"; };
 		552F84391B573C550064FDE6 /* HomeFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFeedDataSource.h; sourceTree = "<group>"; };
 		552F843A1B573C550064FDE6 /* HomeFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFeedDataSource.m; sourceTree = "<group>"; };
 		552F843C1B573C9D0064FDE6 /* HomeFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeFeedViewController.h; path = ../wootApp/HomeFeedViewController.h; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		559DD1991B7AA66700875B92 /* PersonTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTweetCell.m; sourceTree = "<group>"; };
 		55A13E3F1B45DE54009001BE /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
 		55A13E401B45DE54009001BE /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
+		55AFB5211C31DE41001FF1CF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		55B4C89F1B1E386F003B3058 /* wootApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wootApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B4C8A31B1E386F003B3058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B4C8A41B1E386F003B3058 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -315,6 +320,8 @@
 				4797DEAF1B39FCF7006BBC43 /* User.m */,
 				47ECED061B557CE2006B03E8 /* UserProfileViewController.h */,
 				47ECED071B557CE2006B03E8 /* UserProfileViewController.m */,
+				552979051B8699A3001909CB /* UserInfoDataSource.h */,
+				552979061B8699A3001909CB /* UserInfoDataSource.m */,
 				47C0407D1B7A665A00105BC4 /* edit */,
 				559DD1851B7A868F00875B92 /* UserViewController.h */,
 				559DD1861B7A868F00875B92 /* UserViewController.m */,
@@ -495,6 +502,7 @@
 		55B4C8961B1E386F003B3058 = {
 			isa = PBXGroup;
 			children = (
+				55AFB5211C31DE41001FF1CF /* README.md */,
 				4797DEB51B3CA27C006BBC43 /* MessageUI.framework */,
 				55B4C8A11B1E386F003B3058 /* wootApp */,
 				55B4C8BB1B1E386F003B3058 /* wootAppTests */,
@@ -751,11 +759,13 @@
 				473EA3561B29E4F80033AFA1 /* Game.m in Sources */,
 				472F873C1B27741D0067C72F /* UIImage+PathForFile.m in Sources */,
 				47541EB21B1F700C005E3C53 /* Team.m in Sources */,
+				552979071B8699A3001909CB /* UserInfoDataSource.m in Sources */,
 				551D2A541B56E97300F18BCD /* AthleteTweetController.m in Sources */,
 				55C323081B446135002EBB65 /* DynamicFontSize.m in Sources */,
 				473EA3591B29EE310033AFA1 /* GameController.m in Sources */,
 				55B4C8AB1B1E386F003B3058 /* SearchViewController.m in Sources */,
 				553A28DF1B2773E600784798 /* Campaign.m in Sources */,
+				55AFB5221C31DE41001FF1CF /* README.md in Sources */,
 				553A28E51B27991800784798 /* CampaignAdViewController.m in Sources */,
 				552979041B850ECC001909CB /* PersonInfoCell.m in Sources */,
 				553A28E21B27762700784798 /* CampaignController.m in Sources */,

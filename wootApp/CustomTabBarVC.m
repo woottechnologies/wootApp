@@ -146,14 +146,20 @@
 
 - (void)homeFeedItemTapped:(UIBarButtonItem *)homeFeedItem {
     UINavigationController *vc = self.childViewControllers[0];
-    self.selectedViewController = vc;
-    [vc popToRootViewControllerAnimated:YES];
+    if (![self.selectedViewController isEqual:self.childViewControllers[0]]) {
+        self.selectedViewController = vc;
+    } else {
+        [vc popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)searchItemTapped:(UIBarButtonItem *)searchItem {
     UINavigationController *vc = self.childViewControllers[1];
-    self.selectedViewController = vc;
-    [vc popToRootViewControllerAnimated:YES];
+    if (![self.selectedViewController isEqual:self.childViewControllers[1]]) {
+        self.selectedViewController = vc;
+    } else {
+        [vc popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)selfItemTapped:(UIBarButtonItem *)selfItem {
@@ -204,7 +210,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:FollowingKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    self.selectedViewController = self.childViewControllers[1];
+    self.selectedViewController = self.childViewControllers[0];
 }
 
 - (BOOL)prefersStatusBarHidden {

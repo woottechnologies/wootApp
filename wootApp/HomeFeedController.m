@@ -113,7 +113,7 @@
             }
 //            dispatch_group_leave(tweetGroup);
             dispatch_group_notify(tweetGroup, dispatch_get_main_queue(), ^{
-                self.tweets = mutableTweetsNoRetweets;
+                self.posts = mutableTweetsNoRetweets;
                 self.tweetsAndNames = tweetsAndNames;
                 [self sortTweetsChronologically];
                 completion(YES);
@@ -127,7 +127,7 @@
 
 -(void) sortTweetsChronologically{
     NSMutableArray *sortedTweets = [[NSMutableArray alloc] init];
-    NSMutableArray *unsortedTweets = [self.tweets mutableCopy];
+    NSMutableArray *unsortedTweets = [self.posts mutableCopy];
     while (unsortedTweets.count > 0) {
         TWTRTweet *oldestTweet = unsortedTweets[0];
         for (TWTRTweet *tweet in unsortedTweets){
@@ -138,7 +138,7 @@
         [sortedTweets addObject:oldestTweet];
         [unsortedTweets removeObject:oldestTweet];
     }
-    self.tweets = sortedTweets;
+    self.posts = sortedTweets;
 }
 
 

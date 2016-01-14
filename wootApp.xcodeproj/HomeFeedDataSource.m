@@ -30,25 +30,30 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    TWTRTweet *tweet = homeFeedController.tweets[indexPath.row];
-    NSDictionary *posterInfo;
-    for (NSDictionary *tweetAndInfo in homeFeedController.tweetsAndNames) {
-        if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
-            posterInfo = tweetAndInfo;
-            [cell setUpTweetCell:tweet posterInfo:posterInfo];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return cell;
+    if ([homeFeedController.posts[indexPath.row] isKindOfClass:[TWTRTweet class]]) {
+        TWTRTweet *tweet = homeFeedController.posts[indexPath.row];
+        NSDictionary *posterInfo;
+        for (NSDictionary *tweetAndInfo in homeFeedController.tweetsAndNames) {
+            if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
+                posterInfo = tweetAndInfo;
+                [cell setUpTweetCell:tweet posterInfo:posterInfo];
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                return cell;
+            }
         }
+    } else {
+        [cell setUpOriginalContentCell:(NSDictionary *)homeFeedController.posts[indexPath.row]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
     }
-    [cell setUpTweetCell:tweet posterInfo:posterInfo];
     cell.delegate = self.viewController;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    if (homeFeedController.tweets.count < 20) {
-        return homeFeedController.tweets.count;
+    if (homeFeedController.posts.count < 20) {
+        return homeFeedController.posts.count;
     } else {
       return 20;
     }

@@ -162,8 +162,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height;
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
-    if (homeFeedController.tweets && homeFeedController.tweets.count>indexPath.row) {
-        TWTRTweet *tweet = homeFeedController.tweets[indexPath.row];
+    if (homeFeedController.posts && homeFeedController.posts.count>indexPath.row) {
+        TWTRTweet *tweet = homeFeedController.posts[indexPath.row];
         height = [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.view.bounds)] + 35;
     } else {
         height = 0;

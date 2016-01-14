@@ -17,6 +17,8 @@
 @interface HomeFeedCell ()
 
 @property (nonatomic, strong) TWTRTweetView *tweetView;
+@property (nonatomic, strong) UIImageView *originalContentImage;
+@property (nonatomic, strong) UILabel *originalContentCaption;
 @property (nonatomic, strong) UIView *postView;
 @property (nonatomic, strong) UILabel *posterName;
 @property (nonatomic, strong) UIButton *posterNameButton;
@@ -45,6 +47,9 @@
         
         self.postView = [[UIView alloc] init];
         self.tweetView = [[TWTRTweetView alloc] initWithTweet:nil style:TWTRTweetViewStyleCompact];
+        self.originalContentImage = [[UIImageView alloc] init];
+        self.originalContentCaption = [[UILabel alloc] init];
+        self.originalContentCaption.numberOfLines = 0;
         //    self.posterName = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.contentView.frame.size.width, 30)];
         self.posterNameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 //        self.posterNameButton.frame = CGRectMake(5, 5, self.contentView.frame.size.width, 30);
@@ -57,6 +62,8 @@
         self.grayView = [[UIView alloc] init];
         self.grayView.backgroundColor = [UIColor lightGrayColor];
         [self.postView addSubview:self.tweetView];
+        [self.postView addSubview:self.originalContentImage];
+        [self.postView addSubview:self.originalContentCaption];
         //    [self.postView addSubview:self.posterName];
         [self.postView addSubview:self.grayView];
         [self.postView addSubview:self.posterNameButton];
@@ -77,7 +84,7 @@
     return self;
 }
 
-- (void)setUpTweetCell:(TWTRTweet *) tweet posterInfo:(NSDictionary *)posterInfo{
+- (void)setUpTweetCell:(TWTRTweet *)tweet posterInfo:(NSDictionary *)posterInfo{
     self.tweet = tweet;
     [self.tweetView configureWithTweet:tweet];
 //    self.tweetView.frame = CGRectMake(0, 35, 375, [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.bounds)]);
@@ -91,6 +98,18 @@
     NSString *tweetHeightString = [NSString stringWithFormat:@"%.2f", [TWTRTweetTableViewCell heightForTweet:tweet width:CGRectGetWidth(self.bounds)]];
     [self.tweetView constrainHeight:tweetHeightString];
     [self.tweetView alignBottomEdgeWithView:self.postView predicate:@"0"];
+}
+
+- (void)setUpOriginalContentCell:(NSDictionary *)contents{
+    [self.posterNameButton setTitle:contents[@"poster"] forState:UIControlStateNormal];
+    [self.originalContentImage setImage:contents[@"image"]];
+    self.originalContentCaption.text = contents[@"caption"];
+    
+    [self.originalContentImage constrainTopSpaceToView:self.posterNameButton predicate:@"0"];
+    [self.originalContentImage alignLeading:@"0" trailing:@"0" toView:self.postView];
+    [self.originalContentCaption constrainTopSpaceToView:self.originalContentImage predicate:@"0"];
+    [self.originalContentCaption alignLeading:@"0" trailing:@"0" toView:self.postView];
+    [self.originalContentCaption alignBottomEdgeWithView:self.postView predicate:@"0"];
 }
 
 - (void)posterNameButtonPressed:(id)sender {

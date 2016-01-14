@@ -12,7 +12,7 @@
 #import "CustomTabBarVC.h"
 #import "FollowingViewController.h"
 #import "PersonFeedDataSource.h"
-#import "PersonInfoDataSource.h"
+#import "UserInfoDataSource.h"
 #import "PersonInfoCell.h"
 #import "UIColor+CreateMethods.h"
 @import QuartzCore;
@@ -29,7 +29,7 @@
 @property (nonatomic, strong) UITableView *feedTableView;
 @property (nonatomic, strong) UITableView *infoTableView;
 @property (nonatomic, strong) PersonFeedDataSource *feedDataSource;
-@property (nonatomic, strong) PersonInfoDataSource *infoDataSource;
+@property (nonatomic, strong) UserInfoDataSource *infoDataSource;
 @property (nonatomic, strong) UIView *header;
 
 @end
@@ -142,7 +142,7 @@
     self.feedTableView.hidden = NO;
     
     self.infoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerPhotoBottom + buttonStripeHeight, self.view.frame.size.width, 380) style:UITableViewStyleGrouped];
-    self.infoDataSource = [PersonInfoDataSource new];
+    self.infoDataSource = [UserInfoDataSource new];
     [self.infoDataSource registerTableView:self.infoTableView viewController:self];
     self.infoTableView.dataSource = self.infoDataSource;
     [self.view addSubview:self.infoTableView];

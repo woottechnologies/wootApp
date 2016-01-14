@@ -305,7 +305,7 @@
         if (success) {
             // land them wherever they were
             if (!self.followButtonType) {
-                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[1];
+                self.customTBVC.selectedViewController = self.customTBVC.childViewControllers[0];
                 [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                         withAnimation:UIStatusBarAnimationNone];
                 [self dismissViewControllerAnimated:YES completion:nil];

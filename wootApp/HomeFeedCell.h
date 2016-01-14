@@ -19,6 +19,8 @@
 
 - (void)setUpTweetCell:(TWTRTweet *) tweet posterInfo:(NSDictionary *)posterInfo;
 
+- (void)setUpOriginalContentCell:(NSDictionary *)contents;
+
 @end
 
 @protocol HomeFeedCellDelegate <NSObject>

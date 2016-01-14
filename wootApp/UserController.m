@@ -94,10 +94,12 @@
                 NSInteger userID = [[responseDict objectForKey:@"id"] integerValue];
                 NSString *handle = [responseDict objectForKey:@"handle"];
                 NSString *email = [responseDict objectForKey:@"email"];
+                NSString *name = [responseDict objectForKey:@"name"];
                 self.currentUser.userID = userID;
                 self.currentUser.username = handle;
                 self.currentUser.password = nil;
                 self.currentUser.email = email;
+                self.currentUser.name = name;
                 dispatch_group_enter(followingGroup);
                 [self loadFollowingFromDBWithCompletion:^(BOOL success, NSArray *following) {
                     if (success) {
@@ -190,6 +192,11 @@
     NSDictionary *userDict = @{UserIDKey:[NSNumber numberWithInteger:self.currentUser.userID],
                                UsernameKey:self.currentUser.username,
                                EmailKey:self.currentUser.email};
+    if (self.currentUser.name) {
+        NSMutableDictionary *userDictMutable = [userDict mutableCopy];
+        [userDictMutable addEntriesFromDictionary:@{NameKey:self.currentUser.name}];
+        userDict = userDictMutable;
+    }
     [[NSUserDefaults standardUserDefaults] setObject:userDict forKey:UserKey];
     [[NSUserDefaults standardUserDefaults] setInteger:self.currentUser.following.count forKey:FollowingCountKey];
     //[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.following forKey:FollowingKey];
