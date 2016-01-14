@@ -11,11 +11,12 @@
 #import "AppDelegate.h"
 #import "CustomTabBarVC.h"
 #import "FollowingViewController.h"
-@import QuartzCore;
+#import "ComposePostViewController.h"
 
 @interface UserProfileViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *optionsButton;
+@property (nonatomic, strong) UIBarButtonItem *composeButton;
 @property (nonatomic, strong) UILabel *usernameLabel;
 @property (nonatomic, strong) UIButton *postsButton;
 @property (nonatomic, strong) UIButton *followingButton;
@@ -60,6 +61,10 @@
          forControlEvents:UIControlEventTouchUpInside];
     self.optionsButton =[[UIBarButtonItem alloc] initWithCustomView:options];
     self.navigationItem.rightBarButtonItem = self.optionsButton;
+    
+    self.composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeButtonPressed:)];
+    self.composeButton.tintColor = [UIColor blackColor];
+    self.navigationItem.leftBarButtonItem = self.composeButton;
     
     CGPoint circleCenter = CGPointMake(self.view.frame.size.width / 2, 100);
     
@@ -109,11 +114,19 @@
     [self.view addSubview:self.followersButton];
 }
 
+#pragma mark - Buttons
+
 - (void)optionsButtonPressed:(UIBarButtonItem *)item {
     AppDelegate *appD = [[UIApplication sharedApplication] delegate];
     CustomTabBarVC *customTBVC = (CustomTabBarVC *)appD.window.rootViewController;
     
     [customTBVC toggleDrawer];
+}
+
+- (void)composeButtonPressed:(UIBarButtonItem *)item {
+    //ComposePostViewController *composeVC = [[ComposePostViewController alloc] init];
+    UINavigationController *navComposeVC = [[UINavigationController alloc] initWithRootViewController:[ComposePostViewController new]];
+    [self.navigationController presentViewController:navComposeVC animated:YES completion:nil];
 }
 
 - (void)followingButtonPressed:(UIButton *)button {
@@ -136,6 +149,7 @@
 
 - (void)postsButtonPressed:(UIButton *)button {
     NSLog(@"posts button");
+    
 }
 
 - (void)setRoundedView:(UIImageView *)roundedView toDiameter:(float)newSize;{
