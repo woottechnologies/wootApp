@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserInfoDataSource : NSObject
+@import UIKit;
+@class UserProfileViewController;
+
+@interface UserInfoDataSource : NSObject <UITableViewDataSource>
+
+- (void)registerTableView:(UITableView *)tableView viewController:(UserProfileViewController *)viewController;
 
 @end
