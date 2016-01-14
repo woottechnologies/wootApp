@@ -281,7 +281,7 @@
     [backButton addTarget:self action:@selector(backButtonPressed)
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backArrowButton =[[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem=backArrowButton;
+    self.navigationItem.leftBarButtonItem = backArrowButton;
     
 //    UIImage *backArrow = [UIImage imageNamed:@"back_arrow.png"];
 //    [backArrow drawInRect:CGRectMake(0, 0, 10, 20) blendMode:1 alpha:0.5];

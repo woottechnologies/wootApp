@@ -19,6 +19,7 @@
 #import "AthleteController.h"
 #import "PersonController.h"
 #import "PersonViewController.h"
+#import "UIColor+CreateMethods.h"
 
 @interface SearchViewController () <UITableViewDelegate, UISearchBarDelegate>
 
@@ -53,15 +54,15 @@
     self.navigationItem.rightBarButtonItem = self.cancelButton;
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"teams", @"people"]];
-    self.segmentedControl.center = CGPointMake(self.view.frame.size.width / 2, 80);
-    self.segmentedControl.backgroundColor = [UIColor lightGrayColor];
+    self.segmentedControl.center = CGPointMake(self.view.frame.size.width / 2, 20);
+    self.segmentedControl.tintColor = [UIColor colorWithHex:@"#807c7c" alpha:1];
     [self.segmentedControl setTitle:@"TEAM" forSegmentAtIndex:0];
     [self.segmentedControl setTitle:@"PEOPLE" forSegmentAtIndex:1];
     [self.segmentedControl addTarget:self action:@selector(segmentedControlToggled) forControlEvents:UIControlEventValueChanged];
     self.segmentedControl.selectedSegmentIndex = 0;
     [self.view addSubview:self.segmentedControl];
 
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     self.dataSource = [[SearchDataSource alloc] init];
     self.tableView.dataSource = self.dataSource;
     self.tableView.delegate = self;
@@ -97,7 +98,8 @@
     
     [self.searchBar becomeFirstResponder];
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHex:@"#1a1c1c" alpha:1.0];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHex:@"#19b78c" alpha:1]];
+    [self.navigationController.navigationBar setTranslucent:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.customTBVC.campaignAdButton.hidden = YES;
     

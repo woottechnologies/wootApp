@@ -21,6 +21,7 @@
 #import "SchoolController.h"
 #import "UIColor+CreateMethods.h"
 #import "EditUserViewController.h"
+#import "UIColor+CreateMethods.h"
 @import MessageUI;
 
 @interface CustomTabBarVC () <UITabBarControllerDelegate, UITableViewDelegate, MFMailComposeViewControllerDelegate>
@@ -103,7 +104,7 @@
     self.logOut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.logOut.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height - 45, self.view.frame.size.width * 2 / 3, 44.0);
     self.logOut.enabled = NO;
-    self.logOut.backgroundColor = [UIColor lightGrayColor];
+    self.logOut.backgroundColor = [UIColor colorWithHex:@"#807c7c" alpha:1];
     [self.logOut setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.logOut setTitle:@"Log Out" forState:UIControlStateNormal];
     [self.logOut addTarget:self action:@selector(logOutPressed:) forControlEvents:UIControlEventTouchUpInside];

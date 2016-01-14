@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         self.personID = [dictionary[PersonIDKey] integerValue];
+        self.username = dictionary[PersonUserName];
         self.name = dictionary[PersonNameKey];
         if (dictionary[PersonViewsKey] != (id)[NSNull null]) {
             self.views = [dictionary[PersonViewsKey] integerValue];
