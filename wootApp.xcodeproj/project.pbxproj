@@ -36,6 +36,10 @@
 		47C040831B7A9C0200105BC4 /* UsernameEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040821B7A9C0200105BC4 /* UsernameEditVC.m */; };
 		47C040861B7A9C1D00105BC4 /* PasswordEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040851B7A9C1D00105BC4 /* PasswordEditVC.m */; };
 		47C040891B7A9C3100105BC4 /* EmailEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040881B7A9C3100105BC4 /* EmailEditVC.m */; };
+		47C0408E1B7E556C00105BC4 /* ComposePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C0408D1B7E556C00105BC4 /* ComposePostViewController.m */; };
+		47C040901B852C9400105BC4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C0408F1B852C9400105BC4 /* MobileCoreServices.framework */; };
+		47C040951B86778700105BC4 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040941B86778700105BC4 /* Post.m */; };
+		47C040981B86803300105BC4 /* PostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C040971B86803300105BC4 /* PostController.m */; };
 		47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED071B557CE2006B03E8 /* UserProfileViewController.m */; };
 		47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0A1B56D9CD006B03E8 /* FollowingViewController.m */; };
 		47ECED0F1B56DAE3006B03E8 /* FollowingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ECED0E1B56DAE3006B03E8 /* FollowingDataSource.m */; };
@@ -162,6 +166,13 @@
 		47C040851B7A9C1D00105BC4 /* PasswordEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordEditVC.m; sourceTree = "<group>"; };
 		47C040871B7A9C3100105BC4 /* EmailEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailEditVC.h; sourceTree = "<group>"; };
 		47C040881B7A9C3100105BC4 /* EmailEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailEditVC.m; sourceTree = "<group>"; };
+		47C0408C1B7E556C00105BC4 /* ComposePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposePostViewController.h; sourceTree = "<group>"; };
+		47C0408D1B7E556C00105BC4 /* ComposePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposePostViewController.m; sourceTree = "<group>"; };
+		47C0408F1B852C9400105BC4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		47C040931B86778700105BC4 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		47C040941B86778700105BC4 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		47C040961B86803300105BC4 /* PostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostController.h; sourceTree = "<group>"; };
+		47C040971B86803300105BC4 /* PostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostController.m; sourceTree = "<group>"; };
 		47ECED061B557CE2006B03E8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		47ECED071B557CE2006B03E8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		47ECED091B56D9CD006B03E8 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
@@ -276,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C040901B852C9400105BC4 /* MobileCoreServices.framework in Frameworks */,
 				4797DEB61B3CA27C006BBC43 /* MessageUI.framework in Frameworks */,
 				5569EA881B4DD946007B540B /* TwitterCore.framework in Frameworks */,
 				5569EA851B4DD946007B540B /* Fabric.framework in Frameworks */,
@@ -322,6 +334,7 @@
 				47ECED071B557CE2006B03E8 /* UserProfileViewController.m */,
 				552979051B8699A3001909CB /* UserInfoDataSource.h */,
 				552979061B8699A3001909CB /* UserInfoDataSource.m */,
+				47C0408B1B7E554100105BC4 /* compose */,
 				47C0407D1B7A665A00105BC4 /* edit */,
 				559DD1851B7A868F00875B92 /* UserViewController.h */,
 				559DD1861B7A868F00875B92 /* UserViewController.m */,
@@ -421,6 +434,26 @@
 			name = options;
 			sourceTree = "<group>";
 		};
+		47C0408B1B7E554100105BC4 /* compose */ = {
+			isa = PBXGroup;
+			children = (
+				47C0408C1B7E556C00105BC4 /* ComposePostViewController.h */,
+				47C0408D1B7E556C00105BC4 /* ComposePostViewController.m */,
+			);
+			name = compose;
+			sourceTree = "<group>";
+		};
+		47C040921B86775700105BC4 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				47C040931B86778700105BC4 /* Post.h */,
+				47C040941B86778700105BC4 /* Post.m */,
+				47C040961B86803300105BC4 /* PostController.h */,
+				47C040971B86803300105BC4 /* PostController.m */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
 		47ECED0C1B56DA9D006B03E8 /* following */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				55AFB5211C31DE41001FF1CF /* README.md */,
+				47C0408F1B852C9400105BC4 /* MobileCoreServices.framework */,
 				4797DEB51B3CA27C006BBC43 /* MessageUI.framework */,
 				55B4C8A11B1E386F003B3058 /* wootApp */,
 				55B4C8BB1B1E386F003B3058 /* wootAppTests */,
@@ -529,6 +563,7 @@
 				4797DEAD1B39F8E5006BBC43 /* CustomTabBar */,
 				4797DEAC1B39F8BA006BBC43 /* Log In / Sign Up */,
 				4797DEB41B39FD1B006BBC43 /* User */,
+				47C040921B86775700105BC4 /* Post */,
 				559DD1881B7A970B00875B92 /* Person */,
 				4797DEC21B41F25E006BBC43 /* Team */,
 				4797DEC11B41F24B006BBC43 /* Athlete */,
@@ -777,6 +812,7 @@
 				473EA3531B2939400033AFA1 /* GameViewController.m in Sources */,
 				47C040831B7A9C0200105BC4 /* UsernameEditVC.m in Sources */,
 				552F843B1B573C550064FDE6 /* HomeFeedDataSource.m in Sources */,
+				47C040951B86778700105BC4 /* Post.m in Sources */,
 				47541ECE1B20C7EC005E3C53 /* AthleteDataSource.m in Sources */,
 				47ECED0B1B56D9CD006B03E8 /* FollowingViewController.m in Sources */,
 				4797DEA81B39F75B006BBC43 /* DockViewController.m in Sources */,
@@ -786,6 +822,7 @@
 				553A28EE1B2B382200784798 /* RosterTableViewCell.m in Sources */,
 				55B4C8FF1B1F7930003B3058 /* School.m in Sources */,
 				553A28EB1B29E09F00784798 /* PreviousGameTableViewCell.m in Sources */,
+				47C0408E1B7E556C00105BC4 /* ComposePostViewController.m in Sources */,
 				553A28DB1B27649900784798 /* UIView+FLKAutoLayout.m in Sources */,
 				47ECED081B557CE2006B03E8 /* UserProfileViewController.m in Sources */,
 				4797DEB31B39FD07006BBC43 /* UserController.m in Sources */,
@@ -804,6 +841,7 @@
 				55B4C9051B1F7C4E003B3058 /* SchoolController.m in Sources */,
 				4797DEB01B39FCF7006BBC43 /* User.m in Sources */,
 				559DD1871B7A868F00875B92 /* UserViewController.m in Sources */,
+				47C040981B86803300105BC4 /* PostController.m in Sources */,
 				55B4C8A51B1E386F003B3058 /* main.m in Sources */,
 				55B4C9021B1F7966003B3058 /* Athlete.m in Sources */,
 				552979011B850C1F001909CB /* PersonInfoDataSource.m in Sources */,
@@ -865,6 +903,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cole Wilkes (243BH4XS8M)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -909,6 +948,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cole Wilkes (243BH4XS8M)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
