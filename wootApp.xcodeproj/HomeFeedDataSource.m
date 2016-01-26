@@ -7,10 +7,12 @@
 //
 
 #import "HomeFeedDataSource.h"
-#import "HomeFeedCell.h"
+#import "TweetCell.h"
+#import "OriginalContentCell.h"
 #import "HomeFeedController.h"
 
 static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
+static NSString *originalContentCellID = @"originalContentCellID";
 
 @interface HomeFeedDataSource()
 
@@ -24,30 +26,34 @@ static NSString *homeFeedTweetCellID = @"homeFeedTweetCellID";
 - (void)registerTableView:(UITableView *)tableView viewController:(HomeFeedViewController *)viewController {
     self.tableView = tableView;
     self.viewController = viewController;
-    [self.tableView registerClass:[HomeFeedCell class] forCellReuseIdentifier:homeFeedTweetCellID];
+    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:homeFeedTweetCellID];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    HomeFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
     HomeFeedController *homeFeedController = [HomeFeedController sharedInstance];
     if ([homeFeedController.posts[indexPath.row] isKindOfClass:[TWTRTweet class]]) {
+        TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:homeFeedTweetCellID];
+        tweetCell.delegate = self.viewController;
         TWTRTweet *tweet = homeFeedController.posts[indexPath.row];
         NSDictionary *posterInfo;
         for (NSDictionary *tweetAndInfo in homeFeedController.tweetsAndNames) {
             if ([tweetAndInfo[@"tweetID"] isEqualToString:tweet.tweetID]) {
                 posterInfo = tweetAndInfo;
-                [cell setUpTweetCell:tweet posterInfo:posterInfo];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-                return cell;
+                [tweetCell setUpTweetCell:tweet posterInfo:posterInfo];
+                [tweetCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                return tweetCell;
             }
         }
+        
     } else {
-        [cell setUpOriginalContentCell:(NSDictionary *)homeFeedController.posts[indexPath.row]];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        return cell;
+        OriginalContentCell *ocCell = [tableView dequeueReusableCellWithIdentifier:originalContentCellID];
+        ocCell.delegate = self.viewController;
+        [ocCell setUpOriginalContentCell:(NSDictionary *)homeFeedController.posts[indexPath.row]];
+        [ocCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return ocCell;
     }
-    cell.delegate = self.viewController;
-    return cell;
+    
+    return [[UITableViewCell alloc] init];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -13,13 +13,13 @@
 
 @protocol HomeFeedCellDelegate;
 
-@interface HomeFeedCell : UITableViewCell
+@interface TweetCell : UITableViewCell
 
 @property (weak, nonatomic) id<HomeFeedCellDelegate> delegate;
 
 - (void)setUpTweetCell:(TWTRTweet *) tweet posterInfo:(NSDictionary *)posterInfo;
 
-- (void)setUpOriginalContentCell:(NSDictionary *)contents;
+// - (void)setUpOriginalContentCell:(NSDictionary *)contents;
 
 @end
 

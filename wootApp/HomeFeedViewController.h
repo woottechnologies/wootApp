@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeFeedCell.h"
+#import "TweetCell.h"
 
 
 @interface HomeFeedViewController : UIViewController <HomeFeedCellDelegate>
